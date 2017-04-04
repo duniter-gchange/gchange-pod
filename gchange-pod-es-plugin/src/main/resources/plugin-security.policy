@@ -1,0 +1,5 @@
+grant codeBase "file:${es.path.home}/plugins/duniter4j-es-gchange/"{
+  permission java.io.FilePermission "/etc/ld.so.conf", "read";
+  permission java.io.FilePermission "/etc/ld.so.conf.d/*.conf", "read";
+  permission java.io.FilePermission "/usr/local/lib/*", "read";
+};

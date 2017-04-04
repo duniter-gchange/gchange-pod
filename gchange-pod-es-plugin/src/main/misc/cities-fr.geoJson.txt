@@ -1,0 +1,8 @@
+Les données Francaise des communes provient de ce fichier  :
+http://public.opendatasoft.com/explore/dataset/geoflar-communes-2015/export/
+
+>> Cliquer sur Export > GeoJSON
+
+
+Ou directement via :
+ http://public.opendatasoft.com/explore/dataset/geoflar-communes-2015/download/?format=geojson&timezone=Europe/Berlin

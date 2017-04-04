@@ -1,0 +1,14 @@
+org.duniter.core.client.service.bma.BlockchainRemoteServiceImpl
+org.duniter.core.client.service.bma.NetworkRemoteServiceImpl
+org.duniter.core.client.service.bma.WotRemoteServiceImpl
+org.duniter.core.client.service.bma.TransactionRemoteServiceImpl
+org.duniter.core.service.Ed25519CryptoServiceImpl
+org.duniter.core.service.MailServiceImpl
+org.duniter.core.client.service.HttpServiceImpl
+org.duniter.core.client.service.DataContext
+org.duniter.core.client.service.local.PeerServiceImpl
+org.duniter.core.client.service.local.CurrencyServiceImpl
+org.duniter.core.client.dao.mem.MemoryCurrencyDaoImpl
+org.duniter.core.client.dao.mem.MemoryPeerDaoImpl
+org.duniter.elasticsearch.service.ElasticSearchService
+org.duniter.elasticsearch.service.registry.CurrencyRegistryService

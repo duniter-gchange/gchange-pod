@@ -1,0 +1,1506 @@
+{"index": {"_id": "A"}}
+{"name": "Agriculture, sylviculture et pêche", "parent": null}
+{"index": {"_id": "01.11Z"}}
+{"name": "Culture de céréales (à l'exception du riz), de légumineuses et de graines oléagineuses", "parent": "A"}
+{"index": {"_id": "01.12Z"}}
+{"name": "Culture du riz", "parent": "A"}
+{"index": {"_id": "01.13Z"}}
+{"name": "Culture de légumes, de melons, de racines et de tubercules", "parent": "A"}
+{"index": {"_id": "01.14Z"}}
+{"name": "Culture de la canne à sucre", "parent": "A"}
+{"index": {"_id": "01.15Z"}}
+{"name": "Culture du tabac", "parent": "A"}
+{"index": {"_id": "01.16Z"}}
+{"name": "Culture de plantes à fibres", "parent": "A"}
+{"index": {"_id": "01.19Z"}}
+{"name": "Autres cultures non permanentes", "parent": "A"}
+{"index": {"_id": "01.21Z"}}
+{"name": "Culture de la vigne", "parent": "A"}
+{"index": {"_id": "01.22Z"}}
+{"name": "Culture de fruits tropicaux et subtropicaux", "parent": "A"}
+{"index": {"_id": "01.23Z"}}
+{"name": "Culture d'agrumes", "parent": "A"}
+{"index": {"_id": "01.24Z"}}
+{"name": "Culture de fruits à pépins et à noyau", "parent": "A"}
+{"index": {"_id": "01.25Z"}}
+{"name": "Culture d'autres fruits d'arbres ou d'arbustes et de fruits à coque", "parent": "A"}
+{"index": {"_id": "01.26Z"}}
+{"name": "Culture de fruits oléagineux", "parent": "A"}
+{"index": {"_id": "01.27Z"}}
+{"name": "Culture de plantes à boissons", "parent": "A"}
+{"index": {"_id": "01.28Z"}}
+{"name": "Culture de plantes à épices, aromatiques, médicinales et pharmaceutiques", "parent": "A"}
+{"index": {"_id": "01.29Z"}}
+{"name": "Autres cultures permanentes", "parent": "A"}
+{"index": {"_id": "01.30Z"}}
+{"name": "Reproduction de plantes", "parent": "A"}
+{"index": {"_id": "01.41Z"}}
+{"name": "Élevage de vaches laitières", "parent": "A"}
+{"index": {"_id": "01.42Z"}}
+{"name": "Élevage d'autres bovins et de buffles", "parent": "A"}
+{"index": {"_id": "01.43Z"}}
+{"name": "Élevage de chevaux et d'autres équidés", "parent": "A"}
+{"index": {"_id": "01.44Z"}}
+{"name": "Élevage de chameaux et d'autres camélidés", "parent": "A"}
+{"index": {"_id": "01.45Z"}}
+{"name": "Élevage d'ovins et de caprins", "parent": "A"}
+{"index": {"_id": "01.46Z"}}
+{"name": "Élevage de porcins", "parent": "A"}
+{"index": {"_id": "01.47Z"}}
+{"name": "Élevage de volailles", "parent": "A"}
+{"index": {"_id": "01.49Z"}}
+{"name": "Élevage d'autres animaux", "parent": "A"}
+{"index": {"_id": "01.50Z"}}
+{"name": "Culture et élevage associés", "parent": "A"}
+{"index": {"_id": "01.61Z"}}
+{"name": "Activités de soutien aux cultures", "parent": "A"}
+{"index": {"_id": "01.62Z"}}
+{"name": "Activités de soutien à la production animale", "parent": "A"}
+{"index": {"_id": "01.63Z"}}
+{"name": "Traitement primaire des récoltes", "parent": "A"}
+{"index": {"_id": "01.64Z"}}
+{"name": "Traitement des semences", "parent": "A"}
+{"index": {"_id": "01.70Z"}}
+{"name": "Chasse, piégeage et services annexes", "parent": "A"}
+{"index": {"_id": "02.10Z"}}
+{"name": "Sylviculture et autres activités forestières", "parent": "A"}
+{"index": {"_id": "02.20Z"}}
+{"name": "Exploitation forestière", "parent": "A"}
+{"index": {"_id": "02.30Z"}}
+{"name": "Récolte de produits forestiers non ligneux poussant à l'état sauvage", "parent": "A"}
+{"index": {"_id": "02.40Z"}}
+{"name": "Services de soutien à l'exploitation forestière", "parent": "A"}
+{"index": {"_id": "03.11Z"}}
+{"name": "Pêche en mer", "parent": "A"}
+{"index": {"_id": "03.12Z"}}
+{"name": "Pêche en eau douce", "parent": "A"}
+{"index": {"_id": "03.21Z"}}
+{"name": "Aquaculture en mer", "parent": "A"}
+{"index": {"_id": "03.22Z"}}
+{"name": "Aquaculture en eau douce", "parent": "A"}
+{"index": {"_id": "B"}}
+{"name": "Industries extractives", "parent": null}
+{"index": {"_id": "05.10Z"}}
+{"name": "Extraction de houille", "parent": "B"}
+{"index": {"_id": "05.20Z"}}
+{"name": "Extraction de lignite", "parent": "B"}
+{"index": {"_id": "06.10Z"}}
+{"name": "Extraction de pétrole brut", "parent": "B"}
+{"index": {"_id": "06.20Z"}}
+{"name": "Extraction de gaz naturel", "parent": "B"}
+{"index": {"_id": "07.10Z"}}
+{"name": "Extraction de minerais de fer", "parent": "B"}
+{"index": {"_id": "07.21Z"}}
+{"name": "Extraction de minerais d'uranium et de thorium", "parent": "B"}
+{"index": {"_id": "07.29Z"}}
+{"name": "Extraction d'autres minerais de métaux non ferreux", "parent": "B"}
+{"index": {"_id": "08.11Z"}}
+{"name": "Extraction de pierres ornementales et de construction, de calcaire industriel, de gypse, de craie et d'ardoise", "parent": "B"}
+{"index": {"_id": "08.12Z"}}
+{"name": "Exploitation de gravières et sablières, extraction d'argiles et de kaolin", "parent": "B"}
+{"index": {"_id": "08.91Z"}}
+{"name": "Extraction des minéraux chimiques et d'engrais minéraux", "parent": "B"}
+{"index": {"_id": "08.92Z"}}
+{"name": "Extraction de tourbe", "parent": "B"}
+{"index": {"_id": "08.93Z"}}
+{"name": "Production de sel", "parent": "B"}
+{"index": {"_id": "08.99Z"}}
+{"name": "Autres activités extractives n.c.a.", "parent": "B"}
+{"index": {"_id": "09.10Z"}}
+{"name": "Activités de soutien à l'extraction d'hydrocarbures", "parent": "B"}
+{"index": {"_id": "09.90Z"}}
+{"name": "Activités de soutien aux autres industries extractives", "parent": "B"}
+{"index": {"_id": "C"}}
+{"name": "Industrie manufacturière", "parent": null}
+{"index": {"_id": "10.11Z"}}
+{"name": "Transformation et conservation de la viande de boucherie", "parent": "C"}
+{"index": {"_id": "10.12Z"}}
+{"name": "Transformation et conservation de la viande de volaille", "parent": "C"}
+{"index": {"_id": "10.13A"}}
+{"name": "Préparation industrielle de produits à base de viande", "parent": "C"}
+{"index": {"_id": "10.13B"}}
+{"name": "Charcuterie", "parent": "C"}
+{"index": {"_id": "10.20Z"}}
+{"name": "Transformation et conservation de poisson, de crustacés et de mollusques", "parent": "C"}
+{"index": {"_id": "10.31Z"}}
+{"name": "Transformation et conservation de pommes de terre", "parent": "C"}
+{"index": {"_id": "10.32Z"}}
+{"name": "Préparation de jus de fruits et légumes", "parent": "C"}
+{"index": {"_id": "10.39A"}}
+{"name": "Autre transformation et conservation de légumes", "parent": "C"}
+{"index": {"_id": "10.39B"}}
+{"name": "Transformation et conservation de fruits", "parent": "C"}
+{"index": {"_id": "10.41A"}}
+{"name": "Fabrication d'huiles et graisses brutes", "parent": "C"}
+{"index": {"_id": "10.41B"}}
+{"name": "Fabrication d'huiles et graisses raffinées", "parent": "C"}
+{"index": {"_id": "10.42Z"}}
+{"name": "Fabrication de margarine et graisses comestibles similaires", "parent": "C"}
+{"index": {"_id": "10.51A"}}
+{"name": "Fabrication de lait liquide et de produits frais", "parent": "C"}
+{"index": {"_id": "10.51B"}}
+{"name": "Fabrication de beurre", "parent": "C"}
+{"index": {"_id": "10.51C"}}
+{"name": "Fabrication de fromage", "parent": "C"}
+{"index": {"_id": "10.51D"}}
+{"name": "Fabrication d'autres produits laitiers", "parent": "C"}
+{"index": {"_id": "10.52Z"}}
+{"name": "Fabrication de glaces et sorbets", "parent": "C"}
+{"index": {"_id": "10.61A"}}
+{"name": "Meunerie", "parent": "C"}
+{"index": {"_id": "10.61B"}}
+{"name": "Autres activités du travail des grains", "parent": "C"}
+{"index": {"_id": "10.62Z"}}
+{"name": "Fabrication de produits amylacés", "parent": "C"}
+{"index": {"_id": "10.71A"}}
+{"name": "Fabrication industrielle de pain et de pâtisserie fraîche", "parent": "C"}
+{"index": {"_id": "10.71B"}}
+{"name": "Cuisson de produits de boulangerie", "parent": "C"}
+{"index": {"_id": "10.71C"}}
+{"name": "Boulangerie et boulangerie-pâtisserie", "parent": "C"}
+{"index": {"_id": "10.71D"}}
+{"name": "Pâtisserie", "parent": "C"}
+{"index": {"_id": "10.72Z"}}
+{"name": "Fabrication de biscuits, biscottes et pâtisseries de conservation", "parent": "C"}
+{"index": {"_id": "10.73Z"}}
+{"name": "Fabrication de pâtes alimentaires", "parent": "C"}
+{"index": {"_id": "10.81Z"}}
+{"name": "Fabrication de sucre", "parent": "C"}
+{"index": {"_id": "10.82Z"}}
+{"name": "Fabrication de cacao, chocolat et de produits de confiserie", "parent": "C"}
+{"index": {"_id": "10.83Z"}}
+{"name": "Transformation du thé et du café", "parent": "C"}
+{"index": {"_id": "10.84Z"}}
+{"name": "Fabrication de condiments et assaisonnements", "parent": "C"}
+{"index": {"_id": "10.85Z"}}
+{"name": "Fabrication de plats préparés", "parent": "C"}
+{"index": {"_id": "10.86Z"}}
+{"name": "Fabrication d'aliments homogénéisés et diététiques", "parent": "C"}
+{"index": {"_id": "10.89Z"}}
+{"name": "Fabrication d'autres produits alimentaires n.c.a.", "parent": "C"}
+{"index": {"_id": "10.91Z"}}
+{"name": "Fabrication d'aliments pour animaux de ferme", "parent": "C"}
+{"index": {"_id": "10.92Z"}}
+{"name": "Fabrication d'aliments pour animaux de compagnie", "parent": "C"}
+{"index": {"_id": "11.01Z"}}
+{"name": "Production de boissons alcooliques distillées", "parent": "C"}
+{"index": {"_id": "11.02A"}}
+{"name": "Fabrication de vins effervescents", "parent": "C"}
+{"index": {"_id": "11.02B"}}
+{"name": "Vinification", "parent": "C"}
+{"index": {"_id": "11.03Z"}}
+{"name": "Fabrication de cidre et de vins de fruits", "parent": "C"}
+{"index": {"_id": "11.04Z"}}
+{"name": "Production d'autres boissons fermentées non distillées", "parent": "C"}
+{"index": {"_id": "11.05Z"}}
+{"name": "Fabrication de bière", "parent": "C"}
+{"index": {"_id": "11.06Z"}}
+{"name": "Fabrication de malt", "parent": "C"}
+{"index": {"_id": "11.07A"}}
+{"name": "Industrie des eaux de table", "parent": "C"}
+{"index": {"_id": "11.07B"}}
+{"name": "Production de boissons rafraîchissantes", "parent": "C"}
+{"index": {"_id": "12.00Z"}}
+{"name": "Fabrication de produits à base de tabac", "parent": "C"}
+{"index": {"_id": "13.10Z"}}
+{"name": "Préparation de fibres textiles et filature", "parent": "C"}
+{"index": {"_id": "13.20Z"}}
+{"name": "Tissage", "parent": "C"}
+{"index": {"_id": "13.30Z"}}
+{"name": "Ennoblissement textile", "parent": "C"}
+{"index": {"_id": "13.91Z"}}
+{"name": "Fabrication d'étoffes à mailles", "parent": "C"}
+{"index": {"_id": "13.92Z"}}
+{"name": "Fabrication d'articles textiles, sauf habillement", "parent": "C"}
+{"index": {"_id": "13.93Z"}}
+{"name": "Fabrication de tapis et moquettes", "parent": "C"}
+{"index": {"_id": "13.94Z"}}
+{"name": "Fabrication de ficelles, cordes et filets", "parent": "C"}
+{"index": {"_id": "13.95Z"}}
+{"name": "Fabrication de non-tissés, sauf habillement", "parent": "C"}
+{"index": {"_id": "13.96Z"}}
+{"name": "Fabrication d'autres textiles techniques et industriels", "parent": "C"}
+{"index": {"_id": "13.99Z"}}
+{"name": "Fabrication d'autres textiles n.c.a.", "parent": "C"}
+{"index": {"_id": "14.11Z"}}
+{"name": "Fabrication de vêtements en cuir", "parent": "C"}
+{"index": {"_id": "14.12Z"}}
+{"name": "Fabrication de vêtements de travail", "parent": "C"}
+{"index": {"_id": "14.13Z"}}
+{"name": "Fabrication de vêtements de dessus", "parent": "C"}
+{"index": {"_id": "14.14Z"}}
+{"name": "Fabrication de vêtements de dessous", "parent": "C"}
+{"index": {"_id": "14.19Z"}}
+{"name": "Fabrication d'autres vêtements et accessoires", "parent": "C"}
+{"index": {"_id": "14.20Z"}}
+{"name": "Fabrication d'articles en fourrure", "parent": "C"}
+{"index": {"_id": "14.31Z"}}
+{"name": "Fabrication d'articles chaussants à mailles", "parent": "C"}
+{"index": {"_id": "14.39Z"}}
+{"name": "Fabrication d'autres articles à mailles", "parent": "C"}
+{"index": {"_id": "15.11Z"}}
+{"name": "Apprêt et tannage des cuirs ; préparation et teinture des fourrures", "parent": "C"}
+{"index": {"_id": "15.12Z"}}
+{"name": "Fabrication d'articles de voyage, de maroquinerie et de sellerie", "parent": "C"}
+{"index": {"_id": "15.20Z"}}
+{"name": "Fabrication de chaussures", "parent": "C"}
+{"index": {"_id": "16.10A"}}
+{"name": "Sciage et rabotage du bois, hors imprégnation", "parent": "C"}
+{"index": {"_id": "16.10B"}}
+{"name": "Imprégnation du bois", "parent": "C"}
+{"index": {"_id": "16.21Z"}}
+{"name": "Fabrication de placage et de panneaux de bois", "parent": "C"}
+{"index": {"_id": "16.22Z"}}
+{"name": "Fabrication de parquets assemblés", "parent": "C"}
+{"index": {"_id": "16.23Z"}}
+{"name": "Fabrication de charpentes et d'autres menuiseries", "parent": "C"}
+{"index": {"_id": "16.24Z"}}
+{"name": "Fabrication d'emballages en bois", "parent": "C"}
+{"index": {"_id": "16.29Z"}}
+{"name": "Fabrication d'objets divers en bois ; fabrication d'objets en liège, vannerie et sparterie", "parent": "C"}
+{"index": {"_id": "17.11Z"}}
+{"name": "Fabrication de pâte à papier", "parent": "C"}
+{"index": {"_id": "17.12Z"}}
+{"name": "Fabrication de papier et de carton", "parent": "C"}
+{"index": {"_id": "17.21A"}}
+{"name": "Fabrication de carton ondulé", "parent": "C"}
+{"index": {"_id": "17.21B"}}
+{"name": "Fabrication de cartonnages", "parent": "C"}
+{"index": {"_id": "17.21C"}}
+{"name": "Fabrication d'emballages en papier", "parent": "C"}
+{"index": {"_id": "17.22Z"}}
+{"name": "Fabrication d'articles en papier à usage sanitaire ou domestique", "parent": "C"}
+{"index": {"_id": "17.23Z"}}
+{"name": "Fabrication d'articles de papeterie", "parent": "C"}
+{"index": {"_id": "17.24Z"}}
+{"name": "Fabrication de papiers peints", "parent": "C"}
+{"index": {"_id": "17.29Z"}}
+{"name": "Fabrication d'autres articles en papier ou en carton", "parent": "C"}
+{"index": {"_id": "18.11Z"}}
+{"name": "Imprimerie de journaux", "parent": "C"}
+{"index": {"_id": "18.12Z"}}
+{"name": "Autre imprimerie (labeur)", "parent": "C"}
+{"index": {"_id": "18.13Z"}}
+{"name": "Activités de pré-presse", "parent": "C"}
+{"index": {"_id": "18.14Z"}}
+{"name": "Reliure et activités connexes", "parent": "C"}
+{"index": {"_id": "18.20Z"}}
+{"name": "Reproduction d'enregistrements", "parent": "C"}
+{"index": {"_id": "19.10Z"}}
+{"name": "Cokéfaction", "parent": "C"}
+{"index": {"_id": "19.20Z"}}
+{"name": "Raffinage du pétrole", "parent": "C"}
+{"index": {"_id": "20.11Z"}}
+{"name": "Fabrication de gaz industriels", "parent": "C"}
+{"index": {"_id": "20.12Z"}}
+{"name": "Fabrication de colorants et de pigments", "parent": "C"}
+{"index": {"_id": "20.13A"}}
+{"name": "Enrichissement et retraitement de matières nucléaires", "parent": "C"}
+{"index": {"_id": "20.13B"}}
+{"name": "Fabrication d'autres produits chimiques inorganiques de base n.c.a.", "parent": "C"}
+{"index": {"_id": "20.14Z"}}
+{"name": "Fabrication d'autres produits chimiques organiques de base", "parent": "C"}
+{"index": {"_id": "20.15Z"}}
+{"name": "Fabrication de produits azotés et d'engrais", "parent": "C"}
+{"index": {"_id": "20.16Z"}}
+{"name": "Fabrication de matières plastiques de base", "parent": "C"}
+{"index": {"_id": "20.17Z"}}
+{"name": "Fabrication de caoutchouc synthétique", "parent": "C"}
+{"index": {"_id": "20.20Z"}}
+{"name": "Fabrication de pesticides et d'autres produits agrochimiques", "parent": "C"}
+{"index": {"_id": "20.30Z"}}
+{"name": "Fabrication de peintures, vernis, encres et mastics", "parent": "C"}
+{"index": {"_id": "20.41Z"}}
+{"name": "Fabrication de savons, détergents et produits d'entretien", "parent": "C"}
+{"index": {"_id": "20.42Z"}}
+{"name": "Fabrication de parfums et de produits pour la toilette", "parent": "C"}
+{"index": {"_id": "20.51Z"}}
+{"name": "Fabrication de produits explosifs", "parent": "C"}
+{"index": {"_id": "20.52Z"}}
+{"name": "Fabrication de colles", "parent": "C"}
+{"index": {"_id": "20.53Z"}}
+{"name": "Fabrication d'huiles essentielles", "parent": "C"}
+{"index": {"_id": "20.59Z"}}
+{"name": "Fabrication d'autres produits chimiques n.c.a.", "parent": "C"}
+{"index": {"_id": "20.60Z"}}
+{"name": "Fabrication de fibres artificielles ou synthétiques", "parent": "C"}
+{"index": {"_id": "21.10Z"}}
+{"name": "Fabrication de produits pharmaceutiques de base", "parent": "C"}
+{"index": {"_id": "21.20Z"}}
+{"name": "Fabrication de préparations pharmaceutiques", "parent": "C"}
+{"index": {"_id": "22.11Z"}}
+{"name": "Fabrication et rechapage de pneumatiques", "parent": "C"}
+{"index": {"_id": "22.19Z"}}
+{"name": "Fabrication d'autres articles en caoutchouc", "parent": "C"}
+{"index": {"_id": "22.21Z"}}
+{"name": "Fabrication de plaques, feuilles, tubes et profilés en matières plastiques", "parent": "C"}
+{"index": {"_id": "22.22Z"}}
+{"name": "Fabrication d'emballages en matières plastiques", "parent": "C"}
+{"index": {"_id": "22.23Z"}}
+{"name": "Fabrication d'éléments en matières plastiques pour la construction", "parent": "C"}
+{"index": {"_id": "22.29A"}}
+{"name": "Fabrication de pièces techniques à base de matières plastiques", "parent": "C"}
+{"index": {"_id": "22.29B"}}
+{"name": "Fabrication de produits de consommation courante en matières plastiques", "parent": "C"}
+{"index": {"_id": "23.11Z"}}
+{"name": "Fabrication de verre plat", "parent": "C"}
+{"index": {"_id": "23.12Z"}}
+{"name": "Façonnage et transformation du verre plat", "parent": "C"}
+{"index": {"_id": "23.13Z"}}
+{"name": "Fabrication de verre creux", "parent": "C"}
+{"index": {"_id": "23.14Z"}}
+{"name": "Fabrication de fibres de verre", "parent": "C"}
+{"index": {"_id": "23.19Z"}}
+{"name": "Fabrication et façonnage d'autres articles en verre, y compris verre technique", "parent": "C"}
+{"index": {"_id": "23.20Z"}}
+{"name": "Fabrication de produits réfractaires", "parent": "C"}
+{"index": {"_id": "23.31Z"}}
+{"name": "Fabrication de carreaux en céramique", "parent": "C"}
+{"index": {"_id": "23.32Z"}}
+{"name": "Fabrication de briques, tuiles et produits de construction, en terre cuite", "parent": "C"}
+{"index": {"_id": "23.41Z"}}
+{"name": "Fabrication d'articles céramiques à usage domestique ou ornemental", "parent": "C"}
+{"index": {"_id": "23.42Z"}}
+{"name": "Fabrication d'appareils sanitaires en céramique", "parent": "C"}
+{"index": {"_id": "23.43Z"}}
+{"name": "Fabrication d'isolateurs et pièces isolantes en céramique", "parent": "C"}
+{"index": {"_id": "23.44Z"}}
+{"name": "Fabrication d'autres produits céramiques à usage technique", "parent": "C"}
+{"index": {"_id": "23.49Z"}}
+{"name": "Fabrication d'autres produits céramiques", "parent": "C"}
+{"index": {"_id": "23.51Z"}}
+{"name": "Fabrication de ciment", "parent": "C"}
+{"index": {"_id": "23.52Z"}}
+{"name": "Fabrication de chaux et plâtre", "parent": "C"}
+{"index": {"_id": "23.61Z"}}
+{"name": "Fabrication d'éléments en béton pour la construction", "parent": "C"}
+{"index": {"_id": "23.62Z"}}
+{"name": "Fabrication d'éléments en plâtre pour la construction", "parent": "C"}
+{"index": {"_id": "23.63Z"}}
+{"name": "Fabrication de béton prêt à l'emploi", "parent": "C"}
+{"index": {"_id": "23.64Z"}}
+{"name": "Fabrication de mortiers et bétons secs", "parent": "C"}
+{"index": {"_id": "23.65Z"}}
+{"name": "Fabrication d'ouvrages en fibre-ciment", "parent": "C"}
+{"index": {"_id": "23.69Z"}}
+{"name": "Fabrication d'autres ouvrages en béton, en ciment ou en plâtre", "parent": "C"}
+{"index": {"_id": "23.70Z"}}
+{"name": "Taille, façonnage et finissage de pierres", "parent": "C"}
+{"index": {"_id": "23.91Z"}}
+{"name": "Fabrication de produits abrasifs", "parent": "C"}
+{"index": {"_id": "23.99Z"}}
+{"name": "Fabrication d'autres produits minéraux non métalliques n.c.a.", "parent": "C"}
+{"index": {"_id": "24.10Z"}}
+{"name": "Sidérurgie", "parent": "C"}
+{"index": {"_id": "24.20Z"}}
+{"name": "Fabrication de tubes, tuyaux, profilés creux et accessoires correspondants en acier", "parent": "C"}
+{"index": {"_id": "24.31Z"}}
+{"name": "Étirage à froid de barres", "parent": "C"}
+{"index": {"_id": "24.32Z"}}
+{"name": "Laminage à froid de feuillards", "parent": "C"}
+{"index": {"_id": "24.33Z"}}
+{"name": "Profilage à froid par formage ou pliage", "parent": "C"}
+{"index": {"_id": "24.34Z"}}
+{"name": "Tréfilage à froid", "parent": "C"}
+{"index": {"_id": "24.41Z"}}
+{"name": "Production de métaux précieux", "parent": "C"}
+{"index": {"_id": "24.42Z"}}
+{"name": "Métallurgie de l'aluminium", "parent": "C"}
+{"index": {"_id": "24.43Z"}}
+{"name": "Métallurgie du plomb, du zinc ou de l'étain", "parent": "C"}
+{"index": {"_id": "24.44Z"}}
+{"name": "Métallurgie du cuivre", "parent": "C"}
+{"index": {"_id": "24.45Z"}}
+{"name": "Métallurgie des autres métaux non ferreux", "parent": "C"}
+{"index": {"_id": "24.46Z"}}
+{"name": "Élaboration et transformation de matières nucléaires", "parent": "C"}
+{"index": {"_id": "24.51Z"}}
+{"name": "Fonderie de fonte", "parent": "C"}
+{"index": {"_id": "24.52Z"}}
+{"name": "Fonderie d'acier", "parent": "C"}
+{"index": {"_id": "24.53Z"}}
+{"name": "Fonderie de métaux légers", "parent": "C"}
+{"index": {"_id": "24.54Z"}}
+{"name": "Fonderie d'autres métaux non ferreux", "parent": "C"}
+{"index": {"_id": "25.11Z"}}
+{"name": "Fabrication de structures métalliques et de parties de structures", "parent": "C"}
+{"index": {"_id": "25.12Z"}}
+{"name": "Fabrication de portes et fenêtres en métal", "parent": "C"}
+{"index": {"_id": "25.21Z"}}
+{"name": "Fabrication de radiateurs et de chaudières pour le chauffage central", "parent": "C"}
+{"index": {"_id": "25.29Z"}}
+{"name": "Fabrication d'autres réservoirs, citernes et conteneurs métalliques", "parent": "C"}
+{"index": {"_id": "25.30Z"}}
+{"name": "Fabrication de générateurs de vapeur, à l'exception des chaudières pour le chauffage central", "parent": "C"}
+{"index": {"_id": "25.40Z"}}
+{"name": "Fabrication d'armes et de munitions", "parent": "C"}
+{"index": {"_id": "25.50A"}}
+{"name": "Forge, estampage, matriçage ; métallurgie des poudres", "parent": "C"}
+{"index": {"_id": "25.50B"}}
+{"name": "Découpage, emboutissage", "parent": "C"}
+{"index": {"_id": "25.61Z"}}
+{"name": "Traitement et revêtement des métaux", "parent": "C"}
+{"index": {"_id": "25.62A"}}
+{"name": "Décolletage", "parent": "C"}
+{"index": {"_id": "25.62B"}}
+{"name": "Mécanique industrielle", "parent": "C"}
+{"index": {"_id": "25.71Z"}}
+{"name": "Fabrication de coutellerie", "parent": "C"}
+{"index": {"_id": "25.72Z"}}
+{"name": "Fabrication de serrures et de ferrures", "parent": "C"}
+{"index": {"_id": "25.73A"}}
+{"name": "Fabrication de moules et modèles", "parent": "C"}
+{"index": {"_id": "25.73B"}}
+{"name": "Fabrication d'autres outillages", "parent": "C"}
+{"index": {"_id": "25.91Z"}}
+{"name": "Fabrication de fûts et emballages métalliques similaires", "parent": "C"}
+{"index": {"_id": "25.92Z"}}
+{"name": "Fabrication d'emballages métalliques légers", "parent": "C"}
+{"index": {"_id": "25.93Z"}}
+{"name": "Fabrication d'articles en fils métalliques, de chaînes et de ressorts", "parent": "C"}
+{"index": {"_id": "25.94Z"}}
+{"name": "Fabrication de vis et de boulons", "parent": "C"}
+{"index": {"_id": "25.99A"}}
+{"name": "Fabrication d'articles métalliques ménagers", "parent": "C"}
+{"index": {"_id": "25.99B"}}
+{"name": "Fabrication d'autres articles métalliques", "parent": "C"}
+{"index": {"_id": "26.11Z"}}
+{"name": "Fabrication de composants électroniques", "parent": "C"}
+{"index": {"_id": "26.12Z"}}
+{"name": "Fabrication de cartes électroniques assemblées", "parent": "C"}
+{"index": {"_id": "26.20Z"}}
+{"name": "Fabrication d'ordinateurs et d'équipements périphériques", "parent": "C"}
+{"index": {"_id": "26.30Z"}}
+{"name": "Fabrication d'équipements de communication", "parent": "C"}
+{"index": {"_id": "26.40Z"}}
+{"name": "Fabrication de produits électroniques grand public", "parent": "C"}
+{"index": {"_id": "26.51A"}}
+{"name": "Fabrication d'équipements d'aide à la navigation", "parent": "C"}
+{"index": {"_id": "26.51B"}}
+{"name": "Fabrication d'instrumentation scientifique et technique", "parent": "C"}
+{"index": {"_id": "26.52Z"}}
+{"name": "Horlogerie", "parent": "C"}
+{"index": {"_id": "26.60Z"}}
+{"name": "Fabrication d'équipements d'irradiation médicale, d'équipements électromédicaux et électrothérapeutiques", "parent": "C"}
+{"index": {"_id": "26.70Z"}}
+{"name": "Fabrication de matériels optique et photographique", "parent": "C"}
+{"index": {"_id": "26.80Z"}}
+{"name": "Fabrication de supports magnétiques et optiques", "parent": "C"}
+{"index": {"_id": "27.11Z"}}
+{"name": "Fabrication de moteurs, génératrices et transformateurs électriques", "parent": "C"}
+{"index": {"_id": "27.12Z"}}
+{"name": "Fabrication de matériel de distribution et de commande électrique", "parent": "C"}
+{"index": {"_id": "27.20Z"}}
+{"name": "Fabrication de piles et d'accumulateurs électriques", "parent": "C"}
+{"index": {"_id": "27.31Z"}}
+{"name": "Fabrication de câbles de fibres optiques", "parent": "C"}
+{"index": {"_id": "27.32Z"}}
+{"name": "Fabrication d'autres fils et câbles électroniques ou électriques", "parent": "C"}
+{"index": {"_id": "27.33Z"}}
+{"name": "Fabrication de matériel d'installation électrique", "parent": "C"}
+{"index": {"_id": "27.40Z"}}
+{"name": "Fabrication d'appareils d'éclairage électrique", "parent": "C"}
+{"index": {"_id": "27.51Z"}}
+{"name": "Fabrication d'appareils électroménagers", "parent": "C"}
+{"index": {"_id": "27.52Z"}}
+{"name": "Fabrication d'appareils ménagers non électriques", "parent": "C"}
+{"index": {"_id": "27.90Z"}}
+{"name": "Fabrication d'autres matériels électriques", "parent": "C"}
+{"index": {"_id": "28.11Z"}}
+{"name": "Fabrication de moteurs et turbines, à l'exception des moteurs d'avions et de véhicules", "parent": "C"}
+{"index": {"_id": "28.12Z"}}
+{"name": "Fabrication d'équipements hydrauliques et pneumatiques", "parent": "C"}
+{"index": {"_id": "28.13Z"}}
+{"name": "Fabrication d'autres pompes et compresseurs", "parent": "C"}
+{"index": {"_id": "28.14Z"}}
+{"name": "Fabrication d'autres articles de robinetterie", "parent": "C"}
+{"index": {"_id": "28.15Z"}}
+{"name": "Fabrication d'engrenages et d'organes mécaniques de transmission", "parent": "C"}
+{"index": {"_id": "28.21Z"}}
+{"name": "Fabrication de fours et brûleurs", "parent": "C"}
+{"index": {"_id": "28.22Z"}}
+{"name": "Fabrication de matériel de levage et de manutention", "parent": "C"}
+{"index": {"_id": "28.23Z"}}
+{"name": "Fabrication de machines et d'équipements de bureau (à l'exception des ordinateurs et équipements périphériques)", "parent": "C"}
+{"index": {"_id": "28.24Z"}}
+{"name": "Fabrication d'outillage portatif à moteur incorporé", "parent": "C"}
+{"index": {"_id": "28.25Z"}}
+{"name": "Fabrication d'équipements aérauliques et frigorifiques industriels", "parent": "C"}
+{"index": {"_id": "28.29A"}}
+{"name": "Fabrication d'équipements d'emballage, de conditionnement et de pesage", "parent": "C"}
+{"index": {"_id": "28.29B"}}
+{"name": "Fabrication d'autres machines d'usage général", "parent": "C"}
+{"index": {"_id": "28.30Z"}}
+{"name": "Fabrication de machines agricoles et forestières", "parent": "C"}
+{"index": {"_id": "28.41Z"}}
+{"name": "Fabrication de machines-outils pour le travail des métaux", "parent": "C"}
+{"index": {"_id": "28.49Z"}}
+{"name": "Fabrication d'autres machines-outils", "parent": "C"}
+{"index": {"_id": "28.91Z"}}
+{"name": "Fabrication de machines pour la métallurgie", "parent": "C"}
+{"index": {"_id": "28.92Z"}}
+{"name": "Fabrication de machines pour l'extraction ou la construction", "parent": "C"}
+{"index": {"_id": "28.93Z"}}
+{"name": "Fabrication de machines pour l'industrie agro-alimentaire", "parent": "C"}
+{"index": {"_id": "28.94Z"}}
+{"name": "Fabrication de machines pour les industries textiles", "parent": "C"}
+{"index": {"_id": "28.95Z"}}
+{"name": "Fabrication de machines pour les industries du papier et du carton", "parent": "C"}
+{"index": {"_id": "28.96Z"}}
+{"name": "Fabrication de machines pour le travail du caoutchouc ou des plastiques", "parent": "C"}
+{"index": {"_id": "28.99A"}}
+{"name": "Fabrication de machines d'imprimerie", "parent": "C"}
+{"index": {"_id": "28.99B"}}
+{"name": "Fabrication d'autres machines spécialisées", "parent": "C"}
+{"index": {"_id": "29.10Z"}}
+{"name": "Construction de véhicules automobiles", "parent": "C"}
+{"index": {"_id": "29.20Z"}}
+{"name": "Fabrication de carrosseries et remorques", "parent": "C"}
+{"index": {"_id": "29.31Z"}}
+{"name": "Fabrication d'équipements électriques et électroniques automobiles", "parent": "C"}
+{"index": {"_id": "29.32Z"}}
+{"name": "Fabrication d'autres équipements automobiles", "parent": "C"}
+{"index": {"_id": "30.11Z"}}
+{"name": "Construction de navires et de structures flottantes", "parent": "C"}
+{"index": {"_id": "30.12Z"}}
+{"name": "Construction de bateaux de plaisance", "parent": "C"}
+{"index": {"_id": "30.20Z"}}
+{"name": "Construction de locomotives et d'autre matériel ferroviaire roulant", "parent": "C"}
+{"index": {"_id": "30.30Z"}}
+{"name": "Construction aéronautique et spatiale", "parent": "C"}
+{"index": {"_id": "30.40Z"}}
+{"name": "Construction de véhicules militaires de combat", "parent": "C"}
+{"index": {"_id": "30.91Z"}}
+{"name": "Fabrication de motocycles", "parent": "C"}
+{"index": {"_id": "30.92Z"}}
+{"name": "Fabrication de bicyclettes et de véhicules pour invalides", "parent": "C"}
+{"index": {"_id": "30.99Z"}}
+{"name": "Fabrication d'autres équipements de transport n.c.a.", "parent": "C"}
+{"index": {"_id": "31.01Z"}}
+{"name": "Fabrication de meubles de bureau et de magasin", "parent": "C"}
+{"index": {"_id": "31.02Z"}}
+{"name": "Fabrication de meubles de cuisine", "parent": "C"}
+{"index": {"_id": "31.03Z"}}
+{"name": "Fabrication de matelas", "parent": "C"}
+{"index": {"_id": "31.09A"}}
+{"name": "Fabrication de sièges d'ameublement d'intérieur", "parent": "C"}
+{"index": {"_id": "31.09B"}}
+{"name": "Fabrication d'autres meubles et industries connexes de l'ameublement", "parent": "C"}
+{"index": {"_id": "32.11Z"}}
+{"name": "Frappe de monnaie", "parent": "C"}
+{"index": {"_id": "32.12Z"}}
+{"name": "Fabrication d'articles de joaillerie et bijouterie", "parent": "C"}
+{"index": {"_id": "32.13Z"}}
+{"name": "Fabrication d'articles de bijouterie fantaisie et articles similaires", "parent": "C"}
+{"index": {"_id": "32.20Z"}}
+{"name": "Fabrication d'instruments de musique", "parent": "C"}
+{"index": {"_id": "32.30Z"}}
+{"name": "Fabrication d'articles de sport", "parent": "C"}
+{"index": {"_id": "32.40Z"}}
+{"name": "Fabrication de jeux et jouets", "parent": "C"}
+{"index": {"_id": "32.50A"}}
+{"name": "Fabrication de matériel médico-chirurgical et dentaire", "parent": "C"}
+{"index": {"_id": "32.50B"}}
+{"name": "Fabrication de lunettes", "parent": "C"}
+{"index": {"_id": "32.91Z"}}
+{"name": "Fabrication d'articles de brosserie", "parent": "C"}
+{"index": {"_id": "32.99Z"}}
+{"name": "Autres activités manufacturières n.c.a.", "parent": "C"}
+{"index": {"_id": "33.11Z"}}
+{"name": "Réparation d'ouvrages en métaux", "parent": "C"}
+{"index": {"_id": "33.12Z"}}
+{"name": "Réparation de machines et équipements mécaniques", "parent": "C"}
+{"index": {"_id": "33.13Z"}}
+{"name": "Réparation de matériels électroniques et optiques", "parent": "C"}
+{"index": {"_id": "33.14Z"}}
+{"name": "Réparation d'équipements électriques", "parent": "C"}
+{"index": {"_id": "33.15Z"}}
+{"name": "Réparation et maintenance navale", "parent": "C"}
+{"index": {"_id": "33.16Z"}}
+{"name": "Réparation et maintenance d'aéronefs et d'engins spatiaux", "parent": "C"}
+{"index": {"_id": "33.17Z"}}
+{"name": "Réparation et maintenance d'autres équipements de transport", "parent": "C"}
+{"index": {"_id": "33.19Z"}}
+{"name": "Réparation d'autres équipements", "parent": "C"}
+{"index": {"_id": "33.20A"}}
+{"name": "Installation de structures métalliques, chaudronnées et de tuyauterie", "parent": "C"}
+{"index": {"_id": "33.20B"}}
+{"name": "Installation de machines et équipements mécaniques", "parent": "C"}
+{"index": {"_id": "33.20C"}}
+{"name": "Conception d'ensemble et assemblage sur site industriel d'équipements de contrôle des processus industriels", "parent": "C"}
+{"index": {"_id": "33.20D"}}
+{"name": "Installation d'équipements électriques, de matériels électroniques et optiques ou d'autres matériels", "parent": "C"}
+{"index": {"_id": "D"}}
+{"name": "Production et distribution d'électricité, de gaz, de vapeur et d'air conditionné", "parent": null}
+{"index": {"_id": "35.11Z"}}
+{"name": "Production d'électricité", "parent": "D"}
+{"index": {"_id": "35.12Z"}}
+{"name": "Transport d'électricité", "parent": "D"}
+{"index": {"_id": "35.13Z"}}
+{"name": "Distribution d'électricité", "parent": "D"}
+{"index": {"_id": "35.14Z"}}
+{"name": "Commerce d'électricité", "parent": "D"}
+{"index": {"_id": "35.21Z"}}
+{"name": "Production de combustibles gazeux", "parent": "D"}
+{"index": {"_id": "35.22Z"}}
+{"name": "Distribution de combustibles gazeux par conduites", "parent": "D"}
+{"index": {"_id": "35.23Z"}}
+{"name": "Commerce de combustibles gazeux par conduites", "parent": "D"}
+{"index": {"_id": "35.30Z"}}
+{"name": "Production et distribution de vapeur et d'air conditionné", "parent": "D"}
+{"index": {"_id": "E"}}
+{"name": "Production et distribution d'eau ; assainissement, gestion des déchets et dépollution", "parent": null}
+{"index": {"_id": "36.00Z"}}
+{"name": "Captage, traitement et distribution d'eau", "parent": "E"}
+{"index": {"_id": "37.00Z"}}
+{"name": "Collecte et traitement des eaux usées", "parent": "E"}
+{"index": {"_id": "38.11Z"}}
+{"name": "Collecte des déchets non dangereux", "parent": "E"}
+{"index": {"_id": "38.12Z"}}
+{"name": "Collecte des déchets dangereux", "parent": "E"}
+{"index": {"_id": "38.21Z"}}
+{"name": "Traitement et élimination des déchets non dangereux", "parent": "E"}
+{"index": {"_id": "38.22Z"}}
+{"name": "Traitement et élimination des déchets dangereux", "parent": "E"}
+{"index": {"_id": "38.31Z"}}
+{"name": "Démantèlement d'épaves", "parent": "E"}
+{"index": {"_id": "38.32Z"}}
+{"name": "Récupération de déchets triés", "parent": "E"}
+{"index": {"_id": "39.00Z"}}
+{"name": "Dépollution et autres services de gestion des déchets", "parent": "E"}
+{"index": {"_id": "F"}}
+{"name": "Construction", "parent": null}
+{"index": {"_id": "41.10A"}}
+{"name": "Promotion immobilière de logements", "parent": "F"}
+{"index": {"_id": "41.10B"}}
+{"name": "Promotion immobilière de bureaux", "parent": "F"}
+{"index": {"_id": "41.10C"}}
+{"name": "Promotion immobilière d'autres bâtiments", "parent": "F"}
+{"index": {"_id": "41.10D"}}
+{"name": "Supports juridiques de programmes", "parent": "F"}
+{"index": {"_id": "41.20A"}}
+{"name": "Construction de maisons individuelles", "parent": "F"}
+{"index": {"_id": "41.20B"}}
+{"name": "Construction d'autres bâtiments", "parent": "F"}
+{"index": {"_id": "42.11Z"}}
+{"name": "Construction de routes et autoroutes", "parent": "F"}
+{"index": {"_id": "42.12Z"}}
+{"name": "Construction de voies ferrées de surface et souterraines", "parent": "F"}
+{"index": {"_id": "42.13A"}}
+{"name": "Construction d'ouvrages d'art", "parent": "F"}
+{"index": {"_id": "42.13B"}}
+{"name": "Construction et entretien de tunnels", "parent": "F"}
+{"index": {"_id": "42.21Z"}}
+{"name": "Construction de réseaux pour fluides", "parent": "F"}
+{"index": {"_id": "42.22Z"}}
+{"name": "Construction de réseaux électriques et de télécommunications", "parent": "F"}
+{"index": {"_id": "42.91Z"}}
+{"name": "Construction d'ouvrages maritimes et fluviaux", "parent": "F"}
+{"index": {"_id": "42.99Z"}}
+{"name": "Construction d'autres ouvrages de génie civil n.c.a.", "parent": "F"}
+{"index": {"_id": "43.11Z"}}
+{"name": "Travaux de démolition", "parent": "F"}
+{"index": {"_id": "43.12A"}}
+{"name": "Travaux de terrassement courants et travaux préparatoires", "parent": "F"}
+{"index": {"_id": "43.12B"}}
+{"name": "Travaux de terrassement spécialisés ou de grande masse", "parent": "F"}
+{"index": {"_id": "43.13Z"}}
+{"name": "Forages et sondages", "parent": "F"}
+{"index": {"_id": "43.21A"}}
+{"name": "Travaux d'installation électrique dans tous locaux", "parent": "F"}
+{"index": {"_id": "43.21B"}}
+{"name": "Travaux d'installation électrique sur la voie publique", "parent": "F"}
+{"index": {"_id": "43.22A"}}
+{"name": "Travaux d'installation d'eau et de gaz en tous locaux", "parent": "F"}
+{"index": {"_id": "43.22B"}}
+{"name": "Travaux d'installation d'équipements thermiques et de climatisation", "parent": "F"}
+{"index": {"_id": "43.29A"}}
+{"name": "Travaux d'isolation", "parent": "F"}
+{"index": {"_id": "43.29B"}}
+{"name": "Autres travaux d'installation n.c.a.", "parent": "F"}
+{"index": {"_id": "43.31Z"}}
+{"name": "Travaux de plâtrerie", "parent": "F"}
+{"index": {"_id": "43.32A"}}
+{"name": "Travaux de menuiserie bois et PVC", "parent": "F"}
+{"index": {"_id": "43.32B"}}
+{"name": "Travaux de menuiserie métallique et serrurerie", "parent": "F"}
+{"index": {"_id": "43.32C"}}
+{"name": "Agencement de lieux de vente", "parent": "F"}
+{"index": {"_id": "43.33Z"}}
+{"name": "Travaux de revêtement des sols et des murs", "parent": "F"}
+{"index": {"_id": "43.34Z"}}
+{"name": "Travaux de peinture et vitrerie", "parent": "F"}
+{"index": {"_id": "43.39Z"}}
+{"name": "Autres travaux de finition", "parent": "F"}
+{"index": {"_id": "43.91A"}}
+{"name": "Travaux de charpente", "parent": "F"}
+{"index": {"_id": "43.91B"}}
+{"name": "Travaux de couverture par éléments", "parent": "F"}
+{"index": {"_id": "43.99A"}}
+{"name": "Travaux d'étanchéification", "parent": "F"}
+{"index": {"_id": "43.99B"}}
+{"name": "Travaux de montage de structures métalliques", "parent": "F"}
+{"index": {"_id": "43.99C"}}
+{"name": "Travaux de maçonnerie générale et gros œuvre de bâtiment", "parent": "F"}
+{"index": {"_id": "43.99D"}}
+{"name": "Autres travaux spécialisés de construction", "parent": "F"}
+{"index": {"_id": "43.99E"}}
+{"name": "Location avec opérateur de matériel de construction", "parent": "F"}
+{"index": {"_id": "G"}}
+{"name": "Commerce ; réparation d'automobiles et de motocycles", "parent": null}
+{"index": {"_id": "45.11Z"}}
+{"name": "Commerce de voitures et de véhicules automobiles légers", "parent": "G"}
+{"index": {"_id": "45.19Z"}}
+{"name": "Commerce d'autres véhicules automobiles", "parent": "G"}
+{"index": {"_id": "45.20A"}}
+{"name": "Entretien et réparation de véhicules automobiles légers", "parent": "G"}
+{"index": {"_id": "45.20B"}}
+{"name": "Entretien et réparation d'autres véhicules automobiles", "parent": "G"}
+{"index": {"_id": "45.31Z"}}
+{"name": "Commerce de gros d'équipements automobiles", "parent": "G"}
+{"index": {"_id": "45.32Z"}}
+{"name": "Commerce de détail d'équipements automobiles", "parent": "G"}
+{"index": {"_id": "45.40Z"}}
+{"name": "Commerce et réparation de motocycles", "parent": "G"}
+{"index": {"_id": "46.11Z"}}
+{"name": "Intermédiaires du commerce en matières premières agricoles, animaux vivants, matières premières textiles et produits semi-finis", "parent": "G"}
+{"index": {"_id": "46.12A"}}
+{"name": "Centrales d'achat de carburant", "parent": "G"}
+{"index": {"_id": "46.12B"}}
+{"name": "Autres intermédiaires du commerce en combustibles, métaux, minéraux et produits chimiques", "parent": "G"}
+{"index": {"_id": "46.13Z"}}
+{"name": "Intermédiaires du commerce en bois et matériaux de construction", "parent": "G"}
+{"index": {"_id": "46.14Z"}}
+{"name": "Intermédiaires du commerce en machines, équipements industriels, navires et avions", "parent": "G"}
+{"index": {"_id": "46.15Z"}}
+{"name": "Intermédiaires du commerce en meubles, articles de ménage et quincaillerie", "parent": "G"}
+{"index": {"_id": "46.16Z"}}
+{"name": "Intermédiaires du commerce en textiles, habillement, fourrures, chaussures et articles en cuir", "parent": "G"}
+{"index": {"_id": "46.17A"}}
+{"name": "Centrales d'achat alimentaires", "parent": "G"}
+{"index": {"_id": "46.17B"}}
+{"name": "Autres intermédiaires du commerce en denrées, boissons et tabac", "parent": "G"}
+{"index": {"_id": "46.18Z"}}
+{"name": "Intermédiaires spécialisés dans le commerce d'autres produits spécifiques", "parent": "G"}
+{"index": {"_id": "46.19A"}}
+{"name": "Centrales d'achat non alimentaires", "parent": "G"}
+{"index": {"_id": "46.19B"}}
+{"name": "Autres intermédiaires du commerce en produits divers", "parent": "G"}
+{"index": {"_id": "46.21Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de céréales, de tabac non manufacturé, de semences et d'aliments pour le bétail", "parent": "G"}
+{"index": {"_id": "46.22Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de fleurs et plantes", "parent": "G"}
+{"index": {"_id": "46.23Z"}}
+{"name": "Commerce de gros (commerce interentreprises) d'animaux vivants", "parent": "G"}
+{"index": {"_id": "46.24Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de cuirs et peaux", "parent": "G"}
+{"index": {"_id": "46.31Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de fruits et légumes", "parent": "G"}
+{"index": {"_id": "46.32A"}}
+{"name": "Commerce de gros (commerce interentreprises) de viandes de boucherie", "parent": "G"}
+{"index": {"_id": "46.32B"}}
+{"name": "Commerce de gros (commerce interentreprises) de produits à base de viande", "parent": "G"}
+{"index": {"_id": "46.32C"}}
+{"name": "Commerce de gros (commerce interentreprises) de volailles et gibier", "parent": "G"}
+{"index": {"_id": "46.33Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de produits laitiers, œufs, huiles et matières grasses comestibles", "parent": "G"}
+{"index": {"_id": "46.34Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de boissons", "parent": "G"}
+{"index": {"_id": "46.35Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de produits à base de tabac", "parent": "G"}
+{"index": {"_id": "46.36Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de sucre, chocolat et confiserie", "parent": "G"}
+{"index": {"_id": "46.37Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de café, thé, cacao et épices", "parent": "G"}
+{"index": {"_id": "46.38A"}}
+{"name": "Commerce de gros (commerce interentreprises) de poissons, crustacés et mollusques", "parent": "G"}
+{"index": {"_id": "46.38B"}}
+{"name": "Commerce de gros (commerce interentreprises) alimentaire spécialisé divers", "parent": "G"}
+{"index": {"_id": "46.39A"}}
+{"name": "Commerce de gros (commerce interentreprises) de produits surgelés", "parent": "G"}
+{"index": {"_id": "46.39B"}}
+{"name": "Commerce de gros (commerce interentreprises) alimentaire non spécialisé", "parent": "G"}
+{"index": {"_id": "46.41Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de textiles", "parent": "G"}
+{"index": {"_id": "46.42Z"}}
+{"name": "Commerce de gros (commerce interentreprises) d'habillement et de chaussures", "parent": "G"}
+{"index": {"_id": "46.43Z"}}
+{"name": "Commerce de gros (commerce interentreprises) d'appareils électroménagers", "parent": "G"}
+{"index": {"_id": "46.44Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de vaisselle, verrerie et produits d'entretien", "parent": "G"}
+{"index": {"_id": "46.45Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de parfumerie et de produits de beauté", "parent": "G"}
+{"index": {"_id": "46.46Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de produits pharmaceutiques", "parent": "G"}
+{"index": {"_id": "46.47Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de meubles, de tapis et d'appareils d'éclairage", "parent": "G"}
+{"index": {"_id": "46.48Z"}}
+{"name": "Commerce de gros (commerce interentreprises) d'articles d'horlogerie et de bijouterie", "parent": "G"}
+{"index": {"_id": "46.49Z"}}
+{"name": "Commerce de gros (commerce interentreprises) d'autres biens domestiques", "parent": "G"}
+{"index": {"_id": "46.51Z"}}
+{"name": "Commerce de gros (commerce interentreprises) d'ordinateurs, d'équipements informatiques périphériques et de logiciels", "parent": "G"}
+{"index": {"_id": "46.52Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de composants et d'équipements électroniques et de télécommunication", "parent": "G"}
+{"index": {"_id": "46.61Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de matériel agricole", "parent": "G"}
+{"index": {"_id": "46.62Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de machines-outils", "parent": "G"}
+{"index": {"_id": "46.63Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de machines pour l'extraction, la construction et le génie civil", "parent": "G"}
+{"index": {"_id": "46.64Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de machines pour l'industrie textile et l'habillement", "parent": "G"}
+{"index": {"_id": "46.65Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de mobilier de bureau", "parent": "G"}
+{"index": {"_id": "46.66Z"}}
+{"name": "Commerce de gros (commerce interentreprises) d'autres machines et équipements de bureau", "parent": "G"}
+{"index": {"_id": "46.69A"}}
+{"name": "Commerce de gros (commerce interentreprises) de matériel électrique", "parent": "G"}
+{"index": {"_id": "46.69B"}}
+{"name": "Commerce de gros (commerce interentreprises) de fournitures et équipements industriels divers", "parent": "G"}
+{"index": {"_id": "46.69C"}}
+{"name": "Commerce de gros (commerce interentreprises) de fournitures et équipements divers pour le commerce et les services", "parent": "G"}
+{"index": {"_id": "46.71Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de combustibles et de produits annexes", "parent": "G"}
+{"index": {"_id": "46.72Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de minerais et métaux", "parent": "G"}
+{"index": {"_id": "46.73A"}}
+{"name": "Commerce de gros (commerce interentreprises) de bois et de matériaux de construction", "parent": "G"}
+{"index": {"_id": "46.73B"}}
+{"name": "Commerce de gros (commerce interentreprises) d'appareils sanitaires et de produits de décoration", "parent": "G"}
+{"index": {"_id": "46.74A"}}
+{"name": "Commerce de gros (commerce interentreprises) de quincaillerie", "parent": "G"}
+{"index": {"_id": "46.74B"}}
+{"name": "Commerce de gros (commerce interentreprises) de fournitures pour la plomberie et le chauffage", "parent": "G"}
+{"index": {"_id": "46.75Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de produits chimiques", "parent": "G"}
+{"index": {"_id": "46.76Z"}}
+{"name": "Commerce de gros (commerce interentreprises) d'autres produits intermédiaires", "parent": "G"}
+{"index": {"_id": "46.77Z"}}
+{"name": "Commerce de gros (commerce interentreprises) de déchets et débris", "parent": "G"}
+{"index": {"_id": "46.90Z"}}
+{"name": "Commerce de gros (commerce interentreprises) non spécialisé", "parent": "G"}
+{"index": {"_id": "47.11A"}}
+{"name": "Commerce de détail de produits surgelés", "parent": "G"}
+{"index": {"_id": "47.11B"}}
+{"name": "Commerce d'alimentation générale", "parent": "G"}
+{"index": {"_id": "47.11C"}}
+{"name": "Supérettes", "parent": "G"}
+{"index": {"_id": "47.11D"}}
+{"name": "Supermarchés", "parent": "G"}
+{"index": {"_id": "47.11E"}}
+{"name": "Magasins multi-commerces", "parent": "G"}
+{"index": {"_id": "47.11F"}}
+{"name": "Hypermarchés", "parent": "G"}
+{"index": {"_id": "47.19A"}}
+{"name": "Grands magasins", "parent": "G"}
+{"index": {"_id": "47.19B"}}
+{"name": "Autres commerces de détail en magasin non spécialisé", "parent": "G"}
+{"index": {"_id": "47.21Z"}}
+{"name": "Commerce de détail de fruits et légumes en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.22Z"}}
+{"name": "Commerce de détail de viandes et de produits à base de viande en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.23Z"}}
+{"name": "Commerce de détail de poissons, crustacés et mollusques en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.24Z"}}
+{"name": "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.25Z"}}
+{"name": "Commerce de détail de boissons en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.26Z"}}
+{"name": "Commerce de détail de produits à base de tabac en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.29Z"}}
+{"name": "Autres commerces de détail alimentaires en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.30Z"}}
+{"name": "Commerce de détail de carburants en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.41Z"}}
+{"name": "Commerce de détail d'ordinateurs, d'unités périphériques et de logiciels en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.42Z"}}
+{"name": "Commerce de détail de matériels de télécommunication en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.43Z"}}
+{"name": "Commerce de détail de matériels audio et vidéo en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.51Z"}}
+{"name": "Commerce de détail de textiles en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.52A"}}
+{"name": "Commerce de détail de quincaillerie, peintures et verres en petites surfaces (moins de 400 m²)", "parent": "G"}
+{"index": {"_id": "47.52B"}}
+{"name": "Commerce de détail de quincaillerie, peintures et verres en grandes surfaces (400 m² et plus)", "parent": "G"}
+{"index": {"_id": "47.53Z"}}
+{"name": "Commerce de détail de tapis, moquettes et revêtements de murs et de sols en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.54Z"}}
+{"name": "Commerce de détail d'appareils électroménagers en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.59A"}}
+{"name": "Commerce de détail de meubles", "parent": "G"}
+{"index": {"_id": "47.59B"}}
+{"name": "Commerce de détail d'autres équipements du foyer", "parent": "G"}
+{"index": {"_id": "47.61Z"}}
+{"name": "Commerce de détail de livres en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.62Z"}}
+{"name": "Commerce de détail de journaux et papeterie en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.63Z"}}
+{"name": "Commerce de détail d'enregistrements musicaux et vidéo en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.64Z"}}
+{"name": "Commerce de détail d'articles de sport en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.65Z"}}
+{"name": "Commerce de détail de jeux et jouets en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.71Z"}}
+{"name": "Commerce de détail d'habillement en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.72A"}}
+{"name": "Commerce de détail de la chaussure", "parent": "G"}
+{"index": {"_id": "47.72B"}}
+{"name": "Commerce de détail de maroquinerie et d'articles de voyage", "parent": "G"}
+{"index": {"_id": "47.73Z"}}
+{"name": "Commerce de détail de produits pharmaceutiques en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.74Z"}}
+{"name": "Commerce de détail d'articles médicaux et orthopédiques en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.75Z"}}
+{"name": "Commerce de détail de parfumerie et de produits de beauté en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.76Z"}}
+{"name": "Commerce de détail de fleurs, plantes, graines, engrais, animaux de compagnie et aliments pour ces animaux en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.77Z"}}
+{"name": "Commerce de détail d'articles d'horlogerie et de bijouterie en magasin spécialisé", "parent": "G"}
+{"index": {"_id": "47.78A"}}
+{"name": "Commerces de détail d'optique", "parent": "G"}
+{"index": {"_id": "47.78B"}}
+{"name": "Commerces de détail de charbons et combustibles", "parent": "G"}
+{"index": {"_id": "47.78C"}}
+{"name": "Autres commerces de détail spécialisés divers", "parent": "G"}
+{"index": {"_id": "47.79Z"}}
+{"name": "Commerce de détail de biens d'occasion en magasin", "parent": "G"}
+{"index": {"_id": "47.81Z"}}
+{"name": "Commerce de détail alimentaire sur éventaires et marchés", "parent": "G"}
+{"index": {"_id": "47.82Z"}}
+{"name": "Commerce de détail de textiles, d'habillement et de chaussures sur éventaires et marchés", "parent": "G"}
+{"index": {"_id": "47.89Z"}}
+{"name": "Autres commerces de détail sur éventaires et marchés", "parent": "G"}
+{"index": {"_id": "47.91A"}}
+{"name": "Vente à distance sur catalogue général", "parent": "G"}
+{"index": {"_id": "47.91B"}}
+{"name": "Vente à distance sur catalogue spécialisé", "parent": "G"}
+{"index": {"_id": "47.99A"}}
+{"name": "Vente à domicile", "parent": "G"}
+{"index": {"_id": "47.99B"}}
+{"name": "Vente par automates et autres commerces de détail hors magasin, éventaires ou marchés n.c.a.", "parent": "G"}
+{"index": {"_id": "H"}}
+{"name": "Transports et entreposage", "parent": null}
+{"index": {"_id": "49.10Z"}}
+{"name": "Transport ferroviaire interurbain de voyageurs", "parent": "H"}
+{"index": {"_id": "49.20Z"}}
+{"name": "Transports ferroviaires de fret", "parent": "H"}
+{"index": {"_id": "49.31Z"}}
+{"name": "Transports urbains et suburbains de voyageurs", "parent": "H"}
+{"index": {"_id": "49.32Z"}}
+{"name": "Transports de voyageurs par taxis", "parent": "H"}
+{"index": {"_id": "49.39A"}}
+{"name": "Transports routiers réguliers de voyageurs", "parent": "H"}
+{"index": {"_id": "49.39B"}}
+{"name": "Autres transports routiers de voyageurs", "parent": "H"}
+{"index": {"_id": "49.39C"}}
+{"name": "Téléphériques et remontées mécaniques", "parent": "H"}
+{"index": {"_id": "49.41A"}}
+{"name": "Transports routiers de fret interurbains", "parent": "H"}
+{"index": {"_id": "49.41B"}}
+{"name": "Transports routiers de fret de proximité", "parent": "H"}
+{"index": {"_id": "49.41C"}}
+{"name": "Location de camions avec chauffeur", "parent": "H"}
+{"index": {"_id": "49.42Z"}}
+{"name": "Services de déménagement", "parent": "H"}
+{"index": {"_id": "49.50Z"}}
+{"name": "Transports par conduites", "parent": "H"}
+{"index": {"_id": "50.10Z"}}
+{"name": "Transports maritimes et côtiers de passagers", "parent": "H"}
+{"index": {"_id": "50.20Z"}}
+{"name": "Transports maritimes et côtiers de fret", "parent": "H"}
+{"index": {"_id": "50.30Z"}}
+{"name": "Transports fluviaux de passagers", "parent": "H"}
+{"index": {"_id": "50.40Z"}}
+{"name": "Transports fluviaux de fret", "parent": "H"}
+{"index": {"_id": "51.10Z"}}
+{"name": "Transports aériens de passagers", "parent": "H"}
+{"index": {"_id": "51.21Z"}}
+{"name": "Transports aériens de fret", "parent": "H"}
+{"index": {"_id": "51.22Z"}}
+{"name": "Transports spatiaux", "parent": "H"}
+{"index": {"_id": "52.10A"}}
+{"name": "Entreposage et stockage frigorifique", "parent": "H"}
+{"index": {"_id": "52.10B"}}
+{"name": "Entreposage et stockage non frigorifique", "parent": "H"}
+{"index": {"_id": "52.21Z"}}
+{"name": "Services auxiliaires des transports terrestres", "parent": "H"}
+{"index": {"_id": "52.22Z"}}
+{"name": "Services auxiliaires des transports par eau", "parent": "H"}
+{"index": {"_id": "52.23Z"}}
+{"name": "Services auxiliaires des transports aériens", "parent": "H"}
+{"index": {"_id": "52.24A"}}
+{"name": "Manutention portuaire", "parent": "H"}
+{"index": {"_id": "52.24B"}}
+{"name": "Manutention non portuaire", "parent": "H"}
+{"index": {"_id": "52.29A"}}
+{"name": "Messagerie, fret express", "parent": "H"}
+{"index": {"_id": "52.29B"}}
+{"name": "Affrètement et organisation des transports", "parent": "H"}
+{"index": {"_id": "53.10Z"}}
+{"name": "Activités de poste dans le cadre d'une obligation de service universel", "parent": "H"}
+{"index": {"_id": "53.20Z"}}
+{"name": "Autres activités de poste et de courrier", "parent": "H"}
+{"index": {"_id": "I"}}
+{"name": "Hébergement et restauration", "parent": null}
+{"index": {"_id": "55.10Z"}}
+{"name": "Hôtels et hébergement similaire", "parent": "I"}
+{"index": {"_id": "55.20Z"}}
+{"name": "Hébergement touristique et autre hébergement de courte durée", "parent": "I"}
+{"index": {"_id": "55.30Z"}}
+{"name": "Terrains de camping et parcs pour caravanes ou véhicules de loisirs", "parent": "I"}
+{"index": {"_id": "55.90Z"}}
+{"name": "Autres hébergements", "parent": "I"}
+{"index": {"_id": "56.10A"}}
+{"name": "Restauration traditionnelle", "parent": "I"}
+{"index": {"_id": "56.10B"}}
+{"name": "Cafétérias et autres libres-services", "parent": "I"}
+{"index": {"_id": "56.10C"}}
+{"name": "Restauration de type rapide", "parent": "I"}
+{"index": {"_id": "56.21Z"}}
+{"name": "Services des traiteurs", "parent": "I"}
+{"index": {"_id": "56.29A"}}
+{"name": "Restauration collective sous contrat", "parent": "I"}
+{"index": {"_id": "56.29B"}}
+{"name": "Autres services de restauration n.c.a.", "parent": "I"}
+{"index": {"_id": "56.30Z"}}
+{"name": "Débits de boissons", "parent": "I"}
+{"index": {"_id": "J"}}
+{"name": "Information et communication", "parent": null}
+{"index": {"_id": "58.11Z"}}
+{"name": "Édition de livres", "parent": "J"}
+{"index": {"_id": "58.12Z"}}
+{"name": "Édition de répertoires et de fichiers d'adresses", "parent": "J"}
+{"index": {"_id": "58.13Z"}}
+{"name": "Édition de journaux", "parent": "J"}
+{"index": {"_id": "58.14Z"}}
+{"name": "Édition de revues et périodiques", "parent": "J"}
+{"index": {"_id": "58.19Z"}}
+{"name": "Autres activités d'édition", "parent": "J"}
+{"index": {"_id": "58.21Z"}}
+{"name": "Édition de jeux électroniques", "parent": "J"}
+{"index": {"_id": "58.29A"}}
+{"name": "Édition de logiciels système et de réseau", "parent": "J"}
+{"index": {"_id": "58.29B"}}
+{"name": "Édition de logiciels outils de développement et de langages", "parent": "J"}
+{"index": {"_id": "58.29C"}}
+{"name": "Édition de logiciels applicatifs", "parent": "J"}
+{"index": {"_id": "59.11A"}}
+{"name": "Production de films et de programmes pour la télévision", "parent": "J"}
+{"index": {"_id": "59.11B"}}
+{"name": "Production de films institutionnels et publicitaires", "parent": "J"}
+{"index": {"_id": "59.11C"}}
+{"name": "Production de films pour le cinéma", "parent": "J"}
+{"index": {"_id": "59.12Z"}}
+{"name": "Post-production de films cinématographiques, de vidéo et de programmes de télévision", "parent": "J"}
+{"index": {"_id": "59.13A"}}
+{"name": "Distribution de films cinématographiques", "parent": "J"}
+{"index": {"_id": "59.13B"}}
+{"name": "Édition et distribution vidéo", "parent": "J"}
+{"index": {"_id": "59.14Z"}}
+{"name": "Projection de films cinématographiques", "parent": "J"}
+{"index": {"_id": "59.20Z"}}
+{"name": "Enregistrement sonore et édition musicale", "parent": "J"}
+{"index": {"_id": "60.10Z"}}
+{"name": "Édition et diffusion de programmes radio", "parent": "J"}
+{"index": {"_id": "60.20A"}}
+{"name": "Édition de chaînes généralistes", "parent": "J"}
+{"index": {"_id": "60.20B"}}
+{"name": "Édition de chaînes thématiques", "parent": "J"}
+{"index": {"_id": "61.10Z"}}
+{"name": "Télécommunications filaires", "parent": "J"}
+{"index": {"_id": "61.20Z"}}
+{"name": "Télécommunications sans fil", "parent": "J"}
+{"index": {"_id": "61.30Z"}}
+{"name": "Télécommunications par satellite", "parent": "J"}
+{"index": {"_id": "61.90Z"}}
+{"name": "Autres activités de télécommunication", "parent": "J"}
+{"index": {"_id": "62.01Z"}}
+{"name": "Programmation informatique", "parent": "J"}
+{"index": {"_id": "62.02A"}}
+{"name": "Conseil en systèmes et logiciels informatiques", "parent": "J"}
+{"index": {"_id": "62.02B"}}
+{"name": "Tierce maintenance de systèmes et d'applications informatiques", "parent": "J"}
+{"index": {"_id": "62.03Z"}}
+{"name": "Gestion d'installations informatiques", "parent": "J"}
+{"index": {"_id": "62.09Z"}}
+{"name": "Autres activités informatiques", "parent": "J"}
+{"index": {"_id": "63.11Z"}}
+{"name": "Traitement de données, hébergement et activités connexes", "parent": "J"}
+{"index": {"_id": "63.12Z"}}
+{"name": "Portails Internet", "parent": "J"}
+{"index": {"_id": "63.91Z"}}
+{"name": "Activités des agences de presse", "parent": "J"}
+{"index": {"_id": "63.99Z"}}
+{"name": "Autres services d'information n.c.a.", "parent": "J"}
+{"index": {"_id": "K"}}
+{"name": "Activités financières et d'assurance", "parent": null}
+{"index": {"_id": "64.11Z"}}
+{"name": "Activités de banque centrale", "parent": "K"}
+{"index": {"_id": "64.19Z"}}
+{"name": "Autres intermédiations monétaires", "parent": "K"}
+{"index": {"_id": "64.20Z"}}
+{"name": "Activités des sociétés holding", "parent": "K"}
+{"index": {"_id": "64.30Z"}}
+{"name": "Fonds de placement et entités financières similaires", "parent": "K"}
+{"index": {"_id": "64.91Z"}}
+{"name": "Crédit-bail", "parent": "K"}
+{"index": {"_id": "64.92Z"}}
+{"name": "Autre distribution de crédit", "parent": "K"}
+{"index": {"_id": "64.99Z"}}
+{"name": "Autres activités des services financiers, hors assurance et caisses de retraite, n.c.a.", "parent": "K"}
+{"index": {"_id": "65.11Z"}}
+{"name": "Assurance vie", "parent": "K"}
+{"index": {"_id": "65.12Z"}}
+{"name": "Autres assurances", "parent": "K"}
+{"index": {"_id": "65.20Z"}}
+{"name": "Réassurance", "parent": "K"}
+{"index": {"_id": "65.30Z"}}
+{"name": "Caisses de retraite", "parent": "K"}
+{"index": {"_id": "66.11Z"}}
+{"name": "Administration de marchés financiers", "parent": "K"}
+{"index": {"_id": "66.12Z"}}
+{"name": "Courtage de valeurs mobilières et de marchandises", "parent": "K"}
+{"index": {"_id": "66.19A"}}
+{"name": "Supports juridiques de gestion de patrimoine mobilier", "parent": "K"}
+{"index": {"_id": "66.19B"}}
+{"name": "Autres activités auxiliaires de services financiers, hors assurance et caisses de retraite, n.c.a.", "parent": "K"}
+{"index": {"_id": "66.21Z"}}
+{"name": "Évaluation des risques et dommages", "parent": "K"}
+{"index": {"_id": "66.22Z"}}
+{"name": "Activités des agents et courtiers d'assurances", "parent": "K"}
+{"index": {"_id": "66.29Z"}}
+{"name": "Autres activités auxiliaires d'assurance et de caisses de retraite", "parent": "K"}
+{"index": {"_id": "66.30Z"}}
+{"name": "Gestion de fonds", "parent": "K"}
+{"index": {"_id": "L"}}
+{"name": "Activités immobilières", "parent": null}
+{"index": {"_id": "68.10Z"}}
+{"name": "Activités des marchands de biens immobiliers", "parent": "L"}
+{"index": {"_id": "68.20A"}}
+{"name": "Location de logements", "parent": "L"}
+{"index": {"_id": "68.20B"}}
+{"name": "Location de terrains et d'autres biens immobiliers", "parent": "L"}
+{"index": {"_id": "68.31Z"}}
+{"name": "Agences immobilières", "parent": "L"}
+{"index": {"_id": "68.32A"}}
+{"name": "Administration d'immeubles et autres biens immobiliers", "parent": "L"}
+{"index": {"_id": "68.32B"}}
+{"name": "Supports juridiques de gestion de patrimoine immobilier", "parent": "L"}
+{"index": {"_id": "M"}}
+{"name": "Activités spécialisées, scientifiques et techniques", "parent": null}
+{"index": {"_id": "69.10Z"}}
+{"name": "Activités juridiques", "parent": "M"}
+{"index": {"_id": "69.20Z"}}
+{"name": "Activités comptables", "parent": "M"}
+{"index": {"_id": "70.10Z"}}
+{"name": "Activités des sièges sociaux", "parent": "M"}
+{"index": {"_id": "70.21Z"}}
+{"name": "Conseil en relations publiques et communication", "parent": "M"}
+{"index": {"_id": "70.22Z"}}
+{"name": "Conseil pour les affaires et autres conseils de gestion", "parent": "M"}
+{"index": {"_id": "71.11Z"}}
+{"name": "Activités d'architecture", "parent": "M"}
+{"index": {"_id": "71.12A"}}
+{"name": "Activité des géomètres", "parent": "M"}
+{"index": {"_id": "71.12B"}}
+{"name": "Ingénierie, études techniques", "parent": "M"}
+{"index": {"_id": "71.20A"}}
+{"name": "Contrôle technique automobile", "parent": "M"}
+{"index": {"_id": "71.20B"}}
+{"name": "Analyses, essais et inspections techniques", "parent": "M"}
+{"index": {"_id": "72.11Z"}}
+{"name": "Recherche-développement en biotechnologie", "parent": "M"}
+{"index": {"_id": "72.19Z"}}
+{"name": "Recherche-développement en autres sciences physiques et naturelles", "parent": "M"}
+{"index": {"_id": "72.20Z"}}
+{"name": "Recherche-développement en sciences humaines et sociales", "parent": "M"}
+{"index": {"_id": "73.11Z"}}
+{"name": "Activités des agences de publicité", "parent": "M"}
+{"index": {"_id": "73.12Z"}}
+{"name": "Régie publicitaire de médias", "parent": "M"}
+{"index": {"_id": "73.20Z"}}
+{"name": "Études de marché et sondages", "parent": "M"}
+{"index": {"_id": "74.10Z"}}
+{"name": "Activités spécialisées de design", "parent": "M"}
+{"index": {"_id": "74.20Z"}}
+{"name": "Activités photographiques", "parent": "M"}
+{"index": {"_id": "74.30Z"}}
+{"name": "Traduction et interprétation", "parent": "M"}
+{"index": {"_id": "74.90A"}}
+{"name": "Activité des économistes de la construction", "parent": "M"}
+{"index": {"_id": "74.90B"}}
+{"name": "Activités spécialisées, scientifiques et techniques diverses", "parent": "M"}
+{"index": {"_id": "N"}}
+{"name": "Activités de services administratifs et de soutien", "parent": null}
+{"index": {"_id": "75.00Z"}}
+{"name": "Activités vétérinaires", "parent": "N"}
+{"index": {"_id": "77.11A"}}
+{"name": "Location de courte durée de voitures et de véhicules automobiles légers", "parent": "N"}
+{"index": {"_id": "77.11B"}}
+{"name": "Location de longue durée de voitures et de véhicules automobiles légers", "parent": "N"}
+{"index": {"_id": "77.12Z"}}
+{"name": "Location et location-bail de camions", "parent": "N"}
+{"index": {"_id": "77.21Z"}}
+{"name": "Location et location-bail d'articles de loisirs et de sport", "parent": "N"}
+{"index": {"_id": "77.22Z"}}
+{"name": "Location de vidéocassettes et disques vidéo", "parent": "N"}
+{"index": {"_id": "77.29Z"}}
+{"name": "Location et location-bail d'autres biens personnels et domestiques", "parent": "N"}
+{"index": {"_id": "77.31Z"}}
+{"name": "Location et location-bail de machines et équipements agricoles", "parent": "N"}
+{"index": {"_id": "77.32Z"}}
+{"name": "Location et location-bail de machines et équipements pour la construction", "parent": "N"}
+{"index": {"_id": "77.33Z"}}
+{"name": "Location et location-bail de machines de bureau et de matériel informatique", "parent": "N"}
+{"index": {"_id": "77.34Z"}}
+{"name": "Location et location-bail de matériels de transport par eau", "parent": "N"}
+{"index": {"_id": "77.35Z"}}
+{"name": "Location et location-bail de matériels de transport aérien", "parent": "N"}
+{"index": {"_id": "77.39Z"}}
+{"name": "Location et location-bail d'autres machines, équipements et biens matériels n.c.a.", "parent": "N"}
+{"index": {"_id": "77.40Z"}}
+{"name": "Location-bail de propriété intellectuelle et de produits similaires, à l'exception des œuvres soumises à copyright", "parent": "N"}
+{"index": {"_id": "78.10Z"}}
+{"name": "Activités des agences de placement de main-d'œuvre", "parent": "N"}
+{"index": {"_id": "78.20Z"}}
+{"name": "Activités des agences de travail temporaire", "parent": "N"}
+{"index": {"_id": "78.30Z"}}
+{"name": "Autre mise à disposition de ressources humaines", "parent": "N"}
+{"index": {"_id": "79.11Z"}}
+{"name": "Activités des agences de voyage", "parent": "N"}
+{"index": {"_id": "79.12Z"}}
+{"name": "Activités des voyagistes", "parent": "N"}
+{"index": {"_id": "79.90Z"}}
+{"name": "Autres services de réservation et activités connexes", "parent": "N"}
+{"index": {"_id": "80.10Z"}}
+{"name": "Activités de sécurité privée", "parent": "N"}
+{"index": {"_id": "80.20Z"}}
+{"name": "Activités liées aux systèmes de sécurité", "parent": "N"}
+{"index": {"_id": "80.30Z"}}
+{"name": "Activités d'enquête", "parent": "N"}
+{"index": {"_id": "81.10Z"}}
+{"name": "Activités combinées de soutien lié aux bâtiments", "parent": "N"}
+{"index": {"_id": "81.21Z"}}
+{"name": "Nettoyage courant des bâtiments", "parent": "N"}
+{"index": {"_id": "81.22Z"}}
+{"name": "Autres activités de nettoyage des bâtiments et nettoyage industriel", "parent": "N"}
+{"index": {"_id": "81.29A"}}
+{"name": "Désinfection, désinsectisation, dératisation", "parent": "N"}
+{"index": {"_id": "81.29B"}}
+{"name": "Autres activités de nettoyage n.c.a.", "parent": "N"}
+{"index": {"_id": "81.30Z"}}
+{"name": "Services d'aménagement paysager", "parent": "N"}
+{"index": {"_id": "82.11Z"}}
+{"name": "Services administratifs combinés de bureau", "parent": "N"}
+{"index": {"_id": "82.19Z"}}
+{"name": "Photocopie, préparation de documents et autres activités spécialisées de soutien de bureau", "parent": "N"}
+{"index": {"_id": "82.20Z"}}
+{"name": "Activités de centres d'appels", "parent": "N"}
+{"index": {"_id": "82.30Z"}}
+{"name": "Organisation de foires, salons professionnels et congrès", "parent": "N"}
+{"index": {"_id": "82.91Z"}}
+{"name": "Activités des agences de recouvrement de factures et des sociétés d'information financière sur la clientèle", "parent": "N"}
+{"index": {"_id": "82.92Z"}}
+{"name": "Activités de conditionnement", "parent": "N"}
+{"index": {"_id": "82.99Z"}}
+{"name": "Autres activités de soutien aux entreprises n.c.a.", "parent": "N"}
+{"index": {"_id": "O"}}
+{"name": "Administration publique", "parent": null}
+{"index": {"_id": "84.11Z"}}
+{"name": "Administration publique générale", "parent": "O"}
+{"index": {"_id": "84.12Z"}}
+{"name": "Administration publique (tutelle) de la santé, de la formation, de la culture et des services sociaux, autre que sécurité sociale", "parent": "O"}
+{"index": {"_id": "84.13Z"}}
+{"name": "Administration publique (tutelle) des activités économiques", "parent": "O"}
+{"index": {"_id": "84.21Z"}}
+{"name": "Affaires étrangères", "parent": "O"}
+{"index": {"_id": "84.22Z"}}
+{"name": "Défense", "parent": "O"}
+{"index": {"_id": "84.23Z"}}
+{"name": "Justice", "parent": "O"}
+{"index": {"_id": "84.24Z"}}
+{"name": "Activités d'ordre public et de sécurité", "parent": "O"}
+{"index": {"_id": "84.25Z"}}
+{"name": "Services du feu et de secours", "parent": "O"}
+{"index": {"_id": "84.30A"}}
+{"name": "Activités générales de sécurité sociale", "parent": "O"}
+{"index": {"_id": "84.30B"}}
+{"name": "Gestion des retraites complémentaires", "parent": "O"}
+{"index": {"_id": "84.30C"}}
+{"name": "Distribution sociale de revenus", "parent": "O"}
+{"index": {"_id": "P"}}
+{"name": "Enseignement", "parent": null}
+{"index": {"_id": "85.10Z"}}
+{"name": "Enseignement pré-primaire", "parent": "P"}
+{"index": {"_id": "85.20Z"}}
+{"name": "Enseignement primaire", "parent": "P"}
+{"index": {"_id": "85.31Z"}}
+{"name": "Enseignement secondaire général", "parent": "P"}
+{"index": {"_id": "85.32Z"}}
+{"name": "Enseignement secondaire technique ou professionnel", "parent": "P"}
+{"index": {"_id": "85.41Z"}}
+{"name": "Enseignement post-secondaire non supérieur", "parent": "P"}
+{"index": {"_id": "85.42Z"}}
+{"name": "Enseignement supérieur", "parent": "P"}
+{"index": {"_id": "85.51Z"}}
+{"name": "Enseignement de disciplines sportives et d'activités de loisirs", "parent": "P"}
+{"index": {"_id": "85.52Z"}}
+{"name": "Enseignement culturel", "parent": "P"}
+{"index": {"_id": "85.53Z"}}
+{"name": "Enseignement de la conduite", "parent": "P"}
+{"index": {"_id": "85.59A"}}
+{"name": "Formation continue d'adultes", "parent": "P"}
+{"index": {"_id": "85.59B"}}
+{"name": "Autres enseignements", "parent": "P"}
+{"index": {"_id": "85.60Z"}}
+{"name": "Activités de soutien à l'enseignement", "parent": "P"}
+{"index": {"_id": "Q"}}
+{"name": "Santé humaine et action sociale", "parent": null}
+{"index": {"_id": "86.10Z"}}
+{"name": "Activités hospitalières", "parent": "Q"}
+{"index": {"_id": "86.21Z"}}
+{"name": "Activité des médecins généralistes", "parent": "Q"}
+{"index": {"_id": "86.22A"}}
+{"name": "Activités de radiodiagnostic et de radiothérapie", "parent": "Q"}
+{"index": {"_id": "86.22B"}}
+{"name": "Activités chirurgicales", "parent": "Q"}
+{"index": {"_id": "86.22C"}}
+{"name": "Autres activités des médecins spécialistes", "parent": "Q"}
+{"index": {"_id": "86.23Z"}}
+{"name": "Pratique dentaire", "parent": "Q"}
+{"index": {"_id": "86.90A"}}
+{"name": "Ambulances", "parent": "Q"}
+{"index": {"_id": "86.90B"}}
+{"name": "Laboratoires d'analyses médicales", "parent": "Q"}
+{"index": {"_id": "86.90C"}}
+{"name": "Centres de collecte et banques d'organes", "parent": "Q"}
+{"index": {"_id": "86.90D"}}
+{"name": "Activités des infirmiers et des sages-femmes", "parent": "Q"}
+{"index": {"_id": "86.90E"}}
+{"name": "Activités des professionnels de la rééducation, de l'appareillage et des pédicures-podologues", "parent": "Q"}
+{"index": {"_id": "86.90F"}}
+{"name": "Activités de santé humaine non classées ailleurs", "parent": "Q"}
+{"index": {"_id": "87.10A"}}
+{"name": "Hébergement médicalisé pour personnes âgées", "parent": "Q"}
+{"index": {"_id": "87.10B"}}
+{"name": "Hébergement médicalisé pour enfants handicapés", "parent": "Q"}
+{"index": {"_id": "87.10C"}}
+{"name": "Hébergement médicalisé pour adultes handicapés et autre hébergement médicalisé", "parent": "Q"}
+{"index": {"_id": "87.20A"}}
+{"name": "Hébergement social pour handicapés mentaux et malades mentaux", "parent": "Q"}
+{"index": {"_id": "87.20B"}}
+{"name": "Hébergement social pour toxicomanes", "parent": "Q"}
+{"index": {"_id": "87.30A"}}
+{"name": "Hébergement social pour personnes âgées", "parent": "Q"}
+{"index": {"_id": "87.30B"}}
+{"name": "Hébergement social pour handicapés physiques", "parent": "Q"}
+{"index": {"_id": "87.90A"}}
+{"name": "Hébergement social pour enfants en difficultés", "parent": "Q"}
+{"index": {"_id": "87.90B"}}
+{"name": "Hébergement social pour adultes et familles en difficultés et autre hébergement social", "parent": "Q"}
+{"index": {"_id": "88.10A"}}
+{"name": "Aide à domicile", "parent": "Q"}
+{"index": {"_id": "88.10B"}}
+{"name": "Accueil ou accompagnement sans hébergement d'adultes handicapés ou de personnes âgées", "parent": "Q"}
+{"index": {"_id": "88.10C"}}
+{"name": "Aide par le travail", "parent": "Q"}
+{"index": {"_id": "88.91A"}}
+{"name": "Accueil de jeunes enfants", "parent": "Q"}
+{"index": {"_id": "88.91B"}}
+{"name": "Accueil ou accompagnement sans hébergement d'enfants handicapés", "parent": "Q"}
+{"index": {"_id": "88.99A"}}
+{"name": "Autre accueil ou accompagnement sans hébergement d'enfants et d'adolescents", "parent": "Q"}
+{"index": {"_id": "88.99B"}}
+{"name": "Action sociale sans hébergement n.c.a.", "parent": "Q"}
+{"index": {"_id": "R"}}
+{"name": "Arts, spectacles et activités récréatives", "parent": null}
+{"index": {"_id": "90.01Z"}}
+{"name": "Arts du spectacle vivant", "parent": "R"}
+{"index": {"_id": "90.02Z"}}
+{"name": "Activités de soutien au spectacle vivant", "parent": "R"}
+{"index": {"_id": "90.03A"}}
+{"name": "Création artistique relevant des arts plastiques", "parent": "R"}
+{"index": {"_id": "90.03B"}}
+{"name": "Autre création artistique", "parent": "R"}
+{"index": {"_id": "90.04Z"}}
+{"name": "Gestion de salles de spectacles", "parent": "R"}
+{"index": {"_id": "91.01Z"}}
+{"name": "Gestion des bibliothèques et des archives", "parent": "R"}
+{"index": {"_id": "91.02Z"}}
+{"name": "Gestion des musées", "parent": "R"}
+{"index": {"_id": "91.03Z"}}
+{"name": "Gestion des sites et monuments historiques et des attractions touristiques similaires", "parent": "R"}
+{"index": {"_id": "91.04Z"}}
+{"name": "Gestion des jardins botaniques et zoologiques et des réserves naturelles", "parent": "R"}
+{"index": {"_id": "92.00Z"}}
+{"name": "Organisation de jeux de hasard et d'argent", "parent": "R"}
+{"index": {"_id": "93.11Z"}}
+{"name": "Gestion d'installations sportives", "parent": "R"}
+{"index": {"_id": "93.12Z"}}
+{"name": "Activités de clubs de sports", "parent": "R"}
+{"index": {"_id": "93.13Z"}}
+{"name": "Activités des centres de culture physique", "parent": "R"}
+{"index": {"_id": "93.19Z"}}
+{"name": "Autres activités liées au sport", "parent": "R"}
+{"index": {"_id": "93.21Z"}}
+{"name": "Activités des parcs d'attractions et parcs à thèmes", "parent": "R"}
+{"index": {"_id": "93.29Z"}}
+{"name": "Autres activités récréatives et de loisirs", "parent": "R"}
+{"index": {"_id": "S"}}
+{"name": "Autres activités de services", "parent": null}
+{"index": {"_id": "94.11Z"}}
+{"name": "Activités des organisations patronales et consulaires", "parent": "S"}
+{"index": {"_id": "94.12Z"}}
+{"name": "Activités des organisations professionnelles", "parent": "S"}
+{"index": {"_id": "94.20Z"}}
+{"name": "Activités des syndicats de salariés", "parent": "S"}
+{"index": {"_id": "94.91Z"}}
+{"name": "Activités des organisations religieuses", "parent": "S"}
+{"index": {"_id": "94.92Z"}}
+{"name": "Activités des organisations politiques", "parent": "S"}
+{"index": {"_id": "94.99Z"}}
+{"name": "Autres organisations fonctionnant par adhésion volontaire", "parent": "S"}
+{"index": {"_id": "95.11Z"}}
+{"name": "Réparation d'ordinateurs et d'équipements périphériques", "parent": "S"}
+{"index": {"_id": "95.12Z"}}
+{"name": "Réparation d'équipements de communication", "parent": "S"}
+{"index": {"_id": "95.21Z"}}
+{"name": "Réparation de produits électroniques grand public", "parent": "S"}
+{"index": {"_id": "95.22Z"}}
+{"name": "Réparation d'appareils électroménagers et d'équipements pour la maison et le jardin", "parent": "S"}
+{"index": {"_id": "95.23Z"}}
+{"name": "Réparation de chaussures et d'articles en cuir", "parent": "S"}
+{"index": {"_id": "95.24Z"}}
+{"name": "Réparation de meubles et d'équipements du foyer", "parent": "S"}
+{"index": {"_id": "95.25Z"}}
+{"name": "Réparation d'articles d'horlogerie et de bijouterie", "parent": "S"}
+{"index": {"_id": "95.29Z"}}
+{"name": "Réparation d'autres biens personnels et domestiques", "parent": "S"}
+{"index": {"_id": "96.01A"}}
+{"name": "Blanchisserie-teinturerie de gros", "parent": "S"}
+{"index": {"_id": "96.01B"}}
+{"name": "Blanchisserie-teinturerie de détail", "parent": "S"}
+{"index": {"_id": "96.02A"}}
+{"name": "Coiffure", "parent": "S"}
+{"index": {"_id": "96.02B"}}
+{"name": "Soins de beauté", "parent": "S"}
+{"index": {"_id": "96.03Z"}}
+{"name": "Services funéraires", "parent": "S"}
+{"index": {"_id": "96.04Z"}}
+{"name": "Entretien corporel", "parent": "S"}
+{"index": {"_id": "96.09Z"}}
+{"name": "Autres services personnels n.c.a.", "parent": "S"}
+{"index": {"_id": "T"}}
+{"name": "Activités des ménages en tant qu'employeurs ; activités indifférenciées des ménages en tant que producteurs de biens et services pour usage propre", "parent": null}
+{"index": {"_id": "97.00Z"}}
+{"name": "Activités des ménages en tant qu'employeurs de personnel domestique", "parent": "T"}
+{"index": {"_id": "98.10Z"}}
+{"name": "Activités indifférenciées des ménages en tant que producteurs de biens pour usage propre", "parent": "T"}
+{"index": {"_id": "98.20Z"}}
+{"name": "Activités indifférenciées des ménages en tant que producteurs de services pour usage propre", "parent": "T"}
+{"index": {"_id": "U"}}
+{"name": "Activités extra-territoriales", "parent": null}
+{"index": {"_id": "99.00Z"}}
+{"name": "Activités des organisations et organismes extraterritoriaux", "parent": "U"}

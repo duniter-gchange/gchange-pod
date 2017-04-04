@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<assembly>
+    <id>plugin</id>
+
+
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/</outputDirectory>
+            <useProjectArtifact>true</useProjectArtifact>
+            <useTransitiveFiltering>true</useTransitiveFiltering>
+            <excludes>
+                <exclude>org.duniter:duniter4j-es-core</exclude>
+                <exclude>org.duniter:duniter4j-es-user</exclude>
+                <exclude>org.elasticsearch:elasticsearch</exclude>
+                <exclude>net.java.dev.jna:jna</exclude>
+                <exclude>com.fasterxml.jackson.core:jackson-core</exclude>
+                <exclude>log4j:log4j</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+
+    <fileSets>
+        <fileSet>
+            <includes>
+                <include>LICENSE</include>
+            </includes>
+        </fileSet>
+
+        <fileSet>
+            <directory>target/classes</directory>
+            <outputDirectory/>
+            <includes>
+                <include>plugin-descriptor.properties</include>
+                <include>plugin-security.policy</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  allegro-obsdeb :: UI :: Swing
+  $Id:$
+  $HeadURL:$
+  %%
+  Copyright (C) 2009 - 2013 Ifremer
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  #L%
+  -->
+
+<assembly
+  xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  <id>standalone</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+
+  <fileSets>
+
+    <fileSet>
+      <directory>target/elasticsearch-${elasticsearch.version}</directory>
+      <outputDirectory/>
+      <excludes>
+        <exclude>bin/elasticsearch</exclude>
+        <exclude>bin/plugin</exclude>
+        <exclude>config/elasticsearch.yml</exclude>
+        <exclude>config/logging.yml</exclude>
+      </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>target/elasticsearch-${elasticsearch.version}</directory>
+      <outputDirectory/>
+      <includes>
+        <include>bin/elasticsearch</include>
+        <include>bin/plugin</include>
+      </includes>
+      <fileMode>0755</fileMode>
+    </fileSet>
+
+    <!-- default configuration file -->
+    <fileSet>
+      <directory>src/main/assembly/config</directory>
+      <outputDirectory>config</outputDirectory>
+      <includes>
+        <include>elasticsearch.yml</include>
+        <include>logging.yml</include>
+      </includes>
+    </fileSet>
+
+    <!-- websocket lib (tyrus )
+    <fileSet>
+      <directory>target/elasticsearch-${elasticsearch.version}</directory>
+      <outputDirectory>lib</outputDirectory>
+      <includes>
+        <include>elasticsearch.yml</include>
+        <include>logging.yml</include>
+      </includes>
+    </fileSet>-->
+  </fileSets>
+
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>lib</outputDirectory>
+      <useProjectArtifact>false</useProjectArtifact>
+      <useTransitiveFiltering>true</useTransitiveFiltering>
+      <includes>
+        <include>javax.websocket:javax.websocket-api</include>
+        <include>org.glassfish.tyrus:tyrus-client</include>
+        <include>org.glassfish.tyrus:tyrus-container-grizzly-client</include>
+        <include>org.glassfish.tyrus:tyrus-server</include>
+        <include>org.glassfish.tyrus:tyrus-container-grizzly-server</include>
+      </includes>
+      <fileMode>0555</fileMode>
+    </dependencySet>
+  </dependencySets>
+</assembly>

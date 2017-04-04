@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>fr.gchange</groupId>
+        <artifactId>gchange-pod</artifactId>
+        <version>0.9.2-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>gchange-pod-es-plugin</artifactId>
+    <packaging>jar</packaging>
+    <name>Ğchange Pod :: ElasticSearch plugin</name>
+
+    <properties>
+
+        <!-- i18n configuration -->
+        <i18n.bundleOutputName>gchange-pod-es-plugin-i18n</i18n.bundleOutputName>
+        <i18n.generateCsvFile>true</i18n.generateCsvFile>
+        <i18n.bundleCsvFile>
+            ${maven.gen.dir}/resources/META-INF/${i18n.bundleOutputName}.csv
+        </i18n.bundleCsvFile>
+        <config.i18nBundleName>${i18n.bundleOutputName}</config.i18nBundleName>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.duniter</groupId>
+            <artifactId>duniter4j-es-core</artifactId>
+            <version>${duniter4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.duniter</groupId>
+            <artifactId>duniter4j-es-user</artifactId>
+            <version>${duniter4j.version}</version>
+        </dependency>
+
+        <!-- Elastic Search -->
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Unit test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/filtered-resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>*.config</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.nuiton.i18n</groupId>
+                <artifactId>i18n-maven-plugin</artifactId>
+
+                <executions>
+                    <execution>
+                        <id>scan-sources</id>
+                        <configuration>
+                            <entries>
+                                <entry>
+                                    <specificGoal>parserValidation</specificGoal>
+                                    <basedir>${maven.src.dir}/main/java/</basedir>
+                                    <includes>
+                                        <param>**/**-validation.xml</param>
+                                    </includes>
+                                </entry>
+                            </entries>
+                        </configuration>
+                        <goals>
+                            <goal>parserJava</goal>
+                            <goal>parserValidation</goal>
+                            <goal>gen</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>make-bundle</id>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly-plugin</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <attach>true</attach>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${project.artifactId}-${project.version}</finalName>
+                            <descriptors>
+                                <descriptor>
+                                    ${basedir}/src/main/assembly/plugin.xml
+                                </descriptor>
+                            </descriptors>
+                            <skipAssembly>${assembly.skip}</skipAssembly>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

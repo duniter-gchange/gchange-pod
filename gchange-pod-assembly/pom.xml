@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>fr.gchange</groupId>
+        <artifactId>gchange-pod</artifactId>
+        <version>0.9.2-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>gchange-pod-assembly</artifactId>
+    <name>Ğchange Pod :: Assembly</name>
+    <packaging>pom</packaging>
+
+    <properties>
+        <!-- bundle configuration -->
+        <bundlePrefix>gchange-pod-${project.version}</bundlePrefix>
+
+        <!-- i18n configuration -->
+        <i18n.bundleOutputName>gchange-pod-i18n</i18n.bundleOutputName>
+        <i18n.generateCsvFile>true</i18n.generateCsvFile>
+        <i18n.bundleCsvFile>
+            ${maven.gen.dir}/resources/META-INF/${i18n.bundleOutputName}.csv
+        </i18n.bundleCsvFile>
+        <config.i18nBundleName>${i18n.bundleOutputName}</config.i18nBundleName>
+        <assembly.skip>false</assembly.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.tyrus</groupId>
+            <artifactId>tyrus-client</artifactId>
+            <version>${tyrus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.tyrus</groupId>
+            <artifactId>tyrus-server</artifactId>
+            <version>${tyrus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.tyrus</groupId>
+            <artifactId>tyrus-container-grizzly-client</artifactId>
+            <version>${tyrus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.tyrus</groupId>
+            <artifactId>tyrus-container-grizzly-server</artifactId>
+            <version>${tyrus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>${jna.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>${jna.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>net.java.dev.jna</groupId>
+                    <artifactId>jna</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <!-- unpack ES -->
+                    <execution>
+                        <id>unpack-elasticsearch</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.elasticsearch.distribution.zip</groupId>
+                                    <artifactId>elasticsearch</artifactId>
+                                    <version>${elasticsearch.version}</version>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/</outputDirectory>
+                            <silent>true</silent>
+                            <skip>${assembly.skip}</skip>
+                        </configuration>
+                    </execution>
+
+                    <!-- unpack attachment plugin -->
+                    <execution>
+                        <id>unpack-mapper-attachments-plugin</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.elasticsearch.plugin</groupId>
+                                    <artifactId>mapper-attachments</artifactId>
+                                    <version>${elasticsearch.version}</version>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/mapper-attachments</outputDirectory>
+                            <silent>true</silent>
+                            <skip>${assembly.skip}</skip>
+                        </configuration>
+                    </execution>
+
+                    <!-- unpack ES core plugin -->
+                    <execution>
+                        <id>unpack-es-core-plugin</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.duniter</groupId>
+                                    <artifactId>duniter4j-es-core</artifactId>
+                                    <version>${duniter4j.version}</version>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/duniter4j-es-core</outputDirectory>
+                            <silent>true</silent>
+                            <skip>${assembly.skip}</skip>
+                        </configuration>
+                    </execution>
+
+                    <!-- unpack ES user plugin -->
+                    <execution>
+                        <id>unpack-es-user-plugin</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.duniter</groupId>
+                                    <artifactId>duniter4j-es-user</artifactId>
+                                    <version>${duniter4j.version}</version>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/duniter4j-es-user</outputDirectory>
+                            <silent>true</silent>
+                            <skip>${assembly.skip}</skip>
+                        </configuration>
+                    </execution>
+
+                    <!-- unpack ES gchange plugin -->
+                    <execution>
+                        <id>unpack-es-gchange-plugin</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>fr.gchange</groupId>
+                                    <artifactId>gchange-pod-es-plugin</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/duniter4j-es-gchange</outputDirectory>
+                            <silent>true</silent>
+                            <skip>${assembly.skip}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly-standalone</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <attach>true</attach>
+                            <finalName>${bundlePrefix}</finalName>
+                            <descriptors>
+                                <descriptor>
+                                    ${basedir}/src/main/assembly/standalone.xml
+                                </descriptor>
+                            </descriptors>
+                            <skipAssembly>${assembly.skip}</skipAssembly>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- use this profile to run the main class -->
+        <profile>
+            <id>run</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <defaultGoal>integration-test</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <dependencies>
+                            <dependency>
+                                <groupId>ant-contrib</groupId>
+                                <artifactId>ant-contrib</artifactId>
+                                <version>1.0b3</version>
+                                <exclusions>
+                                    <exclusion>
+                                        <groupId>ant</groupId>
+                                        <artifactId>ant</artifactId>
+                                    </exclusion>
+                                </exclusions>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>install-duniter-plugin-jar</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <ac:if xmlns:ac="antlib:net.sf.antcontrib">
+                                            <istrue value="${assembly.skip}" />
+                                            <!-- reuse standalone files -->
+                                            <then>
+                                                <delete failonerror="false">
+                                                    <fileset dir="${run.es.home}/plugins" includes="**/duniter4j-*.jar" />
+                                                </delete>
+                                                <copy todir="${run.es.home}/plugins/duniter4j-es-core" overwrite="true">
+                                                    <fileset dir="../duniter4j-core-client/target" includes="duniter4j-*${duniter4j.version}.jar">
+                                                    </fileset>
+                                                    <fileset dir="../duniter4j-core-shared/target" includes="duniter4j-*${duniter4j.version}.jar">
+                                                    </fileset>
+                                                    <fileset dir="../duniter4j-es-core/target" includes="duniter4j-*${duniter4j.version}.jar">
+                                                    </fileset>
+                                                </copy>
+                                                <copy todir="${run.es.home}/plugins/duniter4j-es-core" overwrite="true">
+                                                    <fileset dir="../duniter4j-es-core/target" includes="duniter4j-*${duniter4j.version}.jar">
+                                                    </fileset>
+                                                </copy>
+                                                <copy todir="${run.es.home}/plugins/duniter4j-es-user" overwrite="true">
+                                                    <fileset dir="../duniter4j-es-user/target" includes="duniter4j-*${duniter4j.version}.jar">
+                                                    </fileset>
+                                                </copy>
+                                                <copy todir="${run.es.home}/plugins/gchange-pod-es-plugin" overwrite="true">
+                                                    <fileset dir="../gchange-pod-es-plugin/target" includes="duniter4j-*${duniter4j.version}.jar,gchange-*${project.version}.jer">
+                                                    </fileset>
+                                                </copy>
+                                            </then>
+                                            <else>
+                                                <delete dir="${project.build.directory}/${bundlePrefix}" />
+                                                <delete dir="${run.es.home}" />
+                                                <!-- Unzip standalone zip-->
+                                                <unzip src="${project.build.directory}/${bundlePrefix}-standalone.zip" dest="${project.build.directory}" overwrite="true">
+                                                </unzip>
+                                                <move file="${project.build.directory}/${bundlePrefix}" tofile="${run.es.home}" />
+                                            </else>
+                                        </ac:if>
+
+                                        <!-- Use files from src/test/es-home -->
+                                        <copy todir="${run.es.home}" overwrite="true">
+                                            <fileset dir="${project.basedir}/src/test/es-home" includes="**/*.*">
+                                            </fileset>
+                                        </copy>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.elasticsearch</groupId>
+                                <artifactId>elasticsearch</artifactId>
+                                <version>${elasticsearch.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>log4j</groupId>
+                                <artifactId>log4j</artifactId>
+                                <version>${log4j.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>net.java.dev.jna</groupId>
+                                <artifactId>jna</artifactId>
+                                <version>${jna.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>net.java.dev.jna</groupId>
+                                <artifactId>jna-platform</artifactId>
+                                <version>${jna.version}</version>
+                                <exclusions>
+                                    <exclusion>
+                                        <groupId>net.java.dev.jna</groupId>
+                                        <artifactId>jna</artifactId>
+                                    </exclusion>
+                                </exclusions>
+                            </dependency>
+                            <dependency>
+                                <groupId>javax.websocket</groupId>
+                                <artifactId>javax.websocket-api</artifactId>
+                                <version>1.1</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.glassfish.tyrus</groupId>
+                                <artifactId>tyrus-client</artifactId>
+                                <version>${tyrus.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.glassfish.tyrus</groupId>
+                                <artifactId>tyrus-container-grizzly-client</artifactId>
+                                <version>${tyrus.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.glassfish.tyrus</groupId>
+                                <artifactId>tyrus-server</artifactId>
+                                <version>${tyrus.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.glassfish.tyrus</groupId>
+                                <artifactId>tyrus-container-grizzly-server</artifactId>
+                                <version>${tyrus.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>run</id>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <phase>integration-test</phase>
+                                <configuration>
+                                    <mainClass>org.elasticsearch.bootstrap.Elasticsearch</mainClass>
+                                    <arguments>
+                                        <argument>start</argument>
+                                    </arguments>
+                                    <includeProjectDependencies>false</includeProjectDependencies>
+                                    <includePluginDependencies>true</includePluginDependencies>
+                                    <systemProperties>
+                                        <systemProperty>
+                                            <key>es.path.home</key>
+                                            <value>${run.es.home}</value>
+                                        </systemProperty>
+                                    </systemProperties>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <properties>
+                <run.es.home>${project.build.directory}/es-run-home</run.es.home>
+            </properties>
+        </profile>
+    </profiles>
+</project>
