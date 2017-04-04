@@ -1,0 +1,686 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>fr.gchange</groupId>
+  <artifactId>gchange-pod</artifactId>
+  <version>0.9.2-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Ğchange Pod</name>
+  <description>A P2P data storage for Ğchange</description>
+
+  <properties>
+    <!-- source file encoding -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <javaVersion>8</javaVersion>
+
+    <!-- Commons versions -->
+    <file.encoding>UTF-8</file.encoding>
+    <log4j.version>1.2.17</log4j.version>
+    <slf4j.version>1.7.5</slf4j.version>
+    <guava.version>18.0</guava.version>
+    <xml-apis.version>2.0.2</xml-apis.version>
+    <gson.version>2.2.2</gson.version>
+    <kalium.version>0.5.0</kalium.version>
+    <scrypt.version>1.4.0</scrypt.version>
+    <elasticsearch.version>2.3.3</elasticsearch.version>
+    <jna.version>4.1.0</jna.version>
+    <tyrus.version>1.13</tyrus.version>
+
+    <duniter4j.version>0.9.2-SNAPSHOT</duniter4j.version>
+
+    <nuitonConfigVersion>3.0-rc-4</nuitonConfigVersion>
+    <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>
+    <nuitonI18nVersion>3.5</nuitonI18nVersion>
+
+    <!-- UI versions -->
+    <spring.version>4.2.1.RELEASE</spring.version>
+    <aspectj.version>1.8.7</aspectj.version>
+
+    <!-- Unit test -->
+    <junit.version>4.12</junit.version>
+    <jetty.version>9.0.4.v20130625</jetty.version>
+
+    <!--license-maven-plugin config -->
+    <maven.license.file>${project.basedir}/LICENSE</maven.license.file>
+    <license.licenseFile>${maven.license.file}</license.licenseFile>
+    <license.useMissingFile>true</license.useMissingFile>
+    <license.failIfWarning>true</license.failIfWarning>
+    <license.organizationName>EIS</license.organizationName>
+    <license.licenseName>gpl_v3</license.licenseName>
+
+    <!-- release config -->
+    <autoVersionSubmodules>true</autoVersionSubmodules>
+    <goals>deploy</goals>
+    <arguments />
+    <preparationGoals>verify</preparationGoals>
+    <projectInfoReportsPluginVersion>2.7</projectInfoReportsPluginVersion>
+
+    <!-- Last JRE version to use -->
+    <jreVersion>1.8.77</jreVersion>
+
+    <jarPluginVersion>2.5</jarPluginVersion>
+
+    <locales>en,fr</locales>
+
+    <!-- I18n configuration -->
+    <i18n.bundles>fr_FR,en_GB</i18n.bundles>
+    <i18n.silent>true</i18n.silent>
+    
+    <!-- by default, use maven 2 source base dir -->
+    <maven.src.dir>${basedir}/src</maven.src.dir>
+
+    <!-- where to generate sources -->
+    <maven.gen.dir>${project.build.directory}/generated-sources</maven.gen.dir>
+
+    <!-- Could be overriding in modules -->
+    <maven.jar.main.class />
+
+    <!-- skip javadoc for now - FIXME fix java 8 javadoc errors -->
+    <maven.javadoc.skip>true</maven.javadoc.skip>
+
+    <!-- distribution management -->
+    <distribution.site.id>eis-public-reports</distribution.site.id>
+    <distribution.site.host>server.e-is.pro:22</distribution.site.host>
+    <distribution.site.repository>scp://${distribution.site.host}/var/www</distribution.site.repository>
+    <distribution.site.projectId>duniter4j</distribution.site.projectId>
+    <distribution.repository.id>eis-nexus-deploy</distribution.repository.id>
+    <distribution.repository.url>http://nexus.e-is.pro/nexus/content/repositories/duniter4j-releases</distribution.repository.url>
+    <distribution.internet.url>${distribution.repository.url}</distribution.internet.url>
+    <distribution.snapshotRepository.id>eis-nexus-deploy</distribution.snapshotRepository.id>
+    <distribution.snapshotRepository.url>http://nexus.e-is.pro/nexus/content/repositories/duniter4j-snapshots</distribution.snapshotRepository.url>
+
+    <github.global.server>github</github.global.server>
+
+    <assembly.skip>false</assembly.skip>
+  </properties>
+
+  <licenses>
+    <license>
+      <name>General Public License (GPL) v3</name>
+      <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <inceptionYear>2014</inceptionYear>
+
+  <modules>
+    <module>gchange-pod-es-plugin</module>
+    <module>gchange-pod-assembly</module>
+  </modules>
+
+  <scm>
+    <url>https://github.com/duniter-gchange/gchange-pod.git</url>
+    <connection>scm:git:https://github.com/duniter-gchange/gchange-pod.git</connection>
+    <developerConnection>scm:git:https://github.com/duniter-gchange/gchange-pod.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/duniter-gchange/gchange-pod/issues</url>
+  </issueManagement>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- Duniter4j -->
+      <dependency>
+        <groupId>org.duniter</groupId>
+        <artifactId>duniter4j-es-core</artifactId>
+        <version>${duniter4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.duniter</groupId>
+        <artifactId>duniter4j-es-user</artifactId>
+        <version>${duniter4j.version}</version>
+      </dependency>
+
+      <!-- elastic search -->
+      <dependency>
+        <groupId>org.elasticsearch</groupId>
+        <artifactId>elasticsearch</artifactId>
+        <version>${elasticsearch.version}</version>
+      </dependency>
+
+      <!-- Unit test -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+      </dependency>
+
+      <!-- WebSocket -->
+      <dependency>
+        <groupId>org.glassfish.tyrus</groupId>
+        <artifactId>tyrus-client</artifactId>
+        <version>${tyrus.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.tyrus</groupId>
+        <artifactId>tyrus-container-grizzly-client</artifactId>
+        <version>${tyrus.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.tyrus</groupId>
+        <artifactId>tyrus-server</artifactId>
+        <version>${tyrus.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.tyrus</groupId>
+        <artifactId>tyrus-container-grizzly-server</artifactId>
+        <version>${tyrus.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.nuiton.i18n</groupId>
+          <artifactId>i18n-maven-plugin</artifactId>
+          <version>${nuitonI18nVersion}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-maven-plugin</artifactId>
+          <version>${jetty.version}</version>
+          <configuration>
+
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>1.7</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.5.0</version>
+
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>1.4</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>1.3.1</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.3</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.10</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.1</version>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>2.5</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>wagon-maven-plugin</artifactId>
+          <version>1.0</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-changes-plugin</artifactId>
+          <version>2.11</version>
+          <configuration>
+            <escapeHTML>false</escapeHTML>
+            <feedType>rss_2.0</feedType>
+            <issueLinkTemplatePerSystem>
+              <default>${project.url}/issues/%ISSUE%</default>
+            </issueLinkTemplatePerSystem>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.2</version>
+          <configuration>
+            <source>${javaVersion}</source>
+            <target>${javaVersion}</target>
+            <optimize>true</optimize>
+            <debug>true</debug>
+            <encoding>${project.build.sourceEncoding}</encoding>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <!-- <version>2.6</version> -->
+          <configuration>
+            <escapeString>\</escapeString>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${jarPluginVersion}</version>
+
+          <configuration>
+            <archive>
+              <!-- cela fait bugger le chargement des service via ServiceLoader donc on desactive -->
+              <!--index>true</index -->
+              <manifest>
+                <!-- This is need to override the option version, in configuration classes -->
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                <!-- fr.duniter.cmd.Main class, configured in sub-modules -->
+                <mainClass>${maven.jar.main.class}</mainClass>
+              </manifest>
+              <manifestEntries>
+                <url>${project.url}</url>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.3</version>
+        </plugin>
+
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>github-maven-core</artifactId>
+          <version>0.12</version>
+        </plugin>
+
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>site-maven-plugin</artifactId>
+          <version>0.12</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.ant</groupId>
+              <artifactId>ant</artifactId>
+              <version>1.8.2</version>
+            </dependency>
+            <dependency>
+              <groupId>ant</groupId>
+              <artifactId>ant-optional</artifactId>
+              <version>1.5.2</version>
+            </dependency>
+            <dependency>
+              <groupId>ant-contrib</groupId>
+              <artifactId>ant-contrib</artifactId>
+              <version>1.0b2</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>ant</groupId>
+                  <artifactId>ant</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <!-- Repositories needed to find the dependencies -->
+  <repositories>
+    <repository>
+      <id>gchange-public-group</id>
+      <url>http://nexus.e-is.pro/nexus/content/groups/gchange</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+        <checksumPolicy>fail</checksumPolicy>
+      </releases>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <!-- Need for javascript minify maven plugin (yuicompressor-maven-plugin) -->
+    <pluginRepository>
+      <name>oss.sonatype.org</name>
+      <id>oss.sonatype.org</id>
+      <url>http://oss.sonatype.org/content/groups/public</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>true</uniqueVersion>
+      <id>${distribution.repository.id}</id>
+      <url>${distribution.repository.url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>${distribution.snapshotRepository.id}</id>
+      <url>${distribution.snapshotRepository.url}</url>
+    </snapshotRepository>
+    <site>
+      <id>${distribution.site.id}</id>
+      <url>${distribution.site.repository}/${distribution.site.projectId}</url>
+    </site>
+  </distributionManagement>
+
+  <profiles>
+
+    <!-- use this profile to run the main class -->
+    <profile>
+      <id>run</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <defaultGoal>package</defaultGoal>
+        <plugins>
+          <plugin>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>check-run</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <phase>initialize</phase>
+                <configuration>
+                  <rules>
+                    <requireProperty>
+                      <property>maven.jar.main.class</property>
+                      <message>Could not find the "maven.jar.main.class"
+                        required property, use
+                        -Dmaven.jar.main.class=your.main.class.fqn
+                      </message>
+                    </requireProperty>
+                  </rules>
+                  <ignoreCache>true</ignoreCache>
+                  <failFast>true</failFast>
+                  <fail>true</fail>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>run</id>
+                <goals>
+                  <goal>java</goal>
+                </goals>
+                <phase>compile</phase>
+                <configuration>
+                  <mainClass>${exec.mainClass}</mainClass>
+                  <classpathScope>${exec.classpathScope}</classpathScope>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+      <properties>
+        <exec.mainClass>${maven.jar.main.class}</exec.mainClass>
+        <exec.classpathScope>runtime</exec.classpathScope>
+        <duniter4j.log.file>${project.build.directory}/exec.log</duniter4j.log.file>
+      </properties>
+    </profile>
+
+    <!-- perform only on a release stage when using the maven-release-plugin -->
+    <profile>
+      <id>license-profile</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <defaultGoal>generate-resources</defaultGoal>
+        <plugins>
+          <!-- add license and third-party files to build -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-licenses</id>
+                <goals>
+                  <goal>update-project-license</goal>
+                  <goal>add-third-party</goal>
+                </goals>
+                <configuration>
+                  <licenseMerges>
+                    <licenseMerge>
+                      The Apache Software License, Version 2.0|Apache License, Version 2.0|Apache License V2.0|Apache 2|ASF
+                      2.0|apache-2.0|Apache
+                      Public License 2.0
+                    </licenseMerge>
+                    <licenseMerge>BSD License|BSD license|BSD</licenseMerge>
+                    <licenseMerge>MIT License|MIT license|MIT</licenseMerge>
+                    <licenseMerge>
+                      Lesser General Public License (LPGL) v 2.1|GNU Lesser General Public License, 2.1|LGPL 2.1
+                    </licenseMerge>
+                    <licenseMerge>
+                      Lesser General Public License (LPGL)|GNU Lesser General Public License|GNU LESSER GENERAL PUBLIC LICENSE|LGPL|lgpl
+                    </licenseMerge>
+                    <licenseMerge>
+                      Lesser General Public License (LPGL) version 3.0|GNU General Lesser Public License (LGPL) version 3.0|LGPL_v3|lgpl_v3
+                    </licenseMerge>
+                    <licenseMerge>
+                      COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0|Common Development and Distribution License (CDDL)
+                      v1.0
+                    </licenseMerge>
+                    <licenseMerge>Indiana University Extreme! Lab Software License, vesion 1.1.1|Indiana University Extreme! Lab Software License</licenseMerge>
+                  </licenseMerges>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- This profile update license stuff with new goal update-file-header -->
+    <profile>
+      <id>update-file-header</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <defaultGoal>process-resources</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>update-file-header</id>
+                <goals>
+                  <goal>update-file-header</goal>
+                </goals>
+                <configuration>
+                  <addSvnKeyWords>false</addSvnKeyWords>
+                  <excludes>
+                    <exclude>**/*.json</exclude>
+                    <exclude>**/*.properties</exclude>
+                    <exclude>**/*.xml</exclude>
+                    <exclude>**/*.sh</exclude>
+                    <exclude>**/site/**/*.*</exclude>
+                    <exclude>**/misc/**/*.*</exclude>
+                    <exclude>**/es-home/**/*.*</exclude>
+                  </excludes>
+                </configuration>
+                <phase>process-resources</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>reporting</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-changes-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>check-changes</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>changes-check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>com.github.github</groupId>
+            <artifactId>site-maven-plugin</artifactId>
+            <configuration>
+              <message>Creating site for ${project.version}</message>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>site</goal>
+                </goals>
+                <phase>site</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+
+      <reporting>
+        <plugins>
+          <plugin>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>${projectInfoReportsPluginVersion}</version>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>project-team</report>
+                  <report>mailing-list</report>
+                  <report>cim</report>
+                  <report>issue-tracking</report>
+                  <report>license</report>
+                  <report>scm</report>
+                  <report>dependencies</report>
+                  <report>dependency-convergence</report>
+                  <report>dependency-info</report>
+                  <report>plugin-management</report>
+                  <report>plugins</report>
+                  <report>dependency-management</report>
+                  <report>summary</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-changelog-plugin</artifactId>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-changes-plugin</artifactId>
+            <configuration>
+              <aggregated>true</aggregated>
+              <escapeHTML>false</escapeHTML>
+              <feedType>rss_2.0</feedType>
+              <issueLinkTemplatePerSystem>
+                <default>https://github.com/blavenie/duniter4j/issues/%ISSUE%</default>
+              </issueLinkTemplatePerSystem>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <version>2.1</version>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>dependency-updates-report</report>
+                  <report>plugin-updates-report</report>
+                  <report>property-updates-report</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+
+          <plugin>
+            <groupId>org.nuiton</groupId>
+            <artifactId>nuiton-maven-report-plugin</artifactId>
+            <version>3.0</version>
+            <inherited>false</inherited>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>aggregate-config-report</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+            <configuration>
+              <i18nBundleName>duniter4j-i18n</i18nBundleName>
+              <verbose>true</verbose>
+              <showOptionDetail>true</showOptionDetail>
+              <outputEncoding>UTF-8</outputEncoding>
+            </configuration>
+          </plugin>
+        </plugins>
+      </reporting>
+
+    </profile>
+  </profiles>
+</project>
