@@ -11,5 +11,17 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-.idea/encodings.xml
-gchange-pod.iml
+.project
+.classpath
+.settings
+.idea
+target
+*.log
+*.iml
+
+*/.project
+*/.classpath
+*/.settings
+*/*.log
+*/*.iml
+*/target
