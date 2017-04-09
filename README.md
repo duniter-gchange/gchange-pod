@@ -1,2 +1,6 @@
 # gchange-pod
-A Ğchange pod, for data storage
+
+Ğchange pod is a P2P data storage for Ğchange network.
+ 
+ 
+
