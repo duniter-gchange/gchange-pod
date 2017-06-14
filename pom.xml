@@ -23,11 +23,11 @@
     <gson.version>2.2.2</gson.version>
     <kalium.version>0.5.0</kalium.version>
     <scrypt.version>1.4.0</scrypt.version>
-    <elasticsearch.version>2.3.3</elasticsearch.version>
+    <elasticsearch.version>2.4.5</elasticsearch.version>
     <jna.version>4.1.0</jna.version>
     <tyrus.version>1.13</tyrus.version>
 
-    <duniter4j.version>0.9.2-SNAPSHOT</duniter4j.version>
+    <duniter4j.version>0.11.0</duniter4j.version>
 
     <nuitonConfigVersion>3.0-rc-4</nuitonConfigVersion>
     <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>

@@ -28,6 +28,7 @@ logger:
   duniter.security : ERROR
   duniter.user.event : INFO
   duniter.network.p2p: INFO
+  gchange : DEBUG
 
   security: DEBUG
 

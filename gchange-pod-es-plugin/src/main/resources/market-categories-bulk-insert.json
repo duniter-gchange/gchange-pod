@@ -6,23 +6,23 @@
 { "index": { "_id": "cat1" }}
 { "name": "Véhicules"  , "parent": null}
 { "index": { "_id": "cat2" }}
-{ "name": "Voitures" , "parent": "cat2" }
+{ "name": "Voitures" , "parent": "cat1" }
 { "index": { "_id": "cat3" }}
-{ "name": "Motos" , "parent": "cat3" }
+{ "name": "Motos" , "parent": "cat1" }
 { "index": { "_id": "cat4" }}
-{ "name": "Caravaning" , "parent": "cat3" }
+{ "name": "Caravaning" , "parent": "cat1" }
 { "index": { "_id": "cat5" }}
-{ "name": "Utilitaires" , "parent": "cat3" }
+{ "name": "Utilitaires" , "parent": "cat1" }
 { "index": { "_id": "cat6" }}
-{ "name": "Equipement Auto" , "parent": "cat3" }
+{ "name": "Equipement Auto" , "parent": "cat1" }
 { "index": { "_id": "cat44" }}
-{ "name": "Equipement Moto" , "parent": "cat3" }
+{ "name": "Equipement Moto" , "parent": "cat1" }
 { "index": { "_id": "cat50" }}
-{ "name": "Equipement Caravaning" , "parent": "cat3" }
+{ "name": "Equipement Caravaning" , "parent": "cat1" }
 { "index": { "_id": "cat7" }}
-{ "name": "Nautisme" , "parent": "cat3" }
+{ "name": "Nautisme" , "parent": "cat1" }
 { "index": { "_id": "cat51" }}
-{ "name": "Equipement Nautisme" , "parent": "cat3" }
+{ "name": "Equipement Nautisme" , "parent": "cat1" }
 
 { "index": { "_id": "cat8" }}
 { "name": "Immobilier"  , "parent": null}
@@ -144,8 +144,8 @@
 { "name": "Cours particuliers" , "parent": "cat31" }
 { "index": { "_id": "cat65" }}
 { "name": "Covoiturage" , "parent": "cat31" }
-{ "index": { "_id": "cat37" }}
 
+{ "index": { "_id": "cat37" }}
 { "name": "Divers"  , "parent": null}
 { "index": { "_id": "cat38" }}
 { "name": "Autres" , "parent": "cat37" }

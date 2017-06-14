@@ -43,10 +43,9 @@ import java.io.IOException;
  */
 public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> implements MarketIndexDao {
 
-    private static final String CATEGORIES_BULK_CLASSPATH_FILE = "registry-categories-bulk-insert.json";
+    private static final String CATEGORIES_BULK_CLASSPATH_FILE = "market-categories-bulk-insert.json";
 
     private PluginSettings pluginSettings;
-    private IndexTypeDao<?> categoryDao;
     private RecordDao recordDao;
     private CommentDao commentDao;
 
@@ -73,7 +72,7 @@ public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> impleme
         createIndexRequestBuilder.setSettings(indexSettings);
         createIndexRequestBuilder.addMapping(recordDao.getType(), recordDao.createTypeMapping());
         createIndexRequestBuilder.addMapping(commentDao.getType(), commentDao.createTypeMapping());
-        createIndexRequestBuilder.addMapping(INDEX, createCategoryTypeMapping());
+        createIndexRequestBuilder.addMapping(MarketIndexDao.CATEGORY_TYPE, createCategoryTypeMapping());
         createIndexRequestBuilder.execute().actionGet();
 
         // Fill categories
@@ -86,7 +85,7 @@ public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> impleme
         }
 
         // Insert categories
-        client.bulkFromClasspathFile(INDEX, CATEGORY_TYPE, CATEGORIES_BULK_CLASSPATH_FILE,
+        client.bulkFromClasspathFile(CATEGORIES_BULK_CLASSPATH_FILE, INDEX, MarketIndexDao.CATEGORY_TYPE,
                 // Add order attribute
                 new AddSequenceAttributeHandler("order", "\\{.*\"name\".*\\}", 1));
     }
@@ -94,7 +93,7 @@ public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> impleme
     protected XContentBuilder createCategoryTypeMapping() {
         try {
             XContentBuilder mapping = XContentFactory.jsonBuilder().startObject()
-                    .startObject(CATEGORY_TYPE)
+                    .startObject(MarketIndexDao.CATEGORY_TYPE)
                     .startObject("properties")
 
                     // name

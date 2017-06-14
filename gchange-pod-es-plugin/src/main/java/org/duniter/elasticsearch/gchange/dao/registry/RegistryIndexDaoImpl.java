@@ -91,7 +91,9 @@ public class RegistryIndexDaoImpl extends AbstractIndexDao<RegistryIndexDao> imp
         }
 
         // Insert categories
-        client.bulkFromClasspathFile(RegistryIndexDao.INDEX, RegistryIndexDao.CATEGORY_TYPE, CATEGORIES_BULK_CLASSPATH_FILE,
+        client.bulkFromClasspathFile(CATEGORIES_BULK_CLASSPATH_FILE,
+                RegistryIndexDao.INDEX,
+                RegistryIndexDao.CATEGORY_TYPE,
                 // Add order attribute
                 new AddSequenceAttributeHandler("order", "\\{.*\"name\".*\\}", 1));
     }
