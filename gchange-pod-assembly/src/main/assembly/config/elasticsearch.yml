@@ -111,58 +111,71 @@ security.manager.enabled: false
 #
 # duniter.enabled: false
 #
-# Reset and reload all Duniter4j data at startup - DO SET to true in production
+# Delete then create all indices at startup - DO NOT set to true in production
 #
 # duniter.indices.reload: true
-#:
+#
 # Default string analyzer
 #
 duniter.string.analyzer: french
 #
-# Enabling node blockchain synchronization
+# Enabling blockchain synchronization
 #
-duniter.blockchain.sync.enable: true
+duniter.blockchain.enable: true
 #
-# Duniter node to synchronize
+# Force blockchain reload - WARNING: all user events will be resetted to 'unread'
 #
-duniter.host: gtest.duniter.org
-duniter.port: 10900
+#duniter.blockchain.reload: true
 #
-# ---------------------------------- Duniter4j security -------------------------
+# Duniter node address
 #
-# Allow admin actions
+duniter.host: g1.duniter.org
+duniter.port: 10901
+#
+#duniter.useSsl: true
+#duniter.network.timeout: 5000
+#
+# ---------------------------------- Duniter4j security module -------------------
+#
+# Keyring for the ES node
 #
 #duniter.keyring.salt:
 #duniter.keyring.password:
 #
-# Enable security, to disable HTTP access to the default ES admin API
+# Enable security - will restrict HTTP access to only Duniter4j known indices
 #
 duniter.security.enable: true
 #
-# Security token prefix (default: 'duniter-')
-#
-# duniter.auth.token.prefix: duniter-
-#
-# Token validity duration, in seconds (default: 600)
-#
-# duniter.auth.tokenValidityDuration: 3600  # = 1hour
 # ---------------------------------- Duniter4j P2P sync -------------------------
 #
-# Should synchronize data using P2P
+# Should synchronize data from an existing ES node ?
 #
 duniter.data.sync.enable: true
-duniter.data.sync.host: data.gtest.duniter.fr
-duniter.data.sync.port: 80
+duniter.data.sync.host: data.gchange.fr
+duniter.data.sync.port: 443
 
-# ---------------------------------- Duniter4j SMTP server -------------------------
+# ---------------------------------- Duniter4j Mail module -----------------------
 #
-# SMTP server configuration (host and port)
+# Enable mail module ?
 #
 duniter.mail.enable: false
+#
+# Mail: SMTP server configuration (host and port)
+#
 #duniter.mail.smtp.host: localhost
 #duniter.mail.smtp.port: 25
 #
-# Mail 'from' address
+# Mail: SMTP server SSL security
+#
+#duniter.mail.smtp.ssl: true
+#duniter.mail.smtp.starttls: true
+#
+# Mail: SMTP server authentication
+#
+#duniter.mail.smtp.username:
+#duniter.mail.smtp.password:
+#
+# Mail: 'from' address
 #
 #duniter.mail.from: no-reply@domain.com
 #
@@ -170,9 +183,30 @@ duniter.mail.enable: false
 #
 #duniter.mail.admin: user@domain.com
 #
-# Mail subject prefix
+# Mail: subject prefix
 #
-#duniter.mail.subject.prefix: '[Duniter4j ES]'
+#duniter.mail.subject.prefix: '[ğchange]'
 
-duniter.changes.listenSource: '*/block'
+# ---------------------------------- Duniter4j Websocket server ----------------------
+#
+# Websocket port (usefull for listen changes)
+#
 duniter.ws.port: 9400
+
+# ---------------------------------- Duniter4j Subscription module -------------------
+#
+# Enable subscription module (Need to enable mail features)
+#
+duniter.subscription.enable: false
+#
+# Email subscription: Day of the week to trigger weekly (default: 2 = monday)
+#
+#duniter.subscription.email.dayOfWeek: 2
+#
+# Email subscription: Hour in day to trigger daily email subscription (default: 3 AM)
+#
+#duniter.subscription.email.hourOfDay: 3
+#
+# Email subscription: URL to a Cesium site (for link in the email content)
+#
+#duniter.subscription.email.cesium.url: 'http://domain.com/cesium'

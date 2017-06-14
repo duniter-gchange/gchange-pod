@@ -2,7 +2,7 @@
 es.logger.level: INFO
 rootLogger: ${es.logger.level}, console, file
 logger:
-  # log rest execution errors for easier debugging
+  # log action execution errors for easier debugging
   action: DEBUG
 
   # deprecation logging, turn to DEBUG to see them
@@ -14,18 +14,18 @@ logger:
   com.amazonaws.jmx.SdkMBeanRegistrySupport: ERROR
   com.amazonaws.metrics.AwsSdkMetrics: ERROR
 
-  org.apache.http: INFO
-  org.apache.http.client: ERROR
+  duniter: INFO
+  gchange: INFO
+  security: INFO
 
   org.duniter: INFO
-
-  #org.duniter.elasticsearch: DEBUG
-
-  org.nuiton.i18n: WARN
+  org.nuiton.i18n: ERROR
   org.nuiton.config: ERROR
   org.nuiton.converter: WARN
-  org.glassfish.tyrus: WARN
+  org.apache.http: WARN
   org.apache.http.client: ERROR
+  org.glassfish.grizzly: WARN
+  org.glassfish.tyrus: WARN
 
   # gateway
   #gateway: DEBUG
