@@ -101,7 +101,7 @@
 { "index": { "_id": "cat55" }}
 { "name": "Vélos" , "parent": "cat24" }
 { "index": { "_id": "cat29" }}
-{ "name": "Sports &amp; Hobbies" }
+{ "name": "Sports &amp; Hobbies", "parent": "cat24" }
 { "index": { "_id": "cat30" }}
 { "name": "Instruments de musique" , "parent": "cat24" }
 { "index": { "_id": "cat40" }}
