@@ -155,7 +155,7 @@ duniter.security.enable: false
 #
 duniter.data.sync.enable: false
 #duniter.data.sync.enable: true
-duniter.data.sync.host: g1.data.duniter.fr
+duniter.data.sync.host: data.gchange.fr
 duniter.data.sync.port: 443
 
 # ---------------------------------- Duniter4j SMTP server -------------------------

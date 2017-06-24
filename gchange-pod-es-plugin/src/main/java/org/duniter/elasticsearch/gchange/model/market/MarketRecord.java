@@ -30,21 +30,27 @@ import java.util.Map;
 /**
  * Created by blavenie on 01/12/16.
  */
-public class MarketRecord extends Record{
+public class MarketRecord extends Record {
 
     public static final String PROPERTY_TITLE="title";
     public static final String PROPERTY_DESCRIPTION="description";
     public static final String PROPERTY_PRICE="price";
     public static final String PROPERTY_UNIT="unit";
     public static final String PROPERTY_CURRENCY="currency";
+    public static final String PROPERTY_FEES="fees";
+    public static final String PROPERTY_FEES_CURRENCY="feesCurrency";
     public static final String PROPERTY_THUMBNAIL="thumbnail";
+    public static final String PROPERTY_STOCK="stock";
 
     private String title;
     private String description;
     private Map<String, String> thumbnail = new HashMap<>();
     private Double price;
     private String unit;
+    private Double fees;
+    private String feesCurrency;
     private String currency;
+    private Integer stock;
 
     public String getTitle() {
         return title;
@@ -92,5 +98,29 @@ public class MarketRecord extends Record{
 
     public void setThumbnail(Map<String, String> thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Double getFees() {
+        return fees;
+    }
+
+    public void setFees(Double fees) {
+        this.fees = fees;
+    }
+
+    public String getFeesCurrency() {
+        return feesCurrency;
+    }
+
+    public void setFeesCurrency(String feesCurrency) {
+        this.feesCurrency = feesCurrency;
     }
 }

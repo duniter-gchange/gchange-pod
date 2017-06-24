@@ -25,6 +25,7 @@ package org.duniter.elasticsearch.gchange.dao.market;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.dao.AbstractRecordDaoImpl;
+import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -67,25 +68,41 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // time
-                    .startObject("time")
+                    .startObject(MarketRecord.PROPERTY_TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // price
-                    .startObject("price")
+                    .startObject(MarketRecord.PROPERTY_PRICE)
                     .field("type", "double")
                     .endObject()
 
                     // price Unit
-                    .startObject("unit")
+                    .startObject(MarketRecord.PROPERTY_UNIT)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
-                    // currency
-                    .startObject("currency")
+                    // price currency
+                    .startObject(MarketRecord.PROPERTY_CURRENCY)
                     .field("type", "string")
                     .field("index", "not_analyzed")
+                    .endObject()
+
+                    // fees
+                    .startObject(MarketRecord.PROPERTY_FEES)
+                    .field("type", "double")
+                    .endObject()
+
+                    // fees currency
+                    .startObject(MarketRecord.PROPERTY_FEES_CURRENCY)
+                    .field("type", "string")
+                    .field("index", "not_analyzed")
+                    .endObject()
+
+                    // stock
+                    .startObject(MarketRecord.PROPERTY_STOCK)
+                    .field("type", "integer")
                     .endObject()
 
                     // issuer
