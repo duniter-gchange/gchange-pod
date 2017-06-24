@@ -27,7 +27,7 @@
     <jna.version>4.1.0</jna.version>
     <tyrus.version>1.13</tyrus.version>
 
-    <duniter4j.version>0.11.2-SNAPSHOT</duniter4j.version>
+    <duniter4j.version>0.11.2</duniter4j.version>
 
     <nuitonConfigVersion>3.0-rc-4</nuitonConfigVersion>
     <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>
