@@ -22,15 +22,11 @@ package org.duniter.elasticsearch.gchange.rest.registry;
  * #L%
  */
 
-import org.duniter.elasticsearch.gchange.dao.registry.RegistryCommentDao;
 import org.duniter.elasticsearch.gchange.dao.registry.RegistryIndexDao;
 import org.duniter.elasticsearch.gchange.dao.registry.RegistryRecordDao;
 import org.duniter.elasticsearch.gchange.model.registry.RegistryRecord;
-import org.duniter.elasticsearch.gchange.service.RegistryService;
 import org.duniter.elasticsearch.rest.security.RestSecurityController;
-import org.duniter.elasticsearch.user.service.UserService;
 import org.elasticsearch.common.inject.Inject;
-import org.elasticsearch.rest.RestRequest;
 
 public class RestRegistryImageAction {
 

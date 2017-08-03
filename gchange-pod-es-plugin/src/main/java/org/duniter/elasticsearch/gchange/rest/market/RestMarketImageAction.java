@@ -25,12 +25,8 @@ package org.duniter.elasticsearch.gchange.rest.market;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
-import org.duniter.elasticsearch.gchange.model.registry.RegistryRecord;
-import org.duniter.elasticsearch.gchange.service.MarketService;
-import org.duniter.elasticsearch.gchange.service.RegistryService;
 import org.duniter.elasticsearch.rest.security.RestSecurityController;
 import org.elasticsearch.common.inject.Inject;
-import org.elasticsearch.rest.RestRequest;
 
 public class RestMarketImageAction {
 
