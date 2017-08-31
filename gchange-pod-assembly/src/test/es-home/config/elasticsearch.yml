@@ -122,7 +122,7 @@ duniter.string.analyzer: french
 #
 # Enabling node blockchain synchronization
 #
-duniter.blockchain.sync.enable: true
+duniter.blockchain.sync.enable: false
 #
 # Duniter node to synchronize
 #
@@ -153,8 +153,8 @@ duniter.security.enable: false
 #
 # Should synchronize data using P2P
 #
-duniter.data.sync.enable: false
-#duniter.data.sync.enable: true
+#duniter.data.sync.enable: false
+duniter.data.sync.enable: true
 duniter.data.sync.host: data.gchange.fr
 duniter.data.sync.port: 443
 

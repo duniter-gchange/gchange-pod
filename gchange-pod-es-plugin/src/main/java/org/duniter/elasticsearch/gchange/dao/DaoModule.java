@@ -22,11 +22,8 @@ package org.duniter.elasticsearch.gchange.dao;
  * #L%
  */
 
-import org.duniter.core.beans.Bean;
-import org.duniter.elasticsearch.client.Duniter4jClientImpl;
 import org.duniter.elasticsearch.gchange.dao.market.*;
 import org.duniter.elasticsearch.gchange.dao.registry.*;
-import org.duniter.elasticsearch.service.ServiceLocator;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.inject.Module;
 
@@ -41,12 +38,6 @@ public class DaoModule extends AbstractModule implements Module {
         bind(MarketIndexDao.class).to(MarketIndexDaoImpl.class).asEagerSingleton();
         bind(MarketCommentDao.class).to(MarketCommentDaoImpl.class).asEagerSingleton();
         bind(MarketRecordDao.class).to(MarketRecordDaoImpl.class).asEagerSingleton();
-    }
-
-    /* protected methods */
-
-    protected <T extends Bean> void bindWithLocator(Class<T> clazz) {
-        bind(clazz).toProvider(new ServiceLocator.Provider<>(clazz));
     }
 
 }
