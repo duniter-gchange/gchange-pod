@@ -31,6 +31,5 @@ public class ServiceModule extends AbstractModule implements Module {
         bind(RegistryService.class).asEagerSingleton();
         bind(CommentUserEventService.class).asEagerSingleton();
         bind(MarketService.class).asEagerSingleton();
-        bind(SynchroService.class).asEagerSingleton();
     }
 }

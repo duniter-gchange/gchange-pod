@@ -25,9 +25,11 @@ package org.duniter.elasticsearch.gchange.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.collections4.MapUtils;
 import org.duniter.core.client.model.ModelUtils;
+import org.duniter.core.client.model.bma.jackson.JacksonUtils;
 import org.duniter.core.client.model.elasticsearch.RecordComment;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.core.service.CryptoService;
@@ -79,6 +81,7 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
     private final List<ChangeSource> changeListenSources;
     private final String recordType;
     private final boolean trace;
+    private ObjectMapper objectMapper;
 
     @Inject
     public CommentUserEventService(Duniter4jClient client,
@@ -89,7 +92,8 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
         super("duniter.user.event.comment", client, settings, cryptoService);
         this.userService = userService;
         this.userEventService = userEventService;
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper = JacksonUtils.newObjectMapper()
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         this.changeListenSources = ImmutableList.of(
                 new ChangeSource(MarketIndexDao.INDEX, MarketCommentDao.TYPE),
                 new ChangeSource(RegistryIndexDao.INDEX, RegistryCommentDao.TYPE));

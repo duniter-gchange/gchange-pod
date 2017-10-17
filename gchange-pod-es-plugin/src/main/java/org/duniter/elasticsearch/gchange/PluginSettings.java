@@ -23,31 +23,8 @@ package org.duniter.elasticsearch.gchange;
  */
 
 
-import com.google.common.collect.ImmutableSet;
-import org.apache.commons.io.FileUtils;
-import org.duniter.core.client.config.Configuration;
-import org.duniter.core.client.config.ConfigurationOption;
-import org.duniter.core.client.config.ConfigurationProvider;
-import org.duniter.core.client.model.local.Peer;
-import org.duniter.core.exception.TechnicalException;
-import org.duniter.core.util.StringUtils;
-import org.elasticsearch.common.component.*;
+import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
-import org.elasticsearch.common.settings.Settings;
-import org.nuiton.config.ApplicationConfig;
-import org.nuiton.config.ApplicationConfigHelper;
-import org.nuiton.config.ApplicationConfigProvider;
-import org.nuiton.config.ArgumentsParserException;
-import org.nuiton.i18n.I18n;
-import org.nuiton.i18n.init.DefaultI18nInitializer;
-import org.nuiton.i18n.init.UserI18nInitializer;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Locale;
-import java.util.Set;
-
-import static org.nuiton.i18n.I18n.t;
 
 /**
  * Access to configuration options
@@ -90,12 +67,16 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
 
     /* -- delegate methods -- */
 
-    public boolean reloadIndices() {
-        return delegate.reloadIndices();
+    public boolean reloadAllIndices() {
+        return delegate.reloadAllIndices();
     }
 
-    public boolean enableDataSync() {
-        return delegate.enableDataSync();
+    public boolean enableSynchro() {
+        return delegate.enableSynchro();
+    }
+
+    public boolean enableDocStats() {
+        return delegate.enableDocStats();
     }
 
     public boolean getMailEnable() {

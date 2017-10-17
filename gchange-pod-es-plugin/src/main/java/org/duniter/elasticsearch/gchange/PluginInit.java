@@ -22,11 +22,16 @@ package org.duniter.elasticsearch.gchange;
  * #L%
  */
 
+import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.dao.registry.RegistryCommentDao;
+import org.duniter.elasticsearch.gchange.dao.registry.RegistryIndexDao;
+import org.duniter.elasticsearch.gchange.dao.registry.RegistryRecordDao;
 import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.gchange.service.RegistryService;
-import org.duniter.elasticsearch.gchange.service.SynchroService;
+import org.duniter.elasticsearch.service.DocStatService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
-import org.duniter.elasticsearch.user.PluginSettings;
 import org.elasticsearch.cluster.health.ClusterHealthStatus;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
@@ -57,10 +62,6 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
     protected void doStart() {
         threadPool.scheduleOnClusterHealthStatus(() -> {
             createIndices();
-
-            // Waiting cluster back to GREEN or YELLOW state, before synchronize
-            threadPool.scheduleOnClusterHealthStatus(() -> synchronize(),
-                    ClusterHealthStatus.YELLOW, ClusterHealthStatus.GREEN);
         }, ClusterHealthStatus.YELLOW, ClusterHealthStatus.GREEN);
     }
 
@@ -76,7 +77,7 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
 
     protected void createIndices() {
 
-        boolean reloadIndices = pluginSettings.reloadIndices();
+        boolean reloadIndices = pluginSettings.reloadAllIndices();
 
         if (reloadIndices) {
             if (logger.isInfoEnabled()) {
@@ -104,13 +105,15 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
                 logger.info("Checking Gchange indices... [OK]");
             }
         }
-    }
 
-    protected void synchronize() {
-
-        if (pluginSettings.enableDataSync()) {
-            // Synchronize
-            injector.getInstance(SynchroService.class).synchronize();
+        // Register stats on indices
+        if (pluginSettings.enableDocStats()) {
+            injector.getInstance(DocStatService.class)
+                    .registerIndex(MarketIndexDao.INDEX, MarketRecordDao.TYPE)
+                    .registerIndex(MarketIndexDao.INDEX, MarketCommentDao.TYPE)
+                    .registerIndex(RegistryIndexDao.INDEX, RegistryRecordDao.TYPE)
+                    .registerIndex(RegistryIndexDao.INDEX, RegistryCommentDao.TYPE)
+            ;
         }
     }
 }
