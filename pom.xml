@@ -9,29 +9,37 @@
   <name>Ğchange Pod</name>
   <description>A P2P data storage for Ğchange</description>
 
+  <url>http://doc.e-is.pro/gchange/</url>
+  <inceptionYear>2017</inceptionYear>
+  <organization>
+    <name>Ğchange Team</name>
+    <url>http://www.duniter.fr</url>
+  </organization>
+
   <properties>
     <!-- source file encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <file.encoding>UTF-8</file.encoding>
+
     <javaVersion>8</javaVersion>
 
     <!-- Commons versions -->
-    <file.encoding>UTF-8</file.encoding>
     <log4j.version>1.2.17</log4j.version>
     <slf4j.version>1.7.5</slf4j.version>
-    <guava.version>18.0</guava.version>
+    <guava.version>22.0</guava.version>
     <xml-apis.version>2.0.2</xml-apis.version>
     <gson.version>2.2.2</gson.version>
     <kalium.version>0.5.0</kalium.version>
     <scrypt.version>1.4.0</scrypt.version>
-    <elasticsearch.version>2.4.5</elasticsearch.version>
+    <elasticsearch.version>2.4.6</elasticsearch.version>
     <jna.version>4.1.0</jna.version>
     <tyrus.version>1.13</tyrus.version>
 
-    <duniter4j.version>0.18.0</duniter4j.version>
+    <duniter4j.version>1.0</duniter4j.version>
 
-    <nuitonConfigVersion>3.0-rc-4</nuitonConfigVersion>
+    <nuitonConfigVersion>3.0</nuitonConfigVersion>
     <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>
-    <nuitonI18nVersion>3.5</nuitonI18nVersion>
+    <nuitonI18nVersion>3.6.3</nuitonI18nVersion>
 
     <!-- UI versions -->
     <spring.version>4.2.1.RELEASE</spring.version>
@@ -42,11 +50,11 @@
     <jetty.version>9.0.4.v20130625</jetty.version>
 
     <!--license-maven-plugin config -->
-    <maven.license.file>${project.basedir}/LICENSE</maven.license.file>
+    <maven.license.file>${project.basedir}/LICENSE.txt</maven.license.file>
     <license.licenseFile>${maven.license.file}</license.licenseFile>
     <license.useMissingFile>true</license.useMissingFile>
     <license.failIfWarning>true</license.failIfWarning>
-    <license.organizationName>EIS</license.organizationName>
+    <license.organizationName>${project.organization.name}</license.organizationName>
     <license.licenseName>gpl_v3</license.licenseName>
 
     <!-- release config -->
@@ -102,8 +110,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-
-  <inceptionYear>2014</inceptionYear>
 
   <modules>
     <module>gchange-pod-es-plugin</module>

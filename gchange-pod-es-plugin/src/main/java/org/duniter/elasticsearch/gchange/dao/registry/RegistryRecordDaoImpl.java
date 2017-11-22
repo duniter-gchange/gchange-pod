@@ -34,5 +34,6 @@ public class RegistryRecordDaoImpl extends AbstractRecordDaoImpl implements Regi
     @Inject
     public RegistryRecordDaoImpl(PluginSettings pluginSettings) {
         super(RegistryIndexDao.INDEX, pluginSettings);
+
     }
 }

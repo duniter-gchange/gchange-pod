@@ -22,6 +22,7 @@ package org.duniter.elasticsearch.gchange.dao.market;
  * #L%
  */
 
+import org.duniter.core.client.model.elasticsearch.Records;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.dao.AbstractRecordDaoImpl;
@@ -50,20 +51,25 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
             XContentBuilder mapping = XContentFactory.jsonBuilder().startObject().startObject(getType())
                     .startObject("properties")
 
+                    // version
+                    .startObject(MarketRecord.PROPERTY_VERSION)
+                    .field("type", "integer")
+                    .endObject()
+
                     // title
-                    .startObject("title")
+                    .startObject(MarketRecord.PROPERTY_TITLE)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
                     // description
-                    .startObject("description")
+                    .startObject(MarketRecord.PROPERTY_DESCRIPTION)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
                     // creationTime
-                    .startObject("creationTime")
+                    .startObject(Records.PROPERTY_CREATION_TIME)
                     .field("type", "integer")
                     .endObject()
 
@@ -106,7 +112,7 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // issuer
-                    .startObject("issuer")
+                    .startObject(MarketRecord.PROPERTY_ISSUER)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
@@ -117,14 +123,19 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .field("index", "not_analyzed")
                     .endObject()
 
-                    // location
-                    .startObject("location")
+                    // address
+                    .startObject(Records.PROPERTY_ADDRESS)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
+                    // city
+                    .startObject(Records.PROPERTY_CITY)
+                    .field("type", "string")
+                    .endObject()
+
                     // geoPoint
-                    .startObject("geoPoint")
+                    .startObject(Records.PROPERTY_GEO_POINT)
                     .field("type", "geo_point")
                     .endObject()
 
@@ -149,7 +160,7 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // pictures
-                    .startObject("pictures")
+                    .startObject(Records.PROPERTY_PICTURES)
                     .field("type", "nested")
                     .field("dynamic", "false")
                     .startObject("properties")
@@ -177,12 +188,12 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // picturesCount
-                    .startObject("picturesCount")
+                    .startObject(Records.PROPERTY_PICTURES_COUNT)
                     .field("type", "integer")
                     .endObject()
 
                     // category
-                    .startObject("category")
+                    .startObject(Records.PROPERTY_CATEGORY)
                     .field("type", "nested")
                     .field("dynamic", "false")
                     .startObject("properties")
@@ -202,7 +213,7 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // tags
-                    .startObject("tags")
+                    .startObject(Records.PROPERTY_TAGS)
                     .field("type", "completion")
                     .field("search_analyzer", "simple")
                     .field("analyzer", "simple")

@@ -19,7 +19,6 @@ cluster.name: gchange-pod-test
 #
 # ------------------------------------ Node ------------------------------------
 #
-#
 # Use a descriptive name for the node:
 #
 node.name: DEV-NODE
@@ -75,7 +74,7 @@ http.cors.enabled: true
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
 # discovery.zen.ping.unicast.hosts: ["host1", "host2"]
-#discovery.zen.ping.unicast.hosts: ["127.0.0.1", ""]
+# discovery.zen.ping.unicast.hosts: ["127.0.0.1", ""]
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
@@ -101,18 +100,20 @@ http.cors.enabled: true
 #
 # Require explicit names when deleting indices:
 #
-# rest.destructive_requires_name: true
-
+# action.destructive_requires_name: true
+#
+# Security to isolate plugin classpath - /!\ WARNING: should be DISABLE for Duniter4j
+#
 security.manager.enabled: false
 
 #
 # ---------------------------------- Duniter4j ---------------------------------
 #
-# Disbale duniter4j plugin
+# Enable duniter4j plugins
 #
 # duniter.enabled: false
 #
-# Reset and reload all Duniter4j data at startup - DO SET to true in production
+# Delete then create all indices at startup - /!\ WARNING: DO NOT set to true in production
 #
 # duniter.indices.reload: true
 #
@@ -120,65 +121,120 @@ security.manager.enabled: false
 #
 duniter.string.analyzer: french
 #
-# Enabling node blockchain synchronization
+# Enabling blockchain synchronization
 #
-duniter.blockchain.sync.enable: false
+duniter.blockchain.enable: true
 #
-# Duniter node to synchronize
+# Force blockchain full synchronization - /!\ WARNING: all user events will be reset to 'unread'
 #
-duniter.host: g1.duniter.org
+#
+# duniter.blockchain.reload: true
+# duniter.blockchain.reload.from: 50999
+#
+# Duniter node address
+#
+duniter.host: g1.duniter.fr
 duniter.port: 443
 duniter.useSsl: true
-
 #
-# ---------------------------------- Duniter4j security -------------------------
+# Compute statistics on indices (each hour) ? (default: true)
 #
+# duniter.stats.enable: false
+#
+# ---------------------------------- Duniter4j security module -------------------
+#
+# Keyring, use to sign emitted documents (user events, subscription, etc.).
+# If not set, random keys will be generated.
 duniter.keyring.salt: abc
 duniter.keyring.password: def
-
-# Enable security, to disable HTTP access to the default ES admin API
 #
-duniter.security.enable: false
-#duniter.security.enable: true
+# Enable security - will restrict HTTP access to only Duniter4j known indices - /!\ WARNING: should be enable for production use
 #
-# Security token prefix (default: 'duniter-')
+duniter.security.enable: true
 #
-# duniter.auth.token.prefix: duniter-
+# ---------------------------------- Duniter4j P2P module -------------------------
 #
-# Token validity duration, in seconds (default: 600)
+# Enable P2P synchronize between ES peers ? (default: true)
 #
-# duniter.auth.tokenValidityDuration: 3600  # = 1hour
+# duniter.p2p.enable: false
 #
-# ---------------------------------- Duniter4j P2P sync -------------------------
+# Enable P2P synchronisation using websocket ? (default: true)
 #
-# Should synchronize data using P2P
+# duniter.p2p.ws.enable: false
 #
-#duniter.data.sync.enable: false
-duniter.data.sync.enable: true
-duniter.data.sync.host: data.gchange.fr
-duniter.data.sync.port: 443
-
-# ---------------------------------- Duniter4j SMTP server -------------------------
+# Time delay (in seconds) to request last documents to peer (e.g. if peer's clock is late). (default: 3600s = 1h)
 #
-# SMTP server configuration (host and port)
+# duniter.p2p.peerTimeOffset: 3600
+#
+# Enable discovery on network peers, to automatically synchronize this peers (default: true)
+#
+duniter.p2p.discovery.enable: false
+#
+# Pass a list of hosts to always synchronize (default: <empty>)
+#
+duniter.p2p.includes.endpoints: [
+  "ES_USER_API data.gchange.fr 443"
+]
+#  "ES_SUBSCRIPTION_API data.gchange.fr 443",
+#  "GCHANGE_API data.gchange.fr 443"
+#
+# Pass a list of pubkeys to always synchronize (default: <empty>)
+#
+# duniter.p2p.includes.pubkeys: [""]
+#
+# ---------------------------------- Duniter4j Mail module -----------------------
+#
+# Enable mail module ?
 #
 duniter.mail.enable: false
-#duniter.mail.smtp.host: localhost
-#duniter.mail.smtp.port: 25
 #
-# Mail 'from' address
+# Mail: SMTP server configuration (host and port)
 #
-#duniter.mail.from: no-reply@domain.com
-#duniter.mail.from: root@EIS-DEV
+# duniter.mail.smtp.host: localhost
+# duniter.mail.smtp.port: 25
+#
+# Mail: SMTP server SSL security
+#
+# duniter.mail.smtp.ssl: true
+# duniter.mail.smtp.starttls: true
+#
+# Mail: SMTP server authentication
+#
+# duniter.mail.smtp.username:
+# duniter.mail.smtp.password:
+#
+# Mail: 'from' address
+#
+# duniter.mail.from: no-reply@domain.com
 #
 # Mail: admin address
 #
-#duniter.mail.admin: user@domain.com
-#duniter.mail.admin: blavenie@EIS-DEV
+# duniter.mail.admin: user@domain.com
 #
-# Mail subject prefix
+# Mail: subject prefix
 #
-#duniter.mail.subject.prefix: [Duniter4j ES]
+# duniter.mail.subject.prefix: '[ğchange]'
 
-duniter.changes.listenSource: '*/block'
-duniter.ws.port: 9400
+# ---------------------------------- Duniter4j Websocket server ----------------------
+#
+# Websocket port (default: 9400-9410)
+#
+duniter.ws.port: 9400-9410
+#
+# ---------------------------------- Duniter4j Subscription module -------------------
+#
+# Enable subscription module (Need to enable mail features)
+#
+duniter.subscription.enable: false
+#
+# Email subscription: Day of the week to trigger weekly (default: 2 = monday)
+#
+# duniter.subscription.email.dayOfWeek: 2
+#
+# Email subscription: Hour in day to trigger daily email subscription (default: 3 AM)
+#
+# duniter.subscription.email.hourOfDay: 3
+#
+# Email subscription: URL to a Cesium site, for links in the email content (default: https://g1.duniter.fr)
+#
+# duniter.subscription.email.cesium.url: 'http://domain.com/cesium'
