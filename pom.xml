@@ -35,7 +35,7 @@
     <jna.version>4.1.0</jna.version>
     <tyrus.version>1.13</tyrus.version>
 
-    <duniter4j.version>1.0</duniter4j.version>
+    <duniter4j.version>1.0.2-SNAPSHOT</duniter4j.version>
 
     <nuitonConfigVersion>3.0</nuitonConfigVersion>
     <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>
@@ -88,17 +88,15 @@
     <maven.javadoc.skip>true</maven.javadoc.skip>
 
     <!-- distribution management -->
-    <distribution.site.id>eis-public-reports</distribution.site.id>
-    <distribution.site.host>server.e-is.pro:22</distribution.site.host>
-    <distribution.site.repository>scp://${distribution.site.host}/var/www</distribution.site.repository>
-    <distribution.site.projectId>duniter4j</distribution.site.projectId>
-    <distribution.repository.id>eis-nexus-deploy</distribution.repository.id>
-    <distribution.repository.url>http://nexus.e-is.pro/nexus/content/repositories/duniter4j-releases</distribution.repository.url>
-    <distribution.internet.url>${distribution.repository.url}</distribution.internet.url>
-    <distribution.snapshotRepository.id>eis-nexus-deploy</distribution.snapshotRepository.id>
-    <distribution.snapshotRepository.url>http://nexus.e-is.pro/nexus/content/repositories/duniter4j-snapshots</distribution.snapshotRepository.url>
-
-    <github.global.server>github</github.global.server>
+    <projectId>${project.artifactId}</projectId>
+    <site.server>eis-public-reports</site.server>
+    <site.host>doc.e-is.pro</site.host>
+    <site.path>/var/www/doc.e-is.pro/gchange</site.path>
+    <site.repository>scpexe://${site.host}${site.path}</site.repository>
+    <release.server>eis-nexus-deploy</release.server>
+    <release.repository>http://nexus.e-is.pro/nexus/content/repositories/gchange-releases</release.repository>
+    <snapshot.server>eis-nexus-deploy</snapshot.server>
+    <snapshot.repository>http://nexus.e-is.pro/nexus/content/repositories/gchange-snapshots</snapshot.repository>
 
     <assembly.skip>false</assembly.skip>
   </properties>
@@ -378,27 +376,32 @@
   </repositories>
 
   <pluginRepositories>
-    <!-- Need for javascript minify maven plugin (yuicompressor-maven-plugin) -->
     <pluginRepository>
-      <name>oss.sonatype.org</name>
-      <id>oss.sonatype.org</id>
-      <url>http://oss.sonatype.org/content/groups/public</url>
+      <id>gchange-public-group</id>
+      <url>http://nexus.e-is.pro/nexus/content/groups/gchange</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+        <checksumPolicy>fail</checksumPolicy>
+      </releases>
     </pluginRepository>
   </pluginRepositories>
 
   <distributionManagement>
     <repository>
-      <uniqueVersion>true</uniqueVersion>
-      <id>${distribution.repository.id}</id>
-      <url>${distribution.repository.url}</url>
+      <id>${release.server}</id>
+      <url>${release.repository}</url>
     </repository>
     <snapshotRepository>
-      <id>${distribution.snapshotRepository.id}</id>
-      <url>${distribution.snapshotRepository.url}</url>
+      <id>${snapshot.server}</id>
+      <url>${snapshot.repository}</url>
     </snapshotRepository>
     <site>
-      <id>${distribution.site.id}</id>
-      <url>${distribution.site.repository}/${distribution.site.projectId}</url>
+      <id>${site.server}</id>
+      <url>${site.repository}</url>
     </site>
   </distributionManagement>
 
