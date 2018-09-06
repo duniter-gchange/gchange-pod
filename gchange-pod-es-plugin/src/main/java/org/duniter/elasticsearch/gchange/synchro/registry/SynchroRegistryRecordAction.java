@@ -2,11 +2,9 @@ package org.duniter.elasticsearch.gchange.synchro.registry;
 
 import org.duniter.core.service.CryptoService;
 import org.duniter.elasticsearch.client.Duniter4jClient;
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
 import org.duniter.elasticsearch.gchange.dao.registry.RegistryCommentDao;
 import org.duniter.elasticsearch.gchange.dao.registry.RegistryIndexDao;
-import org.duniter.elasticsearch.synchro.AbstractSynchroAction;
+import org.duniter.elasticsearch.gchange.synchro.AbstractSynchroAction;
 import org.duniter.elasticsearch.synchro.SynchroService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
 import org.duniter.elasticsearch.user.PluginSettings;
