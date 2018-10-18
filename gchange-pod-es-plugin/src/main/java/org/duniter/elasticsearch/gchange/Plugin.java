@@ -43,7 +43,7 @@ public class Plugin extends org.elasticsearch.plugins.Plugin {
     private boolean enable;
 
     @Inject public Plugin(Settings settings) {
-        this.enable = settings.getAsBoolean("gchange.enabled", true);
+        this.enable = settings.getAsBoolean("gchange.enable", true);
     }
 
     @Override

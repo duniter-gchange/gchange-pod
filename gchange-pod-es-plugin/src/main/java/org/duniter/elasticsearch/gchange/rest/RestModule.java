@@ -38,6 +38,7 @@ public class RestModule extends AbstractModule implements Module {
         bind(RestMarketCommentUpdateAction.class).asEagerSingleton();
         bind(RestMarketCategoryAction.class).asEagerSingleton();
         bind(RestMarketImageAction.class).asEagerSingleton();
+        bind(RestMarketShareLinkAction.class).asEagerSingleton();
 
         // Registry
         bind(RestRegistryRecordIndexAction.class).asEagerSingleton();

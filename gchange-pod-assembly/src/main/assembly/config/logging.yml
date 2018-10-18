@@ -2,8 +2,8 @@
 es.logger.level: INFO
 rootLogger: ${es.logger.level}, console, file
 logger:
-  # log action execution errors for easier debugging
-  action: DEBUG
+  # Set to DEBUG for easier debugging of search execution
+  action: INFO
 
   # deprecation logging, turn to DEBUG to see them
   deprecation: INFO, deprecation_log_file
@@ -15,6 +15,7 @@ logger:
   com.amazonaws.metrics.AwsSdkMetrics: ERROR
 
   duniter: INFO
+  duniter.security: ERROR
   gchange: INFO
   security: INFO
 

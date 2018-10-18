@@ -129,15 +129,16 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.duniter</groupId>
-                                    <artifactId>duniter4j-es-core</artifactId>
-                                    <version>${duniter4j.version}</version>
+                                    <groupId>org.duniter.cesium</groupId>
+                                    <artifactId>cesium-plus-pod-core</artifactId>
+                                    <version>${cesium-plus-pod.version}</version>
                                     <type>zip</type>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/duniter4j-es-core</outputDirectory>
-                            <silent>true</silent>
-                            <skip>${assembly.skip}</skip>
+                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/cesium-plus-pod-core</outputDirectory>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                            <skip>false</skip>
                         </configuration>
                     </execution>
 
@@ -151,15 +152,39 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.duniter</groupId>
-                                    <artifactId>duniter4j-es-user</artifactId>
-                                    <version>${duniter4j.version}</version>
+                                    <groupId>org.duniter.cesium</groupId>
+                                    <artifactId>cesium-plus-pod-user</artifactId>
+                                    <version>${cesium-plus-pod.version}</version>
                                     <type>zip</type>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/duniter4j-es-user</outputDirectory>
+                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/cesium-plus-pod-user</outputDirectory>
                             <silent>true</silent>
-                            <skip>${assembly.skip}</skip>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <overWriteSnapshots>${assembly.skip}</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+
+                    <!-- unpack ES user plugin -->
+                    <execution>
+                        <id>unpack-es-subscription-plugin</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.duniter.cesium</groupId>
+                                    <artifactId>cesium-plus-pod-subscription</artifactId>
+                                    <version>${cesium-plus-pod.version}</version>
+                                    <type>zip</type>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/cesium-plus-pod-subscription</outputDirectory>
+                            <silent>true</silent>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <overWriteSnapshots>${assembly.skip}</overWriteSnapshots>
                         </configuration>
                     </execution>
 
@@ -179,7 +204,7 @@
                                     <type>zip</type>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/duniter4j-es-gchange</outputDirectory>
+                            <outputDirectory>${project.build.directory}/elasticsearch-${elasticsearch.version}/plugins/gchange-pod-es-plugin</outputDirectory>
                             <silent>true</silent>
                             <skip>${assembly.skip}</skip>
                         </configuration>
@@ -252,26 +277,10 @@
                                             <!-- reuse standalone files -->
                                             <then>
                                                 <delete failonerror="false">
-                                                    <fileset dir="${run.es.home}/plugins" includes="**/duniter4j-*.jar" />
+                                                    <fileset dir="${run.es.home}/plugins" includes="**/gchange-pod-*.jar" />
                                                 </delete>
-                                                <copy todir="${run.es.home}/plugins/duniter4j-es-core" overwrite="true">
-                                                    <fileset dir="../duniter4j-core-client/target" includes="duniter4j-*${duniter4j.version}.jar">
-                                                    </fileset>
-                                                    <fileset dir="../duniter4j-core-shared/target" includes="duniter4j-*${duniter4j.version}.jar">
-                                                    </fileset>
-                                                    <fileset dir="../duniter4j-es-core/target" includes="duniter4j-*${duniter4j.version}.jar">
-                                                    </fileset>
-                                                </copy>
-                                                <copy todir="${run.es.home}/plugins/duniter4j-es-core" overwrite="true">
-                                                    <fileset dir="../duniter4j-es-core/target" includes="duniter4j-*${duniter4j.version}.jar">
-                                                    </fileset>
-                                                </copy>
-                                                <copy todir="${run.es.home}/plugins/duniter4j-es-user" overwrite="true">
-                                                    <fileset dir="../duniter4j-es-user/target" includes="duniter4j-*${duniter4j.version}.jar">
-                                                    </fileset>
-                                                </copy>
                                                 <copy todir="${run.es.home}/plugins/gchange-pod-es-plugin" overwrite="true">
-                                                    <fileset dir="../gchange-pod-es-plugin/target" includes="duniter4j-*${duniter4j.version}.jar,gchange-*${project.version}.jer">
+                                                    <fileset dir="../gchange-pod-es-plugin/target" includes="gchange-pod-es-plugin-*${project.version}.jar">
                                                     </fileset>
                                                 </copy>
                                             </then>

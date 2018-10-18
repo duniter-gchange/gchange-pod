@@ -15,6 +15,7 @@ hs_err_pid*
 .classpath
 .settings
 .idea
+.local
 target
 *.log
 *.iml

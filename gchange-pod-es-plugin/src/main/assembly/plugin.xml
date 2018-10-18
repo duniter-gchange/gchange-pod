@@ -17,6 +17,7 @@
             <excludes>
                 <exclude>org.duniter:duniter4j-es-core</exclude>
                 <exclude>org.duniter:duniter4j-es-user</exclude>
+                <exclude>org.duniter:duniter4j-es-subscription</exclude>
                 <exclude>org.elasticsearch:elasticsearch</exclude>
                 <exclude>net.java.dev.jna:jna</exclude>
                 <exclude>com.fasterxml.jackson.core:jackson-core</exclude>

@@ -35,7 +35,7 @@
     <jna.version>4.1.0</jna.version>
     <tyrus.version>1.13</tyrus.version>
 
-    <duniter4j.version>1.0.1</duniter4j.version>
+    <cesium-plus-pod.version>1.1.0</cesium-plus-pod.version>
 
     <nuitonConfigVersion>3.0</nuitonConfigVersion>
     <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>
@@ -129,16 +129,16 @@
   <dependencyManagement>
     <dependencies>
 
-      <!-- Duniter4j -->
+      <!-- cesium-plus-pod -->
       <dependency>
-        <groupId>org.duniter</groupId>
-        <artifactId>duniter4j-es-core</artifactId>
-        <version>${duniter4j.version}</version>
+        <groupId>org.duniter.cesium</groupId>
+        <artifactId>cesium-plus-pod-es-core</artifactId>
+        <version>${cesium-plus-pod.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.duniter</groupId>
-        <artifactId>duniter4j-es-user</artifactId>
-        <version>${duniter4j.version}</version>
+        <groupId>org.duniter.cesium</groupId>
+        <artifactId>cesium-plus-pod-es-user</artifactId>
+        <version>${cesium-plus-pod.version}</version>
       </dependency>
 
       <!-- elastic search -->
@@ -466,7 +466,7 @@
       <properties>
         <exec.mainClass>${maven.jar.main.class}</exec.mainClass>
         <exec.classpathScope>runtime</exec.classpathScope>
-        <duniter4j.log.file>${project.build.directory}/exec.log</duniter4j.log.file>
+        <cesium-plus-pod.log.file>${project.build.directory}/exec.log</cesium-plus-pod.log.file>
       </properties>
     </profile>
 
@@ -648,7 +648,7 @@
               <escapeHTML>false</escapeHTML>
               <feedType>rss_2.0</feedType>
               <issueLinkTemplatePerSystem>
-                <default>https://github.com/blavenie/duniter4j/issues/%ISSUE%</default>
+                <default>https://github.com/blavenie/cesium-plus-pod/issues/%ISSUE%</default>
               </issueLinkTemplatePerSystem>
             </configuration>
           </plugin>
@@ -681,7 +681,7 @@
               </reportSet>
             </reportSets>
             <configuration>
-              <i18nBundleName>duniter4j-i18n</i18nBundleName>
+              <i18nBundleName>cesium-plus-pod-i18n</i18nBundleName>
               <verbose>true</verbose>
               <showOptionDetail>true</showOptionDetail>
               <outputEncoding>UTF-8</outputEncoding>

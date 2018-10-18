@@ -23,8 +23,12 @@ package org.duniter.elasticsearch.gchange;
  */
 
 
+import org.duniter.core.client.model.bma.EndpointApi;
+import org.duniter.core.util.crypto.KeyPair;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
+
+import java.util.List;
 
 /**
  * Access to configuration options
@@ -65,7 +69,43 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
         return delegate;
     }
 
+    public String getGchangeUrl() {
+        return this.settings.get("duniter.gchange.url", "https://gchange.fr");
+    }
+
+    public String getShareMarketLinkUrl() {
+        return this.settings.get("duniter.share.market.link.url", getGchangeUrl() + "/#/app/market/view/{id}/{title}");
+    }
+
     /* -- delegate methods -- */
+
+    public String getNodePubkey() {
+        return delegate.getNodePubkey();
+    }
+
+    public org.duniter.core.client.model.local.Peer checkAndGetPeer() {
+        return delegate.getDelegate().checkAndGetPeer();
+    }
+
+    public String getClusterRemoteHost() {
+        return delegate.getClusterRemoteHost();
+    }
+
+    public int getClusterRemotePort() {
+        return delegate.getClusterRemotePort();
+    }
+
+    public boolean getClusterRemoteUseSsl() {
+        return delegate.getClusterRemoteUseSsl();
+    }
+
+    public KeyPair getNodeKeypair() {
+        return delegate.getNodeKeypair();
+    }
+
+    public String getClusterRemoteUrlOrNull() {
+        return delegate.getClusterRemoteUrlOrNull();
+    }
 
     public boolean reloadAllIndices() {
         return delegate.reloadAllIndices();
@@ -73,6 +113,18 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
 
     public boolean enableSynchro() {
         return delegate.enableSynchro();
+    }
+
+    public boolean enablePeering() {
+        return this.delegate.enablePeering();
+    }
+
+    public List<EndpointApi> getPeeringTargetedApis() {
+        return this.delegate.getPeeringTargetedApis();
+    }
+
+    public List<EndpointApi> getPeeringPublishedApis() {
+        return this.delegate.getPeeringPublishedApis();
     }
 
     public boolean enableDocStats() {

@@ -22,6 +22,7 @@ package org.duniter.elasticsearch.gchange;
  * #L%
  */
 
+import org.duniter.core.client.model.bma.EndpointApi;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
@@ -31,6 +32,7 @@ import org.duniter.elasticsearch.gchange.dao.registry.RegistryRecordDao;
 import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.gchange.service.RegistryService;
 import org.duniter.elasticsearch.service.DocStatService;
+import org.duniter.elasticsearch.service.NetworkService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
 import org.elasticsearch.cluster.health.ClusterHealthStatus;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
@@ -48,11 +50,16 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
     private final PluginSettings pluginSettings;
     private final ThreadPool threadPool;
     private final Injector injector;
-    private final static ESLogger logger = Loggers.getLogger("gchange");
+    private final ESLogger logger;
 
     @Inject
-    public PluginInit(Settings settings, PluginSettings pluginSettings, ThreadPool threadPool, final Injector injector) {
+    public PluginInit(Settings settings,
+                      PluginSettings pluginSettings,
+
+                      ThreadPool threadPool,
+                      final Injector injector) {
         super(settings);
+        this.logger = Loggers.getLogger("gchange", settings, new String[0]);
         this.pluginSettings = pluginSettings;
         this.threadPool = threadPool;
         this.injector = injector;
@@ -81,7 +88,7 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
 
         if (reloadIndices) {
             if (logger.isInfoEnabled()) {
-                logger.info("Reloading all Gchange indices...");
+                logger.info("Reloading all indices...");
             }
             injector.getInstance(RegistryService.class)
                     .deleteIndex()
@@ -91,18 +98,18 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
                     .createIndexIfNotExists();
 
             if (logger.isInfoEnabled()) {
-                logger.info("Reloading all Gchange indices... [OK]");
+                logger.info("Reloading all indices... [OK]");
             }
         }
         else {
             if (logger.isInfoEnabled()) {
-                logger.info("Checking Gchange indices...");
+                logger.info("Checking indices...");
             }
             injector.getInstance(RegistryService.class).createIndexIfNotExists();
             injector.getInstance(MarketService.class).createIndexIfNotExists();
 
             if (logger.isInfoEnabled()) {
-                logger.info("Checking Gchange indices... [OK]");
+                logger.info("Checking indices [OK]");
             }
         }
 
@@ -116,4 +123,5 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
             ;
         }
     }
+
 }

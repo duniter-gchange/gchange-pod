@@ -32,6 +32,8 @@ import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
+import org.duniter.elasticsearch.user.model.page.RegistryRecord;
 import org.duniter.elasticsearch.user.service.HistoryService;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.inject.Inject;
@@ -131,6 +133,14 @@ public class MarketService extends AbstractService {
         commentDao.update(id, json);
     }
 
+
+    public MarketRecord getRecordForSharing(String id) {
+
+        return client.getSourceByIdOrNull(recordDao.getIndex(), recordDao.getType(), id, MarketRecord.class,
+                MarketRecord.PROPERTY_TITLE,
+                MarketRecord.PROPERTY_DESCRIPTION,
+                MarketRecord.PROPERTY_THUMBNAIL);
+    }
 
     /* -- Internal methods -- */
 

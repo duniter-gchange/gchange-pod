@@ -22,34 +22,17 @@ package org.duniter.elasticsearch.gchange.synchro;
  * #L%
  */
 
-import org.duniter.elasticsearch.gchange.model.Protocol;
 import org.duniter.elasticsearch.gchange.synchro.market.SynchroMarketCommentAction;
 import org.duniter.elasticsearch.gchange.synchro.market.SynchroMarketRecordAction;
 import org.duniter.elasticsearch.gchange.synchro.registry.SynchroRegistryCommentAction;
 import org.duniter.elasticsearch.gchange.synchro.registry.SynchroRegistryRecordAction;
-import org.duniter.elasticsearch.service.PeerService;
-import org.duniter.elasticsearch.user.PluginSettings;
 import org.elasticsearch.common.inject.AbstractModule;
-import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.Module;
 
 public class SynchroModule extends AbstractModule implements Module {
 
-    public static class Init {
-
-        @Inject
-        public Init(PeerService peerService, PluginSettings pluginSettings) {
-            if (pluginSettings.enableSynchro()) {
-                // Make sure PeerService will index GCHANGE_API peers
-                peerService.addIncludeEndpointApi(Protocol.GCHANGE_API);
-            }
-        }
-    }
 
     @Override protected void configure() {
-
-        bind(Init.class).asEagerSingleton();
-
         // Market
         bind(SynchroMarketRecordAction.class).asEagerSingleton();
         bind(SynchroMarketCommentAction.class).asEagerSingleton();

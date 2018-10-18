@@ -2,8 +2,9 @@
 es.logger.level: INFO
 rootLogger: ${es.logger.level}, console, file
 logger:
-  # log rest execution errors for easier debugging
+  # Set to DEBUG for easier debugging of search execution
   action: DEBUG
+  #action.search: INFO
 
   # deprecation logging, turn to DEBUG to see them
   deprecation: INFO, deprecation_log_file
@@ -14,26 +15,27 @@ logger:
   com.amazonaws.jmx.SdkMBeanRegistrySupport: ERROR
   com.amazonaws.metrics.AwsSdkMetrics: ERROR
 
-  org.apache.http: INFO
-  org.apache.http.client: ERROR
+  duniter: DEBUG
+  duniter.security: ERROR
+  duniter.user.event: DEBUG
+  duniter.network.p2p: INFO
+  duniter.p2p: INFO
+  gchange: DEBUG
+  security: DEBUG
 
   org.duniter: INFO
-
   org.duniter.core.beans: DEBUG
   org.duniter.elasticsearch: DEBUG
   org.duniter.elasticsearch.service: DEBUG
   org.duniter.core.client.service: DEBUG
-
-  duniter : DEBUG
-  duniter.security : ERROR
-  duniter.user.event : INFO
-  duniter.network.p2p: INFO
-  gchange : DEBUG
-
-  security: DEBUG
-
+  org.duniter.elasticsearch.rest: INFO
   org.nuiton.i18n: WARN
   org.nuiton.config: WARN
+  org.nuiton.converter: WARN
+  org.apache.http: INFO
+  org.apache.http.client: ERROR
+  org.glassfish.grizzly: WARN
+  org.glassfish.tyrus: WARN
 
   # gateway
   #gateway: DEBUG

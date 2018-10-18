@@ -1,5 +1,6 @@
 package org.duniter.elasticsearch.gchange.synchro;
 
+import org.duniter.core.client.model.bma.EndpointApi;
 import org.duniter.core.service.CryptoService;
 import org.duniter.elasticsearch.PluginSettings;
 import org.duniter.elasticsearch.client.Duniter4jClient;
@@ -15,9 +16,8 @@ public abstract class AbstractSynchroAction extends org.duniter.elasticsearch.sy
         super(fromIndex, fromType, toIndex, toType, client, pluginSettings, cryptoService, threadPool);
     }
 
-    // FIXME: allow to extend Duniter4j synchro
-    /*@Override
-    public String getEndPointApi() {
-        return Protocol.GCHANGE_API;
-    }*/
+    @Override
+    public EndpointApi getEndPointApi() {
+        return EndpointApi.GCHANGE_API;
+    }
 }

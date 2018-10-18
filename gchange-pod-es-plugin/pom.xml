@@ -24,15 +24,24 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.duniter</groupId>
-            <artifactId>duniter4j-es-core</artifactId>
-            <version>${duniter4j.version}</version>
+            <groupId>org.duniter.cesium</groupId>
+            <artifactId>cesium-plus-pod-core</artifactId>
+            <version>${cesium-plus-pod.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.duniter</groupId>
-            <artifactId>duniter4j-es-user</artifactId>
-            <version>${duniter4j.version}</version>
+            <groupId>org.duniter.cesium</groupId>
+            <artifactId>cesium-plus-pod-user</artifactId>
+            <version>${cesium-plus-pod.version}</version>
+            <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.duniter.cesium</groupId>
+            <artifactId>cesium-plus-pod-subscription</artifactId>
+            <version>${cesium-plus-pod.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <!-- Elastic Search -->
         <dependency>

@@ -14,16 +14,27 @@
 #
 # Use a descriptive name for your cluster:
 #
-# cluster.name: my-application
 cluster.name: gchange-pod
+#
+# Host for remote access to the cluster - used by P2P and share modules (default: <none> = not accessible)
+#
+# cluster.remote.host: domain.com
+#
+# Port for remote access to the cluster (Default: 80)
+#
+# cluster.remote.port: 443
+#
+# Does remote access need SSL ? (default: 'true' if port=443, 'false' otherwise)
+#
+# cluster.remote.useSsl: true
 #
 # ------------------------------------ Node ------------------------------------
 #
-# Use a descriptive name for the node:
+# Use a descriptive name for the node: (default: will be generated)
 #
 # node.name: node-1
 #
-# Add custom attributes to the node:
+# Add custom attributes to the node: (Default: none)
 #
 # node.rack: r1
 #
@@ -74,7 +85,7 @@ http.cors.enabled: true
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
 # discovery.zen.ping.unicast.hosts: ["host1", "host2"]
-#discovery.zen.ping.unicast.hosts: ["127.0.0.1", ""]
+# discovery.zen.ping.unicast.hosts: ["127.0.0.1", ""]
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
@@ -100,18 +111,19 @@ http.cors.enabled: true
 #
 # Require explicit names when deleting indices:
 #
-# rest.destructive_requires_name: true
-
+# action.destructive_requires_name: true
+#
+# Security to isolate plugin classpath - /!\ WARNING: should always be DISABLE
+#
 security.manager.enabled: false
-
 #
 # ---------------------------------- Duniter4j ---------------------------------
 #
-# Disbale duniter4j plugin
+# Enable duniter plugins (default: true)
 #
-# duniter.enabled: false
+# duniter.enable: false
 #
-# Delete then create all indices at startup - DO NOT set to true in production
+# Delete then create all indices at startup - /!\ WARNING: DO NOT set to true in production
 #
 # duniter.indices.reload: true
 #
@@ -119,42 +131,118 @@ security.manager.enabled: false
 #
 duniter.string.analyzer: french
 #
-# Enabling blockchain synchronization
+# Enabling blockchain synchronization (default: false)
 #
 duniter.blockchain.enable: true
 #
-# Force blockchain reload - WARNING: all user events will be resetted to 'unread'
+# Enable user event on blockchain ? (default: true) /!\ WARNING: should always be DISABLE
 #
-#duniter.blockchain.reload: true
+duniter.blockchain.event.user.enable: false
+#
+# Enable events for the node admin (e.g. node start/stop) (default: true)
+#
+# duniter.blockchain.event.admin.enable: false
+#
+# Force blockchain full synchronization - /!\ WARNING: all user events will be reset to 'unread'
+#
+# duniter.blockchain.reload: true
+# duniter.blockchain.reload.from: 50999
 #
 # Duniter node address
 #
 duniter.host: g1.duniter.org
 duniter.port: 10901
+# duniter.useSsl: true
+# duniter.network.timeout: 5000
 #
-#duniter.useSsl: true
-#duniter.network.timeout: 5000
+# Compute statistics on indices (each hour) ? (default: true)
 #
-# ---------------------------------- Duniter4j security module -------------------
+# duniter.stats.enable: false
 #
-# Keyring for the ES node
+# ---------------------------------- Cesium+ Pod security module -------------------
 #
-#duniter.keyring.salt:
-#duniter.keyring.password:
+# Keyring, use to sign emitted documents (user events, subscription, etc.).
+# If not set, random keys will be generated.
 #
-# Enable security - will restrict HTTP access to only Duniter4j known indices
+# duniter.keyring.salt:
+# duniter.keyring.password:
+#
+# Enable security - will restrict HTTP access to only known ES indices - /!\ WARNING: should be enable for production use
 #
 duniter.security.enable: true
 #
-# ---------------------------------- Duniter4j P2P sync -------------------------
+# ---------------------------------- Cesium+ Pod P2P module -------------------------
 #
-# Should synchronize data from an existing ES node ?
+# Enable P2P synchronize between ES peers ? (default: true)
 #
-duniter.data.sync.enable: true
-duniter.data.sync.host: data.gchange.fr
-duniter.data.sync.port: 443
-
-# ---------------------------------- Duniter4j Mail module -----------------------
+# duniter.p2p.enable: false
+#
+# Enable P2P synchronisation using websocket ? (default: true)
+#
+# duniter.p2p.ws.enable: false
+#
+# Time delay (in seconds) to request last documents to peer (e.g. if peer's clock is late). (default: 3600s = 1h)
+#
+# duniter.p2p.peerTimeOffset: 3600
+#
+# Enable discovery on network peers, to automatically synchronize this peers (default: true)
+#
+duniter.p2p.discovery.enable: false
+#
+# Pass a list of hosts to always synchronize (default: <empty>)
+#
+duniter.p2p.includes.endpoints: [
+  "ES_CORE_API data.gchange.fr 443",
+  "ES_USER_API data.gchange.fr 443",
+  "ES_SUBSCRIPTION_API data.gchange.fr 443",
+  "GCHANGE_API data.gchange.fr 443"
+]
+#
+# Pass a list of pubkeys to always synchronize (default: <empty>)
+#
+# duniter.p2p.includes.pubkeys: [""]
+#
+#
+# Enable a full synchro. This will compare each documents from other peers.
+#
+# duniter.p2p.fullResyncAtStartup: true
+#
+# Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
+#
+# duniter.p2p.peering.enable: false
+#
+# Define targeted API (for peers slection) where to send the peer document (if peering is enable). (Default: ["BASIC_MERKLED_API", "BMAS"])
+# This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
+#
+duniter.p2p.peering.targetedApis: [
+  "GCHANGE_API", "ES_CORE_API"
+]
+#
+# Define cluster API to publish (if peering is enable). By default, all compatible APIs
+#
+# duniter.p2p.peering.publishedApis: [
+#  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
+# ]
+#
+# Interval for publishing peer document to the network, in seconds. (Default: 7200 =2h)
+#
+# duniter.p2p.peering.interval: 7200
+#
+# ---------------------------------- Cesium+ Pod document moderation ---------------
+#
+# Filter too old document, if time older that 'maxPastDelta' (in seconds). (default: 7200 =2h)
+#
+# duniter.document.time.maxPastDelta: 7200
+#
+# Filter document in the futur, if time greater that 'maxFutureDelta' (in seconds). (default: 600 =10min)
+#
+# duniter.document.time.maxFutureDelta: 600
+#
+# Allow admin (define in duniter.keyring) to delete documents ? (default: true)
+#
+# duniter.document.allowAdminDeletion: true
+#
+# ---------------------------------- Cesium+ Pod Mail module -----------------------
 #
 # Enable mail module ?
 #
@@ -162,38 +250,38 @@ duniter.mail.enable: false
 #
 # Mail: SMTP server configuration (host and port)
 #
-#duniter.mail.smtp.host: localhost
-#duniter.mail.smtp.port: 25
+# duniter.mail.smtp.host: localhost
+# duniter.mail.smtp.port: 25
 #
 # Mail: SMTP server SSL security
 #
-#duniter.mail.smtp.ssl: true
-#duniter.mail.smtp.starttls: true
+# duniter.mail.smtp.ssl: true
+# duniter.mail.smtp.starttls: true
 #
 # Mail: SMTP server authentication
 #
-#duniter.mail.smtp.username:
-#duniter.mail.smtp.password:
+# duniter.mail.smtp.username:
+# duniter.mail.smtp.password:
 #
 # Mail: 'from' address
 #
-#duniter.mail.from: no-reply@domain.com
+# duniter.mail.from: no-reply@domain.com
 #
 # Mail: admin address
 #
-#duniter.mail.admin: user@domain.com
+# duniter.mail.admin: user@domain.com
 #
 # Mail: subject prefix
 #
-#duniter.mail.subject.prefix: '[ğchange]'
-
-# ---------------------------------- Duniter4j Websocket server ----------------------
+duniter.mail.subject.prefix: '[ğchange]'
 #
-# Websocket port (usefull for listen changes)
+# ---------------------------------- Cesium+ Pod Websocket server ----------------------
 #
-duniter.ws.port: 9400
-
-# ---------------------------------- Duniter4j Subscription module -------------------
+# Websocket port (default: 9400-9410)
+#
+duniter.ws.port: 9400-9410
+#
+# ---------------------------------- Cesium+ Pod Subscription module -------------------
 #
 # Enable subscription module (Need to enable mail features)
 #
@@ -201,12 +289,39 @@ duniter.subscription.enable: false
 #
 # Email subscription: Day of the week to trigger weekly (default: 2 = monday)
 #
-#duniter.subscription.email.dayOfWeek: 2
+# duniter.subscription.email.dayOfWeek: 2
 #
 # Email subscription: Hour in day to trigger daily email subscription (default: 3 AM)
 #
-#duniter.subscription.email.hourOfDay: 3
+# duniter.subscription.email.hourOfDay: 3
 #
-# Email subscription: URL to a Cesium site (for link in the email content)
+# Email subscription: URL to a web site, for links in the email content (default: https://g1.duniter.fr)
 #
-#duniter.subscription.email.cesium.url: 'http://domain.com/cesium'
+duniter.subscription.email.link.url: 'https://gchange.fr'
+#
+# ---------------------------------- Cesium+ Pod Share module -------------------
+#
+#
+# Share title: `og:site_name` (default: 'Cesium')
+#
+duniter.share.site.name: 'Ğchange'
+#
+# URL to a page (default: https://g1.duniter.fr/#/app/page/view/{id}/{title} )
+# Note: available variables are {id} and {title}
+#
+duniter.share.page.link.url: 'https://gchange.fr/#/app/page/view/{id}/{title}'
+#
+# URL to a user profile (default: https://g1.duniter.fr/#/app/wot/{pubkey}/{title} )
+# Note: available variables are {pubkey} and {title}
+#
+duniter.share.user.link.url: 'https://gchange.fr/#/app/wot/{pubkey}/{title}'
+#
+# Default image to share (min size of 200x200px) for `og:image` (default: https://g1.duniter.fr/img/logo_200px.png)
+#
+duniter.share.image.default.url: 'https://gchange.fr/img/logo_256px.png'
+#
+#
+# Share market link (e.g. Ad): (default: https://gchange.fr/#/app/market/view/{id}/{title} )
+# Note: available variables are {id} and {title}
+#
+duniter.share.market.link.url: 'https://gchange.fr/#/app/market/view/{id}/{title}'
