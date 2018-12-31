@@ -117,7 +117,7 @@ http.cors.enabled: true
 #
 security.manager.enabled: false
 #
-# ---------------------------------- Duniter4j ---------------------------------
+# ---------------------------------- Cesium+ Pod ---------------------------------
 #
 # Enable duniter plugins (default: true)
 #
@@ -159,7 +159,11 @@ duniter.port: 10901
 #
 # duniter.stats.enable: false
 #
-# ---------------------------------- Cesium+ Pod security module -------------------
+# Software name (used when calling GET request on /node/summary) (default: 'cesium-plus-pod')
+#
+duniter.software.name: gchange-pod
+#
+# ---------------------------------- Cesium+ Pod > security module -------------------
 #
 # Keyring, use to sign emitted documents (user events, subscription, etc.).
 # If not set, random keys will be generated.
@@ -171,7 +175,7 @@ duniter.port: 10901
 #
 duniter.security.enable: true
 #
-# ---------------------------------- Cesium+ Pod P2P module -------------------------
+# ---------------------------------- Cesium+ Pod > P2P module -------------------------
 #
 # Enable P2P synchronize between ES peers ? (default: true)
 #
@@ -228,7 +232,7 @@ duniter.p2p.peering.targetedApis: [
 #
 # duniter.p2p.peering.interval: 7200
 #
-# ---------------------------------- Cesium+ Pod document moderation ---------------
+# ---------------------------------- Cesium+ Pod > document moderation ---------------
 #
 # Filter too old document, if time older that 'maxPastDelta' (in seconds). (default: 7200 =2h)
 #
@@ -242,7 +246,7 @@ duniter.p2p.peering.targetedApis: [
 #
 # duniter.document.allowAdminDeletion: true
 #
-# ---------------------------------- Cesium+ Pod Mail module -----------------------
+# ---------------------------------- Cesium+ Pod > Mail module -----------------------
 #
 # Enable mail module ?
 #
@@ -275,13 +279,13 @@ duniter.mail.enable: false
 #
 duniter.mail.subject.prefix: '[ğchange]'
 #
-# ---------------------------------- Cesium+ Pod Websocket server ----------------------
+# ---------------------------------- Cesium+ Pod > Websocket server ----------------------
 #
 # Websocket port (default: 9400-9410)
 #
 duniter.ws.port: 9400-9410
 #
-# ---------------------------------- Cesium+ Pod Subscription module -------------------
+# ---------------------------------- Cesium+ Pod > Subscription module -------------------
 #
 # Enable subscription module (Need to enable mail features)
 #
@@ -299,7 +303,7 @@ duniter.subscription.enable: false
 #
 duniter.subscription.email.link.url: 'https://gchange.fr'
 #
-# ---------------------------------- Cesium+ Pod Share module -------------------
+# ---------------------------------- Cesium+ Pod > Share module -------------------
 #
 #
 # Share title: `og:site_name` (default: 'Cesium')

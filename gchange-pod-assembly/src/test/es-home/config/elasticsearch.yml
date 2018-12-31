@@ -141,7 +141,7 @@ duniter.blockchain.event.user.enable: false
 #
 # Enable events for the node admin (e.g. node start/stop) (default: true)
 #
-# duniter.blockchain.event.admin.enable: false
+duniter.blockchain.event.admin.enable: true
 #
 # Force blockchain full synchronization - /!\ WARNING: all user events will be reset to 'unread'
 #
@@ -158,6 +158,10 @@ duniter.network.timeout: 500
 # Compute statistics on indices (each hour) ? (default: true)
 #
 # duniter.stats.enable: false
+#
+# Software name (used when calling GET request on /node/summary) (default: 'cesium-plus-pod')
+#
+duniter.software.name: gchange-pod
 #
 # ---------------------------------- Cesium+ Pod security module -------------------
 #
@@ -192,19 +196,17 @@ duniter.p2p.discovery.enable: false
 # Pass a list of hosts to always synchronize (default: <empty>)
 #
 duniter.p2p.includes.endpoints: [
-  "ES_CORE_API localhost 9201",
-  "ES_USER_API localhost 9201",
-  "ES_SUBSCRIPTION_API localhost 9201"
-#  "ES_USER_API data.gchange.fr 443",
-#  "ES_SUBSCRIPTION_API data.gchange.fr 443",
-#  "GCHANGE_API data.gchange.fr 443"
+  "ES_CORE_API data.gchange.fr 443",
+  "ES_USER_API data.gchange.fr 443",
+  "ES_SUBSCRIPTION_API data.gchange.fr 443",
+  "GCHANGE_API data.gchange.fr 443"
 ]
 #
 # Pass a list of pubkeys to always synchronize (default: <empty>)
 #
-# duniter.p2p.includes.pubkeys: [
-#  "38MEAZN68Pz1DTvT3tqgxx4yQP6snJCQhPqEFxbDk4aE"
-# ]
+duniter.p2p.includes.pubkeys: [
+ "HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz"
+]
 #
 # Enable a full synchro. This will compare each documents from other peers.
 #
@@ -212,24 +214,27 @@ duniter.p2p.fullResyncAtStartup: true
 #
 # Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
 #
-# duniter.p2p.peering.enable: false
+duniter.p2p.peering.enable: true
 #
-# Define targeted API (for peers slection) where to send the peer document (if peering is enable). (Default: ["BASIC_MERKLED_API", "BMAS"])
+# Define targeted API (for peers selection) where to send the peer document (if peering is enable). (Default: ["BASIC_MERKLED_API", "BMAS"])
 # This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
 #
 duniter.p2p.peering.targetedApis: [
-  "GCHANGE_API", "ES_CORE_API"
+  "GCHANGE_API"
 ]
 #
-# Define cluster API to publish (if peering is enable). By default, all compatible APIs
+# Define cluster API to publish (if peering is enable). By default, all compatible API
 #
 # duniter.p2p.peering.publishedApis: [
 #  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
 # ]
+duniter.p2p.peering.publishedApis: [
+  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
+]
 #
 # Interval for publishing peer document to the network, in seconds. (Default: 7200 =2h)
 #
-#duniter.p2p.peering.interval: 60
+duniter.p2p.peering.interval: 60
 #
 # ---------------------------------- Cesium+ Pod document moderation ---------------
 #

@@ -22,7 +22,6 @@ package org.duniter.elasticsearch.gchange;
  * #L%
  */
 
-import org.duniter.core.client.model.bma.EndpointApi;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
@@ -32,7 +31,6 @@ import org.duniter.elasticsearch.gchange.dao.registry.RegistryRecordDao;
 import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.gchange.service.RegistryService;
 import org.duniter.elasticsearch.service.DocStatService;
-import org.duniter.elasticsearch.service.NetworkService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
 import org.elasticsearch.cluster.health.ClusterHealthStatus;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
