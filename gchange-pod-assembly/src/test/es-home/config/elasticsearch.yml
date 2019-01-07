@@ -236,7 +236,7 @@ duniter.p2p.peering.publishedApis: [
 #
 duniter.p2p.peering.interval: 60
 #
-# ---------------------------------- Cesium+ Pod document moderation ---------------
+# ---------------------------------- Cesium+ Pod > document moderation ---------------
 #
 # Filter too old document, if time older that 'maxPastDelta' (in seconds). (default: 7200 =2h)
 #
@@ -250,7 +250,7 @@ duniter.p2p.peering.interval: 60
 #
 # duniter.document.allowAdminDeletion: true
 #
-# ---------------------------------- Cesium+ Pod Mail module -----------------------
+# ---------------------------------- Cesium+ Pod > Mail module -----------------------
 #
 # Enable mail module ?
 #
