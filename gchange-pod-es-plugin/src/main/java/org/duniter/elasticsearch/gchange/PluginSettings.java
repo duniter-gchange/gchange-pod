@@ -23,12 +23,18 @@ package org.duniter.elasticsearch.gchange;
  */
 
 
+import org.duniter.core.client.config.Configuration;
 import org.duniter.core.client.model.bma.EndpointApi;
 import org.duniter.core.util.crypto.KeyPair;
+import org.duniter.elasticsearch.i18n.I18nInitializer;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
+import org.nuiton.i18n.I18n;
 
+import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Access to configuration options
@@ -119,11 +125,11 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
         return this.delegate.enablePeering();
     }
 
-    public List<EndpointApi> getPeeringTargetedApis() {
+    public Collection<EndpointApi> getPeeringTargetedApis() {
         return this.delegate.getPeeringTargetedApis();
     }
 
-    public List<EndpointApi> getPeeringPublishedApis() {
+    public Collection<EndpointApi> getPeeringPublishedApis() {
         return this.delegate.getPeeringPublishedApis();
     }
 

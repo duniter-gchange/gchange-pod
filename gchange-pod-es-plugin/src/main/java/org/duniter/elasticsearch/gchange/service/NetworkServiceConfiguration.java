@@ -17,7 +17,7 @@ public class NetworkServiceConfiguration implements Bean {
                                        NetworkService networkService) {
 
         // Retrieve peer with the GCHANGE_API api
-        peerService.addIncludeEndpointApi(EndpointApi.GCHANGE_API);
+        peerService.addIndexedEndpointApi(EndpointApi.GCHANGE_API);
 
         // Register ES_USER_API, if list of APIs has not already defined in settings
         if (CollectionUtils.isEmpty(pluginSettings.getPeeringPublishedApis())) {

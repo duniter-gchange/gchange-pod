@@ -29,6 +29,7 @@ logger:
   org.duniter.elasticsearch.service: DEBUG
   org.duniter.core.client.service: DEBUG
   org.duniter.elasticsearch.rest: INFO
+  org.duniter.elasticsearch.rest.network: DEBUG
   org.nuiton.i18n: WARN
   org.nuiton.config: WARN
   org.nuiton.converter: WARN

@@ -64,16 +64,16 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
 
     static {
         I18n.n("duniter.market.error.comment.recordNotFound");
-        I18n.n("duniter.market.event.newComment");
-        I18n.n("duniter.market.event.updateComment");
-        I18n.n("duniter.market.event.newReplyComment");
-        I18n.n("duniter.market.event.updateReplyComment");
+        I18n.n("duniter.market.event.NEW_COMMENT");
+        I18n.n("duniter.market.event.UPDATE_COMMENT");
+        I18n.n("duniter.market.event.NEW_REPLY_COMMENT");
+        I18n.n("duniter.market.event.UPDATE_REPLY_COMMENT");
 
         I18n.n("duniter.registry.error.comment.recordNotFound");
-        I18n.n("duniter.registry.event.newComment");
-        I18n.n("duniter.registry.event.updateComment");
-        I18n.n("duniter.registry.event.newReplyComment");
-        I18n.n("duniter.registry.event.updateReplyComment");
+        I18n.n("duniter.registry.event.NEW_COMMENT");
+        I18n.n("duniter.registry.event.UPDATE_COMMENT");
+        I18n.n("duniter.registry.event.NEW_REPLY_COMMENT");
+        I18n.n("duniter.registry.event.UPDATE_REPLY_COMMENT");
     }
 
     private final UserService userService;
@@ -154,8 +154,8 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
     private void processCreateComment(String index, String type, String commentId, RecordComment comment) {
 
         processUpdateOrCreateComment(index, type, commentId, comment,
-                GchangeEventCodes.NEW_COMMENT, String.format("duniter.%s.event.newComment", index.toLowerCase()),
-                GchangeEventCodes.NEW_REPLY_COMMENT, String.format("duniter.%s.event.newReplyComment", index.toLowerCase()));
+                GchangeEventCodes.NEW_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.NEW_COMMENT.name()),
+                GchangeEventCodes.NEW_REPLY_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.NEW_REPLY_COMMENT.name()));
     }
 
     /**
@@ -169,8 +169,8 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
     private void processUpdateComment(String index, String type, String commentId, RecordComment comment) {
 
         processUpdateOrCreateComment(index, type, commentId, comment,
-                GchangeEventCodes.UPDATE_COMMENT, String.format("duniter.%s.event.updateComment", index.toLowerCase()),
-                GchangeEventCodes.UPDATE_REPLY_COMMENT, String.format("duniter.%s.event.updateReplyComment", index.toLowerCase()));
+                GchangeEventCodes.UPDATE_COMMENT, String.format("duniter.%s.event.%", index.toLowerCase(), GchangeEventCodes.UPDATE_COMMENT.name()),
+                GchangeEventCodes.UPDATE_REPLY_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.UPDATE_REPLY_COMMENT));
     }
 
 
@@ -245,6 +245,8 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
                                 .build());
             }
         }
+
+        // Notify all followers
 
     }
 
