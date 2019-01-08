@@ -11,6 +11,7 @@ fi
 ### Get version to release
 current=`grep -m1 -P "\<version>[0-9A−Z.]+(-\w*)?</version>" pom.xml | grep -oP "\d+.\d+.\d+(-\w*)?"`
 echo "Current version: $current"
+remote_tag=gchange-pod-$current
 
 ### Get repo URL
 REMOTE_URL=`git remote -v | grep -P "push" | grep -oP "(https:\/\/github.com\/|git@github.com:)[^ ]+"`
@@ -30,7 +31,7 @@ fi
 
 case "$1" in
   del)
-    result=`curl -i "$REPO_URL/releases/tags/v$current"`
+    result=`curl -i "$REPO_URL/releases/tags/$remote_tag"`
     release_url=`echo "$result" | grep -P "\"url\": \"[^\"]+"  | grep -oP "$REPO_URL/releases/\d+"`
     if [[ $release_url != "" ]]; then
         echo "Deleting existing release..."
@@ -51,7 +52,7 @@ case "$1" in
         description="Release v$current"
     fi
 
-    result=`curl -s -H ''"$GITHUT_AUTH"'' "$REPO_URL/releases/tags/v$current"`
+    result=`curl -s -H ''"$GITHUT_AUTH"'' "$REPO_URL/releases/tags/$remote_tag"`
     release_url=`echo "$result" | grep -P "\"url\": \"[^\"]+" | grep -oP "https://[A-Za-z0-9/.-]+/releases/\d+"`
     if [[ "_$release_url" != "_" ]]; then
         echo "Deleting existing release... $release_url"
@@ -66,9 +67,9 @@ case "$1" in
     fi
 
     echo "Creating new release..."
-    echo " - tag: v$current"
+    echo " - tag: $remote_tag"
     echo " - description: $description"
-    result=`curl -H ''"$GITHUT_AUTH"'' -s $REPO_URL/releases -d '{"tag_name": "v'"$current"'","target_commitish": "master","name": "'"$current"'","body": "'"$description"'","draft": false,"prerelease": '"$prerelease"'}'`
+    result=`curl -H ''"$GITHUT_AUTH"'' -s $REPO_URL/releases -d '{"tag_name": "'"$remote_tag"'","target_commitish": "master","name": "'"$current"'","body": "'"$description"'","draft": false,"prerelease": '"$prerelease"'}'`
     #echo "$result"
     upload_url=`echo "$result" | grep -P "\"upload_url\": \"[^\"]+"  | grep -oP "https://[A-Za-z0-9/.-]+"`
 
