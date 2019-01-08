@@ -55,7 +55,7 @@
     <license.useMissingFile>true</license.useMissingFile>
     <license.failIfWarning>true</license.failIfWarning>
     <license.organizationName>${project.organization.name}</license.organizationName>
-    <license.licenseName>gpl_v3</license.licenseName>
+    <license.licenseName>agpl_v3</license.licenseName>
 
     <!-- release config -->
     <autoVersionSubmodules>true</autoVersionSubmodules>
@@ -103,8 +103,8 @@
 
   <licenses>
     <license>
-      <name>General Public License (GPL) v3</name>
-      <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+      <name>Affero General Public License (GPL) v3</name>
+      <url>http://www.gnu.org/licenses/agpl-3.0.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
