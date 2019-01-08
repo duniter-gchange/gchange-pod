@@ -4,7 +4,7 @@
 # (we use /tmp/ps_out as a workaround, to skip Warning message that can be sent by /bin/ps
 PID=`ps -efl | grep gchange-pod | grep lib/elasticsearch > /tmp/ps_out && cat /tmp/ps_out | awk '{printf "%s", $4}'`
 
-if [ "$PID" != "" ];
+if [[ "$PID" != "" ]];
 then
         echo "Stopping Gchange-pod running on PID $PID..."
         sudo kill -15 $PID
@@ -13,13 +13,13 @@ then
 
         # Check if still alive
         PID=`ps -efl | grep gchange-pod | grep lib/elasticsearch > /tmp/ps_out && cat /tmp/ps_out | awk '{printf "%s", $4}'`
-        if [ "$PID" != "" ];
+        if [[ "$PID" != "" ]];
         then
                 sleep 10s
         fi
 
         PID=`ps -efl | grep gchange-pod | grep lib/elasticsearch > /tmp/ps_out && cat /tmp/ps_out | awk '{printf "%s", $4}'`
-        if [ "$PID" != "" ];
+        if [[ "$PID" != "" ]];
         then 
                 echo "Error: Unable to stop Gchange-pod !"
                 exit -1
