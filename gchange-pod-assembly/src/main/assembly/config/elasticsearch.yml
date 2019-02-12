@@ -195,7 +195,7 @@ duniter.security.enable: true
 #
 # Enable discovery on network peers, to automatically synchronize this peers (default: true)
 #
-duniter.p2p.discovery.enable: false
+duniter.p2p.discovery.enable: true
 #
 # Pass a list of hosts to always synchronize (default: <empty>)
 #
@@ -215,11 +215,17 @@ duniter.p2p.includes.endpoints: [
 #
 # duniter.p2p.fullResyncAtStartup: true
 #
+# Peer API to index (default : ["BASIC_MERKLE_API", "BMAS", "WS2P" ] UNION ${duniter.p2p.peering.targetedApis} UNION ${duniter.p2p.peering.publishedApis})
+#
+duniter.p2p.peer.indexedApis: [
+  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
+]
+#
 # Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
 #
-# duniter.p2p.peering.enable: false
+duniter.p2p.peering.enable: true
 #
-# Define targeted API (for peers slection) where to send the peer document (if peering is enable). (Default: ["BASIC_MERKLED_API", "BMAS"])
+# Define targeted API (for peers selection) where to send the peer document (if peering is enable). (Default: ["BASIC_MERKLED_API", "BMAS"])
 # This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
 #
 duniter.p2p.peering.targetedApis: [
@@ -306,6 +312,7 @@ duniter.subscription.enable: false
 # Email subscription: URL to a web site, for links in the email content (default: https://g1.duniter.fr)
 #
 duniter.subscription.email.link.url: 'https://gchange.fr'
+duniter.subscription.email.link.name: 'Ğchange'
 #
 # ---------------------------------- Cesium+ Pod > Share module -------------------
 #

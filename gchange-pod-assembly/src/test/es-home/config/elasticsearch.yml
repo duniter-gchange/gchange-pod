@@ -167,7 +167,7 @@ duniter.network.timeout: 500
 #
 duniter.software.name: gchange-pod
 #
-# ---------------------------------- Cesium+ Pod security module -------------------
+# ---------------------------------- Cesium+ Pod > security module -------------------
 #
 # Keyring, use to sign emitted documents (user events, subscription, etc.).
 # If not set, random keys will be generated.
@@ -179,7 +179,7 @@ duniter.keyring.password: def
 #
 duniter.security.enable: true
 #
-# ---------------------------------- Cesium+ Pod P2P module -------------------------
+# ---------------------------------- Cesium+ Pod > P2P module -------------------------
 #
 # Enable P2P synchronize between ES peers ? (default: true)
 #
@@ -195,7 +195,7 @@ duniter.p2p.peerTimeOffset: 7200
 #
 # Enable discovery on network peers, to automatically synchronize this peers (default: true)
 #
-duniter.p2p.discovery.enable: false
+duniter.p2p.discovery.enable: true
 #
 # Pass a list of hosts to always synchronize (default: <empty>)
 #
@@ -214,7 +214,13 @@ duniter.p2p.includes.pubkeys: [
 #
 # Enable a full synchro. This will compare each documents from other peers.
 #
-duniter.p2p.fullResyncAtStartup: true
+# duniter.p2p.fullResyncAtStartup: true
+#
+# Peer API to index (default : ["BASIC_MERKLE_API", "BMAS", "WS2P" ] UNION ${duniter.p2p.peering.targetedApis} UNION ${duniter.p2p.peering.publishedApis})
+#
+duniter.p2p.peer.indexedApis: [
+  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
+]
 #
 # Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
 #
@@ -224,10 +230,10 @@ duniter.p2p.peering.enable: true
 # This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
 #
 duniter.p2p.peering.targetedApis: [
-  "GCHANGE_API"
+  "GCHANGE_API", "ES_CORE_API"
 ]
 #
-# Define cluster API to publish (if peering is enable). By default, all compatible API
+# Define cluster API to publish (if peering is enable). By default, all compatible APIs
 #
 # duniter.p2p.peering.publishedApis: [
 #  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
@@ -287,13 +293,13 @@ duniter.mail.enable: false
 #
 duniter.mail.subject.prefix: '[ğchange-test]'
 #
-# ---------------------------------- Cesium+ Pod Websocket server ----------------------
+# ---------------------------------- Cesium+ Pod > Websocket server ----------------------
 #
 # Websocket port (default: 9400-9410)
 #
 duniter.ws.port: 9400-9410
 #
-# ---------------------------------- Cesium+ Pod Subscription module -------------------
+# ---------------------------------- Cesium+ Pod > Subscription module -------------------
 #
 # Enable subscription module (Need to enable mail features)
 #
@@ -315,8 +321,9 @@ duniter.subscription.email.hourOfDay: 18
 # Email subscription: URL to a web site, for links in the email content (default: https://g1.duniter.fr)
 #
 duniter.subscription.email.link.url: 'https://gchange.fr'
+duniter.subscription.email.link.name: 'Ğchange'
 #
-# ---------------------------------- Cesium+ Pod Share module -------------------
+# ---------------------------------- Cesium+ Pod > Share module -------------------
 #
 #
 # Share title: `og:site_name` (default: 'Cesium')
