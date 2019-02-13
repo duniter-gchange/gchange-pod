@@ -89,8 +89,8 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
         return delegate.getNodePubkey();
     }
 
-    public org.duniter.core.client.model.local.Peer checkAndGetPeer() {
-        return delegate.getDelegate().checkAndGetPeer();
+    public org.duniter.core.client.model.local.Peer checkAndGetDuniterPeer() {
+        return delegate.getDelegate().checkAndGetDuniterPeer();
     }
 
     public String getClusterRemoteHost() {

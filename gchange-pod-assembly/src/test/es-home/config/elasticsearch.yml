@@ -117,7 +117,7 @@ http.cors.enabled: true
 #
 security.manager.enabled: false
 #
-# ---------------------------------- Duniter4j ---------------------------------
+# ---------------------------------- Cesium+ Pod ---------------------------------
 #
 # Enable duniter plugins (default: true)
 #
@@ -145,7 +145,7 @@ duniter.blockchain.event.user.enable: false
 #
 # Enable events for the node admin (e.g. node start/stop) (default: true)
 #
-duniter.blockchain.event.admin.enable: true
+# duniter.blockchain.event.admin.enable: false
 #
 # Force blockchain full synchronization - /!\ WARNING: all user events will be reset to 'unread'
 #
@@ -157,7 +157,7 @@ duniter.blockchain.event.admin.enable: true
 duniter.host: g1.duniter.fr
 duniter.port: 443
 duniter.useSsl: true
-duniter.network.timeout: 500
+# duniter.network.timeout: 5000
 #
 # Compute statistics on indices (each hour) ? (default: true)
 #
@@ -208,9 +208,9 @@ duniter.p2p.includes.endpoints: [
 #
 # Pass a list of pubkeys to always synchronize (default: <empty>)
 #
-duniter.p2p.includes.pubkeys: [
- "HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz"
-]
+#duniter.p2p.includes.pubkeys: [
+# "HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz"
+#]
 #
 # Enable a full synchro. This will compare each documents from other peers.
 #
@@ -237,14 +237,11 @@ duniter.p2p.peering.targetedApis: [
 #
 # duniter.p2p.peering.publishedApis: [
 #  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
-# ]
-duniter.p2p.peering.publishedApis: [
-  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
-]
+#]
 #
 # Interval for publishing peer document to the network, in seconds. (Default: 7200 =2h)
 #
-duniter.p2p.peering.interval: 60
+# duniter.p2p.peering.interval: 7200
 #
 # ---------------------------------- Cesium+ Pod > document moderation ---------------
 #
@@ -295,9 +292,9 @@ duniter.mail.subject.prefix: '[ğchange-test]'
 #
 # ---------------------------------- Cesium+ Pod > Websocket server ----------------------
 #
-# Websocket port (default: 9400-9410)
+# Websocket port (default: ${http.port})
 #
-duniter.ws.port: 9400-9410
+# duniter.ws.port: 9400-9410
 #
 # ---------------------------------- Cesium+ Pod > Subscription module -------------------
 #

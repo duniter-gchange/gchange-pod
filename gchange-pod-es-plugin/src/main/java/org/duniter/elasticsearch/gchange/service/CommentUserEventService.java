@@ -169,7 +169,7 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
     private void processUpdateComment(String index, String type, String commentId, RecordComment comment) {
 
         processUpdateOrCreateComment(index, type, commentId, comment,
-                GchangeEventCodes.UPDATE_COMMENT, String.format("duniter.%s.event.%", index.toLowerCase(), GchangeEventCodes.UPDATE_COMMENT.name()),
+                GchangeEventCodes.UPDATE_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.UPDATE_COMMENT.name()),
                 GchangeEventCodes.UPDATE_REPLY_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.UPDATE_REPLY_COMMENT));
     }
 

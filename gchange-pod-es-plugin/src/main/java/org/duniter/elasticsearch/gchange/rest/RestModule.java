@@ -23,6 +23,7 @@ package org.duniter.elasticsearch.gchange.rest;
  */
 
 import org.duniter.elasticsearch.gchange.rest.market.*;
+import org.duniter.elasticsearch.gchange.rest.mixed.RestMixedSearchAction;
 import org.duniter.elasticsearch.gchange.rest.registry.*;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.inject.Module;
@@ -47,5 +48,8 @@ public class RestModule extends AbstractModule implements Module {
         bind(RestRegistryCommentUpdateAction.class).asEagerSingleton();
         bind(RestRegistryCategoryAction.class).asEagerSingleton();
         bind(RestRegistryImageAction.class).asEagerSingleton();
+
+        //Mixed search
+        bind(RestMixedSearchAction.class).asEagerSingleton();
     }
 }

@@ -291,9 +291,9 @@ duniter.mail.subject.prefix: '[ğchange]'
 #
 # ---------------------------------- Cesium+ Pod > Websocket server ----------------------
 #
-# Websocket port (default: 9400-9410)
+# Websocket port (default: ${http.port})
 #
-duniter.ws.port: 9400-9410
+# duniter.ws.port: 9400-9410
 #
 # ---------------------------------- Cesium+ Pod > Subscription module -------------------
 #
