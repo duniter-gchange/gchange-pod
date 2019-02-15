@@ -230,14 +230,14 @@ duniter.p2p.peering.enable: true
 # This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
 #
 duniter.p2p.peering.targetedApis: [
-  "GCHANGE_API", "ES_CORE_API"
+  "GCHANGE_API"
 ]
 #
 # Define cluster API to publish (if peering is enable). By default, all compatible APIs
 #
-# duniter.p2p.peering.publishedApis: [
-#  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
-#]
+duniter.p2p.peering.publishedApis: [
+  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
+]
 #
 # Interval for publishing peer document to the network, in seconds. (Default: 7200 =2h)
 #
