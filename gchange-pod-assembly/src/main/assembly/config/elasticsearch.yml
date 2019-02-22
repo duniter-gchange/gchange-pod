@@ -123,6 +123,10 @@ security.manager.enabled: false
 #
 # duniter.enable: false
 #
+# Endpoint API for core module (indices on blockchain, peers, etc) (default: ES_CORE_API)
+#
+duniter.core.api: "GCHANGE_API"
+#
 # Delete then create all indices at startup - /!\ WARNING: DO NOT set to true in production
 #
 # duniter.indices.reload: true
