@@ -119,7 +119,7 @@ security.manager.enabled: false
 #
 # ---------------------------------- Cesium+ Pod ---------------------------------
 #
-# Enable duniter plugins (default: true)
+# Enable Cesium+ pod plugins (default: true)
 #
 # duniter.enable: false
 #
@@ -135,11 +135,13 @@ duniter.string.analyzer: french
 #
 duniter.blockchain.enable: true
 #
-# Enabling blockchain peers indexation ? (default: ${duniter.blockchain.enable}) /!\ WARNING: should always be DISABLE
+# Enabling blockchain peers indexation ? (default: ${duniter.blockchain.enable})
+# /!\ WARNING: should always be DISABLE for gchange-pod
 #
 duniter.blockchain.peer.enable: false
 #
-# Enable user event on blockchain ? (default: true) /!\ WARNING: should always be DISABLE
+# Enable user event on blockchain ? (default: true)
+# /!\ WARNING: should always be DISABLE for gchange-pod
 #
 duniter.blockchain.event.user.enable: false
 #
@@ -195,7 +197,7 @@ duniter.security.enable: true
 #
 # Enable discovery on network peers, to automatically synchronize this peers (default: true)
 #
-duniter.p2p.discovery.enable: true
+# duniter.p2p.discovery.enable: false
 #
 # Pass a list of hosts to always synchronize (default: <empty>)
 #
@@ -218,7 +220,7 @@ duniter.p2p.includes.endpoints: [
 # Peer API to index (default : ["BASIC_MERKLE_API", "BMAS", "WS2P" ] UNION ${duniter.p2p.peering.targetedApis} UNION ${duniter.p2p.peering.publishedApis})
 #
 duniter.p2p.peer.indexedApis: [
-  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
+  "GCHANGE_API"
 ]
 #
 # Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
@@ -229,14 +231,14 @@ duniter.p2p.peering.enable: true
 # This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
 #
 duniter.p2p.peering.targetedApis: [
-  "GCHANGE_API", "ES_CORE_API"
+  "GCHANGE_API"
 ]
 #
-# Define cluster API to publish (if peering is enable). By default, all compatible APIs
+# Define cluster API to publish (if peering is enable). By default, all compatible API
 #
-# duniter.p2p.peering.publishedApis: [
-#  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
-# ]
+duniter.p2p.peering.publishedApis: [
+  "GCHANGE_API"
+]
 #
 # Interval for publishing peer document to the network, in seconds. (Default: 7200 =2h)
 #
@@ -287,7 +289,7 @@ duniter.mail.enable: false
 #
 # Mail: subject prefix
 #
-duniter.mail.subject.prefix: '[ğchange]'
+duniter.mail.subject.prefix: '[Ğchange]'
 #
 # ---------------------------------- Cesium+ Pod > Websocket server ----------------------
 #
@@ -295,11 +297,25 @@ duniter.mail.subject.prefix: '[ğchange]'
 #
 # duniter.ws.port: 9400-9410
 #
+# ---------------------------------- Cesium+ Pod > User module ---------------------------
+#
+# Enable user module (Allow to store User profile, private message, page, group...) (default: true)
+#
+# duniter.user.enable: false
+#
+# Endpoint API for user data (use by P2P synchronization) (default: ES_USER_API)
+#
+duniter.user.api: GCHANGE_API
+#
 # ---------------------------------- Cesium+ Pod > Subscription module -------------------
 #
-# Enable subscription module (Need to enable mail features)
+# Enable subscription module (Need to enable mail features) (default: true)
 #
-duniter.subscription.enable: false
+# duniter.subscription.enable: false
+#
+# Endpoint API for subscription data (use by P2P synchronization) (default: ES_SUBSCRIPTION_API)
+#
+duniter.subscription.api: GCHANGE_API
 #
 # Email subscription: Day of the week to trigger weekly (default: 2 = monday)
 #
@@ -312,6 +328,9 @@ duniter.subscription.enable: false
 # Email subscription: URL to a web site, for links in the email content (default: https://g1.duniter.fr)
 #
 duniter.subscription.email.link.url: 'https://gchange.fr'
+#
+# Name of the button in the email, to access to notifications (default: 'Cesium')
+#
 duniter.subscription.email.link.name: 'Ğchange'
 #
 # ---------------------------------- Cesium+ Pod > Share module -------------------
