@@ -125,7 +125,7 @@ security.manager.enabled: false
 #
 # Endpoint API for core module (indices on blockchain, peers, etc) (default: ES_CORE_API)
 #
-duniter.core.api: "GCHANGE_API"
+duniter.core.api: GCHANGE_API
 #
 # Delete then create all indices at startup - /!\ WARNING: DO NOT set to true in production
 #
@@ -294,12 +294,6 @@ duniter.mail.enable: false
 # Mail: subject prefix
 #
 duniter.mail.subject.prefix: '[Ğchange]'
-#
-# ---------------------------------- Cesium+ Pod > Websocket server ----------------------
-#
-# Websocket port (default: ${http.port})
-#
-# duniter.ws.port: 9400-9410
 #
 # ---------------------------------- Cesium+ Pod > User module ---------------------------
 #
