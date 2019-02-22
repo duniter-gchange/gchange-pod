@@ -206,9 +206,6 @@ duniter.p2p.discovery.enable: true
 # Pass a list of hosts to always synchronize (default: <empty>)
 #
 duniter.p2p.includes.endpoints: [
-  "ES_CORE_API data.gchange.fr 443",
-  "ES_USER_API data.gchange.fr 443",
-  "ES_SUBSCRIPTION_API data.gchange.fr 443",
   "GCHANGE_API data.gchange.fr 443"
 ]
 #
@@ -225,7 +222,7 @@ duniter.p2p.includes.endpoints: [
 # Peer API to index (default : ["BASIC_MERKLE_API", "BMAS", "WS2P" ] UNION ${duniter.p2p.peering.targetedApis} UNION ${duniter.p2p.peering.publishedApis})
 #
 duniter.p2p.peer.indexedApis: [
-  "ES_CORE_API", "ES_USER_API", "ES_SUBSCRIPTION_API", "GCHANGE_API"
+  "GCHANGE_API"
 ]
 #
 # Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
@@ -306,7 +303,7 @@ duniter.mail.subject.prefix: '[ğchange-test]'
 #
 # Enable user module (Allow to store User profile, private message, page, group...) (default: true)
 #
-duniter.user.enable: true
+# duniter.user.enable: false
 #
 # Endpoint API for user data (use by P2P synchronization) (default: ES_USER_API)
 #
@@ -316,7 +313,7 @@ duniter.user.api: GCHANGE_API
 #
 # Enable subscription module (Need to enable mail features) (default: true)
 #
-duniter.subscription.enable: true
+# duniter.subscription.enable: false
 #
 # Endpoint API for subscription data (use by P2P synchronization) (default: ES_SUBSCRIPTION_API)
 #

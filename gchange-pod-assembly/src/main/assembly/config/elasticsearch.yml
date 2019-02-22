@@ -206,9 +206,6 @@ duniter.security.enable: true
 # Pass a list of hosts to always synchronize (default: <empty>)
 #
 duniter.p2p.includes.endpoints: [
-  "ES_CORE_API data.gchange.fr 443",
-  "ES_USER_API data.gchange.fr 443",
-  "ES_SUBSCRIPTION_API data.gchange.fr 443",
   "GCHANGE_API data.gchange.fr 443"
 ]
 #
