@@ -44,7 +44,7 @@ public class RestMarketShareLinkAction extends AbstractRestShareLinkAction imple
             MarketRecord record = service.getRecordForSharing(id);
 
             OGData data = new OGData();
-            String siteName = pluginSettings.getDelegate().getShareSiteName();
+            String siteName = pluginSettings.getShareSiteName();
 
             if (record != null) {
 
@@ -66,8 +66,8 @@ public class RestMarketShareLinkAction extends AbstractRestShareLinkAction imple
                     data.image += RestImageAttachmentAction.computeImageUrl(MarketIndexDao.INDEX, MarketRecordDao.TYPE, id, MarketRecord.PROPERTY_THUMBNAIL, record.getThumbnail().get("_content_type"));
 
                     // At least 200x200px (need by social network as FB)
-                    data.imageHeight = 200;
-                    data.imageWidth = 200;
+                    data.imageHeight = OGData.MIN_IMAGE_HEIGHT;
+                    data.imageWidth = OGData.MIN_IMAGE_WIDTH;
                 }
 
                 // og:url
@@ -97,10 +97,10 @@ public class RestMarketShareLinkAction extends AbstractRestShareLinkAction imple
 
             // default og:image
             if (StringUtils.isBlank(data.image)) {
-                data.image = pluginSettings.getDelegate().getShareDefaultImageUrl();
+                data.image = pluginSettings.getShareDefaultImageUrl();
                 data.imageType = "image/png";
-                data.imageHeight = 200;
-                data.imageWidth = 200;
+                data.imageHeight = OGData.MIN_IMAGE_HEIGHT;
+                data.imageWidth = OGData.MIN_IMAGE_WIDTH;
             }
 
             return data;

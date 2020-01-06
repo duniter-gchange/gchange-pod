@@ -347,7 +347,7 @@ duniter.share.user.link.url: 'https://gchange.fr/#/app/wot/{pubkey}/{title}'
 #
 # Default image to share (min size of 200x200px) for `og:image` (default: https://g1.duniter.fr/img/logo_200px.png)
 #
-duniter.share.image.default.url: 'https://gchange.fr/img/logo_256px.png'
+duniter.share.image.default.url: 'https://gchange.fr/img/logo_200px.png'
 #
 #
 # Share market link (e.g. Ad): (default: https://gchange.fr/#/app/market/view/{id}/{title} )

@@ -23,18 +23,11 @@ package org.duniter.elasticsearch.gchange;
  */
 
 
-import org.duniter.core.client.config.Configuration;
 import org.duniter.core.client.model.bma.EndpointApi;
-import org.duniter.core.util.crypto.KeyPair;
-import org.duniter.elasticsearch.i18n.I18nInitializer;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
-import org.nuiton.i18n.I18n;
 
-import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
 
 /**
  * Access to configuration options
@@ -47,13 +40,16 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
 
     @Inject
     public PluginSettings(org.elasticsearch.common.settings.Settings settings,
-                          org.duniter.elasticsearch.user.PluginSettings delegate) {
+                          org.duniter.elasticsearch.PluginSettings corePluginSettings,
+                          org.duniter.elasticsearch.user.PluginSettings userPluginSettings) {
         super(settings);
-        this.delegate = delegate;
+        this.delegate = userPluginSettings;
 
         // Add i18n bundle name
-        delegate.addI18nBundleName(getI18nBundleName());
+        userPluginSettings.addI18nBundleName(getI18nBundleName());
 
+        // Override the version of the pod software
+        corePluginSettings.setSoftwareDefaultVersion(getPackageVersion());
     }
 
     @Override
@@ -85,28 +81,12 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
 
     /* -- delegate methods -- */
 
-    public String getNodePubkey() {
-        return delegate.getNodePubkey();
+    public String getShareSiteName() {
+        return delegate.getShareSiteName();
     }
 
-    public org.duniter.core.client.model.local.Peer checkAndGetDuniterPeer() {
-        return delegate.getDelegate().checkAndGetDuniterPeer();
-    }
-
-    public String getClusterRemoteHost() {
-        return delegate.getClusterRemoteHost();
-    }
-
-    public int getClusterRemotePort() {
-        return delegate.getClusterRemotePort();
-    }
-
-    public boolean getClusterRemoteUseSsl() {
-        return delegate.getClusterRemoteUseSsl();
-    }
-
-    public KeyPair getNodeKeypair() {
-        return delegate.getNodeKeypair();
+    public String getShareDefaultImageUrl() {
+        return delegate.getShareDefaultImageUrl();
     }
 
     public String getClusterRemoteUrlOrNull() {
@@ -117,13 +97,6 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
         return delegate.reloadAllIndices();
     }
 
-    public boolean enableSynchro() {
-        return delegate.enableSynchro();
-    }
-
-    public boolean enablePeering() {
-        return this.delegate.enablePeering();
-    }
 
     public Collection<EndpointApi> getPeeringTargetedApis() {
         return this.delegate.getPeeringTargetedApis();
@@ -137,74 +110,6 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
         return delegate.enableDocStats();
     }
 
-    public boolean getMailEnable() {
-        return delegate.getMailEnable();
-    }
-
-    public String getMailSmtpHost() {
-        return delegate.getMailSmtpHost();
-    }
-
-    public int getMailSmtpPort() {
-        return delegate.getMailSmtpPort();
-    }
-
-    public String getMailSmtpUsername() {
-        return delegate.getMailSmtpUsername();
-    }
-
-    public String getMailSmtpPassword() {
-        return delegate.getMailSmtpPassword();
-    }
-
-    public String getMailAdmin() {
-        return delegate.getMailAdmin();
-    }
-
-    public String getMailFrom() {
-        return delegate.getMailFrom();
-    }
-
-    public String getMailSubjectPrefix() {
-        return delegate.getMailSubjectPrefix();
-    }
-
-    public String getClusterName() {
-        return delegate.getClusterName();
-    }
-
-    public String getNodeBmaHost() {
-        return delegate.getNodeBmaHost();
-    }
-
-    public int getNodeBmaPort() {
-        return delegate.getNodeBmaPort();
-    }
-
-    public int getIndexBulkSize() {
-        return delegate.getIndexBulkSize();
-    }
-
-    public boolean enableBlockchainSync() {
-        return delegate.enableBlockchainSync();
-    }
-
-    public String getKeyringSalt() {
-        return delegate.getKeyringSalt();
-    }
-
-    public String getKeyringPassword() {
-        return delegate.getKeyringPassword();
-    }
-
-    public String getKeyringPublicKey() {
-        return delegate.getKeyringPublicKey();
-    }
-
-    public String getKeyringSecretKey() {
-        return delegate.getKeyringSecretKey();
-    }
-
     public String getDefaultStringAnalyzer() {
         return delegate.getDefaultStringAnalyzer();
     }
@@ -213,5 +118,20 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
 
     protected String getI18nBundleName() {
         return "gchange-pod-es-plugin-i18n";
+    }
+
+
+    /**
+     * Override the version default option, from the MANIFEST implementation version (if any)
+     * @param applicationConfig
+     */
+    protected String getPackageVersion() {
+        // Override application version
+        Package currentPackage = this.getClass().getPackage();
+        String newVersion = currentPackage.getImplementationVersion();
+        if (newVersion == null) {
+            newVersion = currentPackage.getSpecificationVersion();
+        }
+        return newVersion;
     }
 }

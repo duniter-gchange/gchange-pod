@@ -32,7 +32,6 @@ import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.gchange.service.RegistryService;
 import org.duniter.elasticsearch.service.DocStatService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
-import org.elasticsearch.cluster.health.ClusterHealthStatus;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.Injector;
@@ -53,7 +52,6 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
     @Inject
     public PluginInit(Settings settings,
                       PluginSettings pluginSettings,
-
                       ThreadPool threadPool,
                       final Injector injector) {
         super(settings);
@@ -61,13 +59,18 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
         this.pluginSettings = pluginSettings;
         this.threadPool = threadPool;
         this.injector = injector;
+
     }
 
     @Override
     protected void doStart() {
-        threadPool.scheduleOnClusterHealthStatus(() -> {
+        threadPool.scheduleOnMasterEachStart(() -> {
+            // Make sure all indices exists
             createIndices();
-        }, ClusterHealthStatus.YELLOW, ClusterHealthStatus.GREEN);
+
+            // Config the statistics on market documents
+            configDocStats();
+        });
     }
 
     @Override
@@ -111,6 +114,10 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
             }
         }
 
+    }
+
+    protected void configDocStats() {
+
         // Register stats on indices
         if (pluginSettings.enableDocStats()) {
             injector.getInstance(DocStatService.class)
@@ -121,5 +128,6 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
             ;
         }
     }
+
 
 }
