@@ -19,11 +19,11 @@ logger:
   duniter.security: ERROR
   duniter.user.event: DEBUG
   duniter.network.p2p: INFO
-  duniter.p2p: INFO
+  duniter.p2p: DEBUG
   gchange: DEBUG
   security: DEBUG
 
-  org.duniter: INFO
+  org.duniter: DEBUG
   org.duniter.core.beans: DEBUG
   org.duniter.elasticsearch: DEBUG
   org.duniter.elasticsearch.service: DEBUG

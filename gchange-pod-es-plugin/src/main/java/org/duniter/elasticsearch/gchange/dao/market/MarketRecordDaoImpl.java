@@ -118,7 +118,7 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // type (offer, need, ...)
-                    .startObject("type")
+                    .startObject(MarketRecord.PROPERTY_TYPE)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()

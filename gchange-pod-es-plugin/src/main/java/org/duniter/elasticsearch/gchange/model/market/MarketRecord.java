@@ -41,6 +41,7 @@ public class MarketRecord extends Record {
     public static final String PROPERTY_FEES_CURRENCY="feesCurrency";
     public static final String PROPERTY_THUMBNAIL="thumbnail";
     public static final String PROPERTY_STOCK="stock";
+    public static final String PROPERTY_TYPE="type";
 
     private String title;
     private String description;
@@ -51,6 +52,7 @@ public class MarketRecord extends Record {
     private String feesCurrency;
     private String currency;
     private Integer stock;
+    private String type;
 
     public String getTitle() {
         return title;

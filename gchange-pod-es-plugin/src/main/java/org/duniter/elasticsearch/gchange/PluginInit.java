@@ -64,7 +64,7 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
 
     @Override
     protected void doStart() {
-        threadPool.scheduleOnMasterEachStart(() -> {
+        threadPool.onMasterStart(() -> {
             // Make sure all indices exists
             createIndices();
 

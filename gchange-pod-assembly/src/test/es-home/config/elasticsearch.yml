@@ -71,7 +71,9 @@ cluster.remote.port: 9200
 
 http.cors.allow-origin: "/.*/"
 http.cors.enabled: true
-
+#
+#http.compression: true
+#
 # Internal transport layer
 #
 # transport.tcp.port: 9210-9220
@@ -85,7 +87,7 @@ http.cors.enabled: true
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
 # discovery.zen.ping.unicast.hosts: ["host1", "host2"]
-# discovery.zen.ping.unicast.hosts: ["127.0.0.1", ""]
+# discovery.zen.ping.unicast.hosts: ["127.0.0.1"]
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
@@ -163,7 +165,10 @@ duniter.blockchain.event.user.enable: false
 duniter.host: g1.duniter.fr
 duniter.port: 443
 duniter.useSsl: true
-# duniter.network.timeout: 5000
+#
+# Network timeout, in millisecond (default: 20000 = 20s)
+#
+duniter.network.timeout: 5000
 #
 # Compute statistics on indices (each hour) ? (default: true)
 #
@@ -178,8 +183,8 @@ duniter.software.name: gchange-pod
 # Keyring, use to sign emitted documents (user events, subscription, etc.).
 # If not set, random keys will be generated.
 #
-duniter.keyring.salt: abc
-duniter.keyring.password: def
+duniter.keyring.salt: 'abc'
+duniter.keyring.password: 'def'
 #
 # Enable security - will restrict HTTP access to only known ES indices - /!\ WARNING: should be enable for production use
 #
@@ -217,7 +222,7 @@ duniter.p2p.includes.endpoints: [
 #
 # Enable a full synchro. This will compare each documents from other peers.
 #
-# duniter.p2p.fullResyncAtStartup: true
+duniter.p2p.fullResyncAtStartup: true
 #
 # Peer API to index (default : ["BASIC_MERKLE_API", "BMAS", "WS2P" ] UNION ${duniter.p2p.peering.targetedApis} UNION ${duniter.p2p.peering.publishedApis})
 #
@@ -227,7 +232,7 @@ duniter.p2p.peer.indexedApis: [
 #
 # Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
 #
-duniter.p2p.peering.enable: true
+# duniter.p2p.peering.enable: false
 #
 # Define targeted API (for peers selection) where to send the peer document (if peering is enable). (Default: ["BASIC_MERKLED_API", "BMAS"])
 # This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
@@ -289,7 +294,7 @@ duniter.mail.enable: false
 #
 # duniter.mail.admin: user@domain.com
 #
-# Mail: subject prefix
+# Mail: subject prefix (default: '[Cesium+]')
 #
 duniter.mail.subject.prefix: '[ğchange-test]'
 #
@@ -319,7 +324,7 @@ duniter.user.api: GCHANGE_API
 #
 duniter.subscription.api: GCHANGE_API
 #
-# Opions to DEBUG this features
+# Options to debug this features (DEV only) (default: false)
 #
 duniter.subscription.email.atStartup: true
 duniter.subscription.email.debug: true
@@ -361,6 +366,7 @@ duniter.share.user.link.url: 'https://gchange.fr/#/app/wot/{pubkey}/{title}'
 #
 duniter.share.image.default.url: 'https://gchange.fr/img/logo_256px.png'
 #
+# ---------------------------------- Gchange Pod > main module -------------------
 #
 # Share market link (e.g. Ad): (default: https://gchange.fr/#/app/market/view/{id}/{title} )
 # Note: available variables are {id} and {title}

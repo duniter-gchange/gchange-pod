@@ -46,6 +46,7 @@ import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.service.changes.ChangeEvent;
 import org.duniter.elasticsearch.service.changes.ChangeService;
 import org.duniter.elasticsearch.service.changes.ChangeSource;
+import org.duniter.elasticsearch.user.model.DocumentReference;
 import org.duniter.elasticsearch.user.model.UserEvent;
 import org.duniter.elasticsearch.user.service.UserEventService;
 import org.duniter.elasticsearch.user.service.UserService;
@@ -254,7 +255,7 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
         if (change.getId() == null) return;
 
         // Delete events that reference this block
-        userEventService.deleteEventsByReference(new UserEvent.Reference(change.getIndex(), change.getType(), change.getId()));
+        userEventService.deleteEventsByReference(new DocumentReference(change.getIndex(), change.getType(), change.getId()));
     }
 
     private RecordComment readComment(ChangeEvent change) {
