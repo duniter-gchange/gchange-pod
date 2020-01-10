@@ -79,6 +79,10 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
         return this.settings.get("duniter.share.market.link.url", getGchangeUrl() + "/#/app/market/view/{id}/{title}");
     }
 
+    public boolean synchronizeClosedAds() {
+        return this.settings.getAsBoolean("duniter.p2p.market.closedAd", Boolean.FALSE);
+    }
+
     /* -- delegate methods -- */
 
     public String getShareSiteName() {

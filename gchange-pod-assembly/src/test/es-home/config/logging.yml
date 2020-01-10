@@ -18,7 +18,7 @@ logger:
   duniter: DEBUG
   duniter.security: ERROR
   duniter.user.event: DEBUG
-  duniter.network.p2p: INFO
+  duniter.network: INFO
   duniter.p2p: DEBUG
   gchange: DEBUG
   security: DEBUG

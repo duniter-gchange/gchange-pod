@@ -15,6 +15,7 @@ logger:
   com.amazonaws.metrics.AwsSdkMetrics: ERROR
 
   duniter: INFO
+  duniter.p2p: INFO
   duniter.security: ERROR
   gchange: INFO
   security: INFO

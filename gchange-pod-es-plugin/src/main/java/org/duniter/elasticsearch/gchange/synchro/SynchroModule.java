@@ -34,7 +34,7 @@ public class SynchroModule extends AbstractModule implements Module {
 
     @Override protected void configure() {
         // Market
-        //bind(SynchroMarketRecordAction.class).asEagerSingleton();
+        bind(SynchroMarketRecordAction.class).asEagerSingleton();
         bind(SynchroMarketCommentAction.class).asEagerSingleton();
 
         // Registry

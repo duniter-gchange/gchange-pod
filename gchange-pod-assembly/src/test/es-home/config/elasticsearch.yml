@@ -146,6 +146,11 @@ duniter.blockchain.enable: true
 #
 duniter.blockchain.peer.enable: false
 #
+# Enabling pending memberships indexation ? (default: ${duniter.blockchain.enable})
+# /!\ WARNING: should always be DISABLE for gchange-pod
+#
+duniter.blockchain.membership.pending.enable: false
+#
 # Enable user event on blockchain ? (default: true)
 # /!\ WARNING: should always be DISABLE for gchange-pod
 #
@@ -222,7 +227,7 @@ duniter.p2p.includes.endpoints: [
 #
 # Enable a full synchro. This will compare each documents from other peers.
 #
-duniter.p2p.fullResyncAtStartup: true
+#duniter.p2p.fullResyncAtStartup: true
 #
 # Peer API to index (default : ["BASIC_MERKLE_API", "BMAS", "WS2P" ] UNION ${duniter.p2p.peering.targetedApis} UNION ${duniter.p2p.peering.publishedApis})
 #
