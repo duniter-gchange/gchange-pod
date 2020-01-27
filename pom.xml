@@ -116,8 +116,8 @@
 
   <scm>
     <url>https://github.com/duniter-gchange/gchange-pod.git</url>
-    <connection>scm:git:https://github.com/duniter-gchange/gchange-pod.git</connection>
-    <developerConnection>scm:git:https://github.com/duniter-gchange/gchange-pod.git</developerConnection>
+    <connection>scm:git:git@github.com:duniter-gchange/gchange-pod.git</connection>
+    <developerConnection>scm:git:git@github.com:duniter-gchange/gchange-pod.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
