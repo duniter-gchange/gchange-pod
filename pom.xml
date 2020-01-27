@@ -35,7 +35,7 @@
     <jna.version>4.1.0</jna.version>
     <tyrus.version>1.14</tyrus.version>
 
-    <cesium-plus-pod.version>1.5.12</cesium-plus-pod.version>
+    <cesium-plus-pod.version>1.5.15</cesium-plus-pod.version>
 
     <nuitonConfigVersion>3.0</nuitonConfigVersion>
     <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>
