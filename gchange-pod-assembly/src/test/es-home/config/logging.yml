@@ -21,6 +21,9 @@ logger:
   duniter.network: INFO
   duniter.p2p: DEBUG
   gchange: DEBUG
+  gchange.event: DEBUG
+  gchange.registry: DEBUG
+  gchange.market: DEBUG
   security: DEBUG
 
   org.duniter: DEBUG
