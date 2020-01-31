@@ -53,7 +53,7 @@ public class RegistryService extends AbstractService {
                            RegistryIndexDao registryIndexDao,
                            RegistryCommentDao commentDao,
                            RegistryRecordDao recordDao) {
-        super("gchange.service.registry", client, settings, cryptoService);
+        super("gchange.registry", client, settings, cryptoService);
         this.indexDao = registryIndexDao;
         this.commentDao = commentDao;
         this.recordDao = recordDao;
@@ -61,7 +61,7 @@ public class RegistryService extends AbstractService {
     }
 
     /**
-     * Create index need for blockchain registry, if need
+     * Create index if need
      */
     public RegistryService createIndexIfNotExists() {
         indexDao.createIndexIfNotExists();
@@ -70,6 +70,13 @@ public class RegistryService extends AbstractService {
 
     public RegistryService deleteIndex() {
         indexDao.deleteIndex();
+        return this;
+    }
+
+    public RegistryService deleteIndexIfExists() {
+        if (indexDao.existsIndex()) {
+            indexDao.deleteIndex();
+        }
         return this;
     }
 

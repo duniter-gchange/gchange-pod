@@ -22,7 +22,7 @@ package org.duniter.elasticsearch.gchange.model.registry;
  * #L%
  */
 
-import org.duniter.core.client.model.elasticsearch.Record;
+import org.duniter.elasticsearch.gchange.model.TitleRecord;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,23 +30,13 @@ import java.util.Map;
 /**
  * Created by blavenie on 01/12/16.
  */
-public class RegistryRecord extends Record{
+public class RegistryRecord extends TitleRecord {
 
-    public static final String PROPERTY_TITLE="title";
     public static final String PROPERTY_DESCRIPTION="description";
     public static final String PROPERTY_THUMBNAIL="thumbnail";
 
-    private String title;
     private String description;
     private Map<String, String> thumbnail = new HashMap<>();
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getDescription() {
         return description;

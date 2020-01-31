@@ -22,17 +22,20 @@ package org.duniter.elasticsearch.gchange.model.market;
  * #L%
  */
 
-import org.duniter.core.client.model.elasticsearch.Record;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by blavenie on 01/12/16.
  */
-public class MarketRecord extends Record {
+public class MarketRecord extends LightMarketRecord {
 
-    public static final String PROPERTY_TITLE="title";
+    public enum Type {
+        OFFER,
+        NEED,
+        AUCTION
+    }
+
     public static final String PROPERTY_DESCRIPTION="description";
     public static final String PROPERTY_PRICE="price";
     public static final String PROPERTY_UNIT="unit";
@@ -40,10 +43,7 @@ public class MarketRecord extends Record {
     public static final String PROPERTY_FEES="fees";
     public static final String PROPERTY_FEES_CURRENCY="feesCurrency";
     public static final String PROPERTY_THUMBNAIL="thumbnail";
-    public static final String PROPERTY_STOCK="stock";
-    public static final String PROPERTY_TYPE="type";
 
-    private String title;
     private String description;
     private Map<String, String> thumbnail = new HashMap<>();
     private Double price;
@@ -51,16 +51,6 @@ public class MarketRecord extends Record {
     private Double fees;
     private String feesCurrency;
     private String currency;
-    private Integer stock;
-    private String type;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getDescription() {
         return description;
@@ -102,14 +92,6 @@ public class MarketRecord extends Record {
         this.thumbnail = thumbnail;
     }
 
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
     public Double getFees() {
         return fees;
     }
@@ -125,4 +107,5 @@ public class MarketRecord extends Record {
     public void setFeesCurrency(String feesCurrency) {
         this.feesCurrency = feesCurrency;
     }
+
 }

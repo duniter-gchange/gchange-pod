@@ -91,12 +91,14 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
             if (logger.isInfoEnabled()) {
                 logger.info("Reloading all indices...");
             }
-            injector.getInstance(RegistryService.class)
-                    .deleteIndex()
-                    .createIndexIfNotExists();
             injector.getInstance(MarketService.class)
                     .deleteIndex()
                     .createIndexIfNotExists();
+
+            // Registry is not used anymore (replaced by page)
+            //injector.getInstance(RegistryService.class)
+            //        .deleteIndex()
+            //.createIndexIfNotExists();
 
             if (logger.isInfoEnabled()) {
                 logger.info("Reloading all indices... [OK]");
@@ -106,8 +108,10 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
             if (logger.isInfoEnabled()) {
                 logger.info("Checking indices...");
             }
-            injector.getInstance(RegistryService.class).createIndexIfNotExists();
             injector.getInstance(MarketService.class).createIndexIfNotExists();
+
+            // Registry is not used anymore (replaced by page)
+            injector.getInstance(RegistryService.class).deleteIndexIfExists();
 
             if (logger.isInfoEnabled()) {
                 logger.info("Checking indices [OK]");
@@ -122,10 +126,12 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
         if (pluginSettings.enableDocStats()) {
             injector.getInstance(DocStatService.class)
                     .registerIndex(MarketIndexDao.INDEX, MarketRecordDao.TYPE)
-                    .registerIndex(MarketIndexDao.INDEX, MarketCommentDao.TYPE)
-                    .registerIndex(RegistryIndexDao.INDEX, RegistryRecordDao.TYPE)
-                    .registerIndex(RegistryIndexDao.INDEX, RegistryCommentDao.TYPE)
-            ;
+                    .registerIndex(MarketIndexDao.INDEX, MarketCommentDao.TYPE);
+
+            // Registry is not used anymore (replaced by page)
+            //injector.getInstance(DocStatService.class)
+            //.registerIndex(RegistryIndexDao.INDEX, RegistryRecordDao.TYPE)
+            //.registerIndex(RegistryIndexDao.INDEX, RegistryCommentDao.TYPE);
         }
     }
 

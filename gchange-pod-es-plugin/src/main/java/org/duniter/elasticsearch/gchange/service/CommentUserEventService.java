@@ -27,12 +27,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Sets;
 import org.apache.commons.collections4.MapUtils;
 import org.duniter.core.client.model.ModelUtils;
 import org.duniter.core.client.model.bma.jackson.JacksonUtils;
 import org.duniter.core.client.model.elasticsearch.RecordComment;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.core.service.CryptoService;
+import org.duniter.core.util.CollectionUtils;
+import org.duniter.core.util.Preconditions;
 import org.duniter.core.util.StringUtils;
 import org.duniter.elasticsearch.client.Duniter4jClient;
 import org.duniter.elasticsearch.gchange.PluginSettings;
@@ -47,16 +50,24 @@ import org.duniter.elasticsearch.service.changes.ChangeEvent;
 import org.duniter.elasticsearch.service.changes.ChangeService;
 import org.duniter.elasticsearch.service.changes.ChangeSource;
 import org.duniter.elasticsearch.user.model.DocumentReference;
+import org.duniter.elasticsearch.user.model.LikeRecord;
 import org.duniter.elasticsearch.user.model.UserEvent;
+import org.duniter.elasticsearch.user.model.UserProfile;
+import org.duniter.elasticsearch.user.service.LikeService;
 import org.duniter.elasticsearch.user.service.UserEventService;
 import org.duniter.elasticsearch.user.service.UserService;
+import org.elasticsearch.action.search.SearchRequestBuilder;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.common.inject.Inject;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHitField;
 import org.nuiton.i18n.I18n;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Benoit on 30/03/2015.
@@ -69,13 +80,19 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
         I18n.n("duniter.market.event.UPDATE_COMMENT");
         I18n.n("duniter.market.event.NEW_REPLY_COMMENT");
         I18n.n("duniter.market.event.UPDATE_REPLY_COMMENT");
+        I18n.n("duniter.market.event.FOLLOW_NEW_COMMENT");
+        I18n.n("duniter.market.event.FOLLOW_UPDATE_COMMENT");
 
         I18n.n("duniter.registry.error.comment.recordNotFound");
         I18n.n("duniter.registry.event.NEW_COMMENT");
         I18n.n("duniter.registry.event.UPDATE_COMMENT");
         I18n.n("duniter.registry.event.NEW_REPLY_COMMENT");
         I18n.n("duniter.registry.event.UPDATE_REPLY_COMMENT");
+        I18n.n("duniter.registry.event.FOLLOW_NEW_COMMENT");
+        I18n.n("duniter.registry.event.FOLLOW_UPDATE_COMMENT");
     }
+
+    public static final UserProfile EMPTY_PROFILE = new UserProfile();
 
     private final UserService userService;
     private final UserEventService userEventService;
@@ -90,7 +107,7 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
                                    CryptoService cryptoService,
                                    UserService userService,
                                    UserEventService userEventService) {
-        super("duniter.user.event.comment", client, settings, cryptoService);
+        super("gchange.event.comment", client, settings, cryptoService);
         this.userService = userService;
         this.userEventService = userEventService;
         objectMapper = JacksonUtils.newObjectMapper()
@@ -107,7 +124,7 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
 
     @Override
     public String getId() {
-        return "duniter.user.event.comment";
+        return "gchange.event.comment";
     }
 
     @Override
@@ -156,7 +173,8 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
 
         processUpdateOrCreateComment(index, type, commentId, comment,
                 GchangeEventCodes.NEW_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.NEW_COMMENT.name()),
-                GchangeEventCodes.NEW_REPLY_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.NEW_REPLY_COMMENT.name()));
+                GchangeEventCodes.NEW_REPLY_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.NEW_REPLY_COMMENT.name()),
+                GchangeEventCodes.FOLLOW_NEW_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.FOLLOW_NEW_COMMENT.name()));
     }
 
     /**
@@ -171,7 +189,9 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
 
         processUpdateOrCreateComment(index, type, commentId, comment,
                 GchangeEventCodes.UPDATE_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.UPDATE_COMMENT.name()),
-                GchangeEventCodes.UPDATE_REPLY_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.UPDATE_REPLY_COMMENT));
+                GchangeEventCodes.UPDATE_REPLY_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.UPDATE_REPLY_COMMENT),
+                GchangeEventCodes.FOLLOW_UPDATE_COMMENT, String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.FOLLOW_UPDATE_COMMENT)
+        );
     }
 
 
@@ -185,7 +205,8 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
      */
     private void processUpdateOrCreateComment(String index, String type, String commentId, RecordComment comment,
                                               GchangeEventCodes eventCodeForRecordIssuer, String messageKeyForRecordIssuer,
-                                              GchangeEventCodes eventCodeForParentCommentIssuer, String messageKeyForParentCommentIssuer) {
+                                              GchangeEventCodes eventCodeForParentCommentIssuer, String messageKeyForParentCommentIssuer,
+                                              GchangeEventCodes eventCodeForRecordFollowers, String messageKeyForRecordFollowers) {
         // Get record issuer
         String recordId = comment.getRecord();
         Map<String, Object> record = client.getFieldsById(index, this.recordType, recordId,
@@ -197,22 +218,29 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
             return;
         }
 
+        // Notify all followers
+        Set<String> followers = getFollowers(index, recordType, recordId);
+
         // Fetch record info
         String recordIssuer = record.get(MarketRecord.PROPERTY_ISSUER).toString();
         String recordTitle = record.get(MarketRecord.PROPERTY_TITLE).toString();
+        UserProfile recordIssuerProfile = userService.getProfileByPubkey(recordIssuer).orElse(EMPTY_PROFILE);
 
         // Get comment issuer title
         String issuer = comment.getIssuer();
-        String issuerTitle = userService.getProfileTitle(issuer);
+        UserProfile commentIssuerProfile = userService.getProfileByPubkey(issuer).orElse(EMPTY_PROFILE);
+        String issuerName = Optional.ofNullable(commentIssuerProfile.getTitle()).orElse(ModelUtils.minifyPubkey(issuer));
 
         // Notify issuer of record (is not same as comment writer)
         if (!issuer.equals(recordIssuer)) {
             userEventService.notifyUser(
+                    // Record issuer local
+                    Optional.ofNullable(recordIssuerProfile.getLocale()).map(Locale::new).orElse(null),
                     UserEvent.newBuilder(UserEvent.EventType.INFO, eventCodeForRecordIssuer.name())
                             .setMessage(
                                     messageKeyForRecordIssuer,
                                     issuer,
-                                    issuerTitle != null ? issuerTitle : ModelUtils.minifyPubkey(issuer),
+                                    issuerName,
                                     recordTitle
                             )
                             .setRecipient(recordIssuer)
@@ -236,7 +264,7 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
                                 .setMessage(
                                         messageKeyForParentCommentIssuer,
                                         issuer,
-                                        issuerTitle != null ? issuerTitle : ModelUtils.minifyPubkey(issuer),
+                                        issuerName,
                                         recordTitle
                                 )
                                 .setRecipient(parentCommentIssuer)
@@ -244,10 +272,33 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
                                 .setReferenceAnchor(commentId)
                                 /*.setTime(comment.getTime()) - DO NOT set time, has the comment time is NOT the update time*/
                                 .build());
+
+                // Exclude from the followers, as already notify
+                followers.remove(parentCommentIssuer);
             }
         }
 
+        // Exclude the record issuer from the follower (already notify, with another message)
+        followers.remove(recordIssuer);
+
         // Notify all followers
+        if (CollectionUtils.isNotEmpty(followers)) {
+            followers.forEach(follower -> {
+                userEventService.notifyUser(
+                        UserEvent.newBuilder(UserEvent.EventType.INFO, eventCodeForRecordFollowers.name())
+                                .setMessage(
+                                        messageKeyForRecordFollowers,
+                                        issuer,
+                                        issuerName,
+                                        recordTitle
+                                )
+                                .setRecipient(follower)
+                                .setReference(index, recordType, recordId)
+                                .setReferenceAnchor(commentId)
+                                /*.setTime(comment.getTime()) - DO NOT set time, has the comment time is NOT the update time*/
+                                .build());
+            });
+        }
 
     }
 
@@ -255,13 +306,13 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
         if (change.getId() == null) return;
 
         // Delete events that reference this block
-        userEventService.deleteEventsByReference(new DocumentReference(change.getIndex(), change.getType(), change.getId()));
+        userEventService.deleteAllByReference(new DocumentReference(change.getIndex(), change.getType(), change.getId()));
     }
 
     private RecordComment readComment(ChangeEvent change) {
         try {
             if (change.getSource() != null) {
-                return objectMapper.readValue(change.getSource().streamInput(), RecordComment.class);
+                return objectMapper.readValue(change.getSource().array(), RecordComment.class);
             }
             return null;
         } catch (JsonProcessingException e) {
@@ -276,5 +327,60 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
         catch (IOException e) {
             throw new TechnicalException(String.format("Unable to parse received comment %s", change.getId()), e);
         }
+    }
+
+    public Set<String> getFollowers(String index, String type, String docId) {
+        return getIssuersByDocumentAndKind(index, type, docId, LikeRecord.Kind.FOLLOW);
+    }
+
+    // TODO: replace with LikeService.getIssuersByDocumentAndKind() (need pod v1.5.16)
+    public Set<String> getIssuersByDocumentAndKind(String index, String type, String docId, LikeRecord.Kind kind) {
+        Preconditions.checkArgument(StringUtils.isNotBlank(index));
+        Preconditions.checkNotNull(StringUtils.isNotBlank(type));
+        Preconditions.checkNotNull(StringUtils.isNotBlank(docId));
+        Preconditions.checkNotNull(kind);
+
+        int size = 1000;
+
+        // Prepare search request
+        SearchRequestBuilder request = client
+                .prepareSearch(LikeService.INDEX)
+                .setTypes(LikeService.RECORD_TYPE)
+                .setFetchSource(false)
+                .addFields(LikeRecord.PROPERTY_ISSUER)
+                .setSearchType(SearchType.QUERY_AND_FETCH)
+                .setSize(size);
+
+        // Query = filter on index/type/id
+        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery()
+                .filter(QueryBuilders.termQuery(LikeRecord.PROPERTY_INDEX, index))
+                .filter(QueryBuilders.termQuery(LikeRecord.PROPERTY_TYPE, type))
+                .filter(QueryBuilders.termQuery(LikeRecord.PROPERTY_ID, docId))
+                .filter(QueryBuilders.termQuery(LikeRecord.PROPERTY_KIND, kind.toString()));
+
+        request.setQuery(QueryBuilders.constantScoreQuery(boolQuery));
+
+
+        // Execute query
+        long total = -1;
+        int from = 0;
+        Set<String> result = Sets.newHashSet();
+        do {
+            SearchResponse response = client.safeExecuteRequest(request).actionGet();
+
+            // Read query result
+            SearchHit[] searchHits = response.getHits().getHits();
+            for (SearchHit searchHit : searchHits) {
+                Map<String, SearchHitField> hitFields = searchHit.getFields();
+                SearchHitField issuerField = hitFields.get(LikeRecord.PROPERTY_ISSUER);
+                if (issuerField != null) {
+                    result.add(issuerField.getValue());
+                }
+            }
+            from += size;
+            request.setFrom(from);
+            if (total == -1) total = (response.getHits() != null) ? response.getHits().getTotalHits() : 0;
+        } while (from < total);
+        return result;
     }
 }

@@ -56,7 +56,7 @@ public class MarketService extends AbstractService {
                          MarketCommentDao commentDao,
                          MarketRecordDao recordDao
                          ) {
-        super("gchange.service.market", client, settings, cryptoService);
+        super("gchange.market", client, settings, cryptoService);
         this.indexDao = indexDao;
         this.commentDao = commentDao;
         this.recordDao = recordDao;

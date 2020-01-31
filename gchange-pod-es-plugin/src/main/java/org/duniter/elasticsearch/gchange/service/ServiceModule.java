@@ -29,8 +29,10 @@ public class ServiceModule extends AbstractModule implements Module {
 
     @Override protected void configure() {
         bind(RegistryService.class).asEagerSingleton();
-        bind(CommentUserEventService.class).asEagerSingleton();
         bind(MarketService.class).asEagerSingleton();
+
+        bind(CommentUserEventService.class).asEagerSingleton();
+        bind(RecordUserEventService.class).asEagerSingleton();
 
         // Configure network service
         bind(NetworkServiceConfiguration.class).asEagerSingleton();

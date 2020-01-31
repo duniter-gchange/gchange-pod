@@ -1,4 +1,4 @@
-package org.duniter.elasticsearch.gchange.model.event;
+package org.duniter.elasticsearch.gchange.model.market;
 
 /*
  * #%L
@@ -22,20 +22,32 @@ package org.duniter.elasticsearch.gchange.model.event;
  * #L%
  */
 
+import org.duniter.elasticsearch.gchange.model.TitleRecord;
+
 /**
- * Created by blavenie on 01/12/16.
+ * Created by blavenie on 30/01/20.
  */
-public enum GchangeEventCodes {
+public class LightMarketRecord extends TitleRecord {
 
-    NEW_COMMENT,
-    UPDATE_COMMENT,
-    NEW_REPLY_COMMENT,
-    UPDATE_REPLY_COMMENT,
+    public static final String PROPERTY_STOCK="stock";
+    public static final String PROPERTY_TYPE="type";
 
-    FOLLOW_NEW_COMMENT,
-    FOLLOW_UPDATE_COMMENT,
+    private Integer stock;
+    private String type;
 
-    FOLLOW_NEW,
-    FOLLOW_UPDATE,
-    FOLLOW_CLOSE
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

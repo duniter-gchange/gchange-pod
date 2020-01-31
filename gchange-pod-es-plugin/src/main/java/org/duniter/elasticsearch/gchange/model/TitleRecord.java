@@ -1,4 +1,4 @@
-package org.duniter.elasticsearch.gchange.model.event;
+package org.duniter.elasticsearch.gchange.model;
 
 /*
  * #%L
@@ -22,20 +22,35 @@ package org.duniter.elasticsearch.gchange.model.event;
  * #L%
  */
 
+import org.duniter.core.client.model.elasticsearch.Record;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Created by blavenie on 01/12/16.
+ * Created by blavenie on 30/01/20
  */
-public enum GchangeEventCodes {
+public class TitleRecord extends Record {
 
-    NEW_COMMENT,
-    UPDATE_COMMENT,
-    NEW_REPLY_COMMENT,
-    UPDATE_REPLY_COMMENT,
+    public static final String PROPERTY_TITLE="title";
+    public static final String PROPERTY_CREATION_TIME="creationTime";
 
-    FOLLOW_NEW_COMMENT,
-    FOLLOW_UPDATE_COMMENT,
+    private String title;
+    private Long creationTime;
 
-    FOLLOW_NEW,
-    FOLLOW_UPDATE,
-    FOLLOW_CLOSE
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Long getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Long creationTime) {
+        this.creationTime = creationTime;
+    }
 }
