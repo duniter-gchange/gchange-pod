@@ -35,7 +35,7 @@
     <jna.version>4.1.0</jna.version>
     <tyrus.version>1.14</tyrus.version>
 
-    <cesium-plus-pod.version>1.5.16</cesium-plus-pod.version>
+    <cesium-plus-pod.version>1.5.17</cesium-plus-pod.version>
 
     <nuitonConfigVersion>3.0</nuitonConfigVersion>
     <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>
@@ -261,7 +261,7 @@
 
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <!-- <version>2.6</version> -->
+<!--          <version>3.1.0</version>-->
           <configuration>
             <escapeString>\</escapeString>
           </configuration>
