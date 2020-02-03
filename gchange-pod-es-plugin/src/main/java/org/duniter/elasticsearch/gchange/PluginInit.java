@@ -22,22 +22,24 @@ package org.duniter.elasticsearch.gchange;
  * #L%
  */
 
+import com.google.common.base.Joiner;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
-import org.duniter.elasticsearch.gchange.dao.registry.RegistryCommentDao;
-import org.duniter.elasticsearch.gchange.dao.registry.RegistryIndexDao;
-import org.duniter.elasticsearch.gchange.dao.registry.RegistryRecordDao;
+import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.gchange.service.RegistryService;
 import org.duniter.elasticsearch.service.DocStatService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
+import org.duniter.elasticsearch.user.model.LikeRecord;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.Injector;
 import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 
 /**
  * Created by blavenie on 17/06/16.
@@ -64,12 +66,12 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
 
     @Override
     protected void doStart() {
+        // Config the statistics on market documents
+        configDocStats();
+
         threadPool.onMasterStart(() -> {
             // Make sure all indices exists
             createIndices();
-
-            // Config the statistics on market documents
-            configDocStats();
         });
     }
 
@@ -95,11 +97,6 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
                     .deleteIndex()
                     .createIndexIfNotExists();
 
-            // Registry is not used anymore (replaced by page)
-            //injector.getInstance(RegistryService.class)
-            //        .deleteIndex()
-            //.createIndexIfNotExists();
-
             if (logger.isInfoEnabled()) {
                 logger.info("Reloading all indices... [OK]");
             }
@@ -124,14 +121,33 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
 
         // Register stats on indices
         if (pluginSettings.enableDocStats()) {
-            injector.getInstance(DocStatService.class)
+            DocStatService docStatService = injector.getInstance(DocStatService.class)
                     .registerIndex(MarketIndexDao.INDEX, MarketRecordDao.TYPE)
                     .registerIndex(MarketIndexDao.INDEX, MarketCommentDao.TYPE);
 
-            // Registry is not used anymore (replaced by page)
-            //injector.getInstance(DocStatService.class)
-            //.registerIndex(RegistryIndexDao.INDEX, RegistryRecordDao.TYPE)
-            //.registerIndex(RegistryIndexDao.INDEX, RegistryCommentDao.TYPE);
+            // Add stats on opened and recent Ads by types (offer, need, etc.)
+            Long lastYearTime = System.currentTimeMillis() / 1000 - (60 * 60 * 24 * 365); // Filter on one year
+            for (MarketRecord.Type type: MarketRecord.Type.values()) {
+                QueryBuilder query = QueryBuilders.constantScoreQuery(QueryBuilders.boolQuery()
+                        .filter(QueryBuilders.termQuery(MarketRecord.PROPERTY_TYPE, type.name()))
+                        .filter(QueryBuilders.rangeQuery(MarketRecord.PROPERTY_STOCK).gt(1))
+                        .filter(QueryBuilders.rangeQuery(MarketRecord.PROPERTY_TIME).gte(lastYearTime))
+                );
+                String queryName = Joiner.on('_').join(MarketIndexDao.INDEX, MarketRecordDao.TYPE, "opened", type.name().toLowerCase());
+                docStatService.registerIndex(MarketIndexDao.INDEX, MarketRecordDao.TYPE, queryName, query, null);
+            }
+
+            // Add stats on Ads by likes
+            for (LikeRecord.Kind kind: LikeRecord.Kind.values()) {
+                QueryBuilder query = QueryBuilders.constantScoreQuery(QueryBuilders.boolQuery()
+                        .filter(QueryBuilders.termQuery(LikeRecord.PROPERTY_KIND, kind.name()))
+                );
+
+                // Add stats by Like kinds, on market ad
+                String queryName = Joiner.on('_').join(MarketIndexDao.INDEX, MarketRecordDao.TYPE, kind.name().toLowerCase());
+                docStatService.registerIndex(MarketIndexDao.INDEX, MarketRecordDao.TYPE, queryName, query, null);
+
+            }
         }
     }
 

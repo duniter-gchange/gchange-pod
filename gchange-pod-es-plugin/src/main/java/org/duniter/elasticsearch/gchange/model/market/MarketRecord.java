@@ -31,9 +31,10 @@ import java.util.Map;
 public class MarketRecord extends LightMarketRecord {
 
     public enum Type {
-        OFFER,
-        NEED,
-        AUCTION
+        offer,
+        need,
+        auction,
+        crowdfunding
     }
 
     public static final String PROPERTY_DESCRIPTION="description";
