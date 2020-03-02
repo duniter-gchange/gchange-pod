@@ -232,7 +232,7 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
         String issuerName = Optional.ofNullable(commentIssuerProfile.getTitle()).orElse(ModelUtils.minifyPubkey(issuer));
 
         // Notify issuer of record (is not same as comment writer)
-        if (!issuer.equals(recordIssuer)) {
+        if (!Objects.equals(issuer, recordIssuer)) {
             userEventService.notifyUser(
                     // Record issuer local
                     Optional.ofNullable(recordIssuerProfile.getLocale()).map(Locale::new).orElse(null),
@@ -278,8 +278,11 @@ public class CommentUserEventService extends AbstractService implements ChangeSe
             }
         }
 
-        // Exclude the record issuer from the follower (already notify, with another message)
+        // Exclude the record issuer from followers (already notify, with another message)
         followers.remove(recordIssuer);
+
+        // Exclude the comment writer from followers (not need to be notified - fix #6)
+        followers.remove(issuer);
 
         // Notify all followers
         if (CollectionUtils.isNotEmpty(followers)) {
