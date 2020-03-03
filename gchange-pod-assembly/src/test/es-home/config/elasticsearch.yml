@@ -121,7 +121,7 @@ security.manager.enabled: false
 #
 # ---------------------------------- Cesium+ Pod ---------------------------------
 #
-# Enable Cesium+ pod plugins (default: true)
+# Enable Cesium+ pod core plugin (default: true)
 #
 # duniter.enable: false
 #
@@ -137,9 +137,19 @@ duniter.core.api: GCHANGE_API
 #
 duniter.string.analyzer: french
 #
-# Enabling blockchain synchronization (default: false)
+# Enabling blockchain synchronization (default: true)
 #
-duniter.blockchain.enable: true
+# duniter.blockchain.enable: true
+#
+# Enabling blockchain movement indexation ? (default: ${duniter.blockchain.enable})
+#
+# duniter.blockchain.movement.enable: false
+#
+# Include/exclude blockchain movement, using regexp on `TX.comment` (default: <empty>)
+#
+duniter.blockchain.movement.includes.comment: ["GCHANGE:*"]
+#
+# duniter.blockchain.movement.excludes.comment: []
 #
 # Enabling blockchain peers indexation ? (default: ${duniter.blockchain.enable})
 # /!\ WARNING: should always be DISABLE for gchange-pod
@@ -163,7 +173,8 @@ duniter.blockchain.event.user.enable: false
 # Force blockchain full synchronization - /!\ WARNING: all user events will be reset to 'unread'
 #
 # duniter.blockchain.reload: true
-# duniter.blockchain.reload.from: 50999
+# duniter.blockchain.reload.from: 18900
+# duniter.blockchain.reload.to: 19000
 #
 # Duniter node address
 #
@@ -191,7 +202,8 @@ duniter.software.name: gchange-pod
 duniter.keyring.salt: 'abc'
 duniter.keyring.password: 'def'
 #
-# Enable security - will restrict HTTP access to only known ES indices - /!\ WARNING: should be enable for production use
+# Enable security - will restrict HTTP access to only known ES indices
+# /!\ WARNING: should be enable for production use
 #
 duniter.security.enable: true
 #
@@ -225,9 +237,9 @@ duniter.p2p.includes.endpoints: [
 # "HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz"
 #]
 #
-# Enable a full synchro. This will compare each documents from other peers.
+# Enable a full synchro. This will compare each documents from other peers. (default: false)
 #
-#duniter.p2p.fullResyncAtStartup: true
+# duniter.p2p.fullResyncAtStartup: true
 #
 # Peer API to index (default : ["BASIC_MERKLE_API", "BMAS", "WS2P" ] UNION ${duniter.p2p.peering.targetedApis} UNION ${duniter.p2p.peering.publishedApis})
 #
@@ -237,7 +249,7 @@ duniter.p2p.peer.indexedApis: [
 #
 # Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
 #
-# duniter.p2p.peering.enable: false
+duniter.p2p.peering.enable: false
 #
 # Define targeted API (for peers selection) where to send the peer document (if peering is enable). (Default: ["BASIC_MERKLED_API", "BMAS"])
 # This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
@@ -301,13 +313,7 @@ duniter.mail.enable: false
 #
 # Mail: subject prefix (default: '[Cesium+]')
 #
-duniter.mail.subject.prefix: '[ğchange-test]'
-#
-# ---------------------------------- Cesium+ Pod > Websocket server ----------------------
-#
-# Websocket port (default: ${http.port})
-#
-# duniter.ws.port: 9400-9410
+duniter.mail.subject.prefix: '[Ğchange-test]'
 #
 # ---------------------------------- Cesium+ Pod > User module ---------------------------
 #
@@ -315,9 +321,16 @@ duniter.mail.subject.prefix: '[ğchange-test]'
 #
 # duniter.user.enable: false
 #
-# Endpoint API for user data (use by P2P synchronization) (default: ES_USER_API)
+# Endpoint API for user data (use by P2P synchronization) (default: 'ES_USER_API')
 #
-duniter.user.api: GCHANGE_API
+duniter.user.api: 'GCHANGE_API'
+#
+# Public keys of user moderator. Moderators can delete any user documents (profile, etc.) (default: <empty>)
+#
+duniter.user.moderators.pubkeys: [
+  'HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz'  # Admin gchange
+  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z', # Benoit Lavenier
+]
 #
 # ---------------------------------- Cesium+ Pod > Subscription module -------------------
 #
@@ -327,12 +340,12 @@ duniter.user.api: GCHANGE_API
 #
 # Endpoint API for subscription data (use by P2P synchronization) (default: ES_SUBSCRIPTION_API)
 #
-duniter.subscription.api: GCHANGE_API
+duniter.subscription.api: 'GCHANGE_API'
 #
 # Options to debug this features (DEV only) (default: false)
 #
-duniter.subscription.email.atStartup: true
-duniter.subscription.email.debug: true
+#duniter.subscription.email.atStartup: true
+#duniter.subscription.email.debug: true
 #
 # Email subscription: Day of the week to trigger weekly (default: 2 = monday)
 #
@@ -360,20 +373,29 @@ duniter.share.site.name: 'Ğchange'
 # URL to a page (default: https://g1.duniter.fr/#/app/page/view/{id}/{title} )
 # Note: available variables are {id} and {title}
 #
-duniter.share.page.link.url: 'https://gchange.fr/#/app/page/view/{id}/{title}'
+duniter.share.page.link.url: 'https://www.gchange.fr/#/app/page/view/{id}/{title}'
 #
 # URL to a user profile (default: https://g1.duniter.fr/#/app/wot/{pubkey}/{title} )
 # Note: available variables are {pubkey} and {title}
 #
-duniter.share.user.link.url: 'https://gchange.fr/#/app/wot/{pubkey}/{title}'
+duniter.share.user.link.url: 'https://www.gchange.fr/#/app/wot/{pubkey}/{title}'
 #
 # Default image to share (min size of 200x200px) for `og:image` (default: https://g1.duniter.fr/img/logo_200px.png)
 #
-duniter.share.image.default.url: 'https://gchange.fr/img/logo_256px.png'
+duniter.share.image.default.url: 'https://www.gchange.fr/img/logo_200px.png'
 #
-# ---------------------------------- Gchange Pod > main module -------------------
 #
 # Share market link (e.g. Ad): (default: https://gchange.fr/#/app/market/view/{id}/{title} )
 # Note: available variables are {id} and {title}
 #
-duniter.share.market.link.url: 'https://gchange.fr/#/app/market/view/{id}/{title}'
+duniter.share.market.link.url: 'https://www.gchange.fr/#/app/market/view/{id}/{title}'
+#
+# ---------------------------------- Cesium+ Pod > Moderation and likes -------------------
+#
+# Requirements to send abuse report (default: ['member'])
+#
+duniter.abuse.issuer.requirements: ['profile']
+#
+# Requirements to send likes (default: empty)
+#
+duniter.like.issuer.requirements: ['profile']

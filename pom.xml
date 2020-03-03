@@ -35,7 +35,7 @@
     <jna.version>4.1.0</jna.version>
     <tyrus.version>1.14</tyrus.version>
 
-    <cesium-plus-pod.version>1.5.18</cesium-plus-pod.version>
+    <cesium-plus-pod.version>1.6.0</cesium-plus-pod.version>
 
     <nuitonConfigVersion>3.0</nuitonConfigVersion>
     <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>
@@ -94,9 +94,9 @@
     <site.path>/var/www/doc.e-is.pro/gchange</site.path>
     <site.repository>scpexe://${site.host}${site.path}</site.repository>
     <release.server>eis-nexus-deploy</release.server>
-    <release.repository>http://nexus.e-is.pro/nexus/content/repositories/gchange-releases</release.repository>
+    <release.repository>https://nexus.e-is.pro/nexus/content/repositories/gchange-releases</release.repository>
     <snapshot.server>eis-nexus-deploy</snapshot.server>
-    <snapshot.repository>http://nexus.e-is.pro/nexus/content/repositories/gchange-snapshots</snapshot.repository>
+    <snapshot.repository>https://nexus.e-is.pro/nexus/content/repositories/gchange-snapshots</snapshot.repository>
 
     <assembly.skip>false</assembly.skip>
   </properties>
@@ -342,7 +342,7 @@
   <repositories>
     <repository>
       <id>gchange-public-group</id>
-      <url>http://nexus.e-is.pro/nexus/content/groups/gchange</url>
+      <url>https://nexus.e-is.pro/nexus/content/groups/gchange</url>
       <snapshots>
         <enabled>true</enabled>
         <checksumPolicy>fail</checksumPolicy>
@@ -357,7 +357,7 @@
   <pluginRepositories>
     <pluginRepository>
       <id>gchange-public-group</id>
-      <url>http://nexus.e-is.pro/nexus/content/groups/gchange</url>
+      <url>https://nexus.e-is.pro/nexus/content/groups/gchange</url>
       <snapshots>
         <enabled>true</enabled>
         <checksumPolicy>fail</checksumPolicy>

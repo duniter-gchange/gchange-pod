@@ -85,7 +85,7 @@ http.cors.enabled: true
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
 # discovery.zen.ping.unicast.hosts: ["host1", "host2"]
-# discovery.zen.ping.unicast.hosts: ["127.0.0.1", ""]
+# discovery.zen.ping.unicast.hosts: ["127.0.0.1"]
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
 #
@@ -119,7 +119,7 @@ security.manager.enabled: false
 #
 # ---------------------------------- Cesium+ Pod ---------------------------------
 #
-# Enable Cesium+ pod plugins (default: true)
+# Enable Cesium+ pod core plugin (default: true)
 #
 # duniter.enable: false
 #
@@ -135,9 +135,19 @@ duniter.core.api: GCHANGE_API
 #
 duniter.string.analyzer: french
 #
-# Enabling blockchain synchronization (default: false)
+# Enabling blockchain synchronization (default: true)
 #
-duniter.blockchain.enable: true
+# duniter.blockchain.enable: true
+#
+# Enabling blockchain movement indexation ? (default: ${duniter.blockchain.enable})
+#
+# duniter.blockchain.movement.enable: false
+#
+# Include/exclude blockchain movement, using regexp on `TX.comment` (default: <empty>)
+#
+duniter.blockchain.movement.includes.comment: ["GCHANGE:*"]
+#
+# duniter.blockchain.movement.excludes.comment: []
 #
 # Enabling blockchain peers indexation ? (default: ${duniter.blockchain.enable})
 # /!\ WARNING: should always be DISABLE for gchange-pod
@@ -161,13 +171,17 @@ duniter.blockchain.event.user.enable: false
 # Force blockchain full synchronization - /!\ WARNING: all user events will be reset to 'unread'
 #
 # duniter.blockchain.reload: true
-# duniter.blockchain.reload.from: 50999
+# duniter.blockchain.reload.from: 18900
+# duniter.blockchain.reload.to: 19000
 #
 # Duniter node address
 #
 duniter.host: g1.duniter.org
 duniter.port: 10901
 # duniter.useSsl: true
+#
+# Network timeout, in millisecond (default: 20000 = 20s)
+#
 # duniter.network.timeout: 5000
 #
 # Compute statistics on indices (each hour) ? (default: true)
@@ -186,7 +200,8 @@ duniter.software.name: gchange-pod
 # duniter.keyring.salt:
 # duniter.keyring.password:
 #
-# Enable security - will restrict HTTP access to only known ES indices - /!\ WARNING: should be enable for production use
+# Enable security - will restrict HTTP access to only known ES indices
+# /!\ WARNING: should be enable for production use
 #
 duniter.security.enable: true
 #
@@ -218,8 +233,7 @@ duniter.p2p.includes.endpoints: [
 #
 # duniter.p2p.includes.pubkeys: [""]
 #
-#
-# Enable a full synchro. This will compare each documents from other peers.
+# Enable a full synchro. This will compare each documents from other peers. (default: false)
 #
 # duniter.p2p.fullResyncAtStartup: true
 #
@@ -293,7 +307,7 @@ duniter.mail.enable: false
 #
 # duniter.mail.admin: user@domain.com
 #
-# Mail: subject prefix
+# Mail: subject prefix (default: '[Cesium+]')
 #
 duniter.mail.subject.prefix: '[Ğchange]'
 #
@@ -303,9 +317,16 @@ duniter.mail.subject.prefix: '[Ğchange]'
 #
 # duniter.user.enable: false
 #
-# Endpoint API for user data (use by P2P synchronization) (default: ES_USER_API)
+# Endpoint API for user data (use by P2P synchronization) (default: 'ES_USER_API')
 #
-duniter.user.api: GCHANGE_API
+duniter.user.api: 'GCHANGE_API'
+#
+# Public keys of user moderator. Moderators can delete any user documents (profile, etc.) (default: <empty>)
+#
+duniter.user.moderators.pubkeys: [
+  'HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz'  # Admin gchange
+  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z', # Benoit Lavenier
+]
 #
 # ---------------------------------- Cesium+ Pod > Subscription module -------------------
 #
@@ -315,7 +336,7 @@ duniter.user.api: GCHANGE_API
 #
 # Endpoint API for subscription data (use by P2P synchronization) (default: ES_SUBSCRIPTION_API)
 #
-duniter.subscription.api: GCHANGE_API
+duniter.subscription.api: 'GCHANGE_API'
 #
 # Email subscription: Day of the week to trigger weekly (default: 2 = monday)
 #
@@ -343,19 +364,29 @@ duniter.share.site.name: 'Ğchange'
 # URL to a page (default: https://g1.duniter.fr/#/app/page/view/{id}/{title} )
 # Note: available variables are {id} and {title}
 #
-duniter.share.page.link.url: 'https://gchange.fr/#/app/page/view/{id}/{title}'
+duniter.share.page.link.url: 'https://www.gchange.fr/#/app/page/view/{id}/{title}'
 #
 # URL to a user profile (default: https://g1.duniter.fr/#/app/wot/{pubkey}/{title} )
 # Note: available variables are {pubkey} and {title}
 #
-duniter.share.user.link.url: 'https://gchange.fr/#/app/wot/{pubkey}/{title}'
+duniter.share.user.link.url: 'https://www.gchange.fr/#/app/wot/{pubkey}/{title}'
 #
 # Default image to share (min size of 200x200px) for `og:image` (default: https://g1.duniter.fr/img/logo_200px.png)
 #
-duniter.share.image.default.url: 'https://gchange.fr/img/logo_200px.png'
+duniter.share.image.default.url: 'https://www.gchange.fr/img/logo_200px.png'
 #
 #
 # Share market link (e.g. Ad): (default: https://gchange.fr/#/app/market/view/{id}/{title} )
 # Note: available variables are {id} and {title}
 #
-duniter.share.market.link.url: 'https://gchange.fr/#/app/market/view/{id}/{title}'
+duniter.share.market.link.url: 'https://www.gchange.fr/#/app/market/view/{id}/{title}'
+#
+# ---------------------------------- Cesium+ Pod > Moderation and likes -------------------
+#
+# Requirements to send abuse report (default: ['member'])
+#
+duniter.abuse.issuer.requirements: ['profile']
+#
+# Requirements to send likes (default: empty)
+#
+duniter.like.issuer.requirements: ['profile']
