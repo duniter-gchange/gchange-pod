@@ -106,9 +106,6 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
             }
             injector.getInstance(MarketService.class).createIndexIfNotExists();
 
-            // Registry is not used anymore (replaced by page)
-            injector.getInstance(RegistryService.class).deleteIndexIfExists();
-
             if (logger.isInfoEnabled()) {
                 logger.info("Checking indices [OK]");
             }
