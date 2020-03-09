@@ -23,17 +23,12 @@ package org.duniter.elasticsearch.gchange.dao;
  */
 
 import org.duniter.elasticsearch.gchange.dao.market.*;
-import org.duniter.elasticsearch.gchange.dao.registry.*;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.inject.Module;
 
 public class DaoModule extends AbstractModule implements Module {
 
     @Override protected void configure() {
-
-        bind(RegistryIndexDao.class).to(RegistryIndexDaoImpl.class).asEagerSingleton();
-        bind(RegistryCommentDao.class).to(RegistryCommentDaoImpl.class).asEagerSingleton();
-        bind(RegistryRecordDao.class).to(RegistryRecordDaoImpl.class).asEagerSingleton();
 
         bind(MarketIndexDao.class).to(MarketIndexDaoImpl.class).asEagerSingleton();
         bind(MarketCommentDao.class).to(MarketCommentDaoImpl.class).asEagerSingleton();
