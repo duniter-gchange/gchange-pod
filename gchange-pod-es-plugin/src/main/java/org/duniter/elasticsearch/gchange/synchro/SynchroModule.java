@@ -37,10 +37,6 @@ public class SynchroModule extends AbstractModule implements Module {
         bind(SynchroMarketRecordAction.class).asEagerSingleton();
         bind(SynchroMarketCommentAction.class).asEagerSingleton();
 
-        // Registry
-        bind(SynchroRegistryRecordAction.class).asEagerSingleton();
-        bind(SynchroRegistryCommentAction.class).asEagerSingleton();
-
     }
 
 }
