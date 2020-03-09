@@ -80,11 +80,11 @@ public class RecordUserEventService extends AbstractService implements ChangeSer
         I18n.n("duniter.market.event.FOLLOW_UPDATE");
         I18n.n("duniter.market.event.FOLLOW_CLOSE");
 
-        I18n.n("duniter.registry.event.FOLLOW_NEW");
-        I18n.n("duniter.registry.event.FOLLOW_UPDATE");
-    }
+        I18n.n("duniter.page.event.FOLLOW_NEW");
+        I18n.n("duniter.page.event.FOLLOW_UPDATE");
 
-    public static final UserProfile EMPTY_PROFILE = new UserProfile();
+        I18n.n("duniter.market.record.the");
+    }
 
     private final UserService userService;
     private final UserEventService userEventService;
@@ -197,7 +197,7 @@ public class RecordUserEventService extends AbstractService implements ChangeSer
      * @param index
      * @param type
      * @param recordId
-     * @param recordObj
+     * @param record
      */
     private void processUpdateRecord(String index, String type, String recordId, TitleRecord record) {
         // Fetch record info
@@ -224,20 +224,20 @@ public class RecordUserEventService extends AbstractService implements ChangeSer
         if (CollectionUtils.isNotEmpty(followers)) {
             GchangeEventCodes eventCode =  isClosed ? GchangeEventCodes.FOLLOW_CLOSE : GchangeEventCodes.FOLLOW_UPDATE;
             String messageKey = String.format("duniter.%s.event.%s", index.toLowerCase(), eventCode.name());
-            followers.forEach(follower -> {
-                userEventService.notifyUser(
-                        UserEvent.newBuilder(UserEvent.EventType.INFO, eventCode.name())
-                                .setMessage(
-                                        messageKey,
-                                        issuer,
-                                        issuerName,
-                                        title
-                                )
+
+            final UserEvent.Builder followerEventBuilder = UserEvent.newBuilder(UserEvent.EventType.INFO, eventCode.name())
+                    .setMessage(
+                            messageKey,
+                            issuer,
+                            issuerName,
+                            title
+                    )
+                    .setReference(index, type, recordId)
+                    .setTime(time);
+
+            followers.forEach(follower -> userEventService.notifyUser(followerEventBuilder
                                 .setRecipient(follower)
-                                .setReference(index, type, recordId)
-                                .setTime(time)
-                                .build());
-            });
+                                .build()));
         }
     }
 
@@ -276,58 +276,7 @@ public class RecordUserEventService extends AbstractService implements ChangeSer
     }
 
     public Set<String> getFollowers(String index, String type, String docId) {
-        return getIssuersByDocumentAndKind(index, type, docId, LikeRecord.Kind.FOLLOW);
-    }
-
-    // TODO: replace with LikeService.getIssuersByDocumentAndKind() (need pod v1.5.16)
-    public Set<String> getIssuersByDocumentAndKind(String index, String type, String docId, LikeRecord.Kind kind) {
-        Preconditions.checkArgument(StringUtils.isNotBlank(index));
-        Preconditions.checkArgument(StringUtils.isNotBlank(type));
-        Preconditions.checkArgument(StringUtils.isNotBlank(docId));
-        Preconditions.checkNotNull(kind);
-
-        int size = 1000;
-
-        // Prepare search request
-        SearchRequestBuilder request = client
-                .prepareSearch(LikeService.INDEX)
-                .setTypes(LikeService.RECORD_TYPE)
-                .setFetchSource(false)
-                .addFields(LikeRecord.PROPERTY_ISSUER)
-                .setSearchType(SearchType.QUERY_AND_FETCH)
-                .setSize(size);
-
-        // Query = filter on index/type/id
-        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery()
-                .filter(QueryBuilders.termQuery(LikeRecord.PROPERTY_INDEX, index))
-                .filter(QueryBuilders.termQuery(LikeRecord.PROPERTY_TYPE, type))
-                .filter(QueryBuilders.termQuery(LikeRecord.PROPERTY_ID, docId))
-                .filter(QueryBuilders.termQuery(LikeRecord.PROPERTY_KIND, kind.toString()));
-
-        request.setQuery(QueryBuilders.constantScoreQuery(boolQuery));
-
-
-        // Execute query
-        long total = -1;
-        int from = 0;
-        Set<String> result = Sets.newHashSet();
-        do {
-            SearchResponse response = client.safeExecuteRequest(request).actionGet();
-
-            // Read query result
-            SearchHit[] searchHits = response.getHits().getHits();
-            for (SearchHit searchHit : searchHits) {
-                Map<String, SearchHitField> hitFields = searchHit.getFields();
-                SearchHitField issuerField = hitFields.get(LikeRecord.PROPERTY_ISSUER);
-                if (issuerField != null) {
-                    result.add(issuerField.getValue());
-                }
-            }
-            from += size;
-            request.setFrom(from);
-            if (total == -1) total = (response.getHits() != null) ? response.getHits().getTotalHits() : 0;
-        } while (from < total);
-        return result;
+        return likeService.getIssuersByDocumentAndKind(index, type, docId, LikeRecord.Kind.FOLLOW);
     }
 
     protected Optional<Integer> getStock(TitleRecord record) {

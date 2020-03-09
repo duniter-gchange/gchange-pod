@@ -33,9 +33,7 @@ import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
-import org.duniter.elasticsearch.user.model.page.RegistryRecord;
-import org.duniter.elasticsearch.user.service.HistoryService;
-import org.elasticsearch.client.Client;
+import org.duniter.elasticsearch.user.service.DeleteHistoryService;
 import org.elasticsearch.common.inject.Inject;
 
 /**
@@ -46,12 +44,12 @@ public class MarketService extends AbstractService {
     private MarketIndexDao indexDao;
     private MarketRecordDao recordDao;
     private MarketCommentDao commentDao;
-    private HistoryService historyService;
+    private DeleteHistoryService deleteService;
 
     @Inject
     public MarketService(Duniter4jClient client, PluginSettings settings,
                          CryptoService cryptoService,
-                         HistoryService historyService,
+                         DeleteHistoryService deleteService,
                          MarketIndexDao indexDao,
                          MarketCommentDao commentDao,
                          MarketRecordDao recordDao
@@ -61,7 +59,7 @@ public class MarketService extends AbstractService {
         this.commentDao = commentDao;
         this.recordDao = recordDao;
 
-        this.historyService = historyService;
+        this.deleteService = deleteService;
     }
 
 
@@ -151,7 +149,7 @@ public class MarketService extends AbstractService {
             recordExists = recordDao.isExists(id);
         } catch (NotFoundException e) {
             // Check if exists in delete history
-            recordExists = historyService.existsInDeleteHistory(recordDao.getIndex(), recordDao.getType(), id);
+            recordExists = deleteService.existsInDeleteHistory(recordDao.getIndex(), recordDao.getType(), id);
         }
         if (!recordExists) {
             throw new NotFoundException(String.format("Comment refers a non-existent document [%s/%s/%s].", recordDao.getIndex(), recordDao.getType(), id));
