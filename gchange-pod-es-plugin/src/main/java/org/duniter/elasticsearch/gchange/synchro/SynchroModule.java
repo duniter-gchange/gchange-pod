@@ -24,8 +24,6 @@ package org.duniter.elasticsearch.gchange.synchro;
 
 import org.duniter.elasticsearch.gchange.synchro.market.SynchroMarketCommentAction;
 import org.duniter.elasticsearch.gchange.synchro.market.SynchroMarketRecordAction;
-import org.duniter.elasticsearch.gchange.synchro.registry.SynchroRegistryCommentAction;
-import org.duniter.elasticsearch.gchange.synchro.registry.SynchroRegistryRecordAction;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.inject.Module;
 
