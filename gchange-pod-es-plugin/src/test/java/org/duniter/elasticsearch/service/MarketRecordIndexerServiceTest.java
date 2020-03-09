@@ -23,7 +23,7 @@ package org.duniter.elasticsearch.service;
  */
 
 import org.duniter.elasticsearch.TestResource;
-import org.duniter.elasticsearch.gchange.service.RegistryService;
+import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Ignore;
@@ -35,22 +35,22 @@ import org.slf4j.LoggerFactory;
  * Created by Benoit on 06/05/2015.
  */
 @Ignore
-public class RegistryRecordIndexerServiceTest {
-    private static final Logger log = LoggerFactory.getLogger(RegistryRecordIndexerServiceTest.class);
+public class MarketRecordIndexerServiceTest {
+    private static final Logger log = LoggerFactory.getLogger(MarketRecordIndexerServiceTest.class);
 
     @ClassRule
     public static final TestResource resource = TestResource.create();
 
-    private RegistryService service;
+    private MarketService service;
 
     @Before
     public void setUp() throws Exception {
-        // FIXME use google guice ?
         //service = ServiceLocator.instance().getRegistryRecordIndexerService();
     }
 
     @Test
     public void insertTestData() {
+        // FIXME
         //service.insertRecordFromBulkFile(new File("src/test/resources/registry-test-records.json"));
     }
 
