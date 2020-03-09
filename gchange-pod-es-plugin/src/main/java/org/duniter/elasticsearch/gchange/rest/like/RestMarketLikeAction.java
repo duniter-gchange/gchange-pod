@@ -41,11 +41,11 @@ import org.elasticsearch.rest.RestRequest;
 /**
  * Created by blavenie on 13/12/16.
  */
-public class RestLikeAction {
+public class RestMarketLikeAction {
 
     @Inject
-    public RestLikeAction(RestLikeGetAction getAction,
-                          RestLikePostAction postAction) {
+    public RestMarketLikeAction(RestLikeGetAction getAction,
+                                RestLikePostAction postAction) {
 
         getAction.allowLikeIndex(MarketIndexDao.INDEX, MarketRecordDao.TYPE);
         postAction.allowLikeIndex(MarketIndexDao.INDEX, MarketRecordDao.TYPE);

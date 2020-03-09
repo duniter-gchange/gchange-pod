@@ -22,10 +22,9 @@ package org.duniter.elasticsearch.gchange.rest;
  * #L%
  */
 
-import org.duniter.elasticsearch.gchange.rest.like.RestLikeAction;
+import org.duniter.elasticsearch.gchange.rest.like.RestMarketLikeAction;
 import org.duniter.elasticsearch.gchange.rest.market.*;
 import org.duniter.elasticsearch.gchange.rest.mixed.RestMixedSearchAction;
-import org.duniter.elasticsearch.gchange.rest.registry.*;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.inject.Module;
 
@@ -42,19 +41,11 @@ public class RestModule extends AbstractModule implements Module {
         bind(RestMarketImageAction.class).asEagerSingleton();
         bind(RestMarketShareLinkAction.class).asEagerSingleton();
 
-        // Registry
-        bind(RestRegistryRecordIndexAction.class).asEagerSingleton();
-        bind(RestRegistryRecordUpdateAction.class).asEagerSingleton();
-        bind(RestRegistryCommentIndexAction.class).asEagerSingleton();
-        bind(RestRegistryCommentUpdateAction.class).asEagerSingleton();
-        bind(RestRegistryCategoryAction.class).asEagerSingleton();
-        bind(RestRegistryImageAction.class).asEagerSingleton();
-
-        //Mixed search
+        // Mixed search, on market indices
         bind(RestMixedSearchAction.class).asEagerSingleton();
 
-        // Like
-        bind(RestLikeAction.class).asEagerSingleton();
+        // Like, on market indices
+        bind(RestMarketLikeAction.class).asEagerSingleton();
 
     }
 }

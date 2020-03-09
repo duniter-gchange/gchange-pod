@@ -28,7 +28,6 @@ import org.elasticsearch.common.inject.Module;
 public class ServiceModule extends AbstractModule implements Module {
 
     @Override protected void configure() {
-        bind(RegistryService.class).asEagerSingleton();
         bind(MarketService.class).asEagerSingleton();
 
         bind(CommentUserEventService.class).asEagerSingleton();
