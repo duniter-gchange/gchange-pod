@@ -274,13 +274,20 @@ duniter.p2p.peering.publishedApis: [
 #
 # duniter.document.time.maxPastDelta: 7200
 #
-# Filter document in the futur, if time greater that 'maxFutureDelta' (in seconds). (default: 600 =10min)
+# Filter document in the future, if time greater that 'maxFutureDelta' (in seconds). (default: 600 =10min)
 #
 # duniter.document.time.maxFutureDelta: 600
 #
 # Allow admin (define in duniter.keyring) to delete documents ? (default: true)
 #
-# duniter.document.allowAdminDeletion: true
+# duniter.document.moderators.admin: false
+#
+# Public keys of moderators. Moderators can delete any user documents (profile, page comment, etc.) (default: <empty>)
+#
+duniter.document.moderators.pubkeys: [
+  'HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz', # Admin gchange
+  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z'  # Benoit Lavenier
+]
 #
 # ---------------------------------- Cesium+ Pod > Mail module -----------------------
 #
@@ -325,12 +332,13 @@ duniter.mail.subject.prefix: '[Ğchange-test]'
 #
 duniter.user.api: 'GCHANGE_API'
 #
-# Public keys of user moderator. Moderators can delete any user documents (profile, etc.) (default: <empty>)
+# Requirements to send abuse report on document (profile, page, etc.)  (default: ['member'])
 #
-duniter.user.moderators.pubkeys: [
-  'HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz'  # Admin gchange
-  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z', # Benoit Lavenier
-]
+duniter.abuse.issuer.requirements: ['profile']
+#
+# Requirements to send likes on document (profile, page, etc.)  (default: empty)
+#
+duniter.like.issuer.requirements: ['profile']
 #
 # ---------------------------------- Cesium+ Pod > Subscription module -------------------
 #
@@ -365,7 +373,6 @@ duniter.subscription.email.link.name: 'Ğchange'
 #
 # ---------------------------------- Cesium+ Pod > Share module -------------------
 #
-#
 # Share title: `og:site_name` (default: 'Cesium')
 #
 duniter.share.site.name: 'Ğchange'
@@ -384,18 +391,8 @@ duniter.share.user.link.url: 'https://www.gchange.fr/#/app/wot/{pubkey}/{title}'
 #
 duniter.share.image.default.url: 'https://www.gchange.fr/img/logo_200px.png'
 #
-#
 # Share market link (e.g. Ad): (default: https://gchange.fr/#/app/market/view/{id}/{title} )
 # Note: available variables are {id} and {title}
 #
 duniter.share.market.link.url: 'https://www.gchange.fr/#/app/market/view/{id}/{title}'
 #
-# ---------------------------------- Cesium+ Pod > Moderation and likes -------------------
-#
-# Requirements to send abuse report (default: ['member'])
-#
-duniter.abuse.issuer.requirements: ['profile']
-#
-# Requirements to send likes (default: empty)
-#
-duniter.like.issuer.requirements: ['profile']

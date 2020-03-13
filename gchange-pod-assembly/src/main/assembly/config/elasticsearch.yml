@@ -71,7 +71,9 @@ cluster.name: gchange-pod
 
 http.cors.allow-origin: "/.*/"
 http.cors.enabled: true
-
+#
+#http.compression: true
+#
 # Internal transport layer
 #
 # transport.tcp.port: 9210-9220
@@ -200,7 +202,7 @@ duniter.software.name: gchange-pod
 # duniter.keyring.salt:
 # duniter.keyring.password:
 #
-# Enable security - will restrict HTTP access to only ES known indices
+# Enable security - will restrict HTTP access to only known ES indices
 # /!\ WARNING: should be enable for production use
 #
 duniter.security.enable: true
@@ -281,8 +283,8 @@ duniter.p2p.peering.publishedApis: [
 # Public keys of moderators. Moderators can delete any user documents (profile, page comment, etc.) (default: <empty>)
 #
 duniter.document.moderators.pubkeys: [
-  'HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz'  # Admin gchange
-  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z', # Benoit Lavenier
+  'HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz', # Admin gchange
+  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z'  # Benoit Lavenier
 ]
 #
 # ---------------------------------- Cesium+ Pod > Mail module -----------------------
