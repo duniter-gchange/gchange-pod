@@ -249,7 +249,7 @@ duniter.p2p.peer.indexedApis: [
 #
 # Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
 #
-duniter.p2p.peering.enable: false
+duniter.p2p.peering.enable: true
 #
 # Define targeted API (for peers selection) where to send the peer document (if peering is enable). (Default: ["BASIC_MERKLED_API", "BMAS"])
 # This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
