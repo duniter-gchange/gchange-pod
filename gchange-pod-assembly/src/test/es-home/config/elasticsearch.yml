@@ -178,7 +178,7 @@ duniter.blockchain.event.user.enable: false
 #
 # Duniter node address
 #
-duniter.host: g1.duniter.fr
+duniter.host: g1.duniter.org
 duniter.port: 443
 duniter.useSsl: true
 #
@@ -286,7 +286,8 @@ duniter.p2p.peering.publishedApis: [
 #
 duniter.document.moderators.pubkeys: [
   'HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz', # Admin gchange
-  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z'  # Benoit Lavenier
+  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z',  # Benoit Lavenier
+  '47JpfrGkoHJWtumeu7f67fbAxkvaHYVQBNo5GszNs61Z' # Bertrand Presles
 ]
 #
 # ---------------------------------- Cesium+ Pod > Mail module -----------------------

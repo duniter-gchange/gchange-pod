@@ -34,6 +34,6 @@ public class ServiceModule extends AbstractModule implements Module {
         bind(RecordUserEventService.class).asEagerSingleton();
 
         // Configure network service
-        bind(NetworkServiceConfiguration.class).asEagerSingleton();
+        bind(NetworkService.class).asEagerSingleton();
     }
 }

@@ -23,11 +23,15 @@ package org.duniter.elasticsearch.gchange;
  */
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Preconditions;
+import org.duniter.core.client.model.local.Peer;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.service.MarketService;
+import org.duniter.elasticsearch.gchange.service.NetworkService;
+import org.duniter.elasticsearch.gchange.service.PeerService;
 import org.duniter.elasticsearch.service.DocStatService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
 import org.duniter.elasticsearch.user.model.LikeRecord;
@@ -39,6 +43,9 @@ import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+
+import java.io.Closeable;
+import java.util.Collection;
 
 /**
  * Created by blavenie on 17/06/16.
@@ -71,6 +78,13 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
         threadPool.onMasterStart(() -> {
             // Make sure all indices exists
             createIndices();
+
+            threadPool.scheduleOnClusterReady(() -> {
+
+                // Start peer indexation (and wait)
+                startIndexPeers();
+
+            });
         });
     }
 
@@ -148,4 +162,35 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
     }
 
 
+    protected void startIndexPeers() {
+
+        checkMasterNode();
+
+        try {
+
+            final PeerService peerService = injector.getInstance(PeerService.class);
+            final NetworkService networkService = injector.getInstance(NetworkService.class);
+
+            // Get configured peers (with Gchange API)
+            Collection<Peer> peers = networkService.getConfigPeersWithGchangeApi();
+
+            // index /network/peers
+            peers.forEach(peerService::indexPeers);
+
+            // Start listening new peers
+            Closeable close = networkService.startListeningPeers().orElse(null);
+            // Stop to listen, if master stop
+            if (close != null) {
+                threadPool.scheduleOnMasterFirstStop(close);
+            }
+
+        } catch (Throwable e) {
+            logger.error(String.format("Indexing gchange peers error: %s", e.getMessage()), e);
+            throw e;
+        }
+    }
+
+    protected void checkMasterNode() {
+        Preconditions.checkArgument(threadPool.isMasterNode(), "Node must be the master node to execute this job");
+    }
 }

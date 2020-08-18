@@ -63,15 +63,15 @@
       </includes>
     </fileSet>
 
-    <!-- websocket lib (tyrus )
+    <!-- executable files -->
     <fileSet>
-      <directory>target/elasticsearch-${elasticsearch.version}</directory>
-      <outputDirectory>lib</outputDirectory>
+      <directory>src/main/assembly</directory>
+      <outputDirectory/>
       <includes>
-        <include>elasticsearch.yml</include>
-        <include>logging.yml</include>
+        <include>bin/gchange-pod</include>
       </includes>
-    </fileSet>-->
+      <fileMode>0755</fileMode>
+    </fileSet>
   </fileSets>
 
   <dependencySets>

@@ -18,8 +18,8 @@ public abstract class AbstractSynchroGchangeAction extends org.duniter.elasticse
     }
 
     @Override
-    public EndpointApi getEndPointApi() {
-        return EndpointApi.GCHANGE_API;
+    public String getEndPointApi() {
+        return EndpointApi.GCHANGE_API.name();
     }
 
     /* -- internal methods -- */

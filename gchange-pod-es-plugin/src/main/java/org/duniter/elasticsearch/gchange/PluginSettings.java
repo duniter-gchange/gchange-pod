@@ -23,7 +23,6 @@ package org.duniter.elasticsearch.gchange;
  */
 
 
-import org.duniter.core.client.model.bma.EndpointApi;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
 
@@ -85,6 +84,15 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
 
     /* -- delegate methods -- */
 
+    public int getPeeringInterval() {
+        return delegate.getDelegate().getPeeringInterval();
+    }
+
+    public int getScanPeerInterval() {
+        return this.settings.getAsInt("duniter.p2p.scan.interval", getPeeringInterval());
+    }
+
+
     public String getShareSiteName() {
         return delegate.getShareSiteName();
     }
@@ -102,11 +110,11 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
     }
 
 
-    public Collection<EndpointApi> getPeeringTargetedApis() {
+    public Collection<String> getPeeringTargetedApis() {
         return this.delegate.getPeeringTargetedApis();
     }
 
-    public Collection<EndpointApi> getPeeringPublishedApis() {
+    public Collection<String> getPeeringPublishedApis() {
         return this.delegate.getPeeringPublishedApis();
     }
 

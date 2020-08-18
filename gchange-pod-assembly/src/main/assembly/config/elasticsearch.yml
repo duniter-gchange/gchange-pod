@@ -139,7 +139,7 @@ duniter.string.analyzer: french
 #
 # Enabling blockchain synchronization (default: true)
 #
-# duniter.blockchain.enable: true
+# duniter.blockchain.enable: false
 #
 # Enabling blockchain movement indexation ? (default: ${duniter.blockchain.enable})
 #
@@ -259,7 +259,7 @@ duniter.p2p.peering.targetedApis: [
 # Define cluster API to publish (if peering is enable). By default, all compatible API
 #
 duniter.p2p.peering.publishedApis: [
-  "GCHANGE_API"
+  "GCHANGE_API", "ES_SUBSCRIPTION_API"
 ]
 #
 # Interval for publishing peer document to the network, in seconds. (Default: 7200 =2h)
