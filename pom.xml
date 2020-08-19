@@ -3,7 +3,7 @@
 
   <groupId>fr.gchange</groupId>
   <artifactId>gchange-pod</artifactId>
-  <version>1.6.8-SNAPSHOT</version>
+  <version>1.6.8</version>
   <packaging>pom</packaging>
 
   <name>Ğchange Pod</name>
@@ -119,7 +119,7 @@
     <url>https://github.com/duniter-gchange/gchange-pod.git</url>
     <connection>scm:git:git@github.com:duniter-gchange/gchange-pod.git</connection>
     <developerConnection>scm:git:git@github.com:duniter-gchange/gchange-pod.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>gchange-pod-1.6.8</tag>
   </scm>
 
   <issueManagement>
