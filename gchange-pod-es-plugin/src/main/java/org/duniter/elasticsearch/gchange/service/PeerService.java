@@ -6,6 +6,7 @@ import org.duniter.core.client.model.local.Peer;
 import org.duniter.core.service.CryptoService;
 import org.duniter.elasticsearch.client.Duniter4jClient;
 import org.duniter.elasticsearch.gchange.PluginSettings;
+import org.duniter.elasticsearch.gchange.model.bma.GchangeEndpoindApi;
 import org.elasticsearch.common.inject.Inject;
 import org.nuiton.i18n.I18n;
 
@@ -23,7 +24,7 @@ public class PeerService extends AbstractService {
         this.delegate = peerService;
 
         // Retrieve peer with the GCHANGE_API api
-        this.delegate.addIndexedEndpointApi(EndpointApi.GCHANGE_API.name());
+        this.delegate.addIndexedEndpointApi(GchangeEndpoindApi.GCHANGE_API.label());
     }
 
     public String getCurrency(Peer peer) {
@@ -53,7 +54,7 @@ public class PeerService extends AbstractService {
         filterDef.filterType = null;
         filterDef.filterStatus = Peer.PeerStatus.UP;
         // Filter ONLY on GCHANGE_API endpoints
-        filterDef.filterEndpoints = ImmutableList.of(EndpointApi.GCHANGE_API.name());
+        filterDef.filterEndpoints = ImmutableList.of(GchangeEndpoindApi.GCHANGE_API.label());
         filterDef.currency = currency;
         return filterDef;
     }

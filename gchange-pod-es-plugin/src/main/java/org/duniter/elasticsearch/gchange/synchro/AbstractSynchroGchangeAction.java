@@ -4,6 +4,7 @@ import org.duniter.core.client.model.bma.EndpointApi;
 import org.duniter.core.service.CryptoService;
 import org.duniter.elasticsearch.PluginSettings;
 import org.duniter.elasticsearch.client.Duniter4jClient;
+import org.duniter.elasticsearch.gchange.model.bma.GchangeEndpoindApi;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
 import org.duniter.elasticsearch.user.service.UserService;
 
@@ -19,7 +20,7 @@ public abstract class AbstractSynchroGchangeAction extends org.duniter.elasticse
 
     @Override
     public String getEndPointApi() {
-        return EndpointApi.GCHANGE_API.name();
+        return GchangeEndpoindApi.GCHANGE_API.label();
     }
 
     /* -- internal methods -- */

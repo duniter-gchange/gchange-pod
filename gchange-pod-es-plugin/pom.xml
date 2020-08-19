@@ -41,6 +41,18 @@
             <version>${cesium-plus-pod.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.duniter</groupId>
+            <artifactId>duniter4j-core-client</artifactId>
+            <version>${duniter4j.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.duniter</groupId>
+            <artifactId>duniter4j-core-shared</artifactId>
+            <version>${duniter4j.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
 
         <!-- Elastic Search -->

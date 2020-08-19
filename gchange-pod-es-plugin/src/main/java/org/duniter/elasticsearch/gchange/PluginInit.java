@@ -24,10 +24,12 @@ package org.duniter.elasticsearch.gchange;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
+import org.duniter.core.client.model.bma.EndpointApi;
 import org.duniter.core.client.model.local.Peer;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.model.bma.GchangeEndpoindApi;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.gchange.service.NetworkService;
@@ -67,11 +69,11 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
         this.pluginSettings = pluginSettings;
         this.threadPool = threadPool;
         this.injector = injector;
-
     }
 
     @Override
     protected void doStart() {
+
         // Config the statistics on market documents
         configDocStats();
 
@@ -193,4 +195,5 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
     protected void checkMasterNode() {
         Preconditions.checkArgument(threadPool.isMasterNode(), "Node must be the master node to execute this job");
     }
+
 }

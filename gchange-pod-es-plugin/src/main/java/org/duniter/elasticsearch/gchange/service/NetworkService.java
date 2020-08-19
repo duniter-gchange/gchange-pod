@@ -7,6 +7,7 @@ import org.duniter.core.client.model.local.Peer;
 import org.duniter.core.service.CryptoService;
 import org.duniter.elasticsearch.client.Duniter4jClient;
 import org.duniter.elasticsearch.gchange.PluginSettings;
+import org.duniter.elasticsearch.gchange.model.bma.GchangeEndpoindApi;
 import org.duniter.elasticsearch.service.CurrencyService;
 import org.duniter.elasticsearch.threadpool.ScheduledActionFuture;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
@@ -38,17 +39,17 @@ public class NetworkService extends AbstractService {
         this.delegate = networkService;
 
         // Register GCHANGE_API as published API, inside the peering document
-        delegate.registerPeeringPublishApi(EndpointApi.GCHANGE_API.name());
+        delegate.registerPeeringPublishApi(GchangeEndpoindApi.GCHANGE_API.label());
 
         // Register GCHANGE_API as target API, for peering document
-        delegate.registerPeeringTargetApi(EndpointApi.GCHANGE_API.name());
+        delegate.registerPeeringTargetApi(GchangeEndpoindApi.GCHANGE_API.label());
     }
 
     public Collection<Peer> getPeersWithGchangeApi() {
 
         Collection<Peer> peers = Lists.newArrayList();
         for (String currency: currencyService.getAllIds()) {
-            peers.addAll(delegate.getPeersFromApi(currency, EndpointApi.GCHANGE_API.name()));
+            peers.addAll(delegate.getPeersFromApi(currency, GchangeEndpoindApi.GCHANGE_API.label()));
         }
 
         return peers;
@@ -58,7 +59,7 @@ public class NetworkService extends AbstractService {
 
         Collection<Peer> peers = Lists.newArrayList();
         for (String currency: currencyService.getAllIds()) {
-            peers.addAll(delegate.getConfigIncludesPeers(currency, EndpointApi.GCHANGE_API.name()));
+            peers.addAll(delegate.getConfigIncludesPeers(currency, GchangeEndpoindApi.GCHANGE_API.label()));
         }
 
         return peers;

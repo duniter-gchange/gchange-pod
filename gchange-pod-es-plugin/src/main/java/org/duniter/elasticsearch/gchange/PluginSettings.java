@@ -23,6 +23,9 @@ package org.duniter.elasticsearch.gchange;
  */
 
 
+import com.google.common.base.Preconditions;
+import org.duniter.core.client.model.bma.EndpointApi;
+import org.duniter.elasticsearch.gchange.model.bma.GchangeEndpoindApi;
 import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
 
@@ -54,6 +57,8 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
     @Override
     protected void doStart() {
 
+        // Check config options
+        checkEndpointApis();
     }
 
     @Override
@@ -145,5 +150,17 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
             newVersion = currentPackage.getSpecificationVersion();
         }
         return newVersion;
+    }
+
+
+    protected void checkEndpointApis() {
+        Preconditions.checkArgument(GchangeEndpoindApi.GCHANGE_API.label().equals(EndpointApi.ES_CORE_API.label()),
+                String.format("Please set config option 'duniter.core.api=%s'", GchangeEndpoindApi.GCHANGE_API.label()));
+
+        Preconditions.checkArgument(GchangeEndpoindApi.GCHANGE_API.label().equals(EndpointApi.ES_USER_API.label()),
+                String.format("Please set config option 'duniter.user.api=%s'", GchangeEndpoindApi.GCHANGE_API.label()));
+
+        Preconditions.checkArgument(GchangeEndpoindApi.GCHANGE_SUBSCRIPTION_API.label().equals(EndpointApi.ES_SUBSCRIPTION_API.label()),
+                String.format("Please set config option 'duniter.subscription.api=%s'", GchangeEndpoindApi.GCHANGE_SUBSCRIPTION_API.label()));
     }
 }

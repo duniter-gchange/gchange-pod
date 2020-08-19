@@ -266,6 +266,11 @@ duniter.p2p.peering.publishedApis: [
 #
 # duniter.p2p.peering.interval: 7200
 #
+# Cache time for peers (GET request /network/peers and /network/peering/peers), in seconds. (Default: 600 = 10min)
+# Use 0 (zero) to disable the cache
+#
+# duniter.p2p.peers.cache.timeToLive: 0
+#
 # ---------------------------------- Cesium+ Pod > document moderation ---------------
 #
 # Filter too old document, if time older that 'maxPastDelta' (in seconds). (default: 7200 =2h)
@@ -283,8 +288,9 @@ duniter.p2p.peering.publishedApis: [
 # Public keys of moderators. Moderators can delete any user documents (profile, page comment, etc.) (default: <empty>)
 #
 duniter.document.moderators.pubkeys: [
-  'HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz', # Admin gchange
-  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z'  # Benoit Lavenier
+  'HmH5beJqKGMeotcQUrSW7Wo5tKvAksHmfYXfiSQ9EbWz', # Admin of gchange.fr
+  '8PTThXiUSwwuPoqQWw3tuAn4MpvzQzpKhs6LMuiozS7Z', # B. Lavenier (gchange maintainer)
+  '47JpfrGkoHJWtumeu7f67fbAxkvaHYVQBNo5GszNs61Z' # B. Presles (gchange developer)
 ]
 #
 # ---------------------------------- Cesium+ Pod > Mail module -----------------------
@@ -346,7 +352,7 @@ duniter.like.issuer.requirements: ['profile']
 #
 # Endpoint API for subscription data (use by P2P synchronization) (default: ES_SUBSCRIPTION_API)
 #
-duniter.subscription.api: 'GCHANGE_API'
+duniter.subscription.api: 'GCHANGE_SUBSCRIPTION_API'
 #
 # Email subscription: Day of the week to trigger weekly (default: 2 = monday)
 #
