@@ -1,5 +1,6 @@
 package org.duniter.elasticsearch.gchange.rest.market;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.html.HtmlEscapers;
 import org.duniter.core.exception.BusinessException;
 import org.duniter.core.exception.TechnicalException;
@@ -12,6 +13,7 @@ import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.rest.attachment.RestImageAttachmentAction;
 import org.duniter.elasticsearch.rest.share.AbstractRestShareLinkAction;
+import org.duniter.elasticsearch.service.CurrencyService;
 import org.duniter.elasticsearch.util.opengraph.OGData;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.inject.Inject;
@@ -20,25 +22,34 @@ import org.nuiton.i18n.I18n;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Map;
 
 public class RestMarketShareLinkAction extends AbstractRestShareLinkAction implements AbstractRestShareLinkAction.OGDataResolver {
 
+    private static final Map<String, String> WELL_KNOWN_CURRENCY_SYMBOLS = ImmutableMap.<String, String>builder()
+            .put("g1", "Ğ1")
+            .put("g1-test", "Ğ1-test")
+            .build();
+
     private final PluginSettings pluginSettings;
-    private final MarketService service;
+    private final CurrencyService currencyService;
+    private final MarketService marketService;
 
     @Inject
     public RestMarketShareLinkAction(final PluginSettings pluginSettings, final RestController controller, final Client client,
-                                     final MarketService service) {
+                                     final MarketService marketService,
+                                     final CurrencyService currencyService) {
         super(pluginSettings.getDelegate().getDelegate(), controller, client, MarketIndexDao.INDEX, MarketRecordDao.TYPE);
         setResolver(this);
         this.pluginSettings = pluginSettings;
-        this.service = service;
+        this.marketService = marketService;
+        this.currencyService = currencyService;
     }
 
     @Override
     public OGData resolve(String id) throws DuniterElasticsearchException, BusinessException {
         try {
-            MarketRecord record = service.getRecordForSharing(id);
+            MarketRecord record = marketService.getRecordForSharing(id);
 
             OGData data = new OGData();
             String siteName = pluginSettings.getShareSiteName();
@@ -48,6 +59,13 @@ public class RestMarketShareLinkAction extends AbstractRestShareLinkAction imple
                 // og:title
                 if (StringUtils.isNotBlank(record.getTitle())) {
                     data.title = record.getTitle();
+
+                    // Add price to title
+                    String formattedPrice = getFormattedPrice(record);
+                    if (formattedPrice != null) {
+                        // Append to title
+                        data.title += " | " + formattedPrice;
+                    }
                 }
                 else {
                     data.title = siteName;
@@ -107,4 +125,49 @@ public class RestMarketShareLinkAction extends AbstractRestShareLinkAction imple
         }
     }
 
+    /**
+     * Get the formatted price
+     * @param record
+     */
+    protected String getFormattedPrice(MarketRecord record) {
+
+        if (record.getPrice() == null || StringUtils.isBlank(record.getCurrency())) return null;
+
+        // Using parse allow to use string in the field
+        double price = record.getPrice();
+
+        // Convert UD price into absolute price
+        if ("UD".equalsIgnoreCase(record.getUnit())) {
+            try {
+                Long lastUD = currencyService.getLastUD(record.getCurrency());
+                if (lastUD == null) return null; // Unable to convert (no last UD)
+
+                price = price * (currencyService.getLastUD(record.getCurrency()) / 100);
+                price = (Math.round(price * 100) / 100); // round to 2 decimal
+            } catch(Exception e) {
+                logger.error(String.format("Cannot convert price of record %s: %s", record.getId()), e.getMessage());
+            }
+        }
+        else {
+            price = price / 100;
+        }
+
+        StringBuilder result = new StringBuilder();
+        result.append(price);
+
+        // Remove unused decimal
+        if (result.toString().endsWith(".0")) {
+            result.setLength(result.length() - 2);
+        }
+
+        return result
+                .append(' ')
+                .append(getCurrencySymbol(record.getCurrency()))
+                .toString();
+    }
+
+    protected String getCurrencySymbol(String currency) {
+        String symbol = WELL_KNOWN_CURRENCY_SYMBOLS.get(currency);
+        return symbol != null ? symbol : currency;
+    }
 }

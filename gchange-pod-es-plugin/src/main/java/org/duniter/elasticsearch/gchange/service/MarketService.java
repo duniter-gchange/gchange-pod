@@ -137,7 +137,10 @@ public class MarketService extends AbstractService {
         return client.getSourceByIdOrNull(recordDao.getIndex(), recordDao.getType(), id, MarketRecord.class,
                 MarketRecord.PROPERTY_TITLE,
                 MarketRecord.PROPERTY_DESCRIPTION,
-                MarketRecord.PROPERTY_THUMBNAIL);
+                MarketRecord.PROPERTY_THUMBNAIL,
+                MarketRecord.PROPERTY_PRICE,
+                MarketRecord.PROPERTY_CURRENCY,
+                MarketRecord.PROPERTY_UNIT);
     }
 
     /* -- Internal methods -- */
