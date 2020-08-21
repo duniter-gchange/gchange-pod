@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="${project.name}">
+
+  <skin>
+      <groupId>org.apache.maven.skins</groupId>
+      <artifactId>maven-fluido-skin</artifactId>
+      <version>1.5</version>
+  </skin>
+
+  <custom>
+      <fluidoSkin>
+          <topBarEnabled>false</topBarEnabled>
+          <googleSearch/>
+          <sideBarEnabled>true</sideBarEnabled>
+          <searchEnabled>true</searchEnabled>
+          <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+      </fluidoSkin>
+  </custom>
+
+  <bannerLeft>
+      <name>${project.name}</name>
+      <href>./index.html</href>
+  </bannerLeft>
+
+  <bannerRight>
+      <name>${project.name}</name>
+      <src>http://doc.e-is.pro/gchange-pod/images/logos/logo_96px.png</src>
+      <href>./index.html</href>
+  </bannerRight>
+
+  <publishDate position="right" format="yyyy-MM-dd"/>
+  <version position="none"/>
+
+  <poweredBy>
+    <logo href="http://maven.apache.org" name="Maven"
+          img="./images/logos/maven-feather.png"/>
+  </poweredBy>
+
+  <body>
+    <head><![CDATA[
+      <link rel="stylesheet" type="text/css" href="http://doc.e-is.pro/gchange-pod/css/site.css"></link>
+      <link rel="icon" href="http://doc.e-is.pro/gchange-pod/images/favicon.ico">
+      ]]>
+    </head>
+
+    <links>
+      <item name="Duniter" href="http://duniter.org"/>
+      <item name="Source code" href="https://github.com/duniter-gchange/gchange-pod"/>
+    </links>
+
+    <breadcrumbs>
+      <item name="${project.name}" href="./index.html"/>
+    </breadcrumbs>
+
+    <menu name="${project.name}" inherit="top">
+      <item name="Home" href="./index.html"/>
+      <item name="Downloads"
+            href="https://github.com/duniter-gchange/gchange-pod/releases"/>
+    </menu>
+
+    <menu name="User manual" inherit="top">
+      <item name="Installation" href="./install.html"/>
+    </menu>
+
+    <menu name="Technical documentation" inherit="top">
+      <item name="RESTfull API" href="./REST_API.html"/>
+      <item name="Build from source" href="./build.html"/>
+    </menu>
+
+    <!--<menu name="Modules" ref="modules"/>-->
+
+    <menu name="Community" inherit="bottom">
+      <item name="Source code"
+            href="https://github.com/duniter-gchange/gchange-pod"/>
+      <item name="Issue Tracking"
+            href="https://github.com/duniter-gchange/gchange-pod/issues"/>
+      <item name="Forum"
+            href="https://forum.duniter.org"/>
+    </menu>
+
+    <menu ref="reports" inherit="bottom"/>
+
+  </body>
+</project>
