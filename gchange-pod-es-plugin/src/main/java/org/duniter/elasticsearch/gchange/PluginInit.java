@@ -120,7 +120,10 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
             if (logger.isInfoEnabled()) {
                 logger.info("Checking indices...");
             }
-            injector.getInstance(MarketService.class).createIndexIfNotExists();
+            injector.getInstance(MarketService.class)
+                    .createIndexIfNotExists()
+                    // Migrate if need
+                    .startDataMigration();
 
             if (logger.isInfoEnabled()) {
                 logger.info("Checking indices [OK]");

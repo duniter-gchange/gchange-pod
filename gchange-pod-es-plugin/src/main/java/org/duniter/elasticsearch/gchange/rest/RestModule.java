@@ -41,6 +41,10 @@ public class RestModule extends AbstractModule implements Module {
         bind(RestMarketImageAction.class).asEagerSingleton();
         bind(RestMarketShareLinkAction.class).asEagerSingleton();
 
+        // Market category
+        bind(RestMarketCategoryUpdateAction.class).asEagerSingleton();
+        bind(RestMarketCategoryIndexAction.class).asEagerSingleton();
+
         // Mixed search, on market indices
         bind(RestMixedSearchAction.class).asEagerSingleton();
 

@@ -30,6 +30,7 @@ import org.elasticsearch.common.component.AbstractLifecycleComponent;
 import org.elasticsearch.common.inject.Inject;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Access to configuration options
@@ -97,6 +98,9 @@ public class PluginSettings extends AbstractLifecycleComponent<PluginSettings> {
         return this.settings.getAsInt("duniter.p2p.scan.interval", getPeeringInterval());
     }
 
+    public Set<String> getDocumentAdminAndModeratorsPubkeys() {
+        return this.delegate.getDocumentAdminAndModeratorsPubkeys();
+    }
 
     public String getShareSiteName() {
         return delegate.getShareSiteName();

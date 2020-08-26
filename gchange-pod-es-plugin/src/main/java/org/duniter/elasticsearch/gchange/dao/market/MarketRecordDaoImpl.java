@@ -26,6 +26,7 @@ import org.duniter.core.client.model.elasticsearch.Records;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.dao.AbstractRecordDaoImpl;
+import org.duniter.elasticsearch.gchange.model.auction.AuctionRecord;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -69,7 +70,7 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // creationTime
-                    .startObject(Records.PROPERTY_CREATION_TIME)
+                    .startObject(MarketRecord.PROPERTY_CREATION_TIME)
                     .field("type", "integer")
                     .endObject()
 
@@ -124,23 +125,23 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // address
-                    .startObject(Records.PROPERTY_ADDRESS)
+                    .startObject(MarketRecord.PROPERTY_ADDRESS)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
                     // city
-                    .startObject(Records.PROPERTY_CITY)
+                    .startObject(MarketRecord.PROPERTY_CITY)
                     .field("type", "string")
                     .endObject()
 
                     // geoPoint
-                    .startObject(Records.PROPERTY_GEO_POINT)
+                    .startObject(MarketRecord.PROPERTY_GEO_POINT)
                     .field("type", "geo_point")
                     .endObject()
 
                     // thumbnail
-                    .startObject("thumbnail")
+                    .startObject(MarketRecord.PROPERTY_THUMBNAIL)
                     .field("type", "attachment")
                     .startObject("fields") // src
                     .startObject("content") // title
@@ -160,7 +161,7 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // pictures
-                    .startObject(Records.PROPERTY_PICTURES)
+                    .startObject(MarketRecord.PROPERTY_PICTURES)
                     .field("type", "nested")
                     .field("dynamic", "false")
                     .startObject("properties")
@@ -188,12 +189,12 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // picturesCount
-                    .startObject(Records.PROPERTY_PICTURES_COUNT)
+                    .startObject(MarketRecord.PROPERTY_PICTURES_COUNT)
                     .field("type", "integer")
                     .endObject()
 
                     // category
-                    .startObject(Records.PROPERTY_CATEGORY)
+                    .startObject(MarketRecord.PROPERTY_CATEGORY)
                     .field("type", "nested")
                     .field("dynamic", "false")
                     .startObject("properties")
@@ -213,11 +214,23 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // tags
-                    .startObject(Records.PROPERTY_TAGS)
+                    .startObject(MarketRecord.PROPERTY_TAGS)
                     .field("type", "completion")
                     .field("search_analyzer", "simple")
                     .field("analyzer", "simple")
                     .field("preserve_separators", "false")
+                    .endObject()
+
+                    // hash
+                    .startObject(MarketRecord.PROPERTY_HASH)
+                    .field("type", "string")
+                    .field("index", "not_analyzed")
+                    .endObject()
+
+                    // signature
+                    .startObject(MarketRecord.PROPERTY_SIGNATURE)
+                    .field("type", "string")
+                    .field("index", "not_analyzed")
                     .endObject()
 
                     .endObject()

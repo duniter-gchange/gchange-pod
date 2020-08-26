@@ -22,6 +22,8 @@ package org.duniter.elasticsearch.gchange.model.market;
  * #L%
  */
 
+import org.duniter.core.client.model.elasticsearch.Records;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +46,13 @@ public class MarketRecord extends LightMarketRecord {
     public static final String PROPERTY_FEES="fees";
     public static final String PROPERTY_FEES_CURRENCY="feesCurrency";
     public static final String PROPERTY_THUMBNAIL="thumbnail";
+    public static final String PROPERTY_PICTURES_COUNT= Records.PROPERTY_PICTURES_COUNT;
+    public static final String PROPERTY_CATEGORY= Records.PROPERTY_CATEGORY;
+    public static final String PROPERTY_PICTURES= Records.PROPERTY_PICTURES;
+    public static final String PROPERTY_CITY= Records.PROPERTY_CITY;
+    public static final String PROPERTY_GEO_POINT= Records.PROPERTY_GEO_POINT;
+    public static final String PROPERTY_ADDRESS= Records.PROPERTY_ADDRESS;
+    public static final String PROPERTY_TAGS= Records.PROPERTY_TAGS;
 
     private String description;
     private Map<String, String> thumbnail = new HashMap<>();

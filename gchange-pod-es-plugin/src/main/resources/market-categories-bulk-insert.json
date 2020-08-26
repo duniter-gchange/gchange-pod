@@ -14,15 +14,15 @@
 { "index": { "_id": "cat5" }}
 { "name": "Utilitaires" , "parent": "cat1" }
 { "index": { "_id": "cat6" }}
-{ "name": "Equipement Auto" , "parent": "cat1" }
+{ "name": "Équipement Auto" , "parent": "cat1" }
 { "index": { "_id": "cat44" }}
-{ "name": "Equipement Moto" , "parent": "cat1" }
+{ "name": "Équipement Moto" , "parent": "cat1" }
 { "index": { "_id": "cat50" }}
 { "name": "Equipement Caravaning" , "parent": "cat1" }
 { "index": { "_id": "cat7" }}
 { "name": "Nautisme" , "parent": "cat1" }
 { "index": { "_id": "cat51" }}
-{ "name": "Equipement Nautisme" , "parent": "cat1" }
+{ "name": "Équipement Nautisme" , "parent": "cat1" }
 
 { "index": { "_id": "cat8" }}
 { "name": "Immobilier"  , "parent": null}

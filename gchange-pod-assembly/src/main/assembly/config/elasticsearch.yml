@@ -259,7 +259,7 @@ duniter.p2p.peering.targetedApis: [
 # Define cluster API to publish (if peering is enable). By default, all compatible API
 #
 duniter.p2p.peering.publishedApis: [
-  "GCHANGE_API", "ES_SUBSCRIPTION_API"
+  "GCHANGE_API", "GCHANGE_SUBSCRIPTION_API"
 ]
 #
 # Interval for publishing peer document to the network, in seconds. (Default: 7200 =2h)

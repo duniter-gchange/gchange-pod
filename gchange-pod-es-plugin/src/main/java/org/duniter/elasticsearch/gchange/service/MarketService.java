@@ -24,17 +24,23 @@ package org.duniter.elasticsearch.gchange.service;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.duniter.core.client.model.elasticsearch.Record;
 import org.duniter.core.client.model.elasticsearch.RecordComment;
+import org.duniter.core.exception.TechnicalException;
 import org.duniter.core.service.CryptoService;
 import org.duniter.elasticsearch.client.Duniter4jClient;
+import org.duniter.elasticsearch.exception.DuplicateIndexIdException;
 import org.duniter.elasticsearch.exception.NotFoundException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
+import org.duniter.elasticsearch.gchange.dao.market.MarketCategoryDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.user.service.DeleteHistoryService;
 import org.elasticsearch.common.inject.Inject;
+
+import java.util.Set;
 
 /**
  * Created by Benoit on 30/03/2015.
@@ -44,6 +50,7 @@ public class MarketService extends AbstractService {
     private MarketIndexDao indexDao;
     private MarketRecordDao recordDao;
     private MarketCommentDao commentDao;
+    private MarketCategoryDao categoryDao;
     private DeleteHistoryService deleteService;
 
     @Inject
@@ -52,12 +59,14 @@ public class MarketService extends AbstractService {
                          DeleteHistoryService deleteService,
                          MarketIndexDao indexDao,
                          MarketCommentDao commentDao,
-                         MarketRecordDao recordDao
+                         MarketRecordDao recordDao,
+                         MarketCategoryDao categoryDao
                          ) {
         super("gchange.market", client, settings, cryptoService);
         this.indexDao = indexDao;
         this.commentDao = commentDao;
         this.recordDao = recordDao;
+        this.categoryDao = categoryDao;
 
         this.deleteService = deleteService;
     }
@@ -68,6 +77,7 @@ public class MarketService extends AbstractService {
      */
     public MarketService createIndexIfNotExists() {
         indexDao.createIndexIfNotExists();
+
         return this;
     }
 
@@ -100,6 +110,37 @@ public class MarketService extends AbstractService {
         }
 
         recordDao.update(id, json);
+    }
+
+    public void updateCategoryFromJson(String id, String json) {
+        JsonNode actualObj = readAndVerifyIssuerSignature(json);
+        String issuer = getIssuer(actualObj);
+
+        // Check issuer is authorized
+        checkIssuerIsAdminOrModerator(issuer);
+
+        if (logger.isDebugEnabled()) {
+            logger.debug(String.format("Updating %s [%s] from issuer [%s]", MarketIndexDao.CATEGORY_TYPE, id, issuer.substring(0, 8)));
+        }
+
+        categoryDao.update(id, json);
+    }
+
+    public String indexCategoryFromJson(String json) {
+        JsonNode categoryObj = readAndVerifyIssuerSignature(json);
+        String issuer = getMandatoryField(categoryObj, Record.PROPERTY_ISSUER).asText();
+
+        // Check issuer is authorized
+        checkIssuerIsAdminOrModerator(issuer);
+
+        // Check id is unique
+        String id = getMandatoryField(categoryObj, "id").asText();
+        checkCategoryNotExistsOrDeleted(id);
+
+        if (logger.isDebugEnabled()) {
+            logger.debug(String.format("Indexing a %s from issuer [%s]", MarketIndexDao.CATEGORY_TYPE, issuer.substring(0, 8)));
+        }
+        return categoryDao.create(id, json);
     }
 
     public String indexCommentFromJson(String json) {
@@ -143,6 +184,14 @@ public class MarketService extends AbstractService {
                 MarketRecord.PROPERTY_UNIT);
     }
 
+    public MarketService startDataMigration() {
+
+        // Check if categories must be filled
+        categoryDao.startDataMigration();
+
+        return this;
+    }
+
     /* -- Internal methods -- */
 
     // Check the record document exists (or has been deleted)
@@ -156,6 +205,26 @@ public class MarketService extends AbstractService {
         }
         if (!recordExists) {
             throw new NotFoundException(String.format("Comment refers a non-existent document [%s/%s/%s].", recordDao.getIndex(), recordDao.getType(), id));
+        }
+    }
+
+    private void checkIssuerIsAdminOrModerator(String issuer) {
+        // Check issuer is an admin
+        Set<String> adminAndModeratorsPubkeys = pluginSettings.getDocumentAdminAndModeratorsPubkeys();
+        if (!adminAndModeratorsPubkeys.contains(issuer)) {
+            throw new TechnicalException("Not authorized");
+        }
+    }
+
+    // Check the record document exists (or has been deleted)
+    private void checkCategoryNotExistsOrDeleted(String id) {
+        boolean exists = client.isDocumentExists(MarketIndexDao.INDEX, MarketIndexDao.CATEGORY_TYPE, id);
+
+        // Check if exists in delete history
+        exists = exists || deleteService.existsInDeleteHistory(MarketIndexDao.INDEX, MarketIndexDao.CATEGORY_TYPE, id);
+
+        if (exists) {
+            throw new DuplicateIndexIdException(String.format("Category [%s/%s/%s] already exists, or is present in the deleted history.", MarketIndexDao.INDEX, MarketIndexDao.CATEGORY_TYPE, id));
         }
     }
 }

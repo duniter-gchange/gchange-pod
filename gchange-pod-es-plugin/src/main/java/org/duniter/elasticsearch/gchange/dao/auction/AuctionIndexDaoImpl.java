@@ -1,4 +1,4 @@
-package org.duniter.elasticsearch.gchange.dao.market;
+package org.duniter.elasticsearch.gchange.dao.auction;
 
 /*
  * #%L
@@ -25,12 +25,12 @@ package org.duniter.elasticsearch.gchange.dao.market;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.elasticsearch.dao.AbstractIndexDao;
-import org.duniter.elasticsearch.dao.AbstractIndexTypeDao;
-import org.duniter.elasticsearch.dao.IndexTypeDao;
 import org.duniter.elasticsearch.dao.handler.AddSequenceAttributeHandler;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.dao.CommentDao;
 import org.duniter.elasticsearch.gchange.dao.RecordDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -39,30 +39,24 @@ import org.elasticsearch.common.xcontent.XContentFactory;
 import java.io.IOException;
 
 /**
- * Created by blavenie on 03/04/17.
+ * Created by blavenie on 23/08/2020.
  */
-public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> implements MarketIndexDao {
-
+public class AuctionIndexDaoImpl extends AbstractIndexDao<AuctionIndexDao> implements AuctionIndexDao {
 
     private PluginSettings pluginSettings;
     private RecordDao recordDao;
-    private CommentDao commentDao;
-    private MarketCategoryDao categoryDao;
 
     @Inject
-    public MarketIndexDaoImpl(PluginSettings pluginSettings, MarketRecordDao recordDao, MarketCommentDao commentDao,
-                              MarketCategoryDao categoryDao) {
-        super(MarketIndexDao.INDEX);
+    public AuctionIndexDaoImpl(PluginSettings pluginSettings, AuctionRecordDao recordDao) {
+        super(AuctionIndexDao.INDEX);
 
         this.pluginSettings = pluginSettings;
-        this.commentDao = commentDao;
         this.recordDao = recordDao;
-        this.categoryDao = categoryDao;
     }
 
 
     @Override
-    protected void createIndex() {
+    protected void createIndex() throws JsonProcessingException {
         logger.info(String.format("Creating index [%s]", INDEX));
 
         CreateIndexRequestBuilder createIndexRequestBuilder = client.admin().indices().prepareCreate(INDEX);
@@ -73,12 +67,8 @@ public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> impleme
                 .build();
         createIndexRequestBuilder.setSettings(indexSettings);
         createIndexRequestBuilder.addMapping(recordDao.getType(), recordDao.createTypeMapping());
-        createIndexRequestBuilder.addMapping(commentDao.getType(), commentDao.createTypeMapping());
-        createIndexRequestBuilder.addMapping(categoryDao.getType(), categoryDao.createTypeMapping());
         createIndexRequestBuilder.execute().actionGet();
 
-        // Fill categories
-        categoryDao.fillCategories();
     }
 
 }

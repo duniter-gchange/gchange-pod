@@ -22,6 +22,10 @@ package org.duniter.elasticsearch.gchange.dao;
  * #L%
  */
 
+import org.duniter.elasticsearch.gchange.dao.auction.AuctionIndexDao;
+import org.duniter.elasticsearch.gchange.dao.auction.AuctionIndexDaoImpl;
+import org.duniter.elasticsearch.gchange.dao.auction.AuctionRecordDao;
+import org.duniter.elasticsearch.gchange.dao.auction.AuctionRecordDaoImpl;
 import org.duniter.elasticsearch.gchange.dao.market.*;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.inject.Module;
@@ -30,9 +34,15 @@ public class DaoModule extends AbstractModule implements Module {
 
     @Override protected void configure() {
 
+        // Market
         bind(MarketIndexDao.class).to(MarketIndexDaoImpl.class).asEagerSingleton();
         bind(MarketCommentDao.class).to(MarketCommentDaoImpl.class).asEagerSingleton();
         bind(MarketRecordDao.class).to(MarketRecordDaoImpl.class).asEagerSingleton();
+        bind(MarketCategoryDao.class).to(MarketCategoryDaoImpl.class).asEagerSingleton();
+
+        // Auction
+        bind(AuctionIndexDao.class).to(AuctionIndexDaoImpl.class).asEagerSingleton();
+        bind(AuctionRecordDao.class).to(AuctionRecordDaoImpl.class).asEagerSingleton();
     }
 
 }
