@@ -1,151 +1,182 @@
-{ "index": { "_id": "cat71"}}
-{ "name": "Emploi" , "parent": null}
-{ "index": { "_id": "cat33"}}
-{ "name": "Offres d'emploi", "parent": "cat71" }
+{ "index": { "_id": "cat90"}}
+{ "name": "Alimentation", "parent": null, "localizedNames": {"fr-FR":  "Alimentation", "en":  "Food"}}
+{ "index": { "_id": "cat91"}}
+{ "name": "Viandes &amp; Poissons", "parent": "cat90", "localizedNames": {"fr-FR":  "Viandes &amp; Poissons", "en":  "Meat &amp; Fish"}}
+{ "index": { "_id": "cat92"}}
+{ "name": "Fruits &amp; Légumes", "parent": "cat90", "localizedNames": {"fr-FR":  "Fruits &amp; Légumes", "en":  "Fruits &amp; Vegetables"}}
+{ "index": { "_id": "cat93"}}
+{ "name": "Pains &amp; Patisserie", "parent": "cat90", "localizedNames": {"fr-FR":  "Pains &amp; Patisserie", "en":  "Breads &amp; Pastry"}}
+{ "index": { "_id": "cat94"}}
+{ "name": "Frais", "parent": "cat90", "localizedNames": {"fr-FR":  "Frais", "en":  "Fresh"}}
+{ "index": { "_id": "cat95"}}
+{ "name": "Épicerie salée", "parent": "cat90", "localizedNames": {"fr-FR":  "Épicerie salée", "en":  "Savory grocery"}}
+{ "index": { "_id": "cat96"}}
+{ "name": "Épicerie sucré", "parent": "cat90", "localizedNames": {"fr-FR":  "Épicerie sucré", "en":  "Sweet groceries"}}
+{ "index": { "_id": "cat97"}}
+{ "name": "Boissons", "parent": "cat90", "localizedNames": {"fr-FR":  "Boissons", "en":  "Drinks"}}
+{ "index": { "_id": "cat98"}}
+{ "name": "Alimentation bébé", "parent": "cat90", "localizedNames": {"fr-FR":  "Alimentation bébé", "en":  "Baby food"}}
+{ "index": { "_id": "cat48" }}
+{ "name": "Divers", "parent": "cat90", "localizedNames": {"fr-FR":  "Divers", "en":  "Various"}}
 
+{ "index": { "_id": "cat71"}}
+{ "name": "Emploi", "parent": null, "localizedNames": {"fr-FR":  "Emploi", "en":  "Employment"}}
+{ "index": { "_id": "cat33"}}
+{ "name": "Offres d'emploi", "parent": "cat71", "localizedNames": {"fr-FR":  "Offres d'emploi", "en":  "Jobs"}}
+{ "index": { "_id": "cat74"}}
+{ "name": "Formations", "parent": "cat71", "localizedNames": {"fr-FR":  "Formations", "en":  "Training"}}
 { "index": { "_id": "cat1" }}
-{ "name": "Véhicules"  , "parent": null}
+
+{ "name": "Véhicules", "parent": null}
 { "index": { "_id": "cat2" }}
-{ "name": "Voitures" , "parent": "cat1" }
+{ "name": "Voitures", "parent": "cat1" }
 { "index": { "_id": "cat3" }}
-{ "name": "Motos" , "parent": "cat1" }
+{ "name": "Motos", "parent": "cat1" }
 { "index": { "_id": "cat4" }}
-{ "name": "Caravaning" , "parent": "cat1" }
+{ "name": "Caravaning", "parent": "cat1" }
 { "index": { "_id": "cat5" }}
-{ "name": "Utilitaires" , "parent": "cat1" }
+{ "name": "Utilitaires", "parent": "cat1" }
 { "index": { "_id": "cat6" }}
-{ "name": "Équipement Auto" , "parent": "cat1" }
+{ "name": "Équipement Auto", "parent": "cat1" }
 { "index": { "_id": "cat44" }}
-{ "name": "Équipement Moto" , "parent": "cat1" }
+{ "name": "Équipement Moto", "parent": "cat1" }
 { "index": { "_id": "cat50" }}
-{ "name": "Equipement Caravaning" , "parent": "cat1" }
+{ "name": "Equipement Caravaning", "parent": "cat1" }
 { "index": { "_id": "cat7" }}
-{ "name": "Nautisme" , "parent": "cat1" }
+{ "name": "Nautisme", "parent": "cat1" }
 { "index": { "_id": "cat51" }}
-{ "name": "Équipement Nautisme" , "parent": "cat1" }
+{ "name": "Équipement Nautisme", "parent": "cat1" }
 
 { "index": { "_id": "cat8" }}
-{ "name": "Immobilier"  , "parent": null}
+{ "name": "Immobilier", "parent": null}
 { "index": { "_id": "cat9" }}
-{ "name": "Ventes immobilières" , "parent": "cat8" }
+{ "name": "Ventes immobilières", "parent": "cat8" }
 { "index": { "_id": "cat10" }}
-{ "name": "Locations" , "parent": "cat8" }
+{ "name": "Locations", "parent": "cat8" }
 { "index": { "_id": "cat11" }}
-{ "name": "Colocations" , "parent": "cat8" }
+{ "name": "Colocations", "parent": "cat8" }
 { "index": { "_id": "cat13" }}
-{ "name": "Bureaux &amp; Commerces" , "parent": "cat8" }
+{ "name": "Bureaux &amp; Commerces", "parent": "cat8" }
 
 { "index": { "_id": "cat66" }}
-{ "name": "Vacances"  , "parent": null}
+{ "name": "Vacances", "parent": null}
 { "index": { "_id": "cat12" }}
-{ "name": "Locations &amp; Gîtes" , "parent": "cat66" }
+{ "name": "Locations &amp; Gîtes", "parent": "cat66" }
 { "index": { "_id": "cat67" }}
-{ "name": "Chambres d'hôtes" , "parent": "cat66" }
+{ "name": "Chambres d'hôtes", "parent": "cat66" }
 { "index": { "_id": "cat68" }}
-{ "name": "Campings" , "parent": "cat66" }
+{ "name": "Campings", "parent": "cat66" }
 { "index": { "_id": "cat69" }}
-{ "name": "Hôtels" , "parent": "cat66" }
+{ "name": "Hôtels", "parent": "cat66" }
 { "index": { "_id": "cat70" }}
-{ "name": "Hébergements insolites" , "parent": "cat66" }
+{ "name": "Hébergements insolites", "parent": "cat66" }
 
 { "index": { "_id": "cat14" }}
-{ "name": "Multimédia"  , "parent": null}
+{ "name": "Multimédia", "parent": null}
 { "index": { "_id": "cat15" }}
-{ "name": "Informatique" , "parent": "cat14" }
+{ "name": "Informatique", "parent": "cat14" }
 { "index": { "_id": "cat43" }}
-{ "name": "Consoles &amp; Jeux vidéo" , "parent": "cat14" }
+{ "name": "Consoles &amp; Jeux vidéo", "parent": "cat14" }
 { "index": { "_id": "cat16" }}
-{ "name": "Image &amp; Son" , "parent": "cat14" }
+{ "name": "Images &amp; Sons", "parent": "cat14" }
 { "index": { "_id": "cat17" }}
-{ "name": "Téléphonie" , "parent": "cat14" }
+{ "name": "Téléphonie", "parent": "cat14" }
+
+{ "index": { "_id": "cat72" }}
+{ "name": "Mode", "parent": null, "localizedNames": {"fr-FR": "Mode", "en": "Fashion"}}
+{ "index": { "_id": "cat22" }}
+{ "name": "Vêtements", "parent": "cat72" }
+{ "index": { "_id": "cat53" }}
+{ "name": "Chaussures", "parent": "cat72" }
+{ "index": { "_id": "cat47" }}
+{ "name": "Accessoires &amp; Bagagerie", "parent": "cat72" }
+{ "index": { "_id": "cat42" }}
+{ "name": "Montres &amp; Bijoux", "parent": "cat72" }
+{ "index": { "_id": "cat23" }}
+{ "name": "Equipement bébé", "parent": "cat72" }
+{ "index": { "_id": "cat54" }}
+{ "name": "Vêtements bébé", "parent": "cat72" }
 
 { "index": { "_id": "cat18" }}
-{ "name": "Maison"  , "parent": null}
+{ "name": "Maison", "parent": null}
 { "index": { "_id": "cat19" }}
-{ "name": "Ameublement" , "parent": "cat18" }
+{ "name": "Ameublement", "parent": "cat18" }
 { "index": { "_id": "cat20" }}
-{ "name": "Electroménager" , "parent": "cat18" }
+{ "name": "Electroménager", "parent": "cat18" }
 { "index": { "_id": "cat45" }}
-{ "name": "Arts de la table" , "parent": "cat18" }
+{ "name": "Arts de la table", "parent": "cat18" }
 { "index": { "_id": "cat39" }}
-{ "name": "Décoration" , "parent": "cat18" }
+{ "name": "Décoration", "parent": "cat18" }
 { "index": { "_id": "cat46" }}
-{ "name": "Linge de maison" , "parent": "cat18" }
+{ "name": "Linge de maison", "parent": "cat18" }
 { "index": { "_id": "cat21" }}
-{ "name": "Bricolage" , "parent": "cat18" }
+{ "name": "Bricolage", "parent": "cat18" }
 { "index": { "_id": "cat52" }}
-{ "name": "Jardinage" , "parent": "cat18" }
-{ "index": { "_id": "cat22" }}
-{ "name": "Vêtements" , "parent": "cat18" }
-{ "index": { "_id": "cat53" }}
-{ "name": "Chaussures" , "parent": "cat18" }
-{ "index": { "_id": "cat47" }}
-{ "name": "Accessoires &amp; Bagagerie" , "parent": "cat18" }
-{ "index": { "_id": "cat42" }}
-{ "name": "Montres &amp; Bijoux" , "parent": "cat18" }
-{ "index": { "_id": "cat23" }}
-{ "name": "Equipement bébé" , "parent": "cat18" }
-{ "index": { "_id": "cat54" }}
-{ "name": "Vêtements bébé" , "parent": "cat18" }
+{ "name": "Jardinage", "parent": "cat18" }
 
 { "index": { "_id": "cat24" }}
-{ "name": "Loisirs"  , "parent": null}
+{ "name": "Loisirs", "parent": null}
 { "index": { "_id": "cat25" }}
-{ "name": "DVD / Films" , "parent": "cat24" }
+{ "name": "DVD / Films", "parent": "cat24" }
 { "index": { "_id": "cat26" }}
-{ "name": "CD / Musique" , "parent": "cat24" }
+{ "name": "CD / Musique", "parent": "cat24" }
 { "index": { "_id": "cat27" }}
-{ "name": "Livres" , "parent": "cat24" }
-{ "index": { "_id": "cat28" }}
-{ "name": "Animaux" , "parent": "cat24" }
+{ "name": "Livres", "parent": "cat24" }
 { "index": { "_id": "cat55" }}
-{ "name": "Vélos" , "parent": "cat24" }
+{ "name": "Vélos", "parent": "cat24" }
 { "index": { "_id": "cat29" }}
 { "name": "Sports &amp; Hobbies", "parent": "cat24" }
 { "index": { "_id": "cat30" }}
-{ "name": "Instruments de musique" , "parent": "cat24" }
+{ "name": "Instruments de musique", "parent": "cat24" }
 { "index": { "_id": "cat40" }}
-{ "name": "Collection" , "parent": "cat24" }
+{ "name": "Collection", "parent": "cat24" }
 { "index": { "_id": "cat41" }}
-{ "name": "Jeux &amp; Jouets" , "parent": "cat24" }
-{ "index": { "_id": "cat48" }}
-{ "name": "Vins &amp; Gastronomie" , "parent": "cat24" }
+{ "name": "Jeux &amp; Jouets", "parent": "cat24" }
+
+{ "index": { "_id": "cat75" }}
+{ "name": "Animaux", "parent": null, "localizedNames": {"fr-FR": "Animaux", "en": "Animals"}}
+{ "index": { "_id": "cat28" }}
+{ "name": "Animaux", "parent": "cat75", "localizedNames": {"fr-FR": "Animaux", "en": "Animals"}}
+{ "index": { "_id": "cat82" }}
+{ "name": "Accessoires animaux", "parent": "cat75", "localizedNames": {"fr-FR": "Accessoires animaux", "en": "Animal accessories"}}
 
 { "index": { "_id": "cat56" }}
-{ "name": "Matériel professionnel"  , "parent": null}
+{ "name": "Matériel professionnel", "parent": null}
 { "index": { "_id": "cat57" }}
-{ "name": "Matériel Agricole" , "parent": "cat56" }
+{ "name": "Matériel Agricole", "parent": "cat56" }
 { "index": { "_id": "cat58" }}
-{ "name": "Transport - Manutention" , "parent": "cat56" }
+{ "name": "Transport - Manutention", "parent": "cat56" }
 { "index": { "_id": "cat59" }}
-{ "name": "BTP - Chantier Gros-oeuvre" , "parent": "cat56" }
+{ "name": "BTP - Chantier Gros-oeuvre", "parent": "cat56" }
 { "index": { "_id": "cat60" }}
-{ "name": "Outillage - Matériaux 2nd-oeuvre" , "parent": "cat56" }
+{ "name": "Outillage - Matériaux 2nd-oeuvre", "parent": "cat56" }
 { "index": { "_id": "cat32" }}
-{ "name": "Équipements Industriels" , "parent": "cat56" }
+{ "name": "Équipements Industriels", "parent": "cat56" }
 { "index": { "_id": "cat61" }}
-{ "name": "Restauration - Hôtellerie" , "parent": "cat56" }
+{ "name": "Restauration - Hôtellerie", "parent": "cat56" }
 { "index": { "_id": "cat62" }}
-{ "name": "Fournitures de Bureau" , "parent": "cat56" }
+{ "name": "Fournitures de Bureau", "parent": "cat56" }
 { "index": { "_id": "cat63" }}
-{ "name": "Commerces &amp; Marchés" , "parent": "cat56" }
+{ "name": "Commerces &amp; Marchés", "parent": "cat56" }
 { "index": { "_id": "cat64" }}
-{ "name": "Matériel Médical" , "parent": "cat56" }
+{ "name": "Matériel Médical", "parent": "cat56" }
 
 { "index": { "_id": "cat31" }}
-{ "name": "Services"  , "parent": null}
+{ "name": "Services", "parent": null}
 { "index": { "_id": "cat34" }}
-{ "name": "Prestations de services" , "parent": "cat31" }
+{ "name": "Prestations de services", "parent": "cat31" }
 { "index": { "_id": "cat35" }}
-{ "name": "Billetterie" , "parent": "cat31" }
+{ "name": "Billetterie", "parent": "cat31" }
 { "index": { "_id": "cat49" }}
-{ "name": "Evénements" , "parent": "cat31" }
+{ "name": "Evénements", "parent": "cat31" }
 { "index": { "_id": "cat36" }}
-{ "name": "Cours particuliers" , "parent": "cat31" }
+{ "name": "Cours particuliers", "parent": "cat31" }
 { "index": { "_id": "cat65" }}
-{ "name": "Covoiturage" , "parent": "cat31" }
+{ "name": "Covoiturage", "parent": "cat31" }
+{ "index": { "_id": "cat81" }}
+{ "name": "Soins", "parent": "cat31", "localizedNames": {"fr-FR": "Soins", "en": "Care"}}
 
 { "index": { "_id": "cat37" }}
-{ "name": "Divers"  , "parent": null}
+{ "name": "Divers", "parent": null, "localizedNames": {"fr-FR": "Divers", "en": "Various"}}
 { "index": { "_id": "cat38" }}
-{ "name": "Autres" , "parent": "cat37" }
+{ "name": "Autres", "parent": "cat37", "localizedNames": {"fr-FR": "Autres", "en": "Other"} }
