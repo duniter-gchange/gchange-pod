@@ -27,6 +27,8 @@ import org.duniter.elasticsearch.gchange.dao.auction.AuctionIndexDaoImpl;
 import org.duniter.elasticsearch.gchange.dao.auction.AuctionRecordDao;
 import org.duniter.elasticsearch.gchange.dao.auction.AuctionRecordDaoImpl;
 import org.duniter.elasticsearch.gchange.dao.market.*;
+import org.duniter.elasticsearch.gchange.dao.shape.ShapeDao;
+import org.duniter.elasticsearch.gchange.dao.shape.ShapeIndexDaoImpl;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.inject.Module;
 
@@ -43,6 +45,9 @@ public class DaoModule extends AbstractModule implements Module {
         // Auction
         bind(AuctionIndexDao.class).to(AuctionIndexDaoImpl.class).asEagerSingleton();
         bind(AuctionRecordDao.class).to(AuctionRecordDaoImpl.class).asEagerSingleton();
+
+        // Shape
+        bind(ShapeDao.class).to(ShapeIndexDaoImpl.class).asEagerSingleton();
     }
 
 }

@@ -24,8 +24,14 @@ package org.duniter.elasticsearch.gchange.service;
 
 import org.duniter.core.service.CryptoService;
 import org.duniter.elasticsearch.client.Duniter4jClient;
+import org.duniter.elasticsearch.exception.AccessDeniedException;
+import org.duniter.elasticsearch.exception.DuplicateIndexIdException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
+import org.duniter.elasticsearch.user.service.DeleteHistoryService;
 import org.elasticsearch.client.Client;
+
+import java.util.Set;
 
 /**
  * Created by blavenie on 10/01/17.
@@ -51,4 +57,47 @@ public abstract class AbstractService extends org.duniter.elasticsearch.user.ser
         this.pluginSettings = pluginSettings;
     }
 
+    /**
+     * Check issuer is an admin
+     */
+    protected void checkIssuerIsAdminOrModerator(String issuer) {
+
+        Set<String> adminAndModeratorsPubkeys = pluginSettings.getDocumentAdminAndModeratorsPubkeys();
+        if (!adminAndModeratorsPubkeys.contains(issuer)) {
+            throw new AccessDeniedException("Not authorized");
+        }
+    }
+
+    /**
+     * Check the record document exists (or has been deleted)
+     * @param deleteService
+     * @param index
+     * @param type
+     * @param id
+     */
+    protected void checkNotExistsOrDeleted(DeleteHistoryService deleteService, String index, String type, String id) {
+        checkNotExists(index, type, id);
+
+        // Check if exists in delete history
+        boolean exists = deleteService.existsInDeleteHistory(index, type, id);
+
+        if (exists) {
+            throw new DuplicateIndexIdException(String.format("Category [%s/%s/%s] already exists in the delete history.", index, type, id));
+        }
+    }
+
+    /**
+     * Check the record document exists (or has been deleted)
+     * @param deleteService
+     * @param index
+     * @param type
+     * @param id
+     */
+    protected void checkNotExists(String index, String type, String id) {
+        boolean exists = client.isDocumentExists(index, type, id);
+
+        if (exists) {
+            throw new DuplicateIndexIdException(String.format("Category [%s/%s/%s] already exists", index, type, id));
+        }
+    }
 }

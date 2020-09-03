@@ -174,55 +174,31 @@ public class MarketCategoryDaoImpl extends AbstractIndexTypeDao<MarketCategoryDa
                 new AddSequenceAttributeHandler("order", "\\{.*\"name\".*\\}", 1));
     }
 
-    public long count(QueryBuilder query) {
-        // Prepare count request
-        SearchRequestBuilder searchRequest = client
-                .prepareSearch(getIndex())
-                .setTypes(getType())
-                .setFetchSource(false)
-                .setSearchType(SearchType.QUERY_AND_FETCH)
-                .setSize(0);
 
-        // Query
-        if (query != null) {
-            searchRequest.setQuery(query);
-        }
-
-        // Execute query
-        try {
-            SearchResponse response = searchRequest.execute().actionGet();
-            return response.getHits().getTotalHits();
-        }
-        catch(SearchPhaseExecutionException e) {
-            // Failed or no item on index
-            logger.error(String.format("Error while counting comment replies: %s", e.getMessage()), e);
-        }
-        return 1;
-    }
 
     @Override
     public void startDataMigration() {
         // no categories: fill it
-        long count = count(null);
-        if (count == 0L) {
+        long total = this.count(null);
+        if (total == 0L) {
             fillCategories();
             return;
         }
 
-        // THere is data: detected if only OLD data
+        // There is data, BUT only OLD data (not issuer or time)
         BoolQueryBuilder query = QueryBuilders.boolQuery()
-                .filter(QueryBuilders.existsQuery(MarketCategoryRecord.PROPERTY_TIME));
-        count = count(query);
-        if (count == 0) {
+                .filter(QueryBuilders.existsQuery(MarketCategoryRecord.PROPERTY_LOCALIZED_NAMES));
+        total = this.count(query);
+        if (total == 0) {
             logger.info("Migrating market categories... (delete then recreate)");
 
-            // Delete all, then fill it again
+            // Delete all
             Set<String> ids = getAllIds();
             for (String id: ids) {
-                // Delete the document
                 client.prepareDelete(getIndex(), getType(), id).execute().actionGet();
             }
 
+            // then fill categories, from file
             fillCategories();
         }
 

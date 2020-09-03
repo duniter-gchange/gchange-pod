@@ -27,12 +27,16 @@ import org.duniter.core.exception.TechnicalException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.dao.AbstractRecordDaoImpl;
 import org.duniter.elasticsearch.gchange.model.auction.AuctionRecord;
+import org.duniter.elasticsearch.gchange.model.market.MarketCategoryRecord;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * Created by blavenie on 03/04/17.
@@ -241,5 +245,12 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
         catch(IOException ioe) {
             throw new TechnicalException(String.format("Error while getting mapping for index [%s/%s]: %s", getIndex(), getType(), ioe.getMessage()), ioe);
         }
+    }
+
+    @Override
+    public void startDataMigration() {
+
+
+
     }
 }

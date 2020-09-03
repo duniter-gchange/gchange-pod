@@ -34,6 +34,7 @@ import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.gchange.service.NetworkService;
 import org.duniter.elasticsearch.gchange.service.PeerService;
+import org.duniter.elasticsearch.gchange.service.ShapeService;
 import org.duniter.elasticsearch.service.DocStatService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
 import org.duniter.elasticsearch.user.model.LikeRecord;
@@ -112,6 +113,10 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
                     .deleteIndex()
                     .createIndexIfNotExists();
 
+            injector.getInstance(ShapeService.class)
+                    .deleteIndex()
+                    .createIndexIfNotExists();
+
             if (logger.isInfoEnabled()) {
                 logger.info("Reloading all indices... [OK]");
             }
@@ -121,6 +126,11 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
                 logger.info("Checking indices...");
             }
             injector.getInstance(MarketService.class)
+                    .createIndexIfNotExists()
+                    // Migrate if need
+                    .startDataMigration();
+
+            injector.getInstance(ShapeService.class)
                     .createIndexIfNotExists()
                     // Migrate if need
                     .startDataMigration();

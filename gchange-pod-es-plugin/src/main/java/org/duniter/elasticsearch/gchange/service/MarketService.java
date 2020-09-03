@@ -26,10 +26,8 @@ package org.duniter.elasticsearch.gchange.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.duniter.core.client.model.elasticsearch.Record;
 import org.duniter.core.client.model.elasticsearch.RecordComment;
-import org.duniter.core.exception.TechnicalException;
 import org.duniter.core.service.CryptoService;
 import org.duniter.elasticsearch.client.Duniter4jClient;
-import org.duniter.elasticsearch.exception.DuplicateIndexIdException;
 import org.duniter.elasticsearch.exception.NotFoundException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCategoryDao;
@@ -39,8 +37,6 @@ import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.user.service.DeleteHistoryService;
 import org.elasticsearch.common.inject.Inject;
-
-import java.util.Set;
 
 /**
  * Created by Benoit on 30/03/2015.
@@ -186,8 +182,8 @@ public class MarketService extends AbstractService {
 
     public MarketService startDataMigration() {
 
-        // Check if categories must be filled
-        categoryDao.startDataMigration();
+        // Start index data migration
+        indexDao.startDataMigration();
 
         return this;
     }
@@ -208,23 +204,8 @@ public class MarketService extends AbstractService {
         }
     }
 
-    private void checkIssuerIsAdminOrModerator(String issuer) {
-        // Check issuer is an admin
-        Set<String> adminAndModeratorsPubkeys = pluginSettings.getDocumentAdminAndModeratorsPubkeys();
-        if (!adminAndModeratorsPubkeys.contains(issuer)) {
-            throw new TechnicalException("Not authorized");
-        }
-    }
-
     // Check the record document exists (or has been deleted)
     private void checkCategoryNotExistsOrDeleted(String id) {
-        boolean exists = client.isDocumentExists(MarketIndexDao.INDEX, MarketIndexDao.CATEGORY_TYPE, id);
-
-        // Check if exists in delete history
-        exists = exists || deleteService.existsInDeleteHistory(MarketIndexDao.INDEX, MarketIndexDao.CATEGORY_TYPE, id);
-
-        if (exists) {
-            throw new DuplicateIndexIdException(String.format("Category [%s/%s/%s] already exists, or is present in the deleted history.", MarketIndexDao.INDEX, MarketIndexDao.CATEGORY_TYPE, id));
-        }
+        checkNotExistsOrDeleted(deleteService, MarketIndexDao.INDEX, MarketIndexDao.CATEGORY_TYPE, id);
     }
 }

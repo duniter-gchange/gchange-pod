@@ -31,6 +31,7 @@ import org.duniter.elasticsearch.dao.handler.AddSequenceAttributeHandler;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.dao.CommentDao;
 import org.duniter.elasticsearch.gchange.dao.RecordDao;
+import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -76,9 +77,11 @@ public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> impleme
         createIndexRequestBuilder.addMapping(commentDao.getType(), commentDao.createTypeMapping());
         createIndexRequestBuilder.addMapping(categoryDao.getType(), categoryDao.createTypeMapping());
         createIndexRequestBuilder.execute().actionGet();
-
-        // Fill categories
-        categoryDao.fillCategories();
     }
 
+    public void startDataMigration() {
+
+        // Check if categories must be filled
+        categoryDao.startDataMigration();
+    }
 }

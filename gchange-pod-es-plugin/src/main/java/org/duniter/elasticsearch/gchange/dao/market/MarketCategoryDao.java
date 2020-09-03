@@ -43,6 +43,4 @@ public interface MarketCategoryDao extends IndexTypeDao<MarketCategoryDao> {
     void startDataMigration();
 
     void fillCategories();
-
-    long count(QueryBuilder query);
 }

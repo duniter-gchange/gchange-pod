@@ -30,4 +30,6 @@ import org.duniter.elasticsearch.dao.IndexDao;
 public interface MarketIndexDao extends IndexDao<MarketIndexDao> {
     String INDEX = "market";
     String CATEGORY_TYPE = "category";
+
+    void startDataMigration();
 }

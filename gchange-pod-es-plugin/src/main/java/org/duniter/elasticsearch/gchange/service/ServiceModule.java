@@ -28,12 +28,15 @@ import org.elasticsearch.common.inject.Module;
 public class ServiceModule extends AbstractModule implements Module {
 
     @Override protected void configure() {
+        // Market (record, comment, etc.)
         bind(MarketService.class).asEagerSingleton();
-
         bind(CommentUserEventService.class).asEagerSingleton();
         bind(RecordUserEventService.class).asEagerSingleton();
 
         // Configure network service
         bind(NetworkService.class).asEagerSingleton();
+
+        // Shape
+        bind(ShapeService.class).asEagerSingleton();
     }
 }

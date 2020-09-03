@@ -59,6 +59,7 @@ public class MarketRecord extends LightMarketRecord {
     private Double price;
     private String unit;
     private Double fees;
+    private Double stock;
     private String feesCurrency;
     private String currency;
 

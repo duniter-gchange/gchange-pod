@@ -1,10 +1,10 @@
-package org.duniter.elasticsearch.gchange.rest.market;
+package org.duniter.elasticsearch.gchange.dao.shape;
 
 /*
  * #%L
- * duniter4j-elasticsearch-plugin
+ * Ğchange Pod :: ElasticSearch plugin
  * %%
- * Copyright (C) 2014 - 2016 EIS
+ * Copyright (C) 2014 - 2017 EIS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,17 +22,18 @@ package org.duniter.elasticsearch.gchange.rest.market;
  * #L%
  */
 
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.rest.security.RestSecurityController;
-import org.elasticsearch.common.inject.Inject;
-import org.elasticsearch.rest.RestRequest;
+import org.duniter.elasticsearch.dao.IndexTypeDao;
 
-public class RestMarketCategoryAction {
+/**
+ * Created by blavenie
+ */
+public interface ShapeDao extends IndexTypeDao<ShapeDao> {
+    String INDEX = "shape";
+    String TYPE = "record";
 
-    @Inject
-    public RestMarketCategoryAction(RestSecurityController securityController) {
-        // Add security rule for category
-        securityController.allowIndexType(RestRequest.Method.GET, MarketIndexDao.INDEX, MarketIndexDao.CATEGORY_TYPE);
-    }
+    String create(final String id, final String json);
 
+    void update(final String id, final String json);
+
+    void startDataMigration();
 }
