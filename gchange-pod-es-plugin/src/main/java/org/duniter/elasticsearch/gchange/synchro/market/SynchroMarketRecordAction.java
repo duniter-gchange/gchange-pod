@@ -16,8 +16,6 @@ import org.duniter.elasticsearch.synchro.SynchroActionResult;
 import org.duniter.elasticsearch.synchro.SynchroService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
 import org.duniter.elasticsearch.user.execption.UserProfileNotFoundException;
-import org.duniter.elasticsearch.user.model.Message;
-import org.duniter.elasticsearch.user.synchro.user.SynchroUserProfileAction;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;

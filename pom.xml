@@ -151,9 +151,10 @@
 
       <!-- Unit test -->
       <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
+        <groupId>org.duniter.cesium</groupId>
+        <artifactId>cesium-plus-pod-test</artifactId>
+        <version>${cesium-plus-pod.version}</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
 

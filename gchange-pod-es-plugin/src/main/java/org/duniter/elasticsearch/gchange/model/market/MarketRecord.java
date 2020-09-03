@@ -24,8 +24,11 @@ package org.duniter.elasticsearch.gchange.model.market;
 
 import org.duniter.core.client.model.elasticsearch.Records;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by blavenie on 01/12/16.
@@ -36,7 +39,11 @@ public class MarketRecord extends LightMarketRecord {
         offer,
         need,
         auction,
-        crowdfunding
+        crowdfunding;
+
+        public static Set<String> names() {
+            return Arrays.stream(values()).map(Type::name).collect(Collectors.toSet());
+        }
     }
 
     public static final String PROPERTY_DESCRIPTION="description";
@@ -46,6 +53,7 @@ public class MarketRecord extends LightMarketRecord {
     public static final String PROPERTY_FEES="fees";
     public static final String PROPERTY_FEES_CURRENCY="feesCurrency";
     public static final String PROPERTY_THUMBNAIL="thumbnail";
+    public static final String PROPERTY_THUMBNAIL_WITH_CONTENT_TYPE= PROPERTY_THUMBNAIL + "._content_type";
     public static final String PROPERTY_PICTURES_COUNT= Records.PROPERTY_PICTURES_COUNT;
     public static final String PROPERTY_CATEGORY= Records.PROPERTY_CATEGORY;
     public static final String PROPERTY_PICTURES= Records.PROPERTY_PICTURES;

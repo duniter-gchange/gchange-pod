@@ -24,12 +24,10 @@ package org.duniter.elasticsearch.gchange;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
-import org.duniter.core.client.model.bma.EndpointApi;
 import org.duniter.core.client.model.local.Peer;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
-import org.duniter.elasticsearch.gchange.model.bma.GchangeEndpoindApi;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.gchange.service.NetworkService;
@@ -85,7 +83,7 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
             threadPool.scheduleOnClusterReady(() -> {
 
                 // Start peer indexation (and wait)
-                startIndexPeers();
+                startIndexGchangePeers();
 
             });
         });
@@ -177,7 +175,7 @@ public class PluginInit extends AbstractLifecycleComponent<PluginInit> {
     }
 
 
-    protected void startIndexPeers() {
+    protected void startIndexGchangePeers() {
 
         checkMasterNode();
 

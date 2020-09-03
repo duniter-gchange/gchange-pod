@@ -1,4 +1,4 @@
-package org.duniter.elasticsearch;
+package org.duniter.elasticsearch.gchange;
 
 /*
  * #%L
@@ -23,6 +23,6 @@ package org.duniter.elasticsearch;
  */
 
 
-public class TestFixtures extends org.duniter.core.test.TestFixtures {
+public class TestFixtures extends org.duniter.elasticsearch.test.TestFixtures {
 
 }

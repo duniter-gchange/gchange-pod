@@ -64,8 +64,8 @@
 
         <!-- Unit test -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.duniter.cesium</groupId>
+            <artifactId>cesium-plus-pod-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

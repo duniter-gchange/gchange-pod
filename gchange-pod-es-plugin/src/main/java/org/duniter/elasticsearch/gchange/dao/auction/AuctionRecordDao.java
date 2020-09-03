@@ -27,5 +27,5 @@ import org.duniter.elasticsearch.gchange.dao.RecordDao;
 /**
  * Created by blavenie on 23/08/2020.
  */
-public interface AuctionRecordDao extends RecordDao {
+public interface AuctionRecordDao<T extends AuctionRecordDao> extends RecordDao<T> {
 }

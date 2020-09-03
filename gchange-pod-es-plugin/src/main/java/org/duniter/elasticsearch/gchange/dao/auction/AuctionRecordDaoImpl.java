@@ -36,7 +36,9 @@ import java.io.IOException;
 /**
  * Created by blavenie on 23/08/2020.
  */
-public class AuctionRecordDaoImpl extends AbstractRecordDaoImpl implements AuctionRecordDao {
+public class AuctionRecordDaoImpl
+        extends AbstractRecordDaoImpl<AuctionRecordDaoImpl>
+        implements AuctionRecordDao<AuctionRecordDaoImpl> {
 
     @Inject
     public AuctionRecordDaoImpl(PluginSettings pluginSettings) {

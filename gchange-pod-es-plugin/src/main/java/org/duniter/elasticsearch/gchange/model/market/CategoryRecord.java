@@ -4,8 +4,9 @@ import org.duniter.core.client.model.elasticsearch.Record;
 
 import java.util.Map;
 
-public class MarketCategoryRecord extends Record {
+public class CategoryRecord extends Record {
 
+    public static final String PROPERTY_ID = "id";
     public static final String PROPERTY_NAME="name";
     public static final String PROPERTY_PARENT="parent";
     public static final String PROPERTY_LOCALIZED_NAMES="localizedNames";

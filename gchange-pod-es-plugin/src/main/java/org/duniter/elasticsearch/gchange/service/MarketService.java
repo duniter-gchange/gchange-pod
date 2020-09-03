@@ -27,6 +27,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.duniter.core.client.model.elasticsearch.Record;
 import org.duniter.core.client.model.elasticsearch.RecordComment;
 import org.duniter.core.service.CryptoService;
+import org.duniter.core.util.ArrayUtils;
+import org.duniter.core.util.Preconditions;
 import org.duniter.elasticsearch.client.Duniter4jClient;
 import org.duniter.elasticsearch.exception.NotFoundException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
@@ -34,9 +36,15 @@ import org.duniter.elasticsearch.gchange.dao.market.MarketCategoryDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.model.market.LightMarketRecord;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
+import org.duniter.elasticsearch.gchange.model.market.MarketRecordFilter;
 import org.duniter.elasticsearch.user.service.DeleteHistoryService;
+import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.inject.Inject;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Benoit on 30/03/2015.
@@ -65,6 +73,8 @@ public class MarketService extends AbstractService {
         this.categoryDao = categoryDao;
 
         this.deleteService = deleteService;
+
+        setIsReady(true);
     }
 
 
@@ -174,7 +184,7 @@ public class MarketService extends AbstractService {
         return client.getSourceByIdOrNull(recordDao.getIndex(), recordDao.getType(), id, MarketRecord.class,
                 MarketRecord.PROPERTY_TITLE,
                 MarketRecord.PROPERTY_DESCRIPTION,
-                MarketRecord.PROPERTY_THUMBNAIL,
+                MarketRecord.PROPERTY_THUMBNAIL_WITH_CONTENT_TYPE,
                 MarketRecord.PROPERTY_PRICE,
                 MarketRecord.PROPERTY_CURRENCY,
                 MarketRecord.PROPERTY_UNIT);
@@ -186,6 +196,30 @@ public class MarketService extends AbstractService {
         indexDao.startDataMigration();
 
         return this;
+    }
+
+    public <C> List<C> findByFilter(MarketRecordFilter filter, Class<? extends C> clazz) {
+        Preconditions.checkNotNull(filter);
+        Preconditions.checkArgument(filter.getSize() <= 1000, "Cannot load more than 1000 record per request");
+
+        String[] fieldNames = filter.getFieldNames();
+        if (ArrayUtils.isEmpty(fieldNames)) {
+            fieldNames = new String[] {
+                    MarketRecord.PROPERTY_TYPE,
+                    MarketRecord.PROPERTY_CATEGORY,
+                    MarketRecord.PROPERTY_TITLE,
+                    MarketRecord.PROPERTY_THUMBNAIL_WITH_CONTENT_TYPE,
+                    MarketRecord.PROPERTY_PRICE,
+                    MarketRecord.PROPERTY_CURRENCY,
+                    MarketRecord.PROPERTY_UNIT
+            };
+        }
+        // Replace shape with polygon
+        if (filter.getGeoShapeId() != null) {
+            // TODO load polygon from the shape id
+        }
+
+        return recordDao.findByFilter(filter, clazz, fieldNames);
     }
 
     /* -- Internal methods -- */

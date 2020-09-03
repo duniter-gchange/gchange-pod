@@ -24,6 +24,7 @@ package org.duniter.elasticsearch.gchange.rest;
 
 import org.duniter.elasticsearch.gchange.rest.like.RestMarketLikeAction;
 import org.duniter.elasticsearch.gchange.rest.market.*;
+import org.duniter.elasticsearch.gchange.rest.market.search.CustomSearchAction;
 import org.duniter.elasticsearch.gchange.rest.mixed.RestMixedSearchAction;
 import org.duniter.elasticsearch.gchange.rest.shape.RestShapeIndexAction;
 import org.duniter.elasticsearch.gchange.rest.shape.RestShapeUpdateAction;
@@ -41,6 +42,9 @@ public class RestModule extends AbstractModule implements Module {
         bind(RestMarketCommentUpdateAction.class).asEagerSingleton();
         bind(RestMarketImageAction.class).asEagerSingleton();
         bind(RestMarketShareLinkAction.class).asEagerSingleton();
+
+        // Custom search
+        bind(CustomSearchAction.class).asEagerSingleton();
 
         // Market category
         bind(RestMarketCategoryIndexAction.class).asEagerSingleton();

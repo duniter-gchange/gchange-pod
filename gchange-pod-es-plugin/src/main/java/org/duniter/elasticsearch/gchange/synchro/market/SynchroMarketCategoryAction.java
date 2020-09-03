@@ -1,24 +1,18 @@
 package org.duniter.elasticsearch.gchange.synchro.market;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.duniter.core.client.dao.CurrencyDao;
-import org.duniter.core.exception.TechnicalException;
 import org.duniter.core.service.CryptoService;
-import org.duniter.core.util.CollectionUtils;
 import org.duniter.elasticsearch.client.Duniter4jClient;
-import org.duniter.elasticsearch.dao.CurrencyExtendDao;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.dao.market.MarketCategoryDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
-import org.duniter.elasticsearch.gchange.model.market.MarketCategoryRecord;
+import org.duniter.elasticsearch.gchange.model.market.CategoryRecord;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.synchro.AbstractSynchroGchangeAction;
 import org.duniter.elasticsearch.synchro.SynchroAction;
 import org.duniter.elasticsearch.synchro.SynchroActionResult;
 import org.duniter.elasticsearch.synchro.SynchroService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
-import org.duniter.elasticsearch.user.execption.UserProfileNotFoundException;
 import org.duniter.elasticsearch.user.synchro.user.SynchroUserProfileAction;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -60,9 +54,9 @@ public class SynchroMarketCategoryAction extends AbstractSynchroGchangeAction {
 
         BoolQueryBuilder boolQuery = QueryBuilders.boolQuery()
                 // Ignore old category (without time, hash, etc)
-                .filter(QueryBuilders.existsQuery(MarketCategoryRecord.PROPERTY_TIME))
+                .filter(QueryBuilders.existsQuery(CategoryRecord.PROPERTY_TIME))
                 // Get last market category
-                .filter(QueryBuilders.rangeQuery(MarketCategoryRecord.PROPERTY_TIME).gte(fromTime))
+                .filter(QueryBuilders.rangeQuery(CategoryRecord.PROPERTY_TIME).gte(fromTime))
                 ;
 
         // Dont care about the score

@@ -139,7 +139,7 @@ duniter.string.analyzer: french
 #
 # Enabling blockchain synchronization (default: true)
 #
-# duniter.blockchain.enable: true
+# duniter.blockchain.enable: false
 #
 # Enabling blockchain movement indexation ? (default: ${duniter.blockchain.enable})
 #

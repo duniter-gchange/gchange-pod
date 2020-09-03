@@ -23,26 +23,19 @@ package org.duniter.elasticsearch.gchange.dao.market;
  */
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.duniter.core.client.model.elasticsearch.RecordComment;
 import org.duniter.core.client.model.elasticsearch.Records;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.elasticsearch.dao.AbstractIndexTypeDao;
 import org.duniter.elasticsearch.dao.handler.AddSequenceAttributeHandler;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.model.auction.AuctionRecord;
-import org.duniter.elasticsearch.gchange.model.market.MarketCategoryRecord;
+import org.duniter.elasticsearch.gchange.model.market.CategoryRecord;
 import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.search.SearchPhaseExecutionException;
 import org.elasticsearch.action.search.SearchRequestBuilder;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.TermQueryBuilder;
 
 import java.io.IOException;
 import java.util.Set;
@@ -92,19 +85,19 @@ public class MarketCategoryDaoImpl extends AbstractIndexTypeDao<MarketCategoryDa
                     .startObject("properties")
 
                     // name
-                    .startObject(MarketCategoryRecord.PROPERTY_NAME)
+                    .startObject(CategoryRecord.PROPERTY_NAME)
                     .field("type", "string")
                     .field("analyzer", pluginSettings.getDefaultStringAnalyzer())
                     .endObject()
 
                     // parent
-                    .startObject(MarketCategoryRecord.PROPERTY_PARENT)
+                    .startObject(CategoryRecord.PROPERTY_PARENT)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // version
-                    .startObject(MarketCategoryRecord.PROPERTY_VERSION)
+                    .startObject(CategoryRecord.PROPERTY_VERSION)
                     .field("type", "integer")
                     .endObject()
 
@@ -114,30 +107,30 @@ public class MarketCategoryDaoImpl extends AbstractIndexTypeDao<MarketCategoryDa
                     .endObject()
 
                     // time
-                    .startObject(MarketCategoryRecord.PROPERTY_TIME)
+                    .startObject(CategoryRecord.PROPERTY_TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // issuer
-                    .startObject(MarketCategoryRecord.PROPERTY_ISSUER)
+                    .startObject(CategoryRecord.PROPERTY_ISSUER)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // hash
-                    .startObject(MarketCategoryRecord.PROPERTY_HASH)
+                    .startObject(CategoryRecord.PROPERTY_HASH)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // signature
-                    .startObject(MarketCategoryRecord.PROPERTY_SIGNATURE)
+                    .startObject(CategoryRecord.PROPERTY_SIGNATURE)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // localized names
-                    .startObject(MarketCategoryRecord.PROPERTY_LOCALIZED_NAMES)
+                    .startObject(CategoryRecord.PROPERTY_LOCALIZED_NAMES)
                     .field("type", "nested")
                     .field("dynamic", "true")
                         .startObject("properties")
@@ -187,7 +180,7 @@ public class MarketCategoryDaoImpl extends AbstractIndexTypeDao<MarketCategoryDa
 
         // There is data, BUT only OLD data (not issuer or time)
         BoolQueryBuilder query = QueryBuilders.boolQuery()
-                .filter(QueryBuilders.existsQuery(MarketCategoryRecord.PROPERTY_LOCALIZED_NAMES));
+                .filter(QueryBuilders.existsQuery(CategoryRecord.PROPERTY_LOCALIZED_NAMES));
         total = this.count(query);
         if (total == 0) {
             logger.info("Migrating market categories... (delete then recreate)");
