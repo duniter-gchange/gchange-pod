@@ -360,6 +360,18 @@
                                 <artifactId>tyrus-container-grizzly-server</artifactId>
                                 <version>${tyrus.version}</version>
                             </dependency>
+
+                            <!-- Need for geo_shape type -->
+                            <dependency>
+                                <groupId>com.vividsolutions</groupId>
+                                <artifactId>jts</artifactId>
+                                <version>1.13</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.locationtech.spatial4j</groupId>
+                                <artifactId>spatial4j</artifactId>
+                                <version>0.6</version>
+                            </dependency>
                         </dependencies>
                         <executions>
                             <execution>
