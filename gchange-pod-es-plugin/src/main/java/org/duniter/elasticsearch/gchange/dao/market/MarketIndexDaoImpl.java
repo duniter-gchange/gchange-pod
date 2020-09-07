@@ -77,6 +77,9 @@ public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> impleme
         createIndexRequestBuilder.addMapping(commentDao.getType(), commentDao.createTypeMapping());
         createIndexRequestBuilder.addMapping(categoryDao.getType(), categoryDao.createTypeMapping());
         createIndexRequestBuilder.execute().actionGet();
+
+        // Load categories
+        categoryDao.fillCategories();
     }
 
     public void startDataMigration() {

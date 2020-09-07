@@ -145,6 +145,11 @@ public class MarketCategoryDaoImpl extends AbstractIndexTypeDao<MarketCategoryDa
                         .endObject()
                     .endObject()
 
+                    // order
+                    .startObject(CategoryRecord.PROPERTY_ORDER)
+                    .field("type", "integer")
+                    .endObject()
+
                     .endObject()
                     .endObject().endObject();
 

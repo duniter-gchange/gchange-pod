@@ -68,6 +68,7 @@ public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements
         createIndexRequestBuilder.addMapping(TYPE, createTypeMapping());
         createIndexRequestBuilder.execute().actionGet();
 
+        // Fill country shapes
         fillCountryShapes();
     }
 
@@ -106,13 +107,13 @@ public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements
             //createIndex();
         //}
 
-        // Count shapes for country (fr'
-        /*long totalFr = count(QueryBuilders.boolQuery().filter(QueryBuilders.nestedQuery(ShapeRecord.PROPERTY_PROPERTIES,
+        // Count shapes for country
+        long total = count(QueryBuilders.boolQuery().filter(QueryBuilders.nestedQuery(ShapeRecord.PROPERTY_PROPERTIES,
                 QueryBuilders.termQuery(ShapeRecord.PROPERTY_PROPERTIES +".country", "fr")
                 )));
-        if (totalFr == 0) {
+        if (total == 0) {
             fillCountryShapes();
-        }*/
+        }
 
     }
 
