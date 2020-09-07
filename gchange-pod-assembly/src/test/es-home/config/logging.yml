@@ -41,6 +41,10 @@ logger:
   org.glassfish.grizzly: WARN
   org.glassfish.tyrus: WARN
 
+  # Skip warning logs 'low disk watermark [85%] (...)'
+  cluster.routing.allocation.decider: WARN
+  org.elasticsearch.common.geo: DEBUG
+
   # gateway
   #gateway: DEBUG
   #index.gateway: DEBUG

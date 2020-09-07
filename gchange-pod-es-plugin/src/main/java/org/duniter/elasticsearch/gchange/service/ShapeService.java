@@ -50,6 +50,7 @@ public class ShapeService extends AbstractService {
     }
 
     public String indexCountryFromJson(String json) {
+
         JsonNode actualObj = readAndVerifyIssuerSignature(json);
         String issuer = getIssuer(actualObj);
 
@@ -61,6 +62,9 @@ public class ShapeService extends AbstractService {
         JsonNode propertiesNode = getMandatoryField(actualObj, "properties");
         String id = getMandatoryField(propertiesNode, "id").asText();
         checkNotExists(ShapeDao.INDEX, ShapeDao.TYPE, id);
+
+        // FOR DEV ONLY
+        logger.debug("{ \"index\": { \"_id\": \""+id+"\"}}\n" + json);
 
         return indexDao.create(id, json);
     }

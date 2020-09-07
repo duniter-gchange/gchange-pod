@@ -25,12 +25,15 @@ package org.duniter.elasticsearch.gchange.dao.shape;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.elasticsearch.dao.AbstractIndexTypeDao;
 import org.duniter.elasticsearch.gchange.PluginSettings;
+import org.duniter.elasticsearch.gchange.exception.InvalidShapeException;
 import org.duniter.elasticsearch.gchange.model.shape.ShapeRecord;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
+import org.elasticsearch.index.mapper.MapperParsingException;
+import org.elasticsearch.index.query.QueryBuilders;
 
 import java.io.IOException;
 
@@ -39,6 +42,7 @@ import java.io.IOException;
  */
 public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements ShapeDao {
 
+    private static final String SHAPE_BULK_CLASSPATH_FILE = "shape-record-bulk-insert.json";
 
     private PluginSettings pluginSettings;
 
@@ -64,33 +68,52 @@ public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements
         createIndexRequestBuilder.addMapping(TYPE, createTypeMapping());
         createIndexRequestBuilder.execute().actionGet();
 
-        // Fill countries
-        fillCountries();
+        fillCountryShapes();
     }
 
     @Override
     public String create(String id, final String json) {
-        IndexResponse response = (IndexResponse)this.client.prepareIndex(this.getIndex(), this.getType())
-                .setSource(json)
-                .setId(id)
-                .setRefresh(false)
-                .execute().actionGet();
-        return response.getId();
+        try {
+            IndexResponse response = this.client.prepareIndex(this.getIndex(), this.getType())
+                    .setSource(json)
+                    .setId(id)
+                    .setRefresh(false)
+                    .execute().actionGet();
+            return response.getId();
+        } catch (MapperParsingException e) {
+            throw new InvalidShapeException(e);
+        }
     }
 
     @Override
     public void update(final String id, final String json) {
-        client.updateDocumentFromJson(this.getIndex(), this.getType(), id, json);
+        try {
+            client.updateDocumentFromJson(this.getIndex(), this.getType(), id, json);
+        } catch (MapperParsingException e) {
+            throw new InvalidShapeException(e);
+        }
     }
 
     @Override
     public void startDataMigration() {
 
         // --- for DEV ONLY ---
-        // Recreate the index
-        //deleteIndex();
-        //try {Thread.sleep(5 * 1000);} catch(Exception e) {/*silent*/}
-        //createIndex();
+        //long total = count(null);
+        //if (logger.isDebugEnabled() && total > 0) {
+            // Recreate the index
+            //deleteIndex();
+            //try {Thread.sleep(5 * 1000);} catch(Exception e) {/*silent*/}
+            //createIndex();
+        //}
+
+        // Count shapes for country (fr'
+        /*long totalFr = count(QueryBuilders.boolQuery().filter(QueryBuilders.nestedQuery(ShapeRecord.PROPERTY_PROPERTIES,
+                QueryBuilders.termQuery(ShapeRecord.PROPERTY_PROPERTIES +".country", "fr")
+                )));
+        if (totalFr == 0) {
+            fillCountryShapes();
+        }*/
+
     }
 
     @Override
@@ -136,16 +159,21 @@ public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements
                             .field("index", "not_analyzed")
                             .endObject()
 
-                            // name
-                            .startObject("name")
-                                .field("type", "string")
-                                .field("analyzer", pluginSettings.getDefaultStringAnalyzer())
+                            // title
+                            .startObject("title")
+                            .field("type", "string")
+                            .field("analyzer", pluginSettings.getDefaultStringAnalyzer())
                             .endObject()
 
                             // position
                             .startObject("position")
                             .field("type", "string")
                             .field("index", "not_analyzed")
+                            .endObject()
+
+                            // order
+                            .startObject("order")
+                            .field("type", "integer")
                             .endObject()
                         .endObject()
                     .endObject()
@@ -195,9 +223,13 @@ public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements
 
     /* -- protected method -- */
     
-    protected void fillCountries() {
+    protected void fillCountryShapes() {
+        if (logger.isDebugEnabled()) {
+            logger.debug(String.format("[%s/%s] Fill data", getIndex(), getType()));
+        }
 
+        // Insert categories
+        client.bulkFromClasspathFile(SHAPE_BULK_CLASSPATH_FILE, getIndex(), getType());
     }
-
 
 }
