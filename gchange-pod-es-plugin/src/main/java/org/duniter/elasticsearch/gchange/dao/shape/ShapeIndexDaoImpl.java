@@ -99,18 +99,15 @@ public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements
     public void startDataMigration() {
 
         // --- for DEV ONLY ---
-        //long total = count(null);
-        //if (logger.isDebugEnabled() && total > 0) {
+        if (false) {
             // Recreate the index
-            //deleteIndex();
-            //try {Thread.sleep(5 * 1000);} catch(Exception e) {/*silent*/}
-            //createIndex();
-        //}
+            deleteIndex();
+            try {Thread.sleep(5 * 1000);} catch(Exception e) {/*silent*/}
+            createIndex();
+        }
 
         // Count shapes for country
-        long total = count(QueryBuilders.boolQuery().filter(QueryBuilders.nestedQuery(ShapeRecord.PROPERTY_PROPERTIES,
-                QueryBuilders.termQuery(ShapeRecord.PROPERTY_PROPERTIES +".country", "fr")
-                )));
+        long total = count(null);
         if (total == 0) {
             fillCountryShapes();
         }
