@@ -43,7 +43,7 @@ logger:
 
   # Skip warning logs 'low disk watermark [85%] (...)'
   cluster.routing.allocation.decider: WARN
-  org.elasticsearch.common.geo: DEBUG
+  org.elasticsearch.common.geo: WARN
 
   # gateway
   #gateway: DEBUG
