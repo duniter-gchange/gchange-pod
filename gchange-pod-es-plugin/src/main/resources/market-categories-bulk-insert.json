@@ -1,182 +1,182 @@
 { "index": { "_id": "cat90"}}
-{ "name": "Alimentation", "parent": null, "localizedNames": {"fr-FR":  "Alimentation", "en":  "Food"}}
+{ "name": "Alimentation", "parent": null, "localizedNames": {"fr-FR":  "Alimentation", "en":  "Food", "es-ES": "Alimentación"}}
 { "index": { "_id": "cat91"}}
-{ "name": "Viandes &amp; Poissons", "parent": "cat90", "localizedNames": {"fr-FR":  "Viandes &amp; Poissons", "en":  "Meat &amp; Fish"}}
+{ "name": "Viandes &amp; Poissons", "parent": "cat90", "localizedNames": {"fr-FR":  "Viandes &amp; Poissons", "en":  "Meat &amp; Fish", "es-ES": "Carnes y Pescados"}}
 { "index": { "_id": "cat92"}}
-{ "name": "Fruits &amp; Légumes", "parent": "cat90", "localizedNames": {"fr-FR":  "Fruits &amp; Légumes", "en":  "Fruits &amp; Vegetables"}}
+{ "name": "Fruits &amp; Légumes", "parent": "cat90", "localizedNames": {"fr-FR":  "Fruits &amp; Légumes", "en":  "Fruits &amp; Vegetables", "es-ES": "Frutas y Vegetales"}}
 { "index": { "_id": "cat93"}}
-{ "name": "Pains &amp; Patisserie", "parent": "cat90", "localizedNames": {"fr-FR":  "Pains &amp; Patisserie", "en":  "Breads &amp; Pastry"}}
+{ "name": "Pains &amp; Patisserie", "parent": "cat90", "localizedNames": {"fr-FR":  "Pains &amp; Pâtisserie", "en":  "Breads &amp; Pastry", "es-ES": "Pan y repostería"}}
 { "index": { "_id": "cat94"}}
-{ "name": "Frais", "parent": "cat90", "localizedNames": {"fr-FR":  "Frais", "en":  "Fresh"}}
+{ "name": "Frais", "parent": "cat90", "localizedNames": {"fr-FR":  "Frais", "en":  "Fresh", "es-ES": "Fresco"}}
 { "index": { "_id": "cat95"}}
-{ "name": "Épicerie salée", "parent": "cat90", "localizedNames": {"fr-FR":  "Épicerie salée", "en":  "Savory grocery"}}
+{ "name": "Épicerie salée", "parent": "cat90", "localizedNames": {"fr-FR":  "Épicerie salée", "en":  "Savory grocery", "es-ES": "Elaborados salados"}}
 { "index": { "_id": "cat96"}}
-{ "name": "Épicerie sucré", "parent": "cat90", "localizedNames": {"fr-FR":  "Épicerie sucré", "en":  "Sweet groceries"}}
+{ "name": "Épicerie sucré", "parent": "cat90", "localizedNames": {"fr-FR":  "Épicerie sucré", "en":  "Sweet groceries", "es-ES": "Elaborados dulces"}}
 { "index": { "_id": "cat97"}}
-{ "name": "Boissons", "parent": "cat90", "localizedNames": {"fr-FR":  "Boissons", "en":  "Drinks"}}
+{ "name": "Boissons", "parent": "cat90", "localizedNames": {"fr-FR":  "Boissons", "en":  "Drinks", "es-ES": "Bebidas"}}
 { "index": { "_id": "cat98"}}
-{ "name": "Alimentation bébé", "parent": "cat90", "localizedNames": {"fr-FR":  "Alimentation bébé", "en":  "Baby food"}}
+{ "name": "Alimentation bébé", "parent": "cat90", "localizedNames": {"fr-FR":  "Alimentation bébé", "en":  "Baby food", "es-ES": "Alimentación Bebé"}}
 { "index": { "_id": "cat48" }}
-{ "name": "Divers", "parent": "cat90", "localizedNames": {"fr-FR":  "Divers", "en":  "Various"}}
+{ "name": "Divers", "parent": "cat90", "localizedNames": {"fr-FR":  "Divers", "en":  "Various", "es-ES": "Diversos"}}
 
 { "index": { "_id": "cat71"}}
-{ "name": "Emploi", "parent": null, "localizedNames": {"fr-FR":  "Emploi", "en":  "Employment"}}
+{ "name": "Emploi", "parent": null, "localizedNames": {"fr-FR":  "Emploi", "en":  "Employment", "es-ES": "Empleo"}}
 { "index": { "_id": "cat33"}}
-{ "name": "Offres d'emploi", "parent": "cat71", "localizedNames": {"fr-FR":  "Offres d'emploi", "en":  "Jobs"}}
+{ "name": "Offres d'emploi", "parent": "cat71", "localizedNames": {"fr-FR":  "Offres d'emploi", "en":  "Jobs", "es-ES": "Ofertas de trabajo"}}
 { "index": { "_id": "cat74"}}
-{ "name": "Formations", "parent": "cat71", "localizedNames": {"fr-FR":  "Formations", "en":  "Training"}}
+{ "name": "Formations", "parent": "cat71", "localizedNames": {"fr-FR":  "Formations", "en":  "Training", "es-ES": "Formación"}}
 { "index": { "_id": "cat1" }}
 
-{ "name": "Véhicules", "parent": null}
+{ "name": "Véhicules", "parent": null, "localizedNames": {"fr-FR":  "Véhicules", "en": "Vehicles", "es-ES": "Vehículos"}}
 { "index": { "_id": "cat2" }}
-{ "name": "Voitures", "parent": "cat1" }
+{ "name": "Voitures", "parent": "cat1" , "localizedNames": {"fr-FR":  "Voitures", "en": "Cars", "es-ES": "Coches"}}
 { "index": { "_id": "cat3" }}
-{ "name": "Motos", "parent": "cat1" }
+{ "name": "Motos", "parent": "cat1" , "localizedNames": {"fr-FR":  "Motos", "en": "Motorcycles", "es-ES": "Motos"}}
 { "index": { "_id": "cat4" }}
-{ "name": "Caravaning", "parent": "cat1" }
+{ "name": "Caravaning", "parent": "cat1" , "localizedNames": {"fr-FR":  "Caravaning", "en": "Caravans", "es-ES": "Caravanas"}}
 { "index": { "_id": "cat5" }}
-{ "name": "Utilitaires", "parent": "cat1" }
+{ "name": "Utilitaires", "parent": "cat1" , "localizedNames": {"fr-FR":  "Utilitaires", "en": "Vans", "es-ES": "Utilitarios"}}
 { "index": { "_id": "cat6" }}
-{ "name": "Équipement Auto", "parent": "cat1" }
+{ "name": "Équipement Auto", "parent": "cat1" , "localizedNames": {"fr-FR":  "Équipement Auto", "en": "Auto Equipment", "es-ES": "Equipamiento Auto"}}
 { "index": { "_id": "cat44" }}
-{ "name": "Équipement Moto", "parent": "cat1" }
+{ "name": "Équipement Moto", "parent": "cat1" , "localizedNames": {"fr-FR":  "Équipement Moto", "en": "Moto Equipment", "es-ES": "Equipamiento Auto"}}
 { "index": { "_id": "cat50" }}
-{ "name": "Equipement Caravaning", "parent": "cat1" }
+{ "name": "Equipement Caravaning", "parent": "cat1" , "localizedNames": {"fr-FR":  "Equipement Caravaning", "en": "Caravan Equipment", "es-ES": "Equipamiento Caravana"}}
 { "index": { "_id": "cat7" }}
-{ "name": "Nautisme", "parent": "cat1" }
+{ "name": "Nautisme", "parent": "cat1" , "localizedNames": {"fr-FR":  "Nautisme", "en": "Sailing", "es-ES": "Navegación"}}
 { "index": { "_id": "cat51" }}
-{ "name": "Équipement Nautisme", "parent": "cat1" }
+{ "name": "Équipement Nautisme", "parent": "cat1" , "localizedNames": {"fr-FR":  "Équipement Nautisme", "en": "Sailing Equipment", "es-ES": "Equipamiento Navegación"}}
 
 { "index": { "_id": "cat8" }}
-{ "name": "Immobilier", "parent": null}
+{ "name": "Immobilier", "parent": null, "localizedNames": {"fr-FR":  "Immobilier", "en": "Housing", "es-ES": "Inmobiliario"}}
 { "index": { "_id": "cat9" }}
-{ "name": "Ventes immobilières", "parent": "cat8" }
+{ "name": "Ventes immobilières", "parent": "cat8" , "localizedNames": {"fr-FR":  "Ventes immobilières", "en": "Property Sells", "es-ES": "Venta propiedad"}}
 { "index": { "_id": "cat10" }}
-{ "name": "Locations", "parent": "cat8" }
+{ "name": "Locations", "parent": "cat8" , "localizedNames": {"fr-FR":  "Locations", "en": "Renting", "es-ES": "Alquiler"}}
 { "index": { "_id": "cat11" }}
-{ "name": "Colocations", "parent": "cat8" }
+{ "name": "Colocations", "parent": "cat8" , "localizedNames": {"fr-FR":  "Colocations", "en": "Shared Renting", "es-ES": "Alquiler compartido"}}
 { "index": { "_id": "cat13" }}
-{ "name": "Bureaux &amp; Commerces", "parent": "cat8" }
+{ "name": "Bureaux &amp; Commerces", "parent": "cat8" , "localizedNames": {"fr-FR":  "Bureaux &amp; Commerces", "en": "Offices &amp; Businesses", "es-ES": "Oficinas y Comercios"}}
 
 { "index": { "_id": "cat66" }}
-{ "name": "Vacances", "parent": null}
+{ "name": "Vacances", "parent": null, "localizedNames": {"fr-FR":  "Vacances", "en": "Holidays", "es-ES": "Vacaciones"}}
 { "index": { "_id": "cat12" }}
-{ "name": "Locations &amp; Gîtes", "parent": "cat66" }
+{ "name": "Locations &amp; Gîtes", "parent": "cat66" , "localizedNames": {"fr-FR":  "Locations &amp; Gîtes", "en": "Rural Homes", "es-ES": "Casas Rurales"}}
 { "index": { "_id": "cat67" }}
-{ "name": "Chambres d'hôtes", "parent": "cat66" }
+{ "name": "Chambres d'hôtes", "parent": "cat66" , "localizedNames": {"fr-FR":  "Chambres d'hôtes", "en": "Bed &amp; Breakfast", "es-ES": "Hostales o B&amp;B"}}
 { "index": { "_id": "cat68" }}
-{ "name": "Campings", "parent": "cat66" }
+{ "name": "Campings", "parent": "cat66" , "localizedNames": {"fr-FR":  "Campings", "en": "Camping", "es-ES": "Campings"}}
 { "index": { "_id": "cat69" }}
-{ "name": "Hôtels", "parent": "cat66" }
+{ "name": "Hôtels", "parent": "cat66" , "localizedNames": {"fr-FR":  "Hôtels", "en": "Hotels", "es-ES": "Hoteles"}}
 { "index": { "_id": "cat70" }}
-{ "name": "Hébergements insolites", "parent": "cat66" }
+{ "name": "Hébergements insolites", "parent": "cat66" , "localizedNames": {"fr-FR":  "Hébergements insolites", "en": "Unusual lodging", "es-ES": "Alojamientos inusuales"}}
 
 { "index": { "_id": "cat14" }}
-{ "name": "Multimédia", "parent": null}
+{ "name": "Multimédia", "parent": null, "localizedNames": {"fr-FR":  "Multimédia", "en": "Multimedia", "es-ES": "Multimedia"}}
 { "index": { "_id": "cat15" }}
-{ "name": "Informatique", "parent": "cat14" }
+{ "name": "Informatique", "parent": "cat14" , "localizedNames": {"fr-FR":  "Informatique", "en": "IT Computing", "es-ES": "Informática"}}
 { "index": { "_id": "cat43" }}
-{ "name": "Consoles &amp; Jeux vidéo", "parent": "cat14" }
+{ "name": "Consoles &amp; Jeux vidéo", "parent": "cat14" , "localizedNames": {"fr-FR":  "Consoles &amp; Jeux vidéo", "en": "VideoGames &amp; Consoles", "es-ES": "Consolas y Videojuegos"}}
 { "index": { "_id": "cat16" }}
-{ "name": "Images &amp; Sons", "parent": "cat14" }
+{ "name": "Images &amp; Sons", "parent": "cat14" , "localizedNames": {"fr-FR":  "Images &amp; Sons", "en": "Image &amp; Audio", "es-ES": "Imagen y Sonido"}}
 { "index": { "_id": "cat17" }}
-{ "name": "Téléphonie", "parent": "cat14" }
+{ "name": "Téléphonie", "parent": "cat14" , "localizedNames": {"fr-FR":  "Téléphonie", "en": "Phone", "es-ES": "Telefonía"}}
 
 { "index": { "_id": "cat72" }}
-{ "name": "Mode", "parent": null, "localizedNames": {"fr-FR": "Mode", "en": "Fashion"}}
+{ "name": "Mode", "parent": null, "localizedNames": {"fr-FR": "Mode", "en": "Fashion", "es-ES": "Moda"}}
 { "index": { "_id": "cat22" }}
-{ "name": "Vêtements", "parent": "cat72" }
+{ "name": "Vêtements", "parent": "cat72" , "localizedNames": {"fr-FR":  "Vêtements", "en": "Clothes", "es-ES": "Ropa"}}
 { "index": { "_id": "cat53" }}
-{ "name": "Chaussures", "parent": "cat72" }
+{ "name": "Chaussures", "parent": "cat72" , "localizedNames": {"fr-FR":  "Chaussures", "en": "Shoes", "es-ES": "Zapatos"}}
 { "index": { "_id": "cat47" }}
-{ "name": "Accessoires &amp; Bagagerie", "parent": "cat72" }
+{ "name": "Accessoires &amp; Bagagerie", "parent": "cat72" , "localizedNames": {"fr-FR":  "Accessoires &amp; Bagagerie", "en": "Accesories &amp; Bags", "es-ES": "Accesorios y Maletas"}}
 { "index": { "_id": "cat42" }}
-{ "name": "Montres &amp; Bijoux", "parent": "cat72" }
+{ "name": "Montres &amp; Bijoux", "parent": "cat72" , "localizedNames": {"fr-FR":  "Montres &amp; Bijoux", "en": "Clocks &amp; Jewelry", "es-ES": "Relojes y Joyas"}}
 { "index": { "_id": "cat23" }}
-{ "name": "Equipement bébé", "parent": "cat72" }
+{ "name": "Equipement bébé", "parent": "cat72" , "localizedNames": {"fr-FR":  "Equipement bébé", "en": "Baby Accessories", "es-ES": "Accesorios Bebé"}}
 { "index": { "_id": "cat54" }}
-{ "name": "Vêtements bébé", "parent": "cat72" }
+{ "name": "Vêtements bébé", "parent": "cat72" , "localizedNames": {"fr-FR":  "Vêtements bébé", "en": "Baby Clothes", "es-ES": "Ropa de Bebé"}}
 
 { "index": { "_id": "cat18" }}
-{ "name": "Maison", "parent": null}
+{ "name": "Maison", "parent": null, "localizedNames": {"fr-FR":  "Maison", "en": "House", "es-ES": "Casa"}}
 { "index": { "_id": "cat19" }}
-{ "name": "Ameublement", "parent": "cat18" }
+{ "name": "Ameublement", "parent": "cat18" , "localizedNames": {"fr-FR":  "Ameublement", "en": "Furniture", "es-ES": "Muebles"}}
 { "index": { "_id": "cat20" }}
-{ "name": "Electroménager", "parent": "cat18" }
+{ "name": "Electroménager", "parent": "cat18" , "localizedNames": {"fr-FR":  "Electroménager", "en": "Electrical Appliances", "es-ES": "Electrodomésticos"}}
 { "index": { "_id": "cat45" }}
-{ "name": "Arts de la table", "parent": "cat18" }
+{ "name": "Arts de la table", "parent": "cat18" , "localizedNames": {"fr-FR":  "Arts de la table", "en": "Tableware", "es-ES": "Artículos de cocina"}}
 { "index": { "_id": "cat39" }}
-{ "name": "Décoration", "parent": "cat18" }
+{ "name": "Décoration", "parent": "cat18" , "localizedNames": {"fr-FR":  "Décoration", "en": "Decoration", "es-ES": "Decoración"}}
 { "index": { "_id": "cat46" }}
-{ "name": "Linge de maison", "parent": "cat18" }
+{ "name": "Linge de maison", "parent": "cat18" , "localizedNames": {"fr-FR":  "Linge de maison", "en": "Household linen", "es-ES": "Textil de hogar"}}
 { "index": { "_id": "cat21" }}
-{ "name": "Bricolage", "parent": "cat18" }
+{ "name": "Bricolage", "parent": "cat18" , "localizedNames": {"fr-FR":  "Bricolage", "en": "Do-It-Yourself", "es-ES": "Bricolaje"}}
 { "index": { "_id": "cat52" }}
-{ "name": "Jardinage", "parent": "cat18" }
+{ "name": "Jardinage", "parent": "cat18" , "localizedNames": {"fr-FR":  "Jardinage", "en": "Gardening", "es-ES": "Jardinería"}}
 
 { "index": { "_id": "cat24" }}
-{ "name": "Loisirs", "parent": null}
+{ "name": "Loisirs", "parent": null, "localizedNames": {"fr-FR":  "Loisirs", "en": "Leisure", "es-ES": "Ocio"}}
 { "index": { "_id": "cat25" }}
-{ "name": "DVD / Films", "parent": "cat24" }
+{ "name": "DVD / Films", "parent": "cat24" , "localizedNames": {"fr-FR":  "DVD / Films", "en": "DVD / Films", "es-ES": "DVDs / Cine"}}
 { "index": { "_id": "cat26" }}
-{ "name": "CD / Musique", "parent": "cat24" }
+{ "name": "CD / Musique", "parent": "cat24" , "localizedNames": {"fr-FR":  "CD / Musique", "en": "CD / Music", "es-ES": "CDs / Música"}}
 { "index": { "_id": "cat27" }}
-{ "name": "Livres", "parent": "cat24" }
+{ "name": "Livres", "parent": "cat24" , "localizedNames": {"fr-FR":  "Livres", "en": "Books", "es-ES": "Libros"}}
 { "index": { "_id": "cat55" }}
-{ "name": "Vélos", "parent": "cat24" }
+{ "name": "Vélos", "parent": "cat24" , "localizedNames": {"fr-FR":  "Vélos", "en": "Bicycles", "es-ES": "Bicicletas"}}
 { "index": { "_id": "cat29" }}
-{ "name": "Sports &amp; Hobbies", "parent": "cat24" }
+{ "name": "Sports &amp; Hobbies", "parent": "cat24" , "localizedNames": {"fr-FR":  "Sports &amp; Hobbies", "en": "Sports &amp; Hobbies", "es-ES": "Deportes y Hobbies"}}
 { "index": { "_id": "cat30" }}
-{ "name": "Instruments de musique", "parent": "cat24" }
+{ "name": "Instruments de musique", "parent": "cat24" , "localizedNames": {"fr-FR":  "Instruments de musique", "en": "Music Instruments", "es-ES": "Instrumentos musicales"}}
 { "index": { "_id": "cat40" }}
-{ "name": "Collection", "parent": "cat24" }
+{ "name": "Collection", "parent": "cat24" , "localizedNames": {"fr-FR":  "Collection", "en": "Collection", "es-ES": "Colecciones"}}
 { "index": { "_id": "cat41" }}
-{ "name": "Jeux &amp; Jouets", "parent": "cat24" }
+{ "name": "Jeux &amp; Jouets", "parent": "cat24" , "localizedNames": {"fr-FR":  "Jeux &amp; Jouets", "en": "Games &amp; Toys", "es-ES": "Juegos y juguetes"}}
 
 { "index": { "_id": "cat75" }}
-{ "name": "Animaux", "parent": null, "localizedNames": {"fr-FR": "Animaux", "en": "Animals"}}
+{ "name": "Animaux", "parent": null, "localizedNames": {"fr-FR": "Animaux", "en": "Animals", "es-ES": "Animales"}}
 { "index": { "_id": "cat28" }}
-{ "name": "Animaux", "parent": "cat75", "localizedNames": {"fr-FR": "Animaux", "en": "Animals"}}
+{ "name": "Animaux", "parent": "cat75", "localizedNames": {"fr-FR": "Animaux", "en": "Animals", "es-ES": "Animales"}}
 { "index": { "_id": "cat82" }}
-{ "name": "Accessoires animaux", "parent": "cat75", "localizedNames": {"fr-FR": "Accessoires animaux", "en": "Animal accessories"}}
+{ "name": "Accessoires animaux", "parent": "cat75", "localizedNames": {"fr-FR": "Accessoires animaux", "en": "Animal accessories", "es-ES": "Accesorios de animales"}}
 
 { "index": { "_id": "cat56" }}
-{ "name": "Matériel professionnel", "parent": null}
+{ "name": "Matériel professionnel", "parent": null, "localizedNames": {"fr-FR":  "Matériel professionnel", "en": "Professional Equipment", "es-ES": "Material profesional"}}
 { "index": { "_id": "cat57" }}
-{ "name": "Matériel Agricole", "parent": "cat56" }
+{ "name": "Matériel Agricole", "parent": "cat56" , "localizedNames": {"fr-FR":  "Matériel Agricole", "en": "Farming Equipment", "es-ES": "Material Agrícola"}}
 { "index": { "_id": "cat58" }}
-{ "name": "Transport - Manutention", "parent": "cat56" }
+{ "name": "Transport - Manutention", "parent": "cat56" , "localizedNames": {"fr-FR":  "Transport - Manutention", "en": "Transport - Storing", "es-ES": "Transporte - Almacén"}}
 { "index": { "_id": "cat59" }}
-{ "name": "BTP - Chantier Gros-oeuvre", "parent": "cat56" }
+{ "name": "BTP - Chantier Gros-oeuvre", "parent": "cat56" , "localizedNames": {"fr-FR":  "BTP - Chantier Gros-oeuvre", "en": "Building - Constructions", "es-ES": "Construcción"}}
 { "index": { "_id": "cat60" }}
-{ "name": "Outillage - Matériaux 2nd-oeuvre", "parent": "cat56" }
+{ "name": "Outillage - Matériaux 2nd-oeuvre", "parent": "cat56" , "localizedNames": {"fr-FR":  "Outillage - Matériaux 2nd-oeuvre", "en": "Tools - 2nd hand material", "es-ES": "Herramientas - Materiales 2da mano"}}
 { "index": { "_id": "cat32" }}
-{ "name": "Équipements Industriels", "parent": "cat56" }
+{ "name": "Équipements Industriels", "parent": "cat56" , "localizedNames": {"fr-FR":  "Équipements Industriels", "en": "Industrial Equipments", "es-ES": "Equipamientos Industriales"}}
 { "index": { "_id": "cat61" }}
-{ "name": "Restauration - Hôtellerie", "parent": "cat56" }
+{ "name": "Restauration - Hôtellerie", "parent": "cat56" , "localizedNames": {"fr-FR":  "Restauration - Hôtellerie", "en": "Catering - Food Service", "es-ES": "Restauración - Hostelería"}}
 { "index": { "_id": "cat62" }}
-{ "name": "Fournitures de Bureau", "parent": "cat56" }
+{ "name": "Fournitures de Bureau", "parent": "cat56" , "localizedNames": {"fr-FR":  "Fournitures de Bureau", "en": "Office Furniture", "es-ES": "Muebles de Oficina"}}
 { "index": { "_id": "cat63" }}
-{ "name": "Commerces &amp; Marchés", "parent": "cat56" }
+{ "name": "Commerces &amp; Marchés", "parent": "cat56" , "localizedNames": {"fr-FR":  "Commerces &amp; Marchés", "en": "Businesses &amp; Markets", "es-ES": "Comercios y Mercados"}}
 { "index": { "_id": "cat64" }}
-{ "name": "Matériel Médical", "parent": "cat56" }
+{ "name": "Matériel Médical", "parent": "cat56" , "localizedNames": {"fr-FR":  "Matériel Médical", "en": "Medical Material", "es-ES": "Material Médico"}}
 
 { "index": { "_id": "cat31" }}
-{ "name": "Services", "parent": null}
+{ "name": "Services", "parent": null, "localizedNames": {"fr-FR":  "Services", "en": "Services", "es-ES": "Servicios"}}
 { "index": { "_id": "cat34" }}
-{ "name": "Prestations de services", "parent": "cat31" }
+{ "name": "Prestations de services", "parent": "cat31" , "localizedNames": {"fr-FR":  "Prestations de services", "en": "Service Provision", "es-ES": "Prestación de Servicios"}}
 { "index": { "_id": "cat35" }}
-{ "name": "Billetterie", "parent": "cat31" }
+{ "name": "Billetterie", "parent": "cat31" , "localizedNames": {"fr-FR":  "Billetterie", "en": "Tickets", "es-ES": "Tickets y cupones"}}
 { "index": { "_id": "cat49" }}
-{ "name": "Evénements", "parent": "cat31" }
+{ "name": "Evénements", "parent": "cat31" , "localizedNames": {"fr-FR":  "Evénements", "en": "Events", "es-ES": "Eventos"}}
 { "index": { "_id": "cat36" }}
-{ "name": "Cours particuliers", "parent": "cat31" }
+{ "name": "Cours particuliers", "parent": "cat31" , "localizedNames": {"fr-FR":  "Cours particuliers", "en": "Private Courses", "es-ES": "Cursos particulares"}}
 { "index": { "_id": "cat65" }}
-{ "name": "Covoiturage", "parent": "cat31" }
+{ "name": "Covoiturage", "parent": "cat31" , "localizedNames": {"fr-FR":  "Covoiturage", "en": "Carsharing", "es-ES": "Compartir Vehículo"}}
 { "index": { "_id": "cat81" }}
-{ "name": "Soins", "parent": "cat31", "localizedNames": {"fr-FR": "Soins", "en": "Care"}}
+{ "name": "Soins", "parent": "cat31", "localizedNames": {"fr-FR": "Soins", "en": "Care", "es-ES": "Cuidados"}}
 
 { "index": { "_id": "cat37" }}
-{ "name": "Divers", "parent": null, "localizedNames": {"fr-FR": "Divers", "en": "Various"}}
+{ "name": "Divers", "parent": null, "localizedNames": {"fr-FR": "Divers", "en": "Various", "es-ES": "Diversos"}}
 { "index": { "_id": "cat38" }}
-{ "name": "Autres", "parent": "cat37", "localizedNames": {"fr-FR": "Autres", "en": "Other"} }
+{ "name": "Autres", "parent": "cat37", "localizedNames": {"fr-FR": "Autres", "en": "Other", "es-ES": "Otros"}}
