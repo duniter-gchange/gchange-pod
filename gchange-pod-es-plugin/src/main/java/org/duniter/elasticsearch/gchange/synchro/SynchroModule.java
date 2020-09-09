@@ -25,6 +25,7 @@ package org.duniter.elasticsearch.gchange.synchro;
 import org.duniter.elasticsearch.gchange.synchro.market.SynchroMarketCategoryAction;
 import org.duniter.elasticsearch.gchange.synchro.market.SynchroMarketCommentAction;
 import org.duniter.elasticsearch.gchange.synchro.market.SynchroMarketRecordAction;
+import org.duniter.elasticsearch.gchange.synchro.shape.SynchroShapeRecordAction;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.common.inject.Module;
 
@@ -37,6 +38,8 @@ public class SynchroModule extends AbstractModule implements Module {
         bind(SynchroMarketRecordAction.class).asEagerSingleton();
         bind(SynchroMarketCommentAction.class).asEagerSingleton();
 
+        // Shape
+        bind(SynchroShapeRecordAction.class).asEagerSingleton();
     }
 
 }

@@ -1,45 +1,56 @@
-package org.duniter.elasticsearch.gchange.synchro.market;
+package org.duniter.elasticsearch.gchange.synchro.shape;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.duniter.core.client.dao.CurrencyDao;
 import org.duniter.core.service.CryptoService;
+import org.duniter.core.util.CollectionUtils;
 import org.duniter.elasticsearch.client.Duniter4jClient;
+import org.duniter.elasticsearch.dao.CurrencyExtendDao;
+import org.duniter.elasticsearch.exception.AccessDeniedException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.market.MarketCategoryDao;
 import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.gchange.model.market.CategoryRecord;
+import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.dao.shape.ShapeDao;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.synchro.AbstractSynchroGchangeAction;
 import org.duniter.elasticsearch.synchro.SynchroAction;
 import org.duniter.elasticsearch.synchro.SynchroActionResult;
 import org.duniter.elasticsearch.synchro.SynchroService;
 import org.duniter.elasticsearch.threadpool.ThreadPool;
+import org.duniter.elasticsearch.user.execption.UserProfileNotFoundException;
 import org.duniter.elasticsearch.user.synchro.user.SynchroUserProfileAction;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.duniter.elasticsearch.exception.AccessDeniedException;
 
 import java.util.Set;
 
-public class SynchroMarketCategoryAction extends AbstractSynchroGchangeAction {
+public class SynchroShapeRecordAction extends AbstractSynchroGchangeAction {
 
     public static final int EXECUTION_ORDER = Math.max(
             // Medium priority
             SynchroAction.EXECUTION_ORDER_MIDDLE,
-            // After user profile
-            SynchroUserProfileAction.EXECUTION_ORDER + 1
-    );
+            // and AFTER market categories
+            SynchroUserProfileAction.EXECUTION_ORDER + 1);
+
+    private ShapeDao shapeDao;
+
+    private PluginSettings gchangeSettings;
 
     private Set<String> adminAndModeratorsPubkeys;
 
     @Inject
-    public SynchroMarketCategoryAction(Duniter4jClient client,
-                                       PluginSettings pluginSettings,
-                                       CryptoService cryptoService,
-                                       ThreadPool threadPool,
-                                       SynchroService synchroService) {
-        super(MarketIndexDao.INDEX, MarketCategoryDao.TYPE, client, pluginSettings.getDelegate().getDelegate(), cryptoService, threadPool);
+    public SynchroShapeRecordAction(Duniter4jClient client,
+                                    PluginSettings pluginSettings,
+                                    CryptoService cryptoService,
+                                    ThreadPool threadPool,
+                                    SynchroService synchroService,
+                                    ShapeDao shapeDao) {
+        super(ShapeDao.INDEX, ShapeDao.TYPE, client, pluginSettings.getDelegate().getDelegate(), cryptoService, threadPool);
+
+        this.gchangeSettings = pluginSettings;
+        this.shapeDao = shapeDao;
 
         setExecutionOrder(EXECUTION_ORDER);
 
@@ -57,11 +68,8 @@ public class SynchroMarketCategoryAction extends AbstractSynchroGchangeAction {
         adminAndModeratorsPubkeys = pluginSettings.getDocumentAdminAndModeratorsPubkeys();
 
         BoolQueryBuilder boolQuery = QueryBuilders.boolQuery()
-                // Ignore old category (without time, hash, etc)
-                .filter(QueryBuilders.existsQuery(CategoryRecord.PROPERTY_TIME))
-                // Get last market category
-                .filter(QueryBuilders.rangeQuery(CategoryRecord.PROPERTY_TIME).gte(fromTime))
-                ;
+                // Get last marker record
+                .filter(QueryBuilders.rangeQuery(MarketRecord.PROPERTY_TIME).gte(fromTime));
 
         // Dont care about the score
         return QueryBuilders.constantScoreQuery(boolQuery);
