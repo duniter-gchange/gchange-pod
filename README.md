@@ -9,10 +9,10 @@ Gchange Pod can store: user profiles, private & encrypted messages, invitations 
 
 ## Install
 
-Read the [install documentation](./src/site/mardown/install.md) to learn how to install a Pod.
+Read the [install documentation](./src/site/markdown/install.md) to learn how to install a Pod.
 
 ## Documentation
 
-- [How to build](./src/)site/mardown/build.md) from source;
-- See [REST API](./src/)site/mardown/REST_API.md) to learn how to request a Pod;
+- [How to build](./src/site/markdown/build.md) from source;
+- See [REST API](./src/site/markdown/REST_API.md) to learn how to request a Pod;
 
