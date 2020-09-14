@@ -14,7 +14,7 @@ EXEC_CMD="./elasticsearch $*"
 LOG_DIR=${ES_HOME}/log
 
 start() {
-  echo "Starting Cesium+ Pod..."
+  echo "Starting Gchange Pod..."
   echo " - HOME: $ES_HOME"
   echo " - CMD: $EXEC_CMD"
   echo " - log: $LOG_DIR"
@@ -90,10 +90,10 @@ restart)
     echo ""
     echo "NAME"
     echo ""
-    echo "  start        Start the Cesium+ Pod"
-    echo "  stop         Stop the Cesium+ Pod"
-    echo "  restart      Do a stop/start on the Cesium+ Pod"
-    echo "  status       Say if the the Cesium+ Pod is running"
+    echo "  start        Start the Gchange Pod"
+    echo "  stop         Stop the Gchange Pod"
+    echo "  restart      Do a stop/start on the Gchange Pod"
+    echo "  status       Say if the the Gchange Pod is running"
     echo ""
     echo "OPTIONS"
     echo ""

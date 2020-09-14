@@ -5,7 +5,7 @@
 
 - [Contents](#contents)
 - [Overview](#overview)
-- [GCHANGE API](#GCHANGE) Data on the G1 blockchain
+- [GCHANGE API](#GCHANGE) 
    * [node](#node)
       * [node/summary](#nodesummary)
       * [node/stats](#nodestats)
@@ -108,6 +108,14 @@ For instance, a deletion on `message/inbox` should send this document:
   "signature" : "FOkYCX1b05LTAbtz72F/LMWZb8F8zhQKEqcvbuiQy1N6AXtCUC5Xmjcn+NeO9sCLdcmA0HxsJx42GnWZOmKCDA=="
 }
 ```
+
+### Search requests
+
+Search requests on a pod can use ElasticSearch standard API.
+
+Links :
+- See [official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/search-search.html) (v2.4)
+- A [good tutorial](http://okfnlabs.org/blog/2013/07/01/elasticsearch-query-tutorial.html)
           
 ## GCHANGE_API
 
@@ -120,8 +128,8 @@ For instance, a deletion on `message/inbox` should send this document:
     ```json
     {
       "duniter" : {
-        "software" : "cesium-plus-pod",
-        "version" : "1.6.1",
+        "software" : "gchange-pod",
+        "version" : "1.7.1",
         "status" : 200
       }
     }
