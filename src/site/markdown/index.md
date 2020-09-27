@@ -12,7 +12,11 @@ Gchange pod can store: user profiles, private & encrypted messages, invitations 
 
 Gchange pod use [ElastiSearch](https://www.elastic.co/fr/products/elasticsearch) for storage and full-text capabilities. 
 
-It comes with a public RESTfull [HTTP API](./REST_API.html) to store and retrieve all this data.
+It comes with a public [RESTfull HTTP API](./REST_API.md) to store and retrieve all this data.
 
 The pod source code is a ElasticSearch plugin.
 
+
+## How-to install a Pod ?
+
+Read this [installation guide](install.md)
