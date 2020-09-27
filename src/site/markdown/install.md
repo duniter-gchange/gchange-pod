@@ -225,6 +225,23 @@ More documentation can be found here :
 
 ## Troubleshooting
 
+###
+
+- Message:
+    ```bash
+    $ ./elasticsearch
+    Unrecognized VM option 'UseParNewGC'
+    Error: Could not create the Java Virtual Machine.
+    Error: A fatal exception has occurred. Program will exit.
+    ```
+ - Cause:
+ 
+   Your Java JDK version is probably up to 8 (version 10 or 11).
+   
+- Solution: 
+
+  Edit the file `bin/elasticsearch.in.sh` and remove the option `UseParNewGC` from the script.
+    
 ### Error `Refused GET request to [/ws/event/user/…`
 
 - Message:
