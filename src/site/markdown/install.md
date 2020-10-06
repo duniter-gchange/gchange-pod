@@ -240,7 +240,10 @@ More documentation can be found here :
    
 - Solution: 
 
-  Edit the file `bin/elasticsearch.in.sh` and remove the option `UseParNewGC` from the script.
+  Edit the file `bin/elasticsearch.in.sh` and comment out the following line:
+  ```
+  # ES_GC_OPTS="$ES_GC_OPTS -XX:+UseParNewGC"
+  ```  
     
 ### Error `Refused GET request to [/ws/event/user/…`
 
