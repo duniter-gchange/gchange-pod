@@ -172,7 +172,7 @@ duniter.blockchain.event.user.enable: false
 #
 # Force blockchain full synchronization - /!\ WARNING: all user events will be reset to 'unread'
 #
-# duniter.blockchain.reload: true
+duniter.blockchain.reload: true
 # duniter.blockchain.reload.from: 18900
 # duniter.blockchain.reload.to: 19000
 #
