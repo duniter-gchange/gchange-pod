@@ -31,7 +31,7 @@
     <gson.version>2.2.2</gson.version>
     <kalium.version>0.5.0</kalium.version>
     <scrypt.version>1.4.0</scrypt.version>
-    <elasticsearch.version>2.4.6</elasticsearch.version>
+    <elasticsearch.version>6.8.15</elasticsearch.version>
     <jna.version>4.1.0</jna.version>
     <tyrus.version>1.14</tyrus.version>
 
