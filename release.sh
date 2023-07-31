@@ -4,6 +4,12 @@ mkdir .local
 
 RELEASE_OPTS="-DskipTests -DperformFullRelease"
 
+# Clean previous install
+mvn clean --quiet
+if [[ $? -ne 0 ]]; then
+    exit 1
+fi
+
 # Rollback previous release, if need
 if [[ -f "pom.xml.releaseBackup" ]]; then
     echo "**********************************"
