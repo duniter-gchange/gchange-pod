@@ -23,9 +23,9 @@
   -->
 
 <assembly
-  xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
   <id>standalone</id>
   <formats>
     <format>zip</format>
@@ -38,6 +38,7 @@
       <outputDirectory/>
       <excludes>
         <exclude>bin/elasticsearch</exclude>
+        <exclude>bin/elasticsearch.in.sh</exclude>
         <exclude>bin/plugin</exclude>
         <exclude>config/elasticsearch.yml</exclude>
         <exclude>config/logging.yml</exclude>
@@ -53,13 +54,13 @@
       <fileMode>0755</fileMode>
     </fileSet>
 
-    <!-- default configuration file -->
+    <!-- configuration files -->
     <fileSet>
-      <directory>src/main/assembly/config</directory>
-      <outputDirectory>config</outputDirectory>
+      <directory>src/main/assembly</directory>
+      <outputDirectory/>
       <includes>
-        <include>elasticsearch.yml</include>
-        <include>logging.yml</include>
+        <include>config/elasticsearch.yml</include>
+        <include>config/logging.yml</include>
       </includes>
     </fileSet>
 
