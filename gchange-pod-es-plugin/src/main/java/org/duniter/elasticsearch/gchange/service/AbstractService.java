@@ -27,9 +27,7 @@ import org.duniter.elasticsearch.client.Duniter4jClient;
 import org.duniter.elasticsearch.exception.AccessDeniedException;
 import org.duniter.elasticsearch.exception.DuplicateIndexIdException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
 import org.duniter.elasticsearch.user.service.DeleteHistoryService;
-import org.elasticsearch.client.Client;
 
 import java.util.Set;
 

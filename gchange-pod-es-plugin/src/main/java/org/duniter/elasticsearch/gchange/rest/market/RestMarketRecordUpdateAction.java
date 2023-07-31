@@ -22,8 +22,8 @@ package org.duniter.elasticsearch.gchange.rest.market;
  * #L%
  */
 
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexRepository;
+import org.duniter.elasticsearch.gchange.dao.market.MarketRecordRepository;
 import org.duniter.elasticsearch.gchange.service.MarketService;
 import org.duniter.elasticsearch.rest.AbstractRestPostUpdateAction;
 import org.duniter.elasticsearch.rest.security.RestSecurityController;
@@ -38,7 +38,7 @@ public class RestMarketRecordUpdateAction extends AbstractRestPostUpdateAction {
     public RestMarketRecordUpdateAction(Settings settings, RestController controller, Client client, RestSecurityController securityController,
                                         MarketService service) {
         super(settings, controller, client, securityController,
-                MarketIndexDao.INDEX, MarketRecordDao.TYPE,
+                MarketIndexRepository.INDEX, MarketRecordRepository.TYPE,
                 (id, json) -> service.updateRecordFromJson(id, json));
     }
 

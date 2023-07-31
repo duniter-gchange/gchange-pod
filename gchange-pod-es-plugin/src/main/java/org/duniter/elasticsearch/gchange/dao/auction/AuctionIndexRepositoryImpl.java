@@ -23,35 +23,28 @@ package org.duniter.elasticsearch.gchange.dao.auction;
  */
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.duniter.core.exception.TechnicalException;
-import org.duniter.elasticsearch.dao.AbstractIndexDao;
-import org.duniter.elasticsearch.dao.handler.AddSequenceAttributeHandler;
+import org.duniter.elasticsearch.dao.AbstractIndexRepository;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.CommentDao;
-import org.duniter.elasticsearch.gchange.dao.RecordDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.common.inject.Inject;
-import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.common.xcontent.XContentFactory;
-
-import java.io.IOException;
 
 /**
  * Created by blavenie on 23/08/2020.
  */
-public class AuctionIndexDaoImpl extends AbstractIndexDao<AuctionIndexDao> implements AuctionIndexDao {
+public class AuctionIndexRepositoryImpl
+    extends AbstractIndexRepository<AuctionIndexRepository>
+    implements AuctionIndexRepository {
 
     private PluginSettings pluginSettings;
-    private RecordDao recordDao;
+    private AuctionRecordRepository recordRepository;
 
     @Inject
-    public AuctionIndexDaoImpl(PluginSettings pluginSettings, AuctionRecordDao recordDao) {
-        super(AuctionIndexDao.INDEX);
+    public AuctionIndexRepositoryImpl(PluginSettings pluginSettings,
+                                      AuctionRecordRepository recordRepository) {
+        super(AuctionIndexRepository.INDEX);
 
         this.pluginSettings = pluginSettings;
-        this.recordDao = recordDao;
+        this.recordRepository = recordRepository;
     }
 
 
@@ -66,7 +59,7 @@ public class AuctionIndexDaoImpl extends AbstractIndexDao<AuctionIndexDao> imple
                 //.put("analyzer", createDefaultAnalyzer())
                 .build();
         createIndexRequestBuilder.setSettings(indexSettings);
-        createIndexRequestBuilder.addMapping(recordDao.getType(), recordDao.createTypeMapping());
+        createIndexRequestBuilder.addMapping(recordRepository.getType(), recordRepository.createTypeMapping());
         createIndexRequestBuilder.execute().actionGet();
 
     }

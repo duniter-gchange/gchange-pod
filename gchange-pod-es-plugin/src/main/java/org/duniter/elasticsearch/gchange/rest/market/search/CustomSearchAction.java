@@ -1,14 +1,11 @@
 package org.duniter.elasticsearch.gchange.rest.market.search;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.duniter.core.client.model.bma.jackson.JacksonUtils;
 import org.duniter.core.exception.BusinessException;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.elasticsearch.exception.DuniterElasticsearchException;
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexRepository;
 import org.duniter.elasticsearch.gchange.model.market.LightCategory;
-import org.duniter.elasticsearch.gchange.model.market.LightMarketRecord;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecordFilter;
 import org.duniter.elasticsearch.gchange.service.MarketService;
@@ -16,7 +13,6 @@ import org.duniter.elasticsearch.rest.RestXContentBuilder;
 import org.duniter.elasticsearch.rest.XContentRestResponse;
 import org.duniter.elasticsearch.rest.XContentThrowableRestResponse;
 import org.duniter.elasticsearch.rest.security.RestSecurityController;
-import org.duniter.elasticsearch.util.bytes.JsonNodeBytesReference;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.geo.GeoPoint;
@@ -46,12 +42,12 @@ public class CustomSearchAction extends BaseRestHandler {
                               MarketService service) {
         super(settings, controller, client);
         this.service = service;
-        log = Loggers.getLogger("gchange." + MarketIndexDao.INDEX, settings, String.format("[%s]", MarketIndexDao.INDEX));
+        log = Loggers.getLogger("gchange." + MarketIndexRepository.INDEX, settings, String.format("[%s]", MarketIndexRepository.INDEX));
 
         // Register GET request on /market?
-        controller.registerHandler(GET, String.format("/%s/_api", MarketIndexDao.INDEX),
+        controller.registerHandler(GET, String.format("/%s/_api", MarketIndexRepository.INDEX),
                 this);
-        securityController.allow(GET, String.format("/%s/_api", MarketIndexDao.INDEX));
+        securityController.allow(GET, String.format("/%s/_api", MarketIndexRepository.INDEX));
     }
 
     @Override
@@ -90,9 +86,9 @@ public class CustomSearchAction extends BaseRestHandler {
         }
 
         // Category
-        String category = StringUtils.trimToNull(request.param("category"));
-        if (category != null) {
-            filter.setCategory(new LightCategory(category));
+        String categoryId = StringUtils.trimToNull(request.param("category"));
+        if (categoryId != null) {
+            filter.setCategory(new LightCategory(categoryId));
         }
 
         // Search text

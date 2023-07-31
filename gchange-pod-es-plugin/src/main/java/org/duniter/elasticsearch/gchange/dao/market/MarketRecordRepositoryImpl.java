@@ -25,15 +25,19 @@ package org.duniter.elasticsearch.gchange.dao.market;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
-import org.duniter.core.client.dao.CurrencyDao;
-import org.duniter.core.client.model.local.Currency;
+import org.duniter.core.client.repositories.CurrencyRepository;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.core.util.ArrayUtils;
+import org.duniter.core.util.Beans;
 import org.duniter.core.util.cache.Cache;
 import org.duniter.core.util.cache.SimpleCache;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.AbstractRecordDaoImpl;
-import org.duniter.elasticsearch.gchange.model.market.*;
+import org.duniter.elasticsearch.gchange.dao.AbstractRecordRepositoryImpl;
+import org.duniter.elasticsearch.gchange.model.market.CategoryRecord;
+import org.duniter.elasticsearch.gchange.model.market.LightCategory;
+import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
+import org.duniter.elasticsearch.gchange.model.market.MarketRecordFilter;
+import org.duniter.elasticsearch.model.Records;
 import org.duniter.elasticsearch.util.bytes.JsonNodeBytesReference;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -49,13 +53,12 @@ import org.elasticsearch.index.query.QueryBuilders;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 /**
  * Created by blavenie on 03/04/17.
  */
-public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements MarketRecordDao {
+public class MarketRecordRepositoryImpl extends AbstractRecordRepositoryImpl implements MarketRecordRepository {
 
     private final int CURRENCY_CACHE_DURATION_MS = 10*60*1000; // 10 min
     private final String CURRENCY_CACHE_KEY_ALL = "ALL";
@@ -63,16 +66,15 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
     private Cache<String, String[]> currencyIdsCache;
 
     @Inject
-    public MarketRecordDaoImpl(PluginSettings pluginSettings,
-                               final CurrencyDao currencyDao) {
-        super(MarketIndexDao.INDEX, pluginSettings);
+    public MarketRecordRepositoryImpl(PluginSettings pluginSettings,
+                                      final CurrencyRepository currencyRepository) {
+        super(MarketIndexRepository.INDEX, pluginSettings);
 
         // Init currency cache (lazy)
         currencyIdsCache = new SimpleCache<String, String[]>(CURRENCY_CACHE_DURATION_MS) {
             @Override
             public String[] load(String key) {
-                Set<String> ids = currencyDao.getAllIds();
-                return ids.toArray(new String[ids.size()]);
+                return Beans.toArray(currencyRepository.findAllIds(), String[]::new);
             }
         };
     }
@@ -82,8 +84,8 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
     public <C> List<C> findByFilter(MarketRecordFilter filter, Class<? extends C> clazz, String... fieldNames){
 
         try {
-            SearchRequestBuilder request = client.prepareSearch(MarketIndexDao.INDEX)
-                    .setTypes(MarketRecordDao.TYPE)
+            SearchRequestBuilder request = client.prepareSearch(MarketIndexRepository.INDEX)
+                    .setTypes(MarketRecordRepository.TYPE)
                     .setSize(filter.getSize())
                     .setFrom(filter.getFrom())
                     .setFetchSource(fieldNames, null);
@@ -100,27 +102,27 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
 
                 // Multi match on title, description
                 matches.add(QueryBuilders.multiMatchQuery(lowerText,
-                        MarketRecord.PROPERTY_TITLE + "^2",
-                        MarketRecord.PROPERTY_DESCRIPTION)
+                        MarketRecord.Fields.TITLE + "^2",
+                        MarketRecord.Fields.DESCRIPTION)
                 .type(MatchQueryBuilder.Type.PHRASE_PREFIX));
 
                 // Match on title
-                matches.add(QueryBuilders.matchQuery(MarketRecord.PROPERTY_TITLE, lowerText).boost(2));
+                matches.add(QueryBuilders.matchQuery(MarketRecord.Fields.TITLE, lowerText).boost(2));
 
                 // Match on title as prefix
-                matches.add(QueryBuilders.matchPhrasePrefixQuery(MarketRecord.PROPERTY_TITLE, lowerText));
+                matches.add(QueryBuilders.matchPhrasePrefixQuery(MarketRecord.Fields.TITLE, lowerText));
 
                 // Match on description
-                matches.add(QueryBuilders.matchQuery(MarketRecord.PROPERTY_DESCRIPTION, lowerText));
+                matches.add(QueryBuilders.matchQuery(MarketRecord.Fields.DESCRIPTION, lowerText));
 
                 // Match on category
-                matches.add(QueryBuilders.nestedQuery(MarketRecord.PROPERTY_CATEGORY,
-                        QueryBuilders.matchQuery(MarketRecord.PROPERTY_CATEGORY + "." + CategoryRecord.PROPERTY_NAME, lowerText)));
+                matches.add(QueryBuilders.nestedQuery(MarketRecord.Fields.CATEGORY,
+                        QueryBuilders.matchQuery(MarketRecord.Fields.CATEGORY + "." + CategoryRecord.Fields.NAME, lowerText)));
             }
 
             // Filter: type
             if (filter.getType() != null) {
-                filters.add(QueryBuilders.termQuery(MarketRecord.PROPERTY_TYPE, filter.getType().name()));
+                filters.add(QueryBuilders.termQuery(MarketRecord.Fields.TYPE, filter.getType().name()));
             }
 
             // Filter: category
@@ -128,8 +130,8 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
             if (category != null) {
                 if (category.getId() != null) {
                     filters.add(QueryBuilders.nestedQuery(
-                            MarketRecord.PROPERTY_CATEGORY,
-                            QueryBuilders.termQuery(MarketRecord.PROPERTY_CATEGORY +"."+ CategoryRecord.PROPERTY_ID, category.getId())));
+                            MarketRecord.Fields.CATEGORY,
+                            QueryBuilders.termQuery(MarketRecord.Fields.CATEGORY +"."+ CategoryRecord.Fields.ID, category.getId())));
                 }
             }
 
@@ -137,13 +139,13 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
             // Filter: tags
             String[] tags = parseTags(text);
             if (ArrayUtils.isNotEmpty(tags)) {
-                filters.add(QueryBuilders.termsQuery(MarketRecord.PROPERTY_TAGS, tags));
+                filters.add(QueryBuilders.termsQuery(Records.Fields.TAGS, tags));
             }
 
             // Filter: with closed ?
             if (!filter.isWithClosed()) {
                 // Filter on stock > 0
-                filters.add(QueryBuilders.rangeQuery(MarketRecord.PROPERTY_STOCK).gt(0));
+                filters.add(QueryBuilders.rangeQuery(MarketRecord.Fields.STOCK).gt(0));
             }
 
             // Filter: with old ?
@@ -152,17 +154,17 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                 long minTime = (System.currentTimeMillis() / 1000) - 24 * 365 * 60 * 60;
                 // Round to hour, to be able to use cache (avoid to many similar requests)
                 minTime = Math.round(Math.floor(minTime / 60 / 60 ) * 60 * 60);
-                filters.add(QueryBuilders.rangeQuery(MarketRecord.PROPERTY_TIME).gte(minTime));
+                filters.add(QueryBuilders.rangeQuery(MarketRecord.Fields.TIME).gte(minTime));
             }
 
             // Filter: currency
             String currency = filter.getCurrency();
             if (StringUtils.isNotBlank(currency)) {
                 if (currency.indexOf(',') == -1) {
-                    filters.add(QueryBuilders.termQuery(MarketRecord.PROPERTY_CURRENCY, currency));
+                    filters.add(QueryBuilders.termQuery(MarketRecord.Fields.CURRENCY, currency));
                 }
                 else {
-                    filters.add(QueryBuilders.termsQuery(MarketRecord.PROPERTY_CURRENCY, currency.split(",")));
+                    filters.add(QueryBuilders.termsQuery(MarketRecord.Fields.CURRENCY, currency.split(",")));
                 }
             }
             else {
@@ -170,9 +172,9 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                 String[] currencyIds = currencyIdsCache.get(CURRENCY_CACHE_KEY_ALL);
                 if (ArrayUtils.isNotEmpty(currencyIds)) {
                     if (currencyIds.length == 1) {
-                        filters.add(QueryBuilders.termQuery(MarketRecord.PROPERTY_CURRENCY, currencyIds[0]));
+                        filters.add(QueryBuilders.termQuery(MarketRecord.Fields.CURRENCY, currencyIds[0]));
                     } else {
-                        filters.add(QueryBuilders.termsQuery(MarketRecord.PROPERTY_CURRENCY, currencyIds));
+                        filters.add(QueryBuilders.termsQuery(MarketRecord.Fields.CURRENCY, currencyIds));
                     }
                 }
             }
@@ -214,95 +216,95 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .startObject("properties")
 
                     // version
-                    .startObject(MarketRecord.PROPERTY_VERSION)
+                    .startObject(MarketRecord.Fields.VERSION)
                     .field("type", "integer")
                     .endObject()
 
                     // title
-                    .startObject(MarketRecord.PROPERTY_TITLE)
+                    .startObject(MarketRecord.Fields.TITLE)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
                     // description
-                    .startObject(MarketRecord.PROPERTY_DESCRIPTION)
+                    .startObject(MarketRecord.Fields.DESCRIPTION)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
                     // creationTime
-                    .startObject(MarketRecord.PROPERTY_CREATION_TIME)
+                    .startObject(MarketRecord.Fields.CREATION_TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // time
-                    .startObject(MarketRecord.PROPERTY_TIME)
+                    .startObject(MarketRecord.Fields.TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // price
-                    .startObject(MarketRecord.PROPERTY_PRICE)
+                    .startObject(MarketRecord.Fields.PRICE)
                     .field("type", "double")
                     .endObject()
 
                     // price Unit
-                    .startObject(MarketRecord.PROPERTY_UNIT)
+                    .startObject(MarketRecord.Fields.UNIT)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // price currency
-                    .startObject(MarketRecord.PROPERTY_CURRENCY)
+                    .startObject(MarketRecord.Fields.CURRENCY)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // fees
-                    .startObject(MarketRecord.PROPERTY_FEES)
+                    .startObject(MarketRecord.Fields.FEES)
                     .field("type", "double")
                     .endObject()
 
                     // fees currency
-                    .startObject(MarketRecord.PROPERTY_FEES_CURRENCY)
+                    .startObject(MarketRecord.Fields.FEES_CURRENCY)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // stock
-                    .startObject(MarketRecord.PROPERTY_STOCK)
+                    .startObject(MarketRecord.Fields.STOCK)
                     .field("type", "integer")
                     .endObject()
 
                     // issuer
-                    .startObject(MarketRecord.PROPERTY_ISSUER)
+                    .startObject(MarketRecord.Fields.ISSUER)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // type (offer, need, ...)
-                    .startObject(MarketRecord.PROPERTY_TYPE)
+                    .startObject(MarketRecord.Fields.TYPE)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // address
-                    .startObject(MarketRecord.PROPERTY_ADDRESS)
+                    .startObject(Records.Fields.ADDRESS)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
                     // city
-                    .startObject(MarketRecord.PROPERTY_CITY)
+                    .startObject(Records.Fields.CITY)
                     .field("type", "string")
                     .endObject()
 
                     // geoPoint
-                    .startObject(MarketRecord.PROPERTY_GEO_POINT)
+                    .startObject(Records.Fields.GEO_POINT)
                     .field("type", "geo_point")
                     .endObject()
 
                     // thumbnail
-                    .startObject(MarketRecord.PROPERTY_THUMBNAIL)
+                    .startObject(MarketRecord.Fields.THUMBNAIL)
                     .field("type", "attachment")
                     .startObject("fields") // src
                     .startObject("content") // title
@@ -322,7 +324,7 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // pictures
-                    .startObject(MarketRecord.PROPERTY_PICTURES)
+                    .startObject(Records.Fields.PICTURES)
                     .field("type", "nested")
                     .field("dynamic", "false")
                     .startObject("properties")
@@ -350,12 +352,12 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // picturesCount
-                    .startObject(MarketRecord.PROPERTY_PICTURES_COUNT)
+                    .startObject(Records.Fields.PICTURES_COUNT)
                     .field("type", "integer")
                     .endObject()
 
                     // category
-                    .startObject(MarketRecord.PROPERTY_CATEGORY)
+                    .startObject(MarketRecord.Fields.CATEGORY)
                     .field("type", "nested")
                     .field("dynamic", "false")
                     .startObject("properties")
@@ -375,7 +377,7 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // tags
-                    .startObject(MarketRecord.PROPERTY_TAGS)
+                    .startObject(Records.Fields.TAGS)
                     .field("type", "completion")
                     .field("search_analyzer", "simple")
                     .field("analyzer", "simple")
@@ -383,13 +385,13 @@ public class MarketRecordDaoImpl extends AbstractRecordDaoImpl implements Market
                     .endObject()
 
                     // hash
-                    .startObject(MarketRecord.PROPERTY_HASH)
+                    .startObject(MarketRecord.Fields.HASH)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // signature
-                    .startObject(MarketRecord.PROPERTY_SIGNATURE)
+                    .startObject(MarketRecord.Fields.SIGNATURE)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()

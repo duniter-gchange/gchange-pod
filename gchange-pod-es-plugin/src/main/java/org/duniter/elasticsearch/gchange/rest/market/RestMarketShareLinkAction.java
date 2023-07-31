@@ -7,10 +7,11 @@ import org.duniter.core.exception.TechnicalException;
 import org.duniter.core.util.StringUtils;
 import org.duniter.elasticsearch.exception.DuniterElasticsearchException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexRepository;
+import org.duniter.elasticsearch.gchange.dao.market.MarketRecordRepository;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.service.MarketService;
+import org.duniter.elasticsearch.model.Records;
 import org.duniter.elasticsearch.rest.attachment.RestImageAttachmentAction;
 import org.duniter.elasticsearch.rest.share.AbstractRestShareLinkAction;
 import org.duniter.elasticsearch.service.CurrencyService;
@@ -39,7 +40,7 @@ public class RestMarketShareLinkAction extends AbstractRestShareLinkAction imple
     public RestMarketShareLinkAction(final PluginSettings pluginSettings, final RestController controller, final Client client,
                                      final MarketService marketService,
                                      final CurrencyService currencyService) {
-        super(pluginSettings.getDelegate().getDelegate(), controller, client, MarketIndexDao.INDEX, MarketRecordDao.TYPE);
+        super(pluginSettings.getDelegate().getDelegate(), controller, client, MarketIndexRepository.INDEX, MarketRecordRepository.TYPE);
         setResolver(this);
         this.pluginSettings = pluginSettings;
         this.marketService = marketService;
@@ -78,7 +79,7 @@ public class RestMarketShareLinkAction extends AbstractRestShareLinkAction imple
                 if (record.getThumbnail() != null && StringUtils.isNotBlank(record.getThumbnail().get("_content_type"))) {
                     String baseUrl = pluginSettings.getClusterRemoteUrlOrNull();
                     data.image = StringUtils.isBlank(baseUrl) ? "" : baseUrl;
-                    data.image += RestImageAttachmentAction.computeImageUrl(MarketIndexDao.INDEX, MarketRecordDao.TYPE, id, MarketRecord.PROPERTY_THUMBNAIL, record.getThumbnail().get("_content_type"));
+                    data.image += RestImageAttachmentAction.computeImageUrl(MarketIndexRepository.INDEX, MarketRecordRepository.TYPE, id, MarketRecord.Fields.THUMBNAIL, record.getThumbnail().get("_content_type"));
 
                     // At least 200x200px (need by social network as FB)
                     data.imageHeight = OGData.MIN_IMAGE_HEIGHT;
@@ -139,10 +140,10 @@ public class RestMarketShareLinkAction extends AbstractRestShareLinkAction imple
         // Convert UD price into absolute price
         if ("UD".equalsIgnoreCase(record.getUnit())) {
             try {
-                Long lastUD = currencyService.getLastUD(record.getCurrency());
+                Long lastUD = currencyService.getDividend(record.getCurrency());
                 if (lastUD == null) return null; // Unable to convert (no last UD)
 
-                price = price * (currencyService.getLastUD(record.getCurrency()) / 100);
+                price = price * (currencyService.getDividend(record.getCurrency()) / 100);
                 price = (Math.round(price * 100) / 100); // round to 2 decimal
             } catch(Exception e) {
                 logger.error(String.format("Cannot convert price of record %s: %s", record.getId()), e.getMessage());

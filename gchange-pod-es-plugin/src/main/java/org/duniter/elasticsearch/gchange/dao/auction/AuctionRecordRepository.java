@@ -1,4 +1,4 @@
-package org.duniter.elasticsearch.gchange.dao.market;
+package org.duniter.elasticsearch.gchange.dao.auction;
 
 /*
  * #%L
@@ -22,17 +22,11 @@ package org.duniter.elasticsearch.gchange.dao.market;
  * #L%
  */
 
-import org.duniter.elasticsearch.gchange.dao.RecordDao;
-import org.duniter.elasticsearch.gchange.model.market.MarketRecordFilter;
-
-import java.util.List;
+import org.duniter.elasticsearch.user.dao.RecordRepository;
 
 /**
- * Created by blavenie on 03/04/17.
+ * Created by blavenie on 23/08/2020.
  */
-public interface MarketRecordDao extends RecordDao {
-
-    void startDataMigration();
-
-    <C> List<C> findByFilter(MarketRecordFilter filter, Class<? extends C> clazz, String... fieldNames);
+public interface AuctionRecordRepository<T extends AuctionRecordRepository>
+    extends RecordRepository<T> {
 }

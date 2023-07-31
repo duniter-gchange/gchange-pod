@@ -24,11 +24,10 @@ package org.duniter.elasticsearch.gchange.dao;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.duniter.core.client.model.elasticsearch.RecordComment;
 import org.duniter.core.exception.TechnicalException;
-import org.duniter.elasticsearch.dao.AbstractIndexTypeDao;
+import org.duniter.elasticsearch.dao.AbstractIndexTypeRepository;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.CommentDao;
+import org.duniter.elasticsearch.model.user.RecordComment;
 import org.elasticsearch.action.search.SearchPhaseExecutionException;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -43,13 +42,15 @@ import java.io.IOException;
 /**
  * Created by Benoit on 30/03/2015.
  */
-public class AbstractCommentDaoImpl<T extends AbstractCommentDaoImpl> extends AbstractIndexTypeDao<T> implements CommentDao<T> {
+public class AbstractCommentRepositoryImpl<T extends AbstractCommentRepositoryImpl>
+    extends AbstractIndexTypeRepository<T>
+    implements CommentRepository<T> {
 
 
     protected PluginSettings pluginSettings;
 
-    public AbstractCommentDaoImpl(String index, PluginSettings pluginSettings) {
-        super(index, CommentDao.TYPE);
+    public AbstractCommentRepositoryImpl(String index, PluginSettings pluginSettings) {
+        super(index, CommentRepository.TYPE);
         this.pluginSettings = pluginSettings;
     }
 
@@ -78,7 +79,7 @@ public class AbstractCommentDaoImpl<T extends AbstractCommentDaoImpl> extends Ab
                 .setSize(0);
 
         // Query = filter on reference
-        TermQueryBuilder query = QueryBuilders.termQuery(RecordComment.PROPERTY_REPLY_TO_JSON, id);
+        TermQueryBuilder query = QueryBuilders.termQuery(RecordComment.JsonFields.REPLY_TO, id);
         searchRequest.setQuery(query);
 
         // Execute query

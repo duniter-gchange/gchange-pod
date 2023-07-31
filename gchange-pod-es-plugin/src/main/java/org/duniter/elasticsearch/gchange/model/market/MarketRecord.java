@@ -22,7 +22,8 @@ package org.duniter.elasticsearch.gchange.model.market;
  * #L%
  */
 
-import org.duniter.core.client.model.elasticsearch.Records;
+import lombok.Data;
+import lombok.experimental.FieldNameConstants;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -33,7 +34,13 @@ import java.util.stream.Collectors;
 /**
  * Created by blavenie on 01/12/16.
  */
+@Data
+@FieldNameConstants
 public class MarketRecord extends LightMarketRecord {
+
+    public static class Fields extends LightMarketRecord.Fields {
+        public static final String THUMBNAIL_WITH_CONTENT_TYPE = "thumbnail._content_type";
+    }
 
     public enum Type {
         offer,
@@ -46,85 +53,14 @@ public class MarketRecord extends LightMarketRecord {
         }
     }
 
-    public static final String PROPERTY_DESCRIPTION="description";
-    public static final String PROPERTY_PRICE="price";
-    public static final String PROPERTY_UNIT="unit";
-    public static final String PROPERTY_CURRENCY="currency";
-    public static final String PROPERTY_FEES="fees";
-    public static final String PROPERTY_FEES_CURRENCY="feesCurrency";
-    public static final String PROPERTY_THUMBNAIL="thumbnail";
-    public static final String PROPERTY_THUMBNAIL_WITH_CONTENT_TYPE= PROPERTY_THUMBNAIL + "._content_type";
-    public static final String PROPERTY_PICTURES_COUNT= Records.PROPERTY_PICTURES_COUNT;
-    public static final String PROPERTY_CATEGORY= Records.PROPERTY_CATEGORY;
-    public static final String PROPERTY_PICTURES= Records.PROPERTY_PICTURES;
-    public static final String PROPERTY_CITY= Records.PROPERTY_CITY;
-    public static final String PROPERTY_GEO_POINT= Records.PROPERTY_GEO_POINT;
-    public static final String PROPERTY_ADDRESS= Records.PROPERTY_ADDRESS;
-    public static final String PROPERTY_TAGS= Records.PROPERTY_TAGS;
 
     private String description;
     private Map<String, String> thumbnail = new HashMap<>();
     private Double price;
     private String unit;
     private Double fees;
-    private Double stock;
     private String feesCurrency;
     private String currency;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public Map<String, String> getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(Map<String, String> thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public Double getFees() {
-        return fees;
-    }
-
-    public void setFees(Double fees) {
-        this.fees = fees;
-    }
-
-    public String getFeesCurrency() {
-        return feesCurrency;
-    }
-
-    public void setFeesCurrency(String feesCurrency) {
-        this.feesCurrency = feesCurrency;
-    }
+    private String category;
 
 }

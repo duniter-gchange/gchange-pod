@@ -1,10 +1,10 @@
-package org.duniter.elasticsearch.gchange.dao.market;
+package org.duniter.elasticsearch.gchange.dao;
 
 /*
  * #%L
- * Ğchange Pod :: ElasticSearch plugin
+ * UCoin Java Client :: Core API
  * %%
- * Copyright (C) 2014 - 2017 EIS
+ * Copyright (C) 2014 - 2015 EIS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,25 +22,20 @@ package org.duniter.elasticsearch.gchange.dao.market;
  * #L%
  */
 
-import org.duniter.elasticsearch.dao.IndexTypeDao;
-import org.elasticsearch.index.query.QueryBuilder;
 
-import java.util.Set;
+import org.duniter.elasticsearch.dao.IndexTypeRepository;
 
 /**
- * Created by blavenie on 03/04/17.
+ * Created by Benoit on 30/03/2015.
  */
-public interface MarketCategoryDao extends IndexTypeDao<MarketCategoryDao> {
+public interface CommentRepository<T extends CommentRepository> extends IndexTypeRepository<T, String> {
 
-    String TYPE = "category";
+    String TYPE = "comment";
 
-    Set<String> getAllIds();
-
-    String create(final String id, final String json);
+    String create(final String json);
 
     void update(final String id, final String json);
 
-    void startDataMigration();
+    long countReplies(String id);
 
-    void fillCategories();
 }

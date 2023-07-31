@@ -22,11 +22,11 @@ package org.duniter.elasticsearch.gchange.dao.auction;
  * #L%
  */
 
-import org.duniter.elasticsearch.dao.IndexDao;
+import org.duniter.elasticsearch.dao.IndexRepository;
 
 /**
  * Created by blavenie on 23/08/2020.
  */
-public interface AuctionIndexDao extends IndexDao<AuctionIndexDao> {
+public interface AuctionIndexRepository extends IndexRepository<AuctionIndexRepository> {
     String INDEX = "auction";
 }

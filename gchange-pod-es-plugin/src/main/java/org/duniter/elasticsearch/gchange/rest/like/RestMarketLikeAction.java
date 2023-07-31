@@ -22,21 +22,12 @@ package org.duniter.elasticsearch.gchange.rest.like;
  * #L%
  */
 
-import com.google.common.base.Joiner;
-import org.duniter.elasticsearch.gchange.dao.market.MarketCommentDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
-import org.duniter.elasticsearch.gchange.service.MarketService;
-import org.duniter.elasticsearch.rest.security.RestSecurityController;
-import org.duniter.elasticsearch.user.dao.CommentDao;
-import org.duniter.elasticsearch.user.dao.group.GroupIndexDao;
-import org.duniter.elasticsearch.user.dao.page.PageIndexDao;
-import org.duniter.elasticsearch.user.dao.page.PageRecordDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketCommentRepository;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexRepository;
+import org.duniter.elasticsearch.gchange.dao.market.MarketRecordRepository;
 import org.duniter.elasticsearch.user.rest.like.RestLikeGetAction;
 import org.duniter.elasticsearch.user.rest.like.RestLikePostAction;
-import org.duniter.elasticsearch.user.service.UserService;
 import org.elasticsearch.common.inject.Inject;
-import org.elasticsearch.rest.RestRequest;
 
 /**
  * Created by blavenie on 13/12/16.
@@ -47,10 +38,10 @@ public class RestMarketLikeAction {
     public RestMarketLikeAction(RestLikeGetAction getAction,
                                 RestLikePostAction postAction) {
 
-        getAction.allowLikeIndex(MarketIndexDao.INDEX, MarketRecordDao.TYPE);
-        postAction.allowLikeIndex(MarketIndexDao.INDEX, MarketRecordDao.TYPE);
+        getAction.allowLikeIndex(MarketIndexRepository.INDEX, MarketRecordRepository.TYPE);
+        postAction.allowLikeIndex(MarketIndexRepository.INDEX, MarketRecordRepository.TYPE);
 
-        getAction.allowLikeIndex(MarketIndexDao.INDEX, MarketCommentDao.TYPE);
-        postAction.allowLikeIndex(MarketIndexDao.INDEX, MarketCommentDao.TYPE);
+        getAction.allowLikeIndex(MarketIndexRepository.INDEX, MarketCommentRepository.TYPE);
+        postAction.allowLikeIndex(MarketIndexRepository.INDEX, MarketCommentRepository.TYPE);
     }
 }

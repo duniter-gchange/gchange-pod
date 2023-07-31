@@ -178,7 +178,7 @@ duniter.blockchain.reload: true
 #
 # Duniter node address
 #
-duniter.host: g1.duniter.org
+duniter.host: g1.cgeek.fr
 duniter.port: 443
 duniter.useSsl: true
 #
@@ -228,6 +228,7 @@ duniter.p2p.discovery.enable: true
 # Pass a list of hosts to always synchronize (default: <empty>)
 #
 duniter.p2p.includes.endpoints: [
+  "GCHANGE_API gchange.data.presles.fr 443",
   "GCHANGE_API data.gchange.fr 443"
 ]
 #

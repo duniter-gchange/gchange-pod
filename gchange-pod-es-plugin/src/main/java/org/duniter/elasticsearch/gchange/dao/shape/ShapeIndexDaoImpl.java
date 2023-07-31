@@ -23,7 +23,7 @@ package org.duniter.elasticsearch.gchange.dao.shape;
  */
 
 import org.duniter.core.exception.TechnicalException;
-import org.duniter.elasticsearch.dao.AbstractIndexTypeDao;
+import org.duniter.elasticsearch.dao.AbstractIndexTypeRepository;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.exception.InvalidShapeException;
 import org.duniter.elasticsearch.gchange.model.shape.ShapeRecord;
@@ -33,14 +33,13 @@ import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.mapper.MapperParsingException;
-import org.elasticsearch.index.query.QueryBuilders;
 
 import java.io.IOException;
 
 /**
  * Created by blavenie on 03/09/20.
  */
-public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements ShapeDao {
+public class ShapeIndexDaoImpl extends AbstractIndexTypeRepository<ShapeDao> implements ShapeDao {
 
     private static final String SHAPE_BULK_CLASSPATH_FILE = "shape-record-bulk-insert.json";
 
@@ -140,7 +139,7 @@ public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements
                     .endObject()
 
                     // properties
-                    .startObject(ShapeRecord.PROPERTY_PROPERTIES)
+                    .startObject(ShapeRecord.Fields.PROPERTIES)
                         .field("type", "nested")
                         .field("dynamic", "true")
                         .startObject("properties")
@@ -177,34 +176,34 @@ public class ShapeIndexDaoImpl extends AbstractIndexTypeDao<ShapeDao> implements
                     .endObject()
 
                     // version
-                    .startObject(ShapeRecord.PROPERTY_VERSION)
+                    .startObject(ShapeRecord.Fields.VERSION)
                     .field("type", "integer")
                     .endObject()
 
                     // creationTime
-                    .startObject(ShapeRecord.PROPERTY_CREATION_TIME)
+                    .startObject(ShapeRecord.Fields.CREATION_TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // time
-                    .startObject(ShapeRecord.PROPERTY_TIME)
+                    .startObject(ShapeRecord.Fields.TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // issuer
-                    .startObject(ShapeRecord.PROPERTY_ISSUER)
+                    .startObject(ShapeRecord.Fields.ISSUER)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // hash
-                    .startObject(ShapeRecord.PROPERTY_HASH)
+                    .startObject(ShapeRecord.Fields.HASH)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // signature
-                    .startObject(ShapeRecord.PROPERTY_SIGNATURE)
+                    .startObject(ShapeRecord.Fields.SIGNATURE)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()

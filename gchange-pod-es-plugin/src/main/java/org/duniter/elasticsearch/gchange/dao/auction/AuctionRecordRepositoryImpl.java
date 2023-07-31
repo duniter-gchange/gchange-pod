@@ -22,10 +22,9 @@ package org.duniter.elasticsearch.gchange.dao.auction;
  * #L%
  */
 
-import org.duniter.core.client.model.elasticsearch.Records;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.AbstractRecordDaoImpl;
+import org.duniter.elasticsearch.gchange.dao.AbstractRecordRepositoryImpl;
 import org.duniter.elasticsearch.gchange.model.auction.AuctionRecord;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -36,76 +35,74 @@ import java.io.IOException;
 /**
  * Created by blavenie on 23/08/2020.
  */
-public class AuctionRecordDaoImpl
-        extends AbstractRecordDaoImpl<AuctionRecordDaoImpl>
-        implements AuctionRecordDao<AuctionRecordDaoImpl> {
+public class AuctionRecordRepositoryImpl
+        extends AbstractRecordRepositoryImpl<AuctionRecordRepositoryImpl>
+        implements AuctionRecordRepository<AuctionRecordRepositoryImpl> {
 
     @Inject
-    public AuctionRecordDaoImpl(PluginSettings pluginSettings) {
-        super(AuctionIndexDao.INDEX, pluginSettings);
+    public AuctionRecordRepositoryImpl(PluginSettings pluginSettings) {
+        super(AuctionIndexRepository.INDEX, pluginSettings);
     }
 
     @Override
     public XContentBuilder createTypeMapping() {
 
         try {
-            XContentBuilder mapping = XContentFactory.jsonBuilder().startObject().startObject(getType())
+            return XContentFactory.jsonBuilder().startObject().startObject(getType())
                     .startObject("properties")
 
                     // version
-                    .startObject(AuctionRecord.PROPERTY_VERSION)
+                    .startObject(AuctionRecord.Fields.VERSION)
                     .field("type", "integer")
                     .endObject()
 
                     // creationTime
-                    .startObject(Records.PROPERTY_CREATION_TIME)
+                    .startObject(AuctionRecord.Fields.CREATION_TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // time
-                    .startObject(AuctionRecord.PROPERTY_TIME)
+                    .startObject(AuctionRecord.Fields.TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // price
-                    .startObject(AuctionRecord.PROPERTY_PRICE)
+                    .startObject(AuctionRecord.Fields.PRICE)
                     .field("type", "double")
                     .endObject()
 
                     // price Unit
-                    .startObject(AuctionRecord.PROPERTY_UNIT)
+                    .startObject(AuctionRecord.Fields.UNIT)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // price currency
-                    .startObject(AuctionRecord.PROPERTY_CURRENCY)
+                    .startObject(AuctionRecord.Fields.CURRENCY)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // issuer
-                    .startObject(AuctionRecord.PROPERTY_ISSUER)
+                    .startObject(AuctionRecord.Fields.ISSUER)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // hash
-                    .startObject(AuctionRecord.PROPERTY_HASH)
+                    .startObject(AuctionRecord.Fields.HASH)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     // signature
-                    .startObject(AuctionRecord.PROPERTY_SIGNATURE)
+                    .startObject(AuctionRecord.Fields.SIGNATURE)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
 
                     .endObject()
                     .endObject().endObject();
-
-            return mapping;
         }
         catch(IOException ioe) {
             throw new TechnicalException(String.format("Error while getting mapping for index [%s/%s]: %s", getIndex(), getType(), ioe.getMessage()), ioe);

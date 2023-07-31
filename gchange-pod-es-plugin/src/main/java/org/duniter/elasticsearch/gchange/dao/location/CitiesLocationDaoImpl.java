@@ -25,11 +25,8 @@ package org.duniter.elasticsearch.gchange.dao.location;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.duniter.core.exception.TechnicalException;
-import org.duniter.elasticsearch.PluginSettings;
-import org.duniter.elasticsearch.dao.AbstractDao;
+import org.duniter.elasticsearch.dao.AbstractRepository;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
-import org.elasticsearch.client.Client;
-import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.ESLoggerFactory;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -40,7 +37,7 @@ import java.io.IOException;
 /**
  * Created by Benoit on 30/03/2015.
  */
-public class CitiesLocationDaoImpl extends AbstractDao {
+public class CitiesLocationDaoImpl extends AbstractRepository {
 
     private static final ESLogger log = ESLoggerFactory.getLogger(CitiesLocationDaoImpl.class.getName());
 

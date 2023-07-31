@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.duniter.core.service.CryptoService;
 import org.duniter.elasticsearch.client.Duniter4jClient;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.market.MarketCategoryDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketCategoryRepository;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexRepository;
 import org.duniter.elasticsearch.gchange.model.market.CategoryRecord;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.synchro.AbstractSynchroGchangeAction;
@@ -39,7 +39,7 @@ public class SynchroMarketCategoryAction extends AbstractSynchroGchangeAction {
                                        CryptoService cryptoService,
                                        ThreadPool threadPool,
                                        SynchroService synchroService) {
-        super(MarketIndexDao.INDEX, MarketCategoryDao.TYPE, client, pluginSettings.getDelegate().getDelegate(), cryptoService, threadPool);
+        super(MarketIndexRepository.INDEX, MarketCategoryRepository.TYPE, client, pluginSettings.getDelegate().getDelegate(), cryptoService, threadPool);
 
         setExecutionOrder(EXECUTION_ORDER);
 
@@ -58,18 +58,18 @@ public class SynchroMarketCategoryAction extends AbstractSynchroGchangeAction {
 
         BoolQueryBuilder boolQuery = QueryBuilders.boolQuery()
                 // Ignore old category (without time, hash, etc)
-                .filter(QueryBuilders.existsQuery(CategoryRecord.PROPERTY_TIME))
+                .filter(QueryBuilders.existsQuery(CategoryRecord.Fields.TIME))
                 // Get last market category
-                .filter(QueryBuilders.rangeQuery(CategoryRecord.PROPERTY_TIME).gte(fromTime))
+                .filter(QueryBuilders.rangeQuery(CategoryRecord.Fields.TIME).gte(fromTime))
                 ;
 
-        // Dont care about the score
+        // Don't care about the score
         return QueryBuilders.constantScoreQuery(boolQuery);
     }
 
     protected void onValidate(String id, JsonNode source, SynchroActionResult result) {
 
-        String issuer = source.get(MarketRecord.PROPERTY_ISSUER).asText();
+        String issuer = source.get(MarketRecord.Fields.ISSUER).asText();
 
         // Check issuer is admin or moderator
         checkIssuerIsAdminOrModerator(issuer);

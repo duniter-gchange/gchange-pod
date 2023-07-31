@@ -1,10 +1,10 @@
-package org.duniter.elasticsearch.gchange.dao;
+package org.duniter.elasticsearch.gchange.dao.market;
 
 /*
  * #%L
- * UCoin Java Client :: Core API
+ * Ğchange Pod :: ElasticSearch plugin
  * %%
- * Copyright (C) 2014 - 2015 EIS
+ * Copyright (C) 2014 - 2017 EIS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,20 +22,17 @@ package org.duniter.elasticsearch.gchange.dao;
  * #L%
  */
 
-
-import org.duniter.elasticsearch.dao.IndexTypeDao;
+import org.duniter.elasticsearch.gchange.PluginSettings;
+import org.duniter.elasticsearch.gchange.dao.AbstractCommentRepositoryImpl;
+import org.elasticsearch.common.inject.Inject;
 
 /**
- * Created by Benoit on 30/03/2015.
+ * Created by blavenie on 03/04/17.
  */
-public interface CommentDao<T extends CommentDao> extends IndexTypeDao<T> {
+public class MarketCommentRepositoryImpl extends AbstractCommentRepositoryImpl implements MarketCommentRepository {
 
-    String TYPE = "comment";
-
-    String create(final String json);
-
-    void update(final String id, final String json);
-
-    long countReplies(String id);
-
+    @Inject
+    public MarketCommentRepositoryImpl(PluginSettings pluginSettings) {
+        super(MarketIndexRepository.INDEX, pluginSettings);
+    }
 }

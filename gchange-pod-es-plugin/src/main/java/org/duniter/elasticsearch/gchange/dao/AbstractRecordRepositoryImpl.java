@@ -24,13 +24,13 @@ package org.duniter.elasticsearch.gchange.dao;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.duniter.core.client.model.elasticsearch.Record;
-import org.duniter.core.client.model.elasticsearch.Records;
 import org.duniter.core.exception.TechnicalException;
 import org.duniter.core.util.ObjectUtils;
-import org.duniter.elasticsearch.dao.AbstractIndexTypeDao;
+import org.duniter.elasticsearch.dao.AbstractIndexTypeRepository;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.RecordDao;
+import org.duniter.elasticsearch.model.Record;
+import org.duniter.elasticsearch.model.Records;
+import org.duniter.elasticsearch.user.dao.RecordRepository;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 
@@ -39,12 +39,14 @@ import java.io.IOException;
 /**
  * Created by Benoit on 30/03/2015.
  */
-public class AbstractRecordDaoImpl<T extends AbstractRecordDaoImpl> extends AbstractIndexTypeDao<T> implements RecordDao<T> {
+public class AbstractRecordRepositoryImpl<T extends AbstractRecordRepositoryImpl>
+    extends AbstractIndexTypeRepository<T>
+    implements RecordRepository<T> {
 
     protected PluginSettings pluginSettings;
 
-    public AbstractRecordDaoImpl(String index, PluginSettings pluginSettings) {
-        super(index, RecordDao.TYPE);
+    public AbstractRecordRepositoryImpl(String index, PluginSettings pluginSettings) {
+        super(index, RecordRepository.TYPE);
         this.pluginSettings = pluginSettings;
     }
 
@@ -55,7 +57,7 @@ public class AbstractRecordDaoImpl<T extends AbstractRecordDaoImpl> extends Abst
 
     @Override
     public void checkSameDocumentIssuer(String id, String expectedIssuer) {
-       String issuer = getMandatoryFieldsById(id, Record.PROPERTY_ISSUER).get(Record.PROPERTY_ISSUER).toString();
+       String issuer = getMandatoryFieldsById(id, Record.Fields.ISSUER).get(Record.Fields.ISSUER).toString();
        if (!ObjectUtils.equals(expectedIssuer, issuer)) {
            throw new TechnicalException("Not same issuer");
        }
@@ -69,34 +71,34 @@ public class AbstractRecordDaoImpl<T extends AbstractRecordDaoImpl> extends Abst
                     .startObject("properties")
 
                     // version
-                    .startObject(Records.PROPERTY_VERSION)
+                    .startObject(Records.Fields.VERSION)
                     .field("type", "integer")
                     .endObject()
 
                     // title
-                    .startObject(Records.PROPERTY_TITLE)
+                    .startObject(Records.Fields.TITLE)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
                     // description
-                    .startObject(Records.PROPERTY_DESCRIPTION)
+                    .startObject(Records.Fields.DESCRIPTION)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
                     // creationTime
-                    .startObject(Records.PROPERTY_CREATION_TIME)
+                    .startObject(Records.Fields.CREATION_TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // time
-                    .startObject(Records.PROPERTY_TIME)
+                    .startObject(Records.Fields.TIME)
                     .field("type", "integer")
                     .endObject()
 
                     // issuer
-                    .startObject(Records.PROPERTY_ISSUER)
+                    .startObject(Records.Fields.ISSUER)
                     .field("type", "string")
                     .field("index", "not_analyzed")
                     .endObject()
@@ -108,18 +110,18 @@ public class AbstractRecordDaoImpl<T extends AbstractRecordDaoImpl> extends Abst
                     .endObject()
 
                     // address
-                    .startObject(Records.PROPERTY_ADDRESS)
+                    .startObject(Records.Fields.ADDRESS)
                     .field("type", "string")
                     .field("analyzer", stringAnalyzer)
                     .endObject()
 
                     // city
-                    .startObject(Records.PROPERTY_CITY)
+                    .startObject(Records.Fields.CITY)
                     .field("type", "string")
                     .endObject()
 
                     // geoPoint
-                    .startObject(Records.PROPERTY_GEO_POINT)
+                    .startObject(Records.Fields.GEO_POINT)
                     .field("type", "geo_point")
                     .endObject()
 
@@ -144,7 +146,7 @@ public class AbstractRecordDaoImpl<T extends AbstractRecordDaoImpl> extends Abst
                     .endObject()
 
                     // pictures
-                    .startObject(Records.PROPERTY_PICTURES)
+                    .startObject(Records.Fields.PICTURES)
                     .field("type", "nested")
                     .field("dynamic", "false")
                         .startObject("properties")
@@ -172,12 +174,12 @@ public class AbstractRecordDaoImpl<T extends AbstractRecordDaoImpl> extends Abst
                     .endObject()
 
                     // picturesCount
-                    .startObject(Records.PROPERTY_PICTURES_COUNT)
+                    .startObject(Records.Fields.PICTURES_COUNT)
                     .field("type", "integer")
                     .endObject()
 
                     // category
-                    .startObject(Records.PROPERTY_CATEGORY)
+                    .startObject(Records.Fields.CATEGORY)
                     .field("type", "nested")
                     .field("dynamic", "false")
                     .startObject("properties")
@@ -197,7 +199,7 @@ public class AbstractRecordDaoImpl<T extends AbstractRecordDaoImpl> extends Abst
                     .endObject()
 
                     // tags
-                    .startObject(Records.PROPERTY_TAGS)
+                    .startObject(Records.Fields.TAGS)
                     .field("type", "completion")
                     .field("search_analyzer", "simple")
                     .field("analyzer", "simple")

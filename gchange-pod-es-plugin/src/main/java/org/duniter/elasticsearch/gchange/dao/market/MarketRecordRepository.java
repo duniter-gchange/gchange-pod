@@ -22,10 +22,17 @@ package org.duniter.elasticsearch.gchange.dao.market;
  * #L%
  */
 
-import org.duniter.elasticsearch.gchange.dao.CommentDao;
+import org.duniter.elasticsearch.gchange.model.market.MarketRecordFilter;
+import org.duniter.elasticsearch.user.dao.RecordRepository;
+
+import java.util.List;
 
 /**
  * Created by blavenie on 03/04/17.
  */
-public interface MarketCommentDao extends CommentDao {
+public interface MarketRecordRepository extends RecordRepository {
+
+    void startDataMigration();
+
+    <C> List<C> findByFilter(MarketRecordFilter filter, Class<? extends C> clazz, String... fieldNames);
 }

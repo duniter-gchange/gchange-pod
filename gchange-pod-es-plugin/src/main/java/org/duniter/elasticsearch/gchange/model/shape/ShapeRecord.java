@@ -22,7 +22,9 @@ package org.duniter.elasticsearch.gchange.model.shape;
  * #L%
  */
 
-import org.duniter.core.client.model.elasticsearch.Record;
+import lombok.Data;
+import lombok.experimental.FieldNameConstants;
+import org.duniter.elasticsearch.model.Record;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,27 +32,15 @@ import java.util.Map;
 /**
  * Created by blavenie on 01/09/2020.
  */
+@Data
+@FieldNameConstants
 public class ShapeRecord extends Record {
 
-    public static final String PROPERTY_PROPERTIES = "properties";
-    public static final String PROPERTY_CREATION_TIME="creationTime";
+    public static class Fields extends Record.Fields {}
 
     private Map<String, String> properties = new HashMap<>();
     private Long creationTime;
 
-    public Map<String, String> getProperties() {
-        return properties;
-    }
+    private Integer version;
 
-    public void setProperties(Map<String, String> properties) {
-        this.properties = properties;
-    }
-
-    public Long getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(Long creationTime) {
-        this.creationTime = creationTime;
-    }
 }

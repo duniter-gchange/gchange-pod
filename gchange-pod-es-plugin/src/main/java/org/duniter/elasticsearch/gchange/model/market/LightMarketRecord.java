@@ -22,32 +22,24 @@ package org.duniter.elasticsearch.gchange.model.market;
  * #L%
  */
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldNameConstants;
 import org.duniter.elasticsearch.gchange.model.TitleRecord;
+import org.duniter.elasticsearch.model.Record;
 
 /**
  * Created by blavenie on 30/01/20.
  */
+@Data
+@FieldNameConstants
 public class LightMarketRecord extends TitleRecord {
 
-    public static final String PROPERTY_STOCK="stock";
-    public static final String PROPERTY_TYPE="type";
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class Fields extends TitleRecord.Fields {}
 
     private Integer stock;
     private String type;
 
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }

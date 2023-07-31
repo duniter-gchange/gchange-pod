@@ -22,12 +22,12 @@ package org.duniter.elasticsearch.gchange.dao.market;
  * #L%
  */
 
-import org.duniter.elasticsearch.dao.IndexDao;
+import org.duniter.elasticsearch.dao.IndexRepository;
 
 /**
  * Created by blavenie on 03/04/17.
  */
-public interface MarketIndexDao extends IndexDao<MarketIndexDao> {
+public interface MarketIndexRepository extends IndexRepository<MarketIndexRepository> {
     String INDEX = "market";
     String CATEGORY_TYPE = "category";
 

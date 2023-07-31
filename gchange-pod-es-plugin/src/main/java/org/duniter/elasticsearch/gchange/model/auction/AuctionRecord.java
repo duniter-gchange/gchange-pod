@@ -1,10 +1,19 @@
 package org.duniter.elasticsearch.gchange.model.auction;
 
-import org.duniter.core.client.model.elasticsearch.Record;
+import lombok.Data;
+import lombok.experimental.FieldNameConstants;
+import org.duniter.elasticsearch.model.Record;
 
+@Data
+@FieldNameConstants
 public class AuctionRecord extends Record {
 
-    public static final String PROPERTY_PRICE="price";
-    public static final String PROPERTY_UNIT="unit";
-    public static final String PROPERTY_CURRENCY="currency";
+    public static class Fields extends Record.Fields {}
+
+    private Double price;
+    private String unit;
+
+    private String currency;
+
+    private Long creationTime;
 }

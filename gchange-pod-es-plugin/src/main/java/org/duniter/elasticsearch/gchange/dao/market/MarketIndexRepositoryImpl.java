@@ -22,43 +22,33 @@ package org.duniter.elasticsearch.gchange.dao.market;
  * #L%
  */
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.duniter.core.exception.TechnicalException;
-import org.duniter.elasticsearch.dao.AbstractIndexDao;
-import org.duniter.elasticsearch.dao.AbstractIndexTypeDao;
-import org.duniter.elasticsearch.dao.IndexTypeDao;
-import org.duniter.elasticsearch.dao.handler.AddSequenceAttributeHandler;
+import org.duniter.elasticsearch.dao.AbstractIndexRepository;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.CommentDao;
-import org.duniter.elasticsearch.gchange.dao.RecordDao;
-import org.duniter.elasticsearch.gchange.service.MarketService;
+import org.duniter.elasticsearch.gchange.dao.CommentRepository;
+import org.duniter.elasticsearch.user.dao.RecordRepository;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.common.inject.Inject;
-import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.common.xcontent.XContentFactory;
-
-import java.io.IOException;
 
 /**
  * Created by blavenie on 03/04/17.
  */
-public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> implements MarketIndexDao {
+public class MarketIndexRepositoryImpl extends AbstractIndexRepository<MarketIndexRepository> implements MarketIndexRepository {
 
 
     private PluginSettings pluginSettings;
-    private RecordDao recordDao;
-    private CommentDao commentDao;
-    private MarketCategoryDao categoryDao;
+    private RecordRepository recordRepository;
+    private CommentRepository commentRepository;
+    private MarketCategoryRepository categoryRepository;
 
     @Inject
-    public MarketIndexDaoImpl(PluginSettings pluginSettings, MarketRecordDao recordDao, MarketCommentDao commentDao,
-                              MarketCategoryDao categoryDao) {
-        super(MarketIndexDao.INDEX);
+    public MarketIndexRepositoryImpl(PluginSettings pluginSettings, MarketRecordRepository recordRepository, MarketCommentRepository commentRepository,
+                                     MarketCategoryRepository categoryRepository) {
+        super(MarketIndexRepository.INDEX);
 
         this.pluginSettings = pluginSettings;
-        this.commentDao = commentDao;
-        this.recordDao = recordDao;
-        this.categoryDao = categoryDao;
+        this.commentRepository = commentRepository;
+        this.recordRepository = recordRepository;
+        this.categoryRepository = categoryRepository;
     }
 
 
@@ -73,18 +63,18 @@ public class MarketIndexDaoImpl extends AbstractIndexDao<MarketIndexDao> impleme
                 //.put("analyzer", createDefaultAnalyzer())
                 .build();
         createIndexRequestBuilder.setSettings(indexSettings);
-        createIndexRequestBuilder.addMapping(recordDao.getType(), recordDao.createTypeMapping());
-        createIndexRequestBuilder.addMapping(commentDao.getType(), commentDao.createTypeMapping());
-        createIndexRequestBuilder.addMapping(categoryDao.getType(), categoryDao.createTypeMapping());
+        createIndexRequestBuilder.addMapping(recordRepository.getType(), recordRepository.createTypeMapping());
+        createIndexRequestBuilder.addMapping(commentRepository.getType(), commentRepository.createTypeMapping());
+        createIndexRequestBuilder.addMapping(categoryRepository.getType(), categoryRepository.createTypeMapping());
         createIndexRequestBuilder.execute().actionGet();
 
         // Load categories
-        categoryDao.fillCategories();
+        categoryRepository.fillCategories();
     }
 
     public void startDataMigration() {
 
         // Check if categories must be filled
-        categoryDao.startDataMigration();
+        categoryRepository.startDataMigration();
     }
 }

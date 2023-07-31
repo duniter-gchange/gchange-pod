@@ -1,10 +1,10 @@
-package org.duniter.elasticsearch.gchange.dao;
+package org.duniter.elasticsearch.gchange.dao.market;
 
 /*
  * #%L
- * UCoin Java Client :: Core API
+ * Ğchange Pod :: ElasticSearch plugin
  * %%
- * Copyright (C) 2014 - 2015 EIS
+ * Copyright (C) 2014 - 2017 EIS
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -22,20 +22,24 @@ package org.duniter.elasticsearch.gchange.dao;
  * #L%
  */
 
+import org.duniter.elasticsearch.dao.IndexTypeRepository;
 
-import org.duniter.elasticsearch.dao.IndexTypeDao;
+import java.util.Set;
 
 /**
- * Created by Benoit on 30/03/2015.
+ * Created by blavenie on 03/04/17.
  */
-public interface RecordDao<T extends RecordDao> extends IndexTypeDao<T> {
+public interface MarketCategoryRepository extends IndexTypeRepository<MarketCategoryRepository, String> {
 
-    String TYPE = "record";
+    String TYPE = "category";
 
-    String create(final String json);
+    Set<String> getAllIds();
+
+    String create(final String id, final String json);
 
     void update(final String id, final String json);
 
-    void checkSameDocumentIssuer(String id, String expectedIssuer);
+    void startDataMigration();
 
+    void fillCategories();
 }

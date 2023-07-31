@@ -34,21 +34,21 @@ import org.duniter.core.service.CryptoService;
 import org.duniter.core.util.CollectionUtils;
 import org.duniter.elasticsearch.client.Duniter4jClient;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexRepository;
+import org.duniter.elasticsearch.gchange.dao.market.MarketRecordRepository;
 import org.duniter.elasticsearch.gchange.model.TitleRecord;
 import org.duniter.elasticsearch.gchange.model.event.GchangeEventCodes;
 import org.duniter.elasticsearch.gchange.model.market.LightMarketRecord;
+import org.duniter.elasticsearch.model.user.LikeRecord;
 import org.duniter.elasticsearch.service.changes.ChangeEvent;
 import org.duniter.elasticsearch.service.changes.ChangeService;
 import org.duniter.elasticsearch.service.changes.ChangeSource;
-import org.duniter.elasticsearch.user.dao.page.PageIndexDao;
-import org.duniter.elasticsearch.user.dao.page.PageRecordDao;
-import org.duniter.elasticsearch.user.dao.profile.UserIndexDao;
-import org.duniter.elasticsearch.user.dao.profile.UserProfileDao;
-import org.duniter.elasticsearch.user.model.DocumentReference;
-import org.duniter.elasticsearch.user.model.LikeRecord;
-import org.duniter.elasticsearch.user.model.UserEvent;
+import org.duniter.elasticsearch.user.dao.page.PageIndexRepository;
+import org.duniter.elasticsearch.user.dao.page.PageRecordRepository;
+import org.duniter.elasticsearch.user.dao.profile.UserIndexRepository;
+import org.duniter.elasticsearch.user.dao.profile.UserProfileRepository;
+import org.duniter.elasticsearch.model.user.DocumentReference;
+import org.duniter.elasticsearch.model.user.UserEvent;
 import org.duniter.elasticsearch.user.service.LikeService;
 import org.duniter.elasticsearch.user.service.UserEventService;
 import org.duniter.elasticsearch.user.service.UserService;
@@ -56,7 +56,10 @@ import org.elasticsearch.common.inject.Inject;
 import org.nuiton.i18n.I18n;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Created by Benoit on 30/03/2015.
@@ -95,8 +98,8 @@ public class RecordUserEventService extends AbstractService implements ChangeSer
         objectMapper = JacksonUtils.newObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         this.changeListenSources = ImmutableList.of(
-                new ChangeSource(MarketIndexDao.INDEX, MarketRecordDao.TYPE),
-                new ChangeSource(PageIndexDao.INDEX, PageRecordDao.TYPE));
+                new ChangeSource(MarketIndexRepository.INDEX, MarketRecordRepository.TYPE),
+                new ChangeSource(PageIndexRepository.INDEX, PageRecordRepository.TYPE));
         ChangeService.registerListener(this);
 
         this.trace = logger.isTraceEnabled();
@@ -154,7 +157,7 @@ public class RecordUserEventService extends AbstractService implements ChangeSer
 
         // Get the issuer's followers
         // WARN: we use the issuer, and not market record, because it doesnt exists yet
-        Set<String> followers = getFollowers(UserIndexDao.INDEX, UserProfileDao.TYPE, issuer);
+        Set<String> followers = getFollowers(UserIndexRepository.INDEX, UserProfileRepository.TYPE, issuer);
 
         // Exclude the issuer from followers (not need to notify himself)
         followers.remove(issuer);
@@ -164,17 +167,17 @@ public class RecordUserEventService extends AbstractService implements ChangeSer
             String messageKey = String.format("duniter.%s.event.%s", index.toLowerCase(), GchangeEventCodes.FOLLOW_NEW.name());
             followers.forEach(follower -> {
                 userEventService.notifyUser(
-                        UserEvent.newBuilder(UserEvent.EventType.INFO, GchangeEventCodes.FOLLOW_NEW.name())
-                                .setMessage(
-                                        messageKey,
-                                        issuer,
-                                        issuerName,
-                                        title
-                                )
-                                .setRecipient(follower)
-                                .setReference(index, type, recordId)
-                                .setTime(creationTime)
-                                .build());
+                        UserEvent.builder(UserEvent.EventType.INFO,GchangeEventCodes.FOLLOW_NEW.name())
+                            .setMessage(
+                                    messageKey,
+                                    issuer,
+                                    issuerName,
+                                    title
+                            )
+                            .setRecipient(follower)
+                            .setReference(index, type, recordId)
+                            .setTime(creationTime)
+                            .build());
             });
         }
     }
@@ -213,7 +216,7 @@ public class RecordUserEventService extends AbstractService implements ChangeSer
             GchangeEventCodes eventCode =  isClosed ? GchangeEventCodes.FOLLOW_CLOSE : GchangeEventCodes.FOLLOW_UPDATE;
             String messageKey = String.format("duniter.%s.event.%s", index.toLowerCase(), eventCode.name());
 
-            final UserEvent.Builder followerEventBuilder = UserEvent.newBuilder(UserEvent.EventType.INFO, eventCode.name())
+            final UserEvent.Builder followerEventBuilder = UserEvent.builder(UserEvent.EventType.INFO, eventCode.name())
                     .setMessage(
                             messageKey,
                             issuer,
@@ -243,7 +246,7 @@ public class RecordUserEventService extends AbstractService implements ChangeSer
         if (change.getSource() == null) return Optional.empty();
         try {
             // Use a light market record, if possible
-            if (MarketIndexDao.INDEX.equals(change.getIndex())) {
+            if (MarketIndexRepository.INDEX.equals(change.getIndex())) {
                 return Optional.of(objectMapper.readValue(change.getSource().streamInput(), LightMarketRecord.class));
             }
             else {

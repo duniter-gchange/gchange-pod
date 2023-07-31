@@ -22,12 +22,12 @@ package org.duniter.elasticsearch.gchange.dao.shape;
  * #L%
  */
 
-import org.duniter.elasticsearch.dao.IndexTypeDao;
+import org.duniter.elasticsearch.dao.IndexTypeRepository;
 
 /**
  * Created by blavenie
  */
-public interface ShapeDao extends IndexTypeDao<ShapeDao> {
+public interface ShapeDao extends IndexTypeRepository<ShapeDao, String> {
     String INDEX = "shape";
     String TYPE = "record";
 

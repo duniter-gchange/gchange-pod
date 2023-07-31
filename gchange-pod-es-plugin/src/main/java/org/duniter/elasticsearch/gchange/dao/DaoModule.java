@@ -22,10 +22,10 @@ package org.duniter.elasticsearch.gchange.dao;
  * #L%
  */
 
-import org.duniter.elasticsearch.gchange.dao.auction.AuctionIndexDao;
-import org.duniter.elasticsearch.gchange.dao.auction.AuctionIndexDaoImpl;
-import org.duniter.elasticsearch.gchange.dao.auction.AuctionRecordDao;
-import org.duniter.elasticsearch.gchange.dao.auction.AuctionRecordDaoImpl;
+import org.duniter.elasticsearch.gchange.dao.auction.AuctionIndexRepository;
+import org.duniter.elasticsearch.gchange.dao.auction.AuctionIndexRepositoryImpl;
+import org.duniter.elasticsearch.gchange.dao.auction.AuctionRecordRepository;
+import org.duniter.elasticsearch.gchange.dao.auction.AuctionRecordRepositoryImpl;
 import org.duniter.elasticsearch.gchange.dao.market.*;
 import org.duniter.elasticsearch.gchange.dao.shape.ShapeDao;
 import org.duniter.elasticsearch.gchange.dao.shape.ShapeIndexDaoImpl;
@@ -37,14 +37,14 @@ public class DaoModule extends AbstractModule implements Module {
     @Override protected void configure() {
 
         // Market
-        bind(MarketIndexDao.class).to(MarketIndexDaoImpl.class).asEagerSingleton();
-        bind(MarketCommentDao.class).to(MarketCommentDaoImpl.class).asEagerSingleton();
-        bind(MarketRecordDao.class).to(MarketRecordDaoImpl.class).asEagerSingleton();
-        bind(MarketCategoryDao.class).to(MarketCategoryDaoImpl.class).asEagerSingleton();
+        bind(MarketIndexRepository.class).to(MarketIndexRepositoryImpl.class).asEagerSingleton();
+        bind(MarketCommentRepository.class).to(MarketCommentRepositoryImpl.class).asEagerSingleton();
+        bind(MarketRecordRepository.class).to(MarketRecordRepositoryImpl.class).asEagerSingleton();
+        bind(MarketCategoryRepository.class).to(MarketCategoryRepositoryImpl.class).asEagerSingleton();
 
         // Auction
-        bind(AuctionIndexDao.class).to(AuctionIndexDaoImpl.class).asEagerSingleton();
-        bind(AuctionRecordDao.class).to(AuctionRecordDaoImpl.class).asEagerSingleton();
+        bind(AuctionIndexRepository.class).to(AuctionIndexRepositoryImpl.class).asEagerSingleton();
+        bind(AuctionRecordRepository.class).to(AuctionRecordRepositoryImpl.class).asEagerSingleton();
 
         // Shape
         bind(ShapeDao.class).to(ShapeIndexDaoImpl.class).asEagerSingleton();

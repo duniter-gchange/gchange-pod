@@ -1,14 +1,15 @@
 package org.duniter.elasticsearch.gchange.synchro.market;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import org.duniter.core.client.dao.CurrencyDao;
+import org.duniter.core.client.repositories.CurrencyRepository;
 import org.duniter.core.service.CryptoService;
-import org.duniter.core.util.CollectionUtils;
+import org.duniter.core.util.ArrayUtils;
+import org.duniter.core.util.Beans;
 import org.duniter.elasticsearch.client.Duniter4jClient;
-import org.duniter.elasticsearch.dao.CurrencyExtendDao;
+import org.duniter.elasticsearch.dao.CurrencyExtendRepository;
 import org.duniter.elasticsearch.gchange.PluginSettings;
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexRepository;
+import org.duniter.elasticsearch.gchange.dao.market.MarketRecordRepository;
 import org.duniter.elasticsearch.gchange.model.market.MarketRecord;
 import org.duniter.elasticsearch.gchange.synchro.AbstractSynchroGchangeAction;
 import org.duniter.elasticsearch.synchro.SynchroAction;
@@ -21,8 +22,6 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 
-import java.util.Set;
-
 public class SynchroMarketRecordAction extends AbstractSynchroGchangeAction {
 
     public static final int EXECUTION_ORDER = Math.max(
@@ -31,7 +30,7 @@ public class SynchroMarketRecordAction extends AbstractSynchroGchangeAction {
             // and AFTER market categories
             SynchroMarketCategoryAction.EXECUTION_ORDER + 1);
 
-    private CurrencyExtendDao currencyDao;
+    private CurrencyExtendRepository currencyExtendRepository;
 
     private PluginSettings gchangeSettings;
 
@@ -41,11 +40,11 @@ public class SynchroMarketRecordAction extends AbstractSynchroGchangeAction {
                                      CryptoService cryptoService,
                                      ThreadPool threadPool,
                                      SynchroService synchroService,
-                                     CurrencyDao currencyDao) {
-        super(MarketIndexDao.INDEX, MarketRecordDao.TYPE, client, pluginSettings.getDelegate().getDelegate(), cryptoService, threadPool);
+                                     CurrencyRepository currencyRepository) {
+        super(MarketIndexRepository.INDEX, MarketRecordRepository.TYPE, client, pluginSettings.getDelegate().getDelegate(), cryptoService, threadPool);
 
         this.gchangeSettings = pluginSettings;
-        this.currencyDao = (CurrencyExtendDao)currencyDao;
+        this.currencyExtendRepository = (CurrencyExtendRepository) currencyRepository;
 
         setExecutionOrder(EXECUTION_ORDER);
 
@@ -61,16 +60,16 @@ public class SynchroMarketRecordAction extends AbstractSynchroGchangeAction {
 
         BoolQueryBuilder boolQuery = QueryBuilders.boolQuery()
                 // Get last marker record
-                .filter(QueryBuilders.rangeQuery(MarketRecord.PROPERTY_TIME).gte(fromTime));
+                .filter(QueryBuilders.rangeQuery(MarketRecord.Fields.TIME).gte(fromTime));
 
         // Exclude closed (no stock) Ad
         if (!gchangeSettings.synchronizeClosedAds()) {
-            boolQuery.filter(QueryBuilders.rangeQuery(MarketRecord.PROPERTY_STOCK).gte(1));
+            boolQuery.filter(QueryBuilders.rangeQuery(MarketRecord.Fields.STOCK).gte(1));
         }
 
-        Set<String> currencyIds = currencyDao.getAllIds();
-        if (CollectionUtils.isNotEmpty(currencyIds)) {
-            boolQuery.filter(QueryBuilders.termsQuery(MarketRecord.PROPERTY_CURRENCY, currencyIds.toArray(new String[currencyIds.size()])));
+        String[] currencyIds = Beans.toArray(currencyExtendRepository.findAllIds(), String[]::new);
+        if (ArrayUtils.isNotEmpty(currencyIds)) {
+            boolQuery.filter(QueryBuilders.termsQuery(MarketRecord.Fields.CURRENCY, currencyIds));
         }
 
         // Dont care about the score
@@ -79,7 +78,7 @@ public class SynchroMarketRecordAction extends AbstractSynchroGchangeAction {
 
     protected void onValidate(String id, JsonNode source, SynchroActionResult result) {
 
-        String issuer = source.get(MarketRecord.PROPERTY_ISSUER).asText();
+        String issuer = source.get(MarketRecord.Fields.ISSUER).asText();
 
         // Check issuer has a user profile
         if (!hasUserProfile(issuer)) {

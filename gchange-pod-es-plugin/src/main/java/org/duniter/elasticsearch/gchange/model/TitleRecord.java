@@ -22,35 +22,22 @@ package org.duniter.elasticsearch.gchange.model;
  * #L%
  */
 
-import org.duniter.core.client.model.elasticsearch.Record;
-
-import java.util.HashMap;
-import java.util.Map;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldNameConstants;
+import org.duniter.elasticsearch.model.Record;
 
 /**
  * Created by blavenie on 30/01/20
  */
+@Data
+@FieldNameConstants
 public class TitleRecord extends Record {
 
-    public static final String PROPERTY_TITLE="title";
-    public static final String PROPERTY_CREATION_TIME="creationTime";
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class Fields extends Record.Fields {}
 
     private String title;
     private Long creationTime;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Long getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(Long creationTime) {
-        this.creationTime = creationTime;
-    }
 }

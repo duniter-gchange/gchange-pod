@@ -23,13 +23,12 @@ package org.duniter.elasticsearch.gchange.rest.mixed;
  */
 
 import com.google.common.base.Joiner;
-import org.duniter.elasticsearch.gchange.dao.market.MarketIndexDao;
-import org.duniter.elasticsearch.gchange.dao.market.MarketRecordDao;
+import org.duniter.elasticsearch.gchange.dao.market.MarketIndexRepository;
 import org.duniter.elasticsearch.rest.security.RestSecurityController;
-import org.duniter.elasticsearch.user.dao.CommentDao;
-import org.duniter.elasticsearch.user.dao.group.GroupIndexDao;
-import org.duniter.elasticsearch.user.dao.page.PageIndexDao;
-import org.duniter.elasticsearch.user.dao.page.PageRecordDao;
+import org.duniter.elasticsearch.user.dao.CommentRepository;
+import org.duniter.elasticsearch.user.dao.group.GroupIndexRepository;
+import org.duniter.elasticsearch.user.dao.page.PageIndexRepository;
+import org.duniter.elasticsearch.user.dao.page.PageRecordRepository;
 import org.duniter.elasticsearch.user.service.UserService;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.rest.RestRequest;
@@ -45,8 +44,8 @@ public class RestMixedSearchAction {
         String[] paths = {
             // Allow search on profile + page + group + market
             String.format("/%s/%s/_search",
-                    Joiner.on(',').join(UserService.INDEX, PageIndexDao.INDEX, GroupIndexDao.INDEX, MarketIndexDao.INDEX),
-                    Joiner.on(',').join(UserService.PROFILE_TYPE, PageRecordDao.TYPE, CommentDao.TYPE)),
+                    Joiner.on(',').join(UserService.INDEX, PageIndexRepository.INDEX, GroupIndexRepository.INDEX, MarketIndexRepository.INDEX),
+                    Joiner.on(',').join(UserService.PROFILE_TYPE, PageRecordRepository.TYPE, CommentRepository.TYPE)),
         };
 
         for(String path: paths) {
