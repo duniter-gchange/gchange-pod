@@ -21,31 +21,27 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <file.encoding>UTF-8</file.encoding>
 
-    <javaVersion>8</javaVersion>
+    <javaVersion>1.8</javaVersion>
 
     <!-- Commons versions -->
-    <log4j.version>1.2.17</log4j.version>
-    <slf4j.version>1.7.5</slf4j.version>
-    <guava.version>22.0</guava.version>
-    <xml-apis.version>2.0.2</xml-apis.version>
-    <gson.version>2.2.2</gson.version>
-    <kalium.version>0.5.0</kalium.version>
-    <scrypt.version>1.4.0</scrypt.version>
-    <elasticsearch.version>2.4.6</elasticsearch.version>
-    <jna.version>4.1.0</jna.version>
-    <tyrus.version>1.14</tyrus.version>
-    <lombok.version>1.18.20</lombok.version>
-
     <cesium-plus-pod.version>1.9.4</cesium-plus-pod.version>
     <duniter4j.version>1.5.6</duniter4j.version>
+    <log4j.version>1.2.17</log4j.version>
+    <slf4j.version>1.7.6</slf4j.version>
+    <guava.version>22.0</guava.version>
+    <kalium.version>0.6.0_PR64</kalium.version>
+    <scrypt.version>1.4.0</scrypt.version>
+    <elasticsearch.version>2.4.6</elasticsearch.version>
+    <jna.version>4.2.0</jna.version>
+    <tyrus.version>1.17</tyrus.version>
+    <jTextUtilsVersion>0.3.3</jTextUtilsVersion>
+    <jakarta-mail.version>1.6.7</jakarta-mail.version>
+    <jakarta-activation.version>1.2.1</jakarta-activation.version>
+    <lombok.version>1.18.20</lombok.version>
 
     <nuitonConfigVersion>3.0</nuitonConfigVersion>
     <nuitonVersionVersion>1.0-rc-2</nuitonVersionVersion>
     <nuitonI18nVersion>3.6.3</nuitonI18nVersion>
-
-    <!-- UI versions -->
-    <spring.version>4.2.1.RELEASE</spring.version>
-    <aspectj.version>1.8.7</aspectj.version>
 
     <!-- Unit test -->
     <junit.version>4.12</junit.version>
@@ -69,7 +65,15 @@
     <!-- Last JRE version to use -->
     <jreVersion>1.8.77</jreVersion>
 
-    <jarPluginVersion>2.5</jarPluginVersion>
+    <jarPluginVersion>3.0.2</jarPluginVersion>
+    <changesPluginVersion>2.12.1</changesPluginVersion>
+    <compilerPluginVersion>2.12.1</compilerPluginVersion>
+    <wagonPluginVersion>1.0</wagonPluginVersion>
+    <versionsPluginVersion>2.3</versionsPluginVersion>
+    <execPluginVersion>1.6.0</execPluginVersion>
+    <enforcerPluginVersion>1.4.1</enforcerPluginVersion>
+    <sourcePluginVersion>3.0.1</sourcePluginVersion>
+    <releasePluginVersion>2.5.1</releasePluginVersion>
 
     <locales>en,fr</locales>
 
@@ -149,6 +153,16 @@
         <artifactId>elasticsearch</artifactId>
         <version>${elasticsearch.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.sun.mail</groupId>
+        <artifactId>jakarta.mail</artifactId>
+        <version>${jakarta-mail.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.activation</groupId>
+        <artifactId>jakarta.activation</artifactId>
+        <version>${jakarta-activation.version}</version>
+      </dependency>
 
       <!-- Compile -->
       <dependency>
@@ -162,6 +176,46 @@
         <artifactId>javax.annotation-api</artifactId>
         <version>1.3.2</version>
         <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.tyrus</groupId>
+        <artifactId>tyrus-server</artifactId>
+        <version>${tyrus.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.tyrus</groupId>
+        <artifactId>tyrus-container-grizzly-client</artifactId>
       </dependency>
 
       <!-- Unit test -->
@@ -203,8 +257,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>1.5.0</version>
-
+          <version>${execPluginVersion}</version>
         </plugin>
 
         <plugin>
@@ -215,12 +268,12 @@
 
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.3.1</version>
+          <version>${enforcerPluginVersion}</version>
         </plugin>
 
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
-          <version>2.3</version>
+          <version>${sourcePluginVersion}</version>
         </plugin>
 
         <plugin>
@@ -235,7 +288,7 @@
 
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.1</version>
+          <version>${releasePluginVersion}</version>
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
           </configuration>
@@ -243,36 +296,39 @@
 
         <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>2.5</version>
+          <version>3.0.0</version>
         </plugin>
 
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>wagon-maven-plugin</artifactId>
-          <version>1.0</version>
+          <version>${wagonPluginVersion}</version>
         </plugin>
 
         <plugin>
           <artifactId>maven-changes-plugin</artifactId>
-          <version>2.11</version>
-          <configuration>
-            <escapeHTML>false</escapeHTML>
-            <feedType>rss_2.0</feedType>
-            <issueLinkTemplatePerSystem>
-              <default>${project.url}/issues/%ISSUE%</default>
-            </issueLinkTemplatePerSystem>
-          </configuration>
+          <version>${changesPluginVersion}</version>
         </plugin>
 
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.2</version>
+          <version>3.8.1</version>
           <configuration>
             <source>${javaVersion}</source>
             <target>${javaVersion}</target>
             <optimize>true</optimize>
             <debug>true</debug>
             <encoding>${project.build.sourceEncoding}</encoding>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+            </annotationProcessorPaths>
+            <excludes>
+              <exclude>**/module-info.java</exclude>
+            </excludes>
           </configuration>
         </plugin>
 
@@ -639,29 +695,15 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-changes-plugin</artifactId>
-            <configuration>
-              <aggregated>true</aggregated>
-              <escapeHTML>false</escapeHTML>
-              <feedType>rss_2.0</feedType>
-              <issueLinkTemplatePerSystem>
-                <default>https://github.com/blavenie/cesium-plus-pod/issues/%ISSUE%</default>
-              </issueLinkTemplatePerSystem>
-            </configuration>
           </plugin>
 
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
-            <version>2.1</version>
-            <reportSets>
-              <reportSet>
-                <reports>
-                  <report>dependency-updates-report</report>
-                  <report>plugin-updates-report</report>
-                  <report>property-updates-report</report>
-                </reports>
-              </reportSet>
-            </reportSets>
+            <version>${versionsPluginVersion}</version>
+            <configuration>
+              <generateBackupPoms>false</generateBackupPoms>
+            </configuration>
           </plugin>
 
           <plugin>

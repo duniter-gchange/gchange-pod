@@ -83,10 +83,10 @@
         <include>javax.websocket:javax.websocket-api</include>
         <include>org.glassfish.tyrus:tyrus-client</include>
         <include>org.glassfish.tyrus:tyrus-container-grizzly-client</include>
-        <include>org.glassfish.tyrus:tyrus-server</include>
-        <include>org.glassfish.tyrus:tyrus-container-grizzly-server</include>
+        <include>com.sun.mail:jakarta.mail</include>
+        <include>com.sun.activation:jakarta.activation</include>
       </includes>
-      <fileMode>0555</fileMode>
+      <fileMode>0664</fileMode>
     </dependencySet>
   </dependencySets>
 </assembly>

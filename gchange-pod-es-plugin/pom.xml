@@ -10,6 +10,7 @@
     <artifactId>gchange-pod-es-plugin</artifactId>
     <packaging>jar</packaging>
     <name>Ğchange Pod :: ElasticSearch plugin</name>
+    <description>ES Plugin for Ğchange Pod</description>
 
     <properties>
 
@@ -59,6 +60,17 @@
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <optional>true</optional>
             <scope>provided</scope>
         </dependency>
 

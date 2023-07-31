@@ -9,6 +9,7 @@
 
     <artifactId>gchange-pod-assembly</artifactId>
     <name>Ğchange Pod :: Assembly</name>
+    <description>Assembly of Ğchange Pod</description>
     <packaging>pom</packaging>
 
     <properties>
@@ -38,17 +39,7 @@
         </dependency>
         <dependency>
             <groupId>org.glassfish.tyrus</groupId>
-            <artifactId>tyrus-server</artifactId>
-            <version>${tyrus.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.tyrus</groupId>
             <artifactId>tyrus-container-grizzly-client</artifactId>
-            <version>${tyrus.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.tyrus</groupId>
-            <artifactId>tyrus-container-grizzly-server</artifactId>
             <version>${tyrus.version}</version>
         </dependency>
         <dependency>
@@ -66,6 +57,14 @@
                     <artifactId>jna</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>jakarta.activation</artifactId>
         </dependency>
     </dependencies>
 
@@ -351,14 +350,14 @@
                                 <version>${tyrus.version}</version>
                             </dependency>
                             <dependency>
-                                <groupId>org.glassfish.tyrus</groupId>
-                                <artifactId>tyrus-server</artifactId>
-                                <version>${tyrus.version}</version>
+                                <groupId>com.sun.mail</groupId>
+                                <artifactId>jakarta.mail</artifactId>
+                                <version>${jakarta-mail.version}</version>
                             </dependency>
                             <dependency>
-                                <groupId>org.glassfish.tyrus</groupId>
-                                <artifactId>tyrus-container-grizzly-server</artifactId>
-                                <version>${tyrus.version}</version>
+                                <groupId>com.sun.activation</groupId>
+                                <artifactId>jakarta.activation</artifactId>
+                                <version>${jakarta-activation.version}</version>
                             </dependency>
 
                             <!-- Need for geo_shape type -->
