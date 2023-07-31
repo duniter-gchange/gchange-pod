@@ -68,6 +68,7 @@
       <directory>src/main/assembly</directory>
       <outputDirectory/>
       <includes>
+        <include>bin/elasticsearch.in.sh</include>
         <include>bin/gchange-pod</include>
       </includes>
       <fileMode>0755</fileMode>
