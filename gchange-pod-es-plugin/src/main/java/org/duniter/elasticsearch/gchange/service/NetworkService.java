@@ -2,9 +2,11 @@ package org.duniter.elasticsearch.gchange.service;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.duniter.core.client.model.bma.EndpointApi;
 import org.duniter.core.client.model.local.Peer;
 import org.duniter.core.service.CryptoService;
+import org.duniter.core.util.Beans;
 import org.duniter.elasticsearch.client.Duniter4jClient;
 import org.duniter.elasticsearch.gchange.PluginSettings;
 import org.duniter.elasticsearch.gchange.model.bma.GchangeEndpoindApi;
@@ -15,8 +17,10 @@ import org.elasticsearch.common.inject.Inject;
 
 import java.io.Closeable;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 public class NetworkService extends AbstractService {
 
@@ -58,9 +62,14 @@ public class NetworkService extends AbstractService {
     public Collection<Peer> getConfigPeersWithGchangeApi() {
 
         Collection<Peer> peers = Lists.newArrayList();
-        for (String currency: currencyService.getAllIds()) {
-            peers.addAll(delegate.getConfigIncludesPeers(currency, GchangeEndpoindApi.GCHANGE_API.label()));
-        }
+        Beans.getStream(currencyService.getAllIds())
+            .filter(StringUtils::isNotBlank)
+            .forEach(currency -> {
+                    List<Peer> currencyPeers = delegate.getConfigIncludesPeers(currency, GchangeEndpoindApi.GCHANGE_API.label());
+                    if (CollectionUtils.isNotEmpty(currencyPeers)) {
+                        peers.addAll(currencyPeers);
+                    }
+                });
 
         return peers;
     }
