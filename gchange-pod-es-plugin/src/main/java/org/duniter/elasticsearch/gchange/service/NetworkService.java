@@ -67,7 +67,10 @@ public class NetworkService extends AbstractService {
             .forEach(currency -> {
                     List<Peer> currencyPeers = delegate.getConfigIncludesPeers(currency, GchangeEndpoindApi.GCHANGE_API.label());
                     if (CollectionUtils.isNotEmpty(currencyPeers)) {
-                        peers.addAll(currencyPeers);
+                        for (Peer peer: currencyPeers) {
+                            if (peer != null && !peers.contains(peer))
+                                peers.add(peer);
+                        }
                     }
                 });
 
