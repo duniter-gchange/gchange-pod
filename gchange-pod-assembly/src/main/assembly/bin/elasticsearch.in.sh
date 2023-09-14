@@ -12,11 +12,12 @@ fi
 
 ES_CLASSPATH="$ES_HOME/lib/elasticsearch-2.4.6.jar:$ES_HOME/lib/*"
 
+# BLA - 14/09/2023 - Increase JVM default min/max memory to 1g/4g
 if [ "x$ES_MIN_MEM" = "x" ]; then
-    ES_MIN_MEM=256m
+    ES_MIN_MEM=1g
 fi
 if [ "x$ES_MAX_MEM" = "x" ]; then
-    ES_MAX_MEM=1g
+    ES_MAX_MEM=4g
 fi
 if [ "x$ES_HEAP_SIZE" != "x" ]; then
     ES_MIN_MEM=$ES_HEAP_SIZE
@@ -74,7 +75,8 @@ if [ -n "$ES_GC_LOG_FILE" ]; then
 fi
 
 # Causes the JVM to dump its heap on OutOfMemory.
-JAVA_OPTS="$JAVA_OPTS -XX:+HeapDumpOnOutOfMemoryError"
+# BLA - 14/09/2023 - Remove unused JVM heap dump, that can use a lot of space
+#JAVA_OPTS="$JAVA_OPTS -XX:+HeapDumpOnOutOfMemoryError"
 # The path to the heap dump location, note directory must exists and have enough
 # space for a full heap dump.
 #JAVA_OPTS="$JAVA_OPTS -XX:HeapDumpPath=$ES_HOME/logs/heapdump.hprof"
