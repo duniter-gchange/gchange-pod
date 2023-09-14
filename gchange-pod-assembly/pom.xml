@@ -298,6 +298,12 @@
                                             <fileset dir="${project.basedir}/src/test/es-home" includes="**/*.*">
                                             </fileset>
                                         </copy>
+
+                                        <!-- Use .local/elasticsearch.yml -->
+                                        <copy todir="${run.es.home}/config" overwrite="true">
+                                            <fileset dir="${project.basedir}/../.local" includes="elasticsearch.yml">
+                                            </fileset>
+                                        </copy>
                                     </target>
                                 </configuration>
                             </execution>
