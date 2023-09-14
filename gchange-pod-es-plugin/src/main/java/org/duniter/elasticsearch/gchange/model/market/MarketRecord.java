@@ -63,4 +63,10 @@ public class MarketRecord extends LightMarketRecord {
     private String currency;
     private String category;
 
+    private String pubkey;
+
+    private Boolean allowComments;
+
+    private Boolean allowShipping;
+
 }

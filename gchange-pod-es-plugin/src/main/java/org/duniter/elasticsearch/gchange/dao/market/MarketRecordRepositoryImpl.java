@@ -275,6 +275,22 @@ public class MarketRecordRepositoryImpl extends AbstractRecordRepositoryImpl imp
                     .field("type", "integer")
                     .endObject()
 
+                    // payment pubkey
+                    .startObject(MarketRecord.Fields.PUBKEY)
+                    .field("type", "string")
+                    .field("index", "not_analyzed")
+                    .endObject()
+
+                    // allow comments
+                    .startObject(MarketRecord.Fields.ALLOW_COMMENTS)
+                    .field("type", "boolean")
+                    .endObject()
+
+                    // allow comments
+                    .startObject(MarketRecord.Fields.ALLOW_SHIPPING)
+                    .field("type", "boolean")
+                    .endObject()
+
                     // issuer
                     .startObject(MarketRecord.Fields.ISSUER)
                     .field("type", "string")
