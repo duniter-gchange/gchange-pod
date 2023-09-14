@@ -69,8 +69,11 @@ cluster.remote.port: 9200
 #
 # http.port: 9200-9300
 
-http.cors.allow-origin: "/.*/"
 http.cors.enabled: true
+http.cors.allow-credentials: true
+http.cors.allow-origin: "/.*/"
+http.cors.allow-headers: X-Requested-With, X-Auth-Token, X-Real-IP, Content-Type, Content-Length, Authorization, Access-Control-Allow-Headers, Accept
+
 #
 #http.compression: true
 #
@@ -172,13 +175,13 @@ duniter.blockchain.event.user.enable: false
 #
 # Force blockchain full synchronization - /!\ WARNING: all user events will be reset to 'unread'
 #
-duniter.blockchain.reload: true
+# duniter.blockchain.reload: true
 # duniter.blockchain.reload.from: 18900
 # duniter.blockchain.reload.to: 19000
 #
 # Duniter node address
 #
-duniter.host: g1.cgeek.fr
+duniter.host: g1.e-is.pro
 duniter.port: 443
 duniter.useSsl: true
 #
@@ -223,13 +226,12 @@ duniter.p2p.peerTimeOffset: 7200
 #
 # Enable discovery on network peers, to automatically synchronize this peers (default: true)
 #
-duniter.p2p.discovery.enable: true
+duniter.p2p.discovery.enable: false
 #
 # Pass a list of hosts to always synchronize (default: <empty>)
 #
 duniter.p2p.includes.endpoints: [
-  "GCHANGE_API gchange.data.presles.fr 443",
-  "GCHANGE_API data.gchange.fr 443"
+#  "GCHANGE_API data.gchange.fr 443"
 ]
 #
 # Pass a list of pubkeys to always synchronize (default: <empty>)
@@ -250,7 +252,7 @@ duniter.p2p.peer.indexedApis: [
 #
 # Enable publishing of pod endpoints to the network (see the peer document in Duniter protocol). (Default: '${duniter.p2p.enable}')
 #
-duniter.p2p.peering.enable: true
+duniter.p2p.peering.enable: false
 #
 # Define targeted API (for peers selection) where to send the peer document (if peering is enable). (Default: ["BASIC_MERKLED_API", "BMAS"])
 # This API should accept a POST request to '/network/peering' (will send a see the Duniter protocol)
@@ -263,6 +265,7 @@ duniter.p2p.peering.targetedApis: [
 #
 duniter.p2p.peering.publishedApis: [
   "GCHANGE_API"
+  #"GCHANGE_API", "GCHANGE_SUBSCRIPTION_API"
 ]
 #
 # Interval for publishing peer document to the network, in seconds. (Default: 7200 =2h)
