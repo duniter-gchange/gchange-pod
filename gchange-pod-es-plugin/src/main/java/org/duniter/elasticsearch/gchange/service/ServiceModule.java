@@ -32,6 +32,7 @@ public class ServiceModule extends AbstractModule implements Module {
         bind(MarketService.class).asEagerSingleton();
         bind(CommentUserEventService.class).asEagerSingleton();
         bind(RecordUserEventService.class).asEagerSingleton();
+        bind(BlockchainUserEventService.class).asEagerSingleton();
 
         // Configure network service
         bind(NetworkService.class).asEagerSingleton();

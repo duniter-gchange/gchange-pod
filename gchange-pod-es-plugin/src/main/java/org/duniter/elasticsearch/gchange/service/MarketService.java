@@ -187,6 +187,19 @@ public class MarketService extends AbstractService {
                 MarketRecord.Fields.UNIT);
     }
 
+    public MarketRecord getRecordForEvent(String id) {
+
+        MarketRecord record = client.getSourceByIdOrNull(recordRepository.getIndex(), recordRepository.getType(), id, MarketRecord.class,
+            MarketRecord.Fields.TITLE,
+            MarketRecord.Fields.ISSUER,
+            MarketRecord.Fields.CURRENCY,
+            MarketRecord.Fields.PUBKEY,
+            MarketRecord.Fields.TYPE);
+        // Set the ID
+        if (record != null) record.setId(id);
+        return record;
+    }
+
     public MarketService startDataMigration() {
 
         // Start index data migration

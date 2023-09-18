@@ -37,5 +37,10 @@ public enum GchangeEventCodes {
 
     FOLLOW_NEW,
     FOLLOW_UPDATE,
-    FOLLOW_CLOSE
+    FOLLOW_CLOSE,
+
+    // Linked currency pubkey
+    LINK_PUBKEY,
+    UNLINK_PUBKEY,
+    CROWDFUNDING_TX_RECEIVED
 }

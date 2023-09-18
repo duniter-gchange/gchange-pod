@@ -16,16 +16,21 @@
     <url>http://www.duniter.fr</url>
   </organization>
 
+  <prerequisites>
+    <maven>3.8.6</maven>
+  </prerequisites>
+
   <properties>
     <!-- source file encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <file.encoding>UTF-8</file.encoding>
 
-    <javaVersion>1.8</javaVersion>
+    <!-- Project properties -->
+    <javaVersion>11</javaVersion>
 
     <!-- Commons versions -->
-    <cesium-plus-pod.version>1.10.4</cesium-plus-pod.version>
-    <duniter4j.version>1.5.6</duniter4j.version>
+    <cesium-plus-pod.version>1.11.0</cesium-plus-pod.version>
+    <duniter4j.version>1.6.1</duniter4j.version>
     <log4j.version>1.2.17</log4j.version>
     <slf4j.version>1.7.6</slf4j.version>
     <guava.version>22.0</guava.version>
@@ -60,20 +65,37 @@
     <goals>deploy</goals>
     <arguments />
     <preparationGoals>verify</preparationGoals>
-    <projectInfoReportsPluginVersion>2.7</projectInfoReportsPluginVersion>
+    <gitflowPluginVersion>1.14.0</gitflowPluginVersion>
 
     <!-- Last JRE version to use -->
-    <jreVersion>1.8.77</jreVersion>
+    <jreVersion>17.0.5</jreVersion>
 
-    <jarPluginVersion>3.0.2</jarPluginVersion>
+    <!-- nuiton maven plugins version -->
+    <jrstPluginVersion>2.1</jrstPluginVersion>
+    <helperPluginVersion>2.3.2</helperPluginVersion>
+
+    <!-- apache maven plugins version -->
+    <jarPluginVersion>3.2.0</jarPluginVersion>
+    <sitePluginVersion>3.10.0</sitePluginVersion>
     <changesPluginVersion>2.12.1</changesPluginVersion>
     <compilerPluginVersion>3.8.1</compilerPluginVersion>
+    <changelogPluginVersion>2.3</changelogPluginVersion>
+    <projectInfoReportsPluginVersion>3.1.2</projectInfoReportsPluginVersion>
+    <jrxPluginVersion>3.0.0</jrxPluginVersion>
+    <surefirePluginVersion>2.21.0</surefirePluginVersion>
+    <markdownPluginVersion>1.11.1</markdownPluginVersion>
+    <enforcerPluginVersion>3.1.0</enforcerPluginVersion>
+    <sourcePluginVersion>3.2.1</sourcePluginVersion>
+    <releasePluginVersion>2.5.3</releasePluginVersion>
+    <deployPluginVersion>3.0.0</deployPluginVersion>
+    <javadocPluginVersion>3.5.0</javadocPluginVersion>
+
+    <!-- codehaus mojo plugins -->
+    <licensePluginVersion>1.13</licensePluginVersion>
+    <execPluginVersion>1.6.0</execPluginVersion>
     <wagonPluginVersion>1.0</wagonPluginVersion>
     <versionsPluginVersion>2.3</versionsPluginVersion>
-    <execPluginVersion>1.6.0</execPluginVersion>
-    <enforcerPluginVersion>1.4.1</enforcerPluginVersion>
-    <sourcePluginVersion>3.0.1</sourcePluginVersion>
-    <releasePluginVersion>2.5.1</releasePluginVersion>
+    <findbugsPluginVersion>3.0.5</findbugsPluginVersion>
 
     <locales>en,fr</locales>
 
@@ -105,6 +127,9 @@
     <snapshot.repository>https://nexus.e-is.pro/nexus/content/repositories/gchange-snapshots</snapshot.repository>
 
     <assembly.skip>false</assembly.skip>
+
+    <!-- to deploy with scpexe for maven 3 -->
+    <wagonSshVersion>2.12</wagonSshVersion>
   </properties>
 
   <licenses>
@@ -188,25 +213,12 @@
         <version>${jakarta-activation.version}</version>
       </dependency>
 
-      <!-- Compile -->
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>javax.annotation</groupId>
-        <artifactId>javax.annotation-api</artifactId>
-        <version>1.3.2</version>
-        <scope>compile</scope>
-      </dependency>
+      <!-- Log -->
       <dependency>
         <groupId>log4j</groupId>
         <artifactId>log4j</artifactId>
         <version>${log4j.version}</version>
       </dependency>
-
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
@@ -224,7 +236,7 @@
       </dependency>
       <dependency>
         <groupId>org.glassfish.tyrus</groupId>
-        <artifactId>tyrus-server</artifactId>
+        <artifactId>tyrus-client</artifactId>
         <version>${tyrus.version}</version>
         <exclusions>
           <exclusion>
@@ -240,9 +252,30 @@
       <dependency>
         <groupId>org.glassfish.tyrus</groupId>
         <artifactId>tyrus-container-grizzly-client</artifactId>
+        <version>${tyrus.version}</version>
+      </dependency>
+
+      <!-- Compile -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>javax.annotation-api</artifactId>
+        <version>1.3.2</version>
+        <scope>compile</scope>
       </dependency>
 
       <!-- Unit test -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
       <dependency>
         <groupId>org.duniter.cesium</groupId>
         <artifactId>cesium-plus-pod-test</artifactId>
@@ -250,10 +283,10 @@
         <scope>test</scope>
       </dependency>
     </dependencies>
-
   </dependencyManagement>
 
   <build>
+
     <pluginManagement>
       <plugins>
 
@@ -286,8 +319,14 @@
 
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>${findbugsPluginVersion}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
           <artifactId>license-maven-plugin</artifactId>
-          <version>1.4</version>
+          <version>${licensePluginVersion}</version>
         </plugin>
 
         <plugin>
@@ -301,21 +340,19 @@
         </plugin>
 
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.10</version>
+          <version>${javadocPluginVersion}</version>
         </plugin>
 
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <version>${deployPluginVersion}</version>
         </plugin>
 
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
           <version>${releasePluginVersion}</version>
-          <configuration>
-            <autoVersionSubmodules>true</autoVersionSubmodules>
-          </configuration>
         </plugin>
 
         <plugin>
@@ -327,6 +364,15 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>wagon-maven-plugin</artifactId>
           <version>${wagonPluginVersion}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>${versionsPluginVersion}</version>
+          <configuration>
+            <generateBackupPoms>false</generateBackupPoms>
+          </configuration>
         </plugin>
 
         <plugin>
@@ -420,7 +466,7 @@
             <dependency>
               <groupId>ant-contrib</groupId>
               <artifactId>ant-contrib</artifactId>
-              <version>1.0b2</version>
+              <version>1.0b3</version>
               <exclusions>
                 <exclusion>
                   <groupId>ant</groupId>
@@ -433,6 +479,139 @@
 
       </plugins>
     </pluginManagement>
+
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-project-files</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <rules>
+                <requireFilesExist>
+                  <files>
+                    <file>LICENSE.txt</file>
+                  </files>
+                </requireFilesExist>
+              </rules>
+              <ignoreCache>true</ignoreCache>
+              <failFast>true</failFast>
+              <fail>true</fail>
+
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>enforce-javaVersion</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <rules>
+                <requireProperty>
+                  <property>javaVersion</property>
+                  <message>"javaVersion property must be specified."</message>
+                  <regex>11|17|21$</regex>
+                  <regexMessage>"javaVersion property can not be empty and must be 11, 17 or 21."</regexMessage>
+                </requireProperty>
+              </rules>
+              <ignoreCache>true</ignoreCache>
+              <failFast>true</failFast>
+              <fail>true</fail>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>enforce-java-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>validate</phase>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>${javaVersion}</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+
+      <!-- site -->
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>${sitePluginVersion}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-module-markdown</artifactId>
+            <version>${markdownPluginVersion}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>org.nuiton</groupId>
+        <artifactId>nuiton-config-maven-plugin</artifactId>
+        <version>${nuitonConfigVersion}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.nuiton</groupId>
+        <artifactId>helper-maven-plugin</artifactId>
+        <version>${helperPluginVersion}</version>
+        <configuration>
+          <!-- avoid error on hibernate-maven-plugin IFR version-->
+          <failIfNotSafe>false</failIfNotSafe>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.amashchenko.maven.plugin</groupId>
+        <artifactId>gitflow-maven-plugin</artifactId>
+        <version>${gitflowPluginVersion}</version>
+        <configuration>
+          <installProject>false</installProject>
+          <verbose>true</verbose>
+          <fetchRemote>false</fetchRemote>
+          <skipTestProject>true</skipTestProject>
+          <gitFlowConfig>
+            <productionBranch>master</productionBranch>
+            <developmentBranch>develop</developmentBranch>
+            <releaseBranchPrefix>release/</releaseBranchPrefix>
+            <versionTagPrefix></versionTagPrefix>
+          </gitFlowConfig>
+          <commitMessages>
+            <releaseStartMessage>Release @{version}</releaseStartMessage>
+            <releaseFinishMessage>[ci skip] to bump @{version}</releaseFinishMessage>
+          </commitMessages>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+    <!-- Enabling the use of scpexe with maven 3.0 -->
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh-external</artifactId>
+        <version>${wagonSshVersion}</version>
+      </extension>
+      <!-- Enabling the use of scp/sftp:// with maven 3.0 -->
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>${wagonSshVersion}</version>
+      </extension>
+    </extensions>
   </build>
 
   <!-- Repositories needed to find the dependencies -->
@@ -522,6 +701,7 @@
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
+            <version>${execPluginVersion}</version>
             <executions>
               <execution>
                 <id>run</id>
@@ -626,9 +806,14 @@
                   <addSvnKeyWords>false</addSvnKeyWords>
                   <excludes>
                     <exclude>**/*.json</exclude>
+                    <exclude>**/*.css</exclude>
+                    <exclude>**/*.svg</exclude>
+                    <exclude>**/*.min.js</exclude>
                     <exclude>**/*.properties</exclude>
+                    <exclude>**/*.yml</exclude>
                     <exclude>**/*.xml</exclude>
                     <exclude>**/*.sh</exclude>
+                    <exclude>**/*.md</exclude>
                     <exclude>**/site/**/*.*</exclude>
                     <exclude>**/misc/**/*.*</exclude>
                     <exclude>**/es-home/**/*.*</exclude>
@@ -693,11 +878,10 @@
             <reportSets>
               <reportSet>
                 <reports>
-                  <report>project-team</report>
-                  <report>mailing-list</report>
-                  <report>cim</report>
-                  <report>issue-tracking</report>
-                  <report>license</report>
+                  <report>team</report>
+                  <report>mailing-lists</report>
+                  <report>issue-management</report>
+                  <report>licenses</report>
                   <report>scm</report>
                   <report>dependencies</report>
                   <report>dependency-convergence</report>
@@ -714,6 +898,19 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-changelog-plugin</artifactId>
+            <version>${changelogPluginVersion}</version>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>${jrxPluginVersion}</version>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>${surefirePluginVersion}</version>
           </plugin>
 
           <plugin>
@@ -725,27 +922,33 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
             <version>${versionsPluginVersion}</version>
-            <configuration>
-              <generateBackupPoms>false</generateBackupPoms>
-            </configuration>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>dependency-updates-report</report>
+                  <report>plugin-updates-report</report>
+                  <report>property-updates-report</report>
+                </reports>
+              </reportSet>
+            </reportSets>
           </plugin>
 
           <plugin>
             <groupId>org.nuiton</groupId>
-            <artifactId>nuiton-maven-report-plugin</artifactId>
-            <version>3.0</version>
+            <artifactId>nuiton-config-maven-plugin</artifactId>
+            <version>${nuitonConfigVersion}</version>
             <inherited>false</inherited>
             <reportSets>
               <reportSet>
                 <reports>
-                  <report>aggregate-config-report</report>
+                  <report>aggregate-report</report>
                 </reports>
               </reportSet>
             </reportSets>
             <configuration>
+              <include>gchange-pod</include>
               <i18nBundleName>gchange-pod-es-plugin-i18n</i18nBundleName>
               <verbose>true</verbose>
-              <showOptionDetail>true</showOptionDetail>
               <outputEncoding>UTF-8</outputEncoding>
             </configuration>
           </plugin>
