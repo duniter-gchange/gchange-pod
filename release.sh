@@ -1,6 +1,17 @@
 #!/bin/bash
 
-mkdir .local
+# Get to the root project
+if [[ "_" == "_${PROJECT_DIR}" ]]; then
+  SCRIPT_DIR=$(dirname $0)
+  PROJECT_DIR=$(cd "${SCRIPT_DIR}/../.." && pwd)
+  export PROJECT_DIR
+fi;
+
+if [[ -f "${PROJECT_DIR}/.local/env.sh" ]]; then
+  source ${PROJECT_DIR}/.local/env.sh
+fi;
+
+cd ${PROJECT_DIR}
 
 RELEASE_OPTS="-DskipTests -DperformFullRelease"
 

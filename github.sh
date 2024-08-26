@@ -1,10 +1,15 @@
 #!/bin/bash
 
 PROJECT_NAME=gchange-pod
-SCRIPT_LOCATION=$(dirname $0)
-PROJECT_DIR=$(cd ${SCRIPT_LOCATION} && pwd)
 REPO="duniter-gchange/${PROJECT_NAME}"
 REPO_URL=https://api.github.com/repos/${REPO}
+
+# Get to the root project
+if [[ "_" == "_${PROJECT_DIR}" ]]; then
+  SCRIPT_DIR=$(dirname $0)
+  PROJECT_DIR=$(cd "${SCRIPT_DIR}/../.." && pwd)
+  export PROJECT_DIR
+fi;
 
 ### Control that the script is run on `dev` branch
 branch=`git rev-parse --abbrev-ref HEAD`
@@ -19,15 +24,17 @@ current=`grep -m1 -P "\<version>[0-9A−Z.]+(-\w*)?</version>" pom.xml | grep -o
 echo "Current version: $current"
 remote_tag=${PROJECT_NAME}-$current
 
-
 ###  get auth token
-GITHUB_TOKEN=`cat ~/.config/${PROJECT_NAME}/.github`
+if [[ "_${GITHUB_TOKEN}" == "_" ]]; then
+  GITHUB_TOKEN=`cat ~/.config/${PROJECT_NAME}/.github`
+fi
 if [[ "_$GITHUB_TOKEN" != "_" ]]; then
     GITHUT_AUTH="Authorization: token $GITHUB_TOKEN"
 else
-    echo "Unable to find github authentication token file: "
+    echo "ERROR: Unable to find github authentication token file: "
     echo " - You can create such a token at https://github.com/settings/tokens > 'Generate a new token'."
-    echo " - Then copy the token and paste it in the file '~/.config/${PROJECT_NAME}/.github' using a valid token."
+    echo " - [if CI] Add a pipeline variable named 'GITHUB_TOKEN';"
+    echo " - [else] Or copy/paste the token into the file '~/.config/${PROJECT_NAME}/.github'."
     exit 1
 fi
 
