@@ -66,7 +66,7 @@ mvn release:prepare -Darguments="${RELEASE_OPTS}"
 echo "**********************************"
 echo "* Performing release..."
 echo "**********************************"
-mvn release:perform --quiet -Darguments="${RELEASE_OPTS}"
+mvn release:perform -Darguments="${RELEASE_OPTS}"
 [[ $? -ne 0 ]] && exit 1
 
 echo "**********************************"
