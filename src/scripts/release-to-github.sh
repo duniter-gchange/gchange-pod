@@ -56,7 +56,7 @@ case "$1" in
       prerelease="false"
     fi
 
-    description=$(echo $2)
+    description=$2
     if [[ "_$description" = "_" ]]; then
         description="Release v$current"
     fi

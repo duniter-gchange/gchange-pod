@@ -52,8 +52,8 @@ fi
 echo "**********************************"
 echo "* Preparing release..."
 echo "**********************************"
-result=`mvn release:clean`
-failure=`echo "$result" | grep -m1 -P "\[INFO\] BUILD FAILURE"  | grep -oP "BUILD \w+"`
+result=$(mvn release:clean)
+failure=$()echo "$result" | grep -m1 -P "\[INFO\] BUILD FAILURE"  | grep -oP "BUILD \w+")
 # prepare failed
 if [[ ! "_$failure" = "_" ]]; then
     echo "$result" | grep -P "\[ERROR\] "
