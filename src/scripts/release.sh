@@ -13,13 +13,26 @@ fi;
 
 cd ${PROJECT_DIR}
 
+task=$1
+description=$2
+
+# Check arguments
+if [[ ! $task =~ ^(pre|rel)$ ]]; then
+  echo "Wrong version format"
+  echo "Usage:"
+  echo " > $0 pre|rel <release_description>"
+  echo "with:"
+  echo " - pre: use for pre-release"
+  echo " - rel: for full release"
+  echo " - release_description: a comment on release"
+  exit 1
+fi
+
 RELEASE_OPTS="-DskipTests -DperformFullRelease"
 
 # Clean previous install
 mvn clean --quiet
-if [[ $? -ne 0 ]]; then
-    exit 1
-fi
+[[ $? -ne 0 ]] && exit 1
 
 # Rollback previous release, if need
 if [[ -f "pom.xml.releaseBackup" ]]; then
@@ -48,26 +61,20 @@ if [[ ! "_$failure" = "_" ]]; then
 fi
 
 mvn release:prepare -Darguments="${RELEASE_OPTS}"
-if [[ $? -ne 0 ]]; then
-    exit 1
-fi
+[[ $? -ne 0 ]] && exit 1
 
 echo "**********************************"
 echo "* Performing release..."
 echo "**********************************"
 mvn release:perform --quiet -Darguments="${RELEASE_OPTS}"
-if [[ $? -ne 0 ]]; then
-    exit 1
-fi
+[[ $? -ne 0 ]] && exit 1
 
 echo "**********************************"
 echo "* Uploading artifacts to Github..."
 echo "**********************************"
 cd target/checkout
-./github.sh pre
-if [[ $? -ne 0 ]]; then
-    exit 1
-fi
+. ${PROJECT_DIR}/src/scripts/release-to-github.sh $task $description
+[[ $? -ne 0 ]] && exit 1
 
 echo "RELEASE finished !"
 

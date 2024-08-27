@@ -12,7 +12,7 @@ if [[ "_" == "_${PROJECT_DIR}" ]]; then
 fi;
 
 ### Control that the script is run on `dev` branch
-branch=`git rev-parse --abbrev-ref HEAD`
+branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ "$branch" = "master" ]];
 then
   echo ">> This script must be run under a branch (tag)"
@@ -20,13 +20,13 @@ then
 fi
 
 ### Get version to release
-current=`grep -m1 -P "\<version>[0-9A−Z.]+(-\w*)?</version>" pom.xml | grep -oP "\d+.\d+.\d+(-\w*)?"`
+current=$(grep -m1 -P "\<version>[0-9A−Z.]+(-\w*)?</version>" pom.xml | grep -oP "\d+.\d+.\d+(-\w*)?")
 echo "Current version: $current"
 remote_tag=${PROJECT_NAME}-$current
 
 ###  get auth token
 if [[ "_${GITHUB_TOKEN}" == "_" ]]; then
-  GITHUB_TOKEN=`cat ~/.config/${PROJECT_NAME}/.github`
+  GITHUB_TOKEN=$(cat ~/.config/${PROJECT_NAME}/.github)
 fi
 if [[ "_$GITHUB_TOKEN" != "_" ]]; then
     GITHUT_AUTH="Authorization: token $GITHUB_TOKEN"
@@ -40,8 +40,8 @@ fi
 
 case "$1" in
   del)
-    result=`curl -i "$REPO_URL/releases/tags/$remote_tag"`
-    release_url=`echo "$result" | grep -P "\"url\": \"[^\"]+"  | grep -oP "$REPO_URL/releases/\d+"`
+    result=$(curl -i "$REPO_URL/releases/tags/$remote_tag")
+    release_url=$(echo "$result" | grep -P "\"url\": \"[^\"]+"  | grep -oP "$REPO_URL/releases/\d+")
     if [[ $release_url != "" ]]; then
         echo "Deleting existing release..."
         curl -H 'Authorization: token $GITHUB_TOKEN'  -XDELETE $release_url
@@ -56,16 +56,16 @@ case "$1" in
       prerelease="false"
     fi
 
-    description=`echo $2`
+    description=$(echo $2)
     if [[ "_$description" = "_" ]]; then
         description="Release v$current"
     fi
 
-    result=`curl -s -H ''"$GITHUT_AUTH"'' "$REPO_URL/releases/tags/$remote_tag"`
-    release_url=`echo "$result" | grep -P "\"url\": \"[^\"]+" | grep -oP "https://[A-Za-z0-9/.-]+/releases/\d+"`
+    result=$(curl -s -H ''"$GITHUT_AUTH"'' "$REPO_URL/releases/tags/$remote_tag")
+    release_url=$(echo "$result" | grep -P "\"url\": \"[^\"]+" | grep -oP "https://[A-Za-z0-9/.-]+/releases/\d+")
     if [[ "_$release_url" != "_" ]]; then
         echo "Deleting existing release... $release_url"
-        result=`curl -H ''"$GITHUT_AUTH"'' -s -XDELETE $release_url`
+        result=$(curl -H ''"$GITHUT_AUTH"'' -s -XDELETE $release_url)
         if [[ "_$result" != "_" ]]; then
             error_message=`echo "$result" | grep -P "\"message\": \"[^\"]+" | grep -oP ": \"[^\"]+\""`
             echo "Delete existing release failed with error$error_message"
